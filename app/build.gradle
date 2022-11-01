@@ -46,10 +46,13 @@ android {
 
 dependencies {
 
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     def nav_version = "2.5.3"
     def lifecycle_version = "2.6.0-alpha03"
     def timber_version = "5.0.1"
     def hilt_version = "2.44"
+
+
 
     // Ktx
     implementation 'androidx.core:core-ktx:1.9.0'
