@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/auth_navigation_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation_graph"
+    app:startDestination="@id/splashFragment">
 
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_authsMainFragment"
+            app:destination="@id/authsMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authsMainFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.AuthsMainFragment"
+        android:label="fragment_main_auths"
+        tools:layout="@layout/fragment_main_auths" >
+        <action
+            android:id="@+id/action_authsMainFragment_to_loginMainFragment"
+            app:destination="@id/loginMainFragment" />
+        <action
+            android:id="@+id/action_authsMainFragment_to_signUpDetailsMainFragment"
+            app:destination="@id/signUpDetailsMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginMainFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.LoginMainFragment"
+        android:label="fragment_login_main"
+        tools:layout="@layout/fragment_login_main" >
+        <action
+            android:id="@+id/action_loginMainFragment_to_signInDetailsFragment"
+            app:destination="@id/signInDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/signInDetailsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsFragment"
+        android:label="fragment_sign_in_details"
+        tools:layout="@layout/fragment_sign_in_details" >
+        <action
+            android:id="@+id/action_signInDetailsFragment_to_recoverPasswordFragment"
+            app:destination="@id/recoverPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification" >
+        <action
+            android:id="@+id/action_verificationFragment_to_recoverPasswordWithEmailFragment"
+            app:destination="@id/recoverPasswordWithEmailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoverPasswordFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.RecoverPasswordWithPhoneFragment"
+        android:label="fragment_recover_password"
+        tools:layout="@layout/fragment_recover_password_with_phone" >
+        <action
+            android:id="@+id/action_recoverPasswordFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpDetailsMainFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignUpDetailsMainFragment"
+        android:label="fragment_sign_up_details"
+        tools:layout="@layout/fragment_sign_up_details" >
+        <action
+            android:id="@+id/action_signUpDetailsMainFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoverPasswordWithEmailFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.RecoverPasswordWithEmailFragment"
+        android:label="fragment_recover_password_with_email"
+        tools:layout="@layout/fragment_recover_password_with_email" />
 </navigation>

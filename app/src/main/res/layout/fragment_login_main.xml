@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
-    tools:context=".ui.fragments.auth.AuthsMainFragment">
+    tools:context=".ui.fragments.auth.LoginMainFragment">
 
 
     <ImageView
@@ -147,8 +147,8 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/montserrat"
         android:text="By continuing, you agree to our "
         android:textSize="14sp"
