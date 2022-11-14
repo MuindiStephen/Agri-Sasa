@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_loginMainFragment_to_signInDetailsFragment"
             app:destination="@id/signInDetailsFragment" />
+        <action
+            android:id="@+id/action_loginMainFragment_to_signUpDetailsMainFragment"
+            app:destination="@id/signUpDetailsMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
@@ -42,12 +45,15 @@
         tools:layout="@layout/fragment_change_password" />
     <fragment
         android:id="@+id/signInDetailsFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsWithPhoneFragment"
         android:label="fragment_sign_in_details"
-        tools:layout="@layout/fragment_sign_in_details" >
+        tools:layout="@layout/fragment_sign_in_details_with_phone" >
         <action
             android:id="@+id/action_signInDetailsFragment_to_recoverPasswordFragment"
             app:destination="@id/recoverPasswordFragment" />
+        <action
+            android:id="@+id/action_signInDetailsFragment_to_signInDetailsWithEmailFragment"
+            app:destination="@id/signInDetailsWithEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/verificationFragment"
@@ -69,16 +75,42 @@
     </fragment>
     <fragment
         android:id="@+id/signUpDetailsMainFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignUpDetailsMainFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignUpDetailsWithPhoneFragment"
         android:label="fragment_sign_up_details"
-        tools:layout="@layout/fragment_sign_up_details" >
+        tools:layout="@layout/fragment_sign_up_details_with_phone" >
         <action
             android:id="@+id/action_signUpDetailsMainFragment_to_verificationFragment"
             app:destination="@id/verificationFragment" />
+        <action
+            android:id="@+id/action_signUpDetailsMainFragment_to_signUpDetailsWithEmailFragment"
+            app:destination="@id/signUpDetailsWithEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/recoverPasswordWithEmailFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.auth.RecoverPasswordWithEmailFragment"
         android:label="fragment_recover_password_with_email"
         tools:layout="@layout/fragment_recover_password_with_email" />
+    <fragment
+        android:id="@+id/signInDetailsWithEmailFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsWithEmailFragment"
+        android:label="fragment_sign_in_details_with_email"
+        tools:layout="@layout/fragment_sign_in_details_with_email" >
+        <action
+            android:id="@+id/action_signInDetailsWithEmailFragment_to_signInDetailsFragment"
+            app:destination="@id/signInDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpDetailsWithEmailFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignUpDetailsWithEmailFragment"
+        android:label="fragment_sign_up_details_with_email"
+        tools:layout="@layout/fragment_sign_up_details_with_email" >
+        <action
+            android:id="@+id/action_signUpDetailsWithEmailFragment_to_signUpDetailsMainFragment"
+            app:destination="@id/signUpDetailsMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeDashboardFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragment"
+        android:label="fragment_home_dashboard"
+        tools:layout="@layout/fragment_home_dashboard" />
 </navigation>

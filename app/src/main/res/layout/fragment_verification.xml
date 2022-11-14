@@ -64,8 +64,8 @@
 
         <EditText
             android:id="@+id/sendVCode1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="14dp"
             android:background="@drawable/outlined_background"
             android:hint=""
@@ -75,8 +75,8 @@
 
         <EditText
             android:id="@+id/sendVCode2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="14dp"
             android:background="@drawable/outlined_background"
             android:hint=""
@@ -86,8 +86,8 @@
 
         <EditText
             android:id="@+id/sendVCode3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="14dp"
             android:background="@drawable/outlined_background"
             android:hint=""
@@ -97,8 +97,28 @@
 
         <EditText
             android:id="@+id/sendVCode4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="14dp"
+            android:background="@drawable/outlined_background"
+            android:hint=""
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="10dp" />
+        <EditText
+            android:id="@+id/sendVCode5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="14dp"
+            android:background="@drawable/outlined_background"
+            android:hint=""
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="10dp" />
+        <EditText
+            android:id="@+id/sendVCode6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_margin="14dp"
             android:background="@drawable/outlined_background"
             android:hint=""

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
-    tools:context=".ui.fragments.auth.SignUpDetailsMainFragment">
+    tools:context=".ui.fragments.auth.SignUpDetailsWithPhoneFragment">
 
 
     <ImageView
@@ -170,7 +170,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSignUpWithPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
@@ -189,13 +189,14 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="45dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Sign up with"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:textSize="12sp"
+        android:textColor="@color/main_black"
+        app:layout_constraintStart_toStartOf="@+id/buttonSignUpWithPhone"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUpWithPhone" />
 
     <TextView
         android:id="@+id/signUpWithEmailInsteadText"
@@ -205,7 +206,7 @@
         android:paddingLeft="2dp"
         android:text="Email"
         android:textColor="@color/main1"
-        android:textSize="16sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4"
@@ -217,7 +218,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:text="instead"
-        android:textSize="16sp"
+        android:textSize="12sp"
+        android:textColor="@color/main_black"
         android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/signUpWithEmailInsteadText"
         app:layout_constraintStart_toEndOf="@+id/signUpWithEmailInsteadText"

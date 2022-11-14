@@ -1,25 +1,31 @@
 package com.steve_md.smartmkulima.ui.fragments.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.databinding.FragmentLoginMainBinding
 
 
 class LoginMainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    private lateinit var binding: FragmentLoginMainBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_main, container, false)
+
+        binding = FragmentLoginMainBinding.inflate(layoutInflater, container, false)
+
+        binding.dontHaveAccountSignUpText.setOnClickListener {
+            findNavController().navigate(R.id.action_loginMainFragment_to_signUpDetailsMainFragment)
+        }
+        return binding.root
     }
 
 }

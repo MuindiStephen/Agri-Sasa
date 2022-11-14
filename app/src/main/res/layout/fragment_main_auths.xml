@@ -12,7 +12,7 @@
         android:id="@+id/imageView"
         android:layout_width="38.75dp"
         android:layout_height="50.45dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="1dp"
         android:fontFamily="@font/montserrat_semibold"
         android:layout_marginStart="160.62dp"
         android:layout_marginEnd="160.62dp"
@@ -54,7 +54,7 @@
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:layout_marginStart="45dp"
-        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et."
+        android:text="Start your journey with us. Create an account right now to quench all your curiosity when it comes to agriculture and more"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -143,128 +143,150 @@
         app:layout_constraintStart_toStartOf="@+id/continueWithFacebookButton"
         app:layout_constraintTop_toBottomOf="@+id/continueWithFacebookButton" />
 
-    <TextView
-        android:id="@+id/textView8"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="By continuing, you agree to our "
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/continueWithTwitterButton"
-        app:layout_constraintTop_toBottomOf="@+id/continueWithTwitterButton" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/continueWithTwitterButton"
+        android:layout_marginTop="10dp">
+
+
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="By continuing, you agree to our "
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/continueWithTwitterButton"
+            app:layout_constraintTop_toBottomOf="@+id/continueWithTwitterButton" />
+
+        <TextView
+            android:id="@+id/termsOfServiceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:textSize="12sp"
+            android:layout_marginTop="40dp"
+            android:text="Terms of Service"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textColor="@color/main_black"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@id/linearLayout1"
+        app:layout_constraintEnd_toEndOf="@id/linearLayout1"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="and acknowledge that you have read our "
+            android:layout_marginStart="45dp"/>
+
+        <TextView
+            android:id="@+id/privacyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:textSize="12sp"
+            android:text="Privacy"
+            android:textColor="@color/main_black"
+            android:fontFamily="@font/montserrat_semibold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="@id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/policyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Policy"
+            android:textColor="@color/main_black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="to learn how we collect, use and share your "
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/termsOfServiceText"
+        android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout3"
         android:gravity="center"
-        android:text="Terms of Service"
-        android:textColor="@color/main_black"
-        android:fontFamily="@font/montserrat_semibold"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.5" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/montserrat"
-        android:text="and acknowledge that you have read our "
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/privacyText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Privacy"
-        android:textSize="14sp"
-        android:textColor="@color/main_black"
-        android:layout_marginLeft="335dp"
-        android:fontFamily="@font/montserrat_semibold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/policyText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:text="Policy"
-        android:textColor="@color/main_black"
-        android:fontFamily="@font/montserrat_semibold"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginStart="95dp"
-        android:fontFamily="@font/montserrat"
-        android:text="to learn how we collect, use and share your"
-        app:layout_constraintBottom_toBottomOf="@+id/policyText"
-        app:layout_constraintStart_toEndOf="@+id/policyText"
-        app:layout_constraintTop_toTopOf="@+id/policyText"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:textSize="12sp"
         android:text="data"
-        android:fontFamily="@font/montserrat"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView13"
-        app:layout_constraintStart_toStartOf="@+id/policyText"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="@id/linearLayout3"/>
 
-    <TextView
-        android:id="@+id/textView16"
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="left"
-        android:textColor="@color/main_black"
-        android:layout_marginStart="80dp"
-        android:text="Already have an account?"
-        android:fontFamily="@font/montserrat_semibold"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/textView14"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@id/textView14" />
+        app:layout_constraintTop_toBottomOf="@id/textView23"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp">
 
-    <TextView
-        android:id="@+id/alreayHaveAccoutLoginText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log in"
-        android:textColor="@color/main1"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:layout_marginEnd="45dp"
-        android:layout_marginStart="294dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? "
+            android:layout_marginStart="80dp"
+            android:textColor="@color/main_black"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <TextView
+            android:id="@+id/alreadyHaveAccountLoginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="12sp"
+            android:textColor="@color/main1"/>
+    </LinearLayout>
+
+
+
+
+
+
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mainAuthsToolbar"
@@ -277,6 +299,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
