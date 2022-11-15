@@ -27,7 +27,6 @@ class SplashFragment : Fragment() {
         }, 3500)
         return binding.root
 
-
     }
 }
 

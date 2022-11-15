@@ -24,7 +24,7 @@ class SignUpDetailsWithEmailFragment : Fragment() {
             findNavController().navigate(R.id.action_signUpDetailsWithEmailFragment_to_signUpDetailsMainFragment)
         }
         binding.buttonSignUpWithEmail.setOnClickListener {
-            findNavController().navigate(R.id.action_signUpDetailsMainFragment_to_verificationFragment)
+            findNavController().navigate(R.id.action_signUpDetailsWithEmailFragment_to_emailVerificationFragment)
         }
 
         return binding.root

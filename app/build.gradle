@@ -90,4 +90,8 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    // Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 }

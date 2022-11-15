@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
-    tools:context=".ui.fragments.auth.VerificationFragment">
+    tools:context=".ui.fragments.auth.EmailVerificationFragment">
 
 
     <ImageView
@@ -39,7 +39,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="We have sent a verification code to +254789****456"
+        android:text="We have sent a verification code to step****@gmail.com"
         android:textSize="13sp"
         android:gravity="center"
         android:layout_marginStart="16dp"
@@ -64,9 +64,9 @@
 
         <EditText
             android:id="@+id/sendVCode1"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="14dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/outlined_background"
             android:hint=""
             android:inputType="number"
@@ -75,9 +75,9 @@
 
         <EditText
             android:id="@+id/sendVCode2"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="14dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/outlined_background"
             android:hint=""
             android:inputType="number"
@@ -86,9 +86,9 @@
 
         <EditText
             android:id="@+id/sendVCode3"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="14dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/outlined_background"
             android:hint=""
             android:inputType="number"
@@ -97,9 +97,9 @@
 
         <EditText
             android:id="@+id/sendVCode4"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="14dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/outlined_background"
             android:hint=""
             android:inputType="number"
@@ -107,9 +107,9 @@
             android:padding="10dp" />
         <EditText
             android:id="@+id/sendVCode5"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="14dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/outlined_background"
             android:hint=""
             android:inputType="number"
@@ -117,9 +117,9 @@
             android:padding="10dp" />
         <EditText
             android:id="@+id/sendVCode6"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="14dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/outlined_background"
             android:hint=""
             android:inputType="number"
@@ -133,7 +133,7 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
+        android:layout_marginStart="70dp"
         android:text="Call me:"
         android:textSize="15sp"
         android:textColor="@color/light_gray"
@@ -188,21 +188,23 @@
         android:fontFamily="@font/montserrat_semibold"
         android:text="Send verification code to "
         android:textColor="@color/main_black"
-        android:textSize="15dp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.642" />
 
     <TextView
-        android:id="@+id/emailVerificationCodeText"
+        android:id="@+id/phoneVerificationCodeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Email"
+        android:text="Phone"
         android:textColor="@color/main"
-        android:textSize="15sp"
-        android:layout_marginStart="250dp"
+        android:textSize="12sp"
+        android:layout_marginStart="212dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView19" />
@@ -211,13 +213,15 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="instead"
+        android:layout_marginStart="252dp"
         android:fontFamily="@font/montserrat_semibold"
+        android:text="instead"
         android:textColor="@color/main_black"
-        android:layout_marginStart="296dp"
-        app:layout_constraintBottom_toBottomOf="@+id/emailVerificationCodeText"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneVerificationCodeText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/emailVerificationCodeText" />
+        app:layout_constraintTop_toTopOf="@+id/phoneVerificationCodeText"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
