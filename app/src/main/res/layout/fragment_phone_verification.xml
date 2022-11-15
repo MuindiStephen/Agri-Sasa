@@ -201,7 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Phone"
+        android:text="Email"
         android:textColor="@color/main"
         android:textSize="12sp"
         android:layout_marginStart="212dp"

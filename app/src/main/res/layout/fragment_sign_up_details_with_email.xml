@@ -74,6 +74,7 @@
         app:layout_constraintEnd_toEndOf="@id/textView2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -106,6 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:id="@+id/inputEmailAddress"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -135,6 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:id="@+id/inputPassword"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -165,6 +168,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:id="@+id/inputConfirmPassword"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -114,6 +114,9 @@
         <action
             android:id="@+id/action_signInDetailsWithEmailFragment_to_homeActivity2"
             app:destination="@id/homeActivity2" />
+        <action
+            android:id="@+id/action_signInDetailsWithEmailFragment_to_signInDetailsFragment2"
+            app:destination="@id/signInDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpDetailsWithEmailFragment"
