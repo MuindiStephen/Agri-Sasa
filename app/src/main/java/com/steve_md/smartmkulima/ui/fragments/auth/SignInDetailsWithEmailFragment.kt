@@ -81,7 +81,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
     }
 
     private fun navigateToHomeDashboardFragment() {
-        findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_homeActivity2)
+        findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_homeDashboardFragment2)
     }
 
     private fun loginUser() {

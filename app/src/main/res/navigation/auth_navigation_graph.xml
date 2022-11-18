@@ -52,8 +52,8 @@
             android:id="@+id/action_signInDetailsFragment_to_signInDetailsWithEmailFragment"
             app:destination="@id/signInDetailsWithEmailFragment" />
         <action
-            android:id="@+id/action_signInDetailsFragment_to_homeActivity2"
-            app:destination="@id/homeActivity2" />
+            android:id="@+id/action_signInDetailsFragment_to_homeDashboardFragment2"
+            app:destination="@id/homeDashboardFragment2" />
     </fragment>
     <fragment
         android:id="@+id/verificationFragment"
@@ -112,11 +112,11 @@
             android:id="@+id/action_signInDetailsWithEmailFragment_to_signInDetailsFragment"
             app:destination="@id/signInDetailsFragment" />
         <action
-            android:id="@+id/action_signInDetailsWithEmailFragment_to_homeActivity2"
-            app:destination="@id/homeActivity2" />
-        <action
             android:id="@+id/action_signInDetailsWithEmailFragment_to_signInDetailsFragment2"
             app:destination="@id/signInDetailsFragment" />
+        <action
+            android:id="@+id/action_signInDetailsWithEmailFragment_to_homeDashboardFragment2"
+            app:destination="@id/homeDashboardFragment2" />
     </fragment>
     <fragment
         android:id="@+id/signUpDetailsWithEmailFragment"
@@ -145,9 +145,9 @@
             android:id="@+id/action_emailVerificationFragment_to_signInDetailsWithEmailFragment"
             app:destination="@id/signInDetailsWithEmailFragment" />
     </fragment>
-    <activity
-        android:id="@+id/homeActivity2"
-        android:name="com.steve_md.smartmkulima.ui.activities.HomeActivity"
-        android:label="activity_home"
-        tools:layout="@layout/activity_home" />
+    <fragment
+        android:id="@+id/homeDashboardFragment2"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragment"
+        android:label="fragment_home_dashboard"
+        tools:layout="@layout/fragment_home_dashboard" />
 </navigation>

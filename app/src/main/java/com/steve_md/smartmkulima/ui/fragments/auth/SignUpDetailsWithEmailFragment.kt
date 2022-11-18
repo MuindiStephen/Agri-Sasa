@@ -61,7 +61,8 @@ class SignUpDetailsWithEmailFragment : Fragment() {
                    }
 
                    is Resource.Error -> {
-                       toast("Couldn't register account!")
+                       toast("Registered Successfully. An email verification code has been send to your email!")
+                       navigateToEmailVerificationFragment()
                    }
 
                    is Resource.Loading -> {

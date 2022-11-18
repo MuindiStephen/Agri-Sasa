@@ -20,8 +20,11 @@ class SignInDetailsWithPhoneFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSignInDetailsWithPhoneBinding.inflate(layoutInflater, container, false)
 
-        binding.signInWithPhoneButton.setOnClickListener {
-            findNavController().navigate(R.id.action_signInDetailsFragment_to_homeActivity2)
+//        binding.signInWithPhoneButton.setOnClickListener {
+//            findNavController().navigate(R.id.action_signInDetailsFragment_to_homeDashboardFragment2)
+//        }
+        binding.signInWithEmailInsteadText.setOnClickListener {
+            findNavController().navigate(R.id.action_signInDetailsFragment_to_signInDetailsWithEmailFragment)
         }
         return binding.root
     }
