@@ -144,6 +144,9 @@
         <action
             android:id="@+id/action_emailVerificationFragment_to_signInDetailsWithEmailFragment"
             app:destination="@id/signInDetailsWithEmailFragment" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/homeDashboardFragment2"

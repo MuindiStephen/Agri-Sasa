@@ -6,8 +6,10 @@ import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 import com.steve_md.smartmkulima.data.repositories.AuthenticationUserRepository
 import com.steve_md.smartmkulima.data.repositories.AuthenticationUserRepositoryImpl
 import com.steve_md.smartmkulima.model.requests.EmailLoginRequest
+import com.steve_md.smartmkulima.model.requests.EmailOTPRequest
 import com.steve_md.smartmkulima.model.requests.EmailSignUpRequest
 import com.steve_md.smartmkulima.model.responses.EmailLoginResponse
+import com.steve_md.smartmkulima.model.responses.EmailOTPResponse
 import com.steve_md.smartmkulima.model.responses.EmailSignUpResponse
 import com.steve_md.smartmkulima.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,6 +44,11 @@ class AuthenticationViewModel : ViewModel() {
     val registerResult: StateFlow<Resource<EmailSignUpResponse>?>
         get() = _registerResult
 
+    // Otp observable
+    private val _otpResult = MutableStateFlow<Resource<EmailOTPResponse>?>(null)
+    val otpResult : StateFlow<Resource<EmailOTPResponse>?>
+    get() = _otpResult
+
 
 
     fun loginUserUsingEmail(email: String, password: String) = viewModelScope.launch {
@@ -52,6 +59,12 @@ class AuthenticationViewModel : ViewModel() {
         _registerResult.value = authenticationUserRepository
             .userRegisterWithEmail(EmailSignUpRequest(username = username, email = email, password = password, confirmPassword = confirmPassword))
     }
+
+    fun verifyEmailOtp(otp:String) = viewModelScope.launch {
+        _otpResult.value = authenticationUserRepository.userEmailOTPVerification(EmailOTPRequest(otp = otp))
+    }
+
+
 
 
 

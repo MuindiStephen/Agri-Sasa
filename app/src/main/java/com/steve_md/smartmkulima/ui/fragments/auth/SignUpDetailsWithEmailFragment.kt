@@ -48,7 +48,16 @@ class SignUpDetailsWithEmailFragment : Fragment() {
 
         binding.buttonSignUpWithEmail.setOnClickListener {
 //            findNavController().navigate(R.id.action_signUpDetailsWithEmailFragment_to_emailVerificationFragment)
-            if (isValidRegistrationDetails()) registerUser()
+            if (isValidRegistrationDetails())
+            {
+              findNavController().navigate(
+                    SignUpDetailsWithEmailFragmentDirections.actionSignUpDetailsWithEmailFragmentToEmailVerificationFragment
+                    (binding.inputEmailAddress.text.toString())
+                )
+                registerUser()
+
+            }
+
                 else toast("Unable to register. Invalid credentials!")
         }
 

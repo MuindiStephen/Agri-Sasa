@@ -71,7 +71,7 @@
                 android:id="@+id/menuIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/notificationIcon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/notificationIcon"
