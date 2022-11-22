@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.auth
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -64,12 +65,10 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         it.value.email.let {
 
                             // if available then login the user successfully.
-                            if (it !=null) {
-                                toast("Successfully Logged In")
-                                navigateToHomeDashboardFragment()
-                            } else {
-                                toast("Account Doesn't exist")
-                            }
+                            toast("Successfully Logged In")
+                            navigateToHomeDashboardFragment()
+                            savePrefsToken("token")
+
                         }
 
                     }
@@ -78,6 +77,12 @@ class SignInDetailsWithEmailFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun savePrefsToken(token:String) {
+        requireContext().getSharedPreferences("login", Context.MODE_PRIVATE)
+            .edit().putString("login", token)
+            .apply()
     }
 
     private fun navigateToHomeDashboardFragment() {

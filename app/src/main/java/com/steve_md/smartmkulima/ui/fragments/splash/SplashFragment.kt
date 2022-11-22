@@ -13,6 +13,7 @@ import com.steve_md.smartmkulima.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
 
+//    private lateinit var splashViewModel: SplashViewModel
     private lateinit var binding: FragmentSplashBinding
 
     override fun onCreateView(
@@ -22,11 +23,30 @@ class SplashFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(layoutInflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         Handler().postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
-        }, 3500)
-        return binding.root
+        }, 3000)
 
+
+//        lifecycleScope.launchWhenCreated {
+//            splashViewModel.splashValue.collectLatest {
+//                findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
+//            lifecycleScope.launchWhenCreated {
+////            splashViewModel.splashValue.collectLatest {
+////                findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
+////            }
+////        }
+////        splashViewModel.setValue()
+////    }  }
+//        }
+//        splashViewModel.setValue()
+//    }
     }
 }
 

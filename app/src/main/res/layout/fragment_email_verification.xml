@@ -69,6 +69,7 @@
 
 
     <com.chaos.view.PinView
+        style="@style/PinWidget.PinView"
         android:id="@+id/pinView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
         app:cursorWidth="2dp"
         app:hideLineWhenFilled="false"
         app:itemCount="6"
+        android:itemBackground="@color/white"
         app:itemHeight="45dp"
         app:itemRadius="10dp"
         app:itemWidth="45dp"
@@ -129,7 +131,7 @@
             android:fontFamily="@font/nunito_sans_semibold"
             android:textSize="14sp"
             android:layout_marginTop="4dp"
-            android:layout_marginStart="80dp"/>
+            android:layout_marginStart="60dp"/>
 
         <TextView
             android:id="@+id/resendCodeTimer"

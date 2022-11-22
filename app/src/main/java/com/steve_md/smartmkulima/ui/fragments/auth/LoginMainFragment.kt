@@ -22,10 +22,19 @@ class LoginMainFragment : Fragment() {
 
         binding = FragmentLoginMainBinding.inflate(layoutInflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.dontHaveAccountSignUpText.setOnClickListener {
             findNavController().navigate(R.id.action_loginMainFragment_to_signUpDetailsMainFragment)
         }
-        return binding.root
+
+        binding.usePhoneEmailButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginMainFragment_to_signInDetailsWithEmailFragment)
+        }
     }
 
 }

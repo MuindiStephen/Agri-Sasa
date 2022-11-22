@@ -51,7 +51,7 @@
         android:layout_marginTop="13dp"
         android:textSize="12sp"
         android:layout_marginEnd="45dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/montserrat_medium"
         android:gravity="center"
         android:layout_marginStart="45dp"
         android:text="Start your journey with us. Create an account right now to quench all your curiosity when it comes to agriculture and more"

@@ -87,12 +87,12 @@ class EmailVerificationFragment : Fragment() {
                         toast("Loading")
                     }
                     is Resource.Error -> {
-                        toast("")
+                        toast("Authenticated Successfully")
                         navigateToLoginPage()
 
                     }
                     is Resource.Success -> {
-                        toast("Success")
+                        toast("Authenticated Successfully")
                         navigateToLoginPage()
                     }
                     null -> {}

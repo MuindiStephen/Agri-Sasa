@@ -75,7 +75,7 @@ class SignUpDetailsWithEmailFragment : Fragment() {
                    }
 
                    is Resource.Loading -> {
-
+                         toast("Registered please verify your email!")
                    }
                    null -> {}
 

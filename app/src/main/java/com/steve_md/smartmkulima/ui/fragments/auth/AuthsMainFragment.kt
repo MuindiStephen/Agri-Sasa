@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentMainAuthsBinding
 
@@ -30,16 +32,15 @@ class AuthsMainFragment : Fragment() {
         }
 
         binding.usePhoneEmailButton.setOnClickListener {
-            // findNavController().navigate(R.id.aut)
+            findNavController().navigate(R.id.action_authsMainFragment_to_signUpDetailsWithEmailFragment)
         }
-
-
 
         val view = binding.root
         navController = findNavController()
 
-//        val appBarConfiguration = AppBarConfiguration(navController.graph)
-//        binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+
 
 
         return view

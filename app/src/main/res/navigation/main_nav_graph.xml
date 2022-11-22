@@ -3,53 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/hotTopicsFragment">
+    app:startDestination="@id/homeDashboardFragment3">
     <fragment
-        android:id="@+id/hotTopicsFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.main.HotTopicsFragment"
-        android:label="fragment_hot_topics"
-        tools:layout="@layout/fragment_hot_topics" >
+        android:id="@+id/homeDashboardFragment3"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragment"
+        android:label="fragment_home_dashboard"
+        tools:layout="@layout/fragment_home_dashboard" >
         <action
-            android:id="@+id/action_hotTopicsFragment_to_recommendedTopicsFragment"
-            app:destination="@id/recommendedTopicsFragment" />
-        <action
-            android:id="@+id/action_hotTopicsFragment_to_mostPopularTopicsFragment"
-            app:destination="@id/mostPopularTopicsFragment" />
+            android:id="@+id/action_homeDashboardFragment3_to_signInDetailsWithEmailFragment2"
+            app:destination="@id/signInDetailsWithEmailFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/recommendedTopicsFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.main.RecommendedTopicsFragment"
-        android:label="fragment_recommended_topics"
-        tools:layout="@layout/fragment_recommended_topics" >
-        <action
-            android:id="@+id/action_recommendedTopicsFragment_to_hotTopicsFragment"
-            app:destination="@id/hotTopicsFragment" />
-        <action
-            android:id="@+id/action_recommendedTopicsFragment_to_mostPopularTopicsFragment"
-            app:destination="@id/mostPopularTopicsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/mostPopularTopicsFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.main.MostPopularTopicsFragment"
-        android:label="fragment_most_popular_topics"
-        tools:layout="@layout/fragment_most_popular_topics" >
-        <action
-            android:id="@+id/action_mostPopularTopicsFragment_to_recommendedTopicsFragment"
-            app:destination="@id/recommendedTopicsFragment" />
-        <action
-            android:id="@+id/action_mostPopularTopicsFragment_to_hotTopicsFragment"
-            app:destination="@id/hotTopicsFragment" />
-        <action
-            android:id="@+id/action_mostPopularTopicsFragment_to_hotTopicsFragment2"
-            app:destination="@id/hotTopicsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signInDetailsWithPhoneFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsWithPhoneFragment"
-        android:label="fragment_sign_in_details_with_phone"
-        tools:layout="@layout/fragment_sign_in_details_with_phone" >
-        <action
-            android:id="@+id/action_signInDetailsWithPhoneFragment_to_mostPopularTopicsFragment"
-            app:destination="@id/mostPopularTopicsFragment" />
-    </fragment>
+        android:id="@+id/signInDetailsWithEmailFragment2"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsWithEmailFragment"
+        android:label="fragment_sign_in_details_with_email"
+        tools:layout="@layout/fragment_sign_in_details_with_email" />
 </navigation>
