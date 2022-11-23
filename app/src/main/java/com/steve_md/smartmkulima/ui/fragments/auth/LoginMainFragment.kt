@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentLoginMainBinding
 
@@ -13,6 +16,8 @@ import com.steve_md.smartmkulima.databinding.FragmentLoginMainBinding
 class LoginMainFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginMainBinding
+
+    private lateinit var navController:NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +32,12 @@ class LoginMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        navController = findNavController()
+
+        binding.mainAuthsToolbar.title = null
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
 
         binding.dontHaveAccountSignUpText.setOnClickListener {
             findNavController().navigate(R.id.action_loginMainFragment_to_signUpDetailsMainFragment)

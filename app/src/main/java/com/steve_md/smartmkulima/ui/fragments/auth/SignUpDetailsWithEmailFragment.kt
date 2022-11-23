@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSignUpDetailsWithEmailBinding
 import com.steve_md.smartmkulima.utils.Resource
@@ -25,6 +28,8 @@ class SignUpDetailsWithEmailFragment : Fragment() {
     // View model
     private val signUpWithEmailViewModel : AuthenticationViewModel by viewModels()
 
+    private lateinit var navController:NavController
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,10 +41,14 @@ class SignUpDetailsWithEmailFragment : Fragment() {
         return binding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        navController = findNavController()
+
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.mainAuthsToolbar.title = null
 
         binding.signUpWithPhoneInsteadText.setOnClickListener {
             navigateToPhoneFragment()

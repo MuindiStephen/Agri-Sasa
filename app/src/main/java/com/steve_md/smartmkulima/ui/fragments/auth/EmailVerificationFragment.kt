@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentEmailVerificationBinding
 import com.steve_md.smartmkulima.utils.Resource
@@ -22,6 +26,8 @@ class EmailVerificationFragment : Fragment() {
     private lateinit var binding: FragmentEmailVerificationBinding
 
     private val emailOtpViewModel: AuthenticationViewModel by viewModels()
+
+    private lateinit var navController:NavController
 
 
     private val args:EmailVerificationFragmentArgs by navArgs()
@@ -40,6 +46,13 @@ class EmailVerificationFragment : Fragment() {
 
     override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        navController = findNavController()
+
+        binding.mainAuthsToolbar.title = null
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+
 
         binding.sendCodeToEmailInsteadText.setOnClickListener {
             findNavController().navigate(R.id.action_emailVerificationFragment_to_verificationFragment)
@@ -69,8 +82,8 @@ class EmailVerificationFragment : Fragment() {
 
 
         binding.buttonVerifyEmailOTP.setOnClickListener {
-
            val code:String  =  binding.pinView.text.toString()
+            binding.progressBar2.isVisible = false
           emailOtpViewModel.verifyEmailOtp(code)
 
         }
@@ -85,14 +98,18 @@ class EmailVerificationFragment : Fragment() {
                 when (it) {
                     Resource.Loading -> {
                         toast("Loading")
+                        binding.progressBar2.isVisible = true
                     }
                     is Resource.Error -> {
                         toast("Authenticated Successfully")
+                        binding.progressBar2.isVisible = false
+
                         navigateToLoginPage()
 
                     }
                     is Resource.Success -> {
                         toast("Authenticated Successfully")
+                        binding.progressBar2.isVisible = false
                         navigateToLoginPage()
                     }
                     null -> {}

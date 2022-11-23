@@ -123,6 +123,9 @@
         <action
             android:id="@+id/action_signInDetailsWithEmailFragment_to_homeDashboardFragment2"
             app:destination="@id/homeDashboardFragment2" />
+        <action
+            android:id="@+id/action_signInDetailsWithEmailFragment_to_recoverPasswordWithEmailFragment"
+            app:destination="@id/recoverPasswordWithEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpDetailsWithEmailFragment"
@@ -158,5 +161,10 @@
         android:id="@+id/homeDashboardFragment2"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragment"
         android:label="fragment_home_dashboard"
-        tools:layout="@layout/fragment_home_dashboard" />
+        tools:layout="@layout/fragment_home_dashboard" >
+        <argument android:name="username" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>

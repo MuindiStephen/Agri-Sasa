@@ -8,14 +8,26 @@
     android:background="@color/text_color"
     tools:context=".ui.fragments.auth.EmailVerificationFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainAuthsToolbar"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="31dp"
+        android:background="@color/bg_gray"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="38.75dp"
         android:layout_height="50.45dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAuthsToolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="1dp"
         android:src="@drawable/ic_plant_growing_svgrepo_com2"
         />
 
@@ -195,5 +207,19 @@
         app:layout_constraintEnd_toEndOf="@+id/linearLayoutForTimer"
         app:layout_constraintStart_toStartOf="@+id/linearLayoutForTimer"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutForTimer" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="86dp"
+        android:indeterminateTint="@color/main"
+        android:visibility="gone"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonVerifyEmailOTP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

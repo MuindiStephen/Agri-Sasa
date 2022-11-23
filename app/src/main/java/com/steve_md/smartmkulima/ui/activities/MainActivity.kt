@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
                 as NavHostFragment
         navController = navHostFragment.findNavController()
 
-        supportActionBar?.title=""
-       supportActionBar?.setDisplayHomeAsUpEnabled(true)
      //setupActionBarWithNavController(navController)
 
     }

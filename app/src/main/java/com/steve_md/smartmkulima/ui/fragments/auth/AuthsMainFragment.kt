@@ -40,6 +40,7 @@ class AuthsMainFragment : Fragment() {
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.mainAuthsToolbar.title = null
 
 
 

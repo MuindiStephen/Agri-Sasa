@@ -7,16 +7,27 @@
     android:background="@color/bg_gray"
     tools:context=".ui.fragments.auth.SignInDetailsWithEmailFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainAuthsToolbar"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="31dp"
+        android:background="@color/bg_gray"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="38.75dp"
         android:layout_height="50.45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="1dp"
         android:src="@drawable/ic_plant_growing_svgrepo_com2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/mainAuthsToolbar" />
 
     <TextView
         android:id="@+id/textView6"
@@ -163,7 +174,7 @@
             android:layout_height="wrap_content"
             android:text="Sign in with "
             android:textSize="12sp"
-            android:layout_marginStart="110dp"
+            android:layout_marginStart="80dp"
             android:fontFamily="@font/montserrat_semibold"
             android:textColor="@color/main_black"/>
 
@@ -186,6 +197,21 @@
             android:textColor="@color/main_black"/>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:indeterminateTint="@color/main"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/signInWithEmailButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPasswordText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

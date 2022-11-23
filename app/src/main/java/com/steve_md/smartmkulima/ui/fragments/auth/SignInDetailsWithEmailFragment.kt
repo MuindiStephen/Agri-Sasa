@@ -6,10 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSignInDetailsWithEmailBinding
 import com.steve_md.smartmkulima.utils.Resource
@@ -23,6 +27,8 @@ class SignInDetailsWithEmailFragment : Fragment() {
     // According to the docs this is a nice way get binding
     private var _binding: FragmentSignInDetailsWithEmailBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var navController: NavController
 
     // view model
     private val loginWithEmailViewModel : AuthenticationViewModel by viewModels()
@@ -40,11 +46,23 @@ class SignInDetailsWithEmailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        navController = findNavController()
+
+        binding.mainAuthsToolbar.title = null
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+
+
         binding.signInWithPhoneInsteadText.setOnClickListener {
             navigateToSignInWithPhoneFragment()
         }
 
+        binding.forgotPasswordText.setOnClickListener {
+            findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_recoverPasswordWithEmailFragment)
+        }
+
         binding.signInWithEmailButton.setOnClickListener {
+            binding.progressBar.isVisible = true
             if (isValidCredentials()) loginUser()
             else toast("Enter valid credentials")
         }
@@ -54,16 +72,18 @@ class SignInDetailsWithEmailFragment : Fragment() {
                 when (it) {
                     Resource.Loading -> {
                         toast("Loading")
+                        binding.progressBar.isVisible = true
                     }
                     is Resource.Error -> {
                         toast("Couldn't log in")
+                        binding.progressBar.isVisible = false
                     }
                     is Resource.Success -> {
                         val userId = it.value.email
 
                         // check whether user data is null or available in the backend db api
                         it.value.email.let {
-
+                            binding.progressBar.isVisible = false
                             // if available then login the user successfully.
                             toast("Successfully Logged In")
                             navigateToHomeDashboardFragment()
