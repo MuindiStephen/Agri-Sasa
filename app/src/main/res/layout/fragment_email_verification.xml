@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="We have sent a verification code to"
@@ -69,7 +69,7 @@
 
         <TextView
             android:id="@+id/emailSentVerificationCode"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="stevemuindi****@gmail.com"
             android:layout_marginTop="4dp"
@@ -147,7 +147,7 @@
 
         <TextView
             android:id="@+id/resendCodeTimer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_sans_semibold"
             android:textSize="14sp"
@@ -202,9 +202,10 @@
         android:id="@+id/buttonVerifyEmailOTP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="196dp"
         android:text="Verify code"
         app:layout_constraintEnd_toEndOf="@+id/linearLayoutForTimer"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/linearLayoutForTimer"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutForTimer" />
 

@@ -5,9 +5,11 @@ import com.steve_md.smartmkulima.model.requests.EmailSignUpRequest
 import com.steve_md.smartmkulima.model.responses.EmailLoginResponse
 import com.steve_md.smartmkulima.model.responses.EmailOTPResponse
 import com.steve_md.smartmkulima.model.responses.EmailSignUpResponse
+import com.steve_md.smartmkulima.model.responses.UserResponseItem
 import com.steve_md.smartmkulima.utils.Constants.LOGIN_END_POINT
 import com.steve_md.smartmkulima.utils.Constants.REGISTER_END_POINT
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -28,6 +30,10 @@ interface RetrofitApiService {
     suspend fun verifyUserWithEmail(
         @Query("OTP") otp : String
     ) : EmailOTPResponse
+
+
+     @GET("/signup/usersByEmail/")
+     suspend fun getUser(): UserResponseItem
 
     companion object {
         fun getApiClient() : RetrofitApiService {

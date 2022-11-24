@@ -13,7 +13,7 @@ import com.steve_md.smartmkulima.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
 
-//    private lateinit var splashViewModel: SplashViewModel
+      // private lateinit var splashViewModel: SplashViewModel
     private lateinit var binding: FragmentSplashBinding
 
     override fun onCreateView(
