@@ -104,26 +104,23 @@
         app:viewType="rectangle" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:id="@+id/linearLayoutForTimer"
-        app:layout_constraintTop_toBottomOf="@+id/pinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="@id/pinView"
-        app:layout_constraintEnd_toEndOf="@+id/pinView"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pinView">
 
         <TextView
             android:id="@+id/callMeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Call me:"
-            android:fontFamily="@font/nunito_sans_semibold"
-            android:textSize="14sp"
             android:layout_marginTop="4dp"
-           />
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="Call me:"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/callMeTimer"
@@ -139,21 +136,21 @@
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Resend code:"
-            android:fontFamily="@font/nunito_sans_semibold"
-            android:textSize="14sp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="4dp"
-            android:layout_marginStart="60dp"/>
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="Resend code:"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/resendCodeTimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_sans_semibold"
-            android:textSize="14sp"
-            android:textColor="@color/main"
             android:layout_marginTop="4dp"
-            android:text="0.29" />
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="0.29"
+            android:textColor="@color/main"
+            android:textSize="14sp" />
 
 
     </LinearLayout>
