@@ -48,9 +48,10 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
         navController = findNavController()
 
-        binding.mainAuthsToolbar.title = null
+
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.mainAuthsToolbar.title = null
 
 
         binding.signInWithPhoneInsteadText.setOnClickListener {

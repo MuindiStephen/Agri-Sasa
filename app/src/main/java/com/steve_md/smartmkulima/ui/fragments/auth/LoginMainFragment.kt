@@ -35,9 +35,10 @@ class LoginMainFragment : Fragment() {
 
         navController = findNavController()
 
-        binding.mainAuthsToolbar.title = null
+
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.mainAuthsToolbar.title = null
 
         binding.dontHaveAccountSignUpText.setOnClickListener {
             findNavController().navigate(R.id.action_loginMainFragment_to_signUpDetailsMainFragment)
