@@ -63,8 +63,17 @@ class SignInDetailsWithEmailFragment : Fragment() {
         }
 
         binding.signInWithEmailButton.setOnClickListener {
+            //findNavController().navigate(directions)
             binding.progressBar.isVisible = true
-            if (isValidCredentials()) loginUser()
+            if (isValidCredentials()) {
+                val directions = binding.inputLoginEmail.text?.let { it1 ->
+                    SignInDetailsWithEmailFragmentDirections.actionSignInDetailsWithEmailFragmentToHomeDashboardFragment2(
+                        it1.substring(0, binding.inputLoginEmail.text!!.indexOf('@')), binding.inputLoginPassword.text.toString()
+                    )
+                }
+                findNavController().navigate(directions!!)
+                loginUser()
+            }
             else toast("Enter valid credentials")
         }
 
@@ -87,7 +96,8 @@ class SignInDetailsWithEmailFragment : Fragment() {
                             binding.progressBar.isVisible = false
                             // if available then login the user successfully.
                             toast("Successfully Logged In")
-                            navigateToHomeDashboardFragment()
+                             navigateToHomeDashboardFragment()
+
                             savePrefsToken("token")
 
                         }

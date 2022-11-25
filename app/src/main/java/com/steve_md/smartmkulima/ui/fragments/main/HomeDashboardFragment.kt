@@ -11,7 +11,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
 import com.steve_md.smartmkulima.utils.Resource
@@ -26,6 +26,8 @@ class HomeDashboardFragment : Fragment() {
 
     private val getUserViewModel : MainViewModel by viewModels()
 
+    private val args:HomeDashboardFragmentArgs by navArgs()
+    private var username = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,19 +38,23 @@ class HomeDashboardFragment : Fragment() {
         binding = FragmentHomeDashboardBinding.inflate(layoutInflater, container, false)
 
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        username = args.username
+        binding.includeToolBar.textViewUserNameProfile.text = username
 
 //        var getUserViewModel =
 //            ViewModelProvider(
 //                requireActivity(),
 //                defaultViewModelProviderF actory
 //            )[MainViewModel::class.java]
-
         getUserViewModel.getUser()
+
 
 
         getUserViewModel.user.observe(viewLifecycleOwner, Observer {
@@ -104,7 +110,7 @@ class HomeDashboardFragment : Fragment() {
     }
 
     private fun performLogout() {
-        findNavController().navigate(R.id.action_homeDashboardFragment3_to_signInDetailsWithEmailFragment2)
+
     }
 
 }

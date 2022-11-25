@@ -9,9 +9,9 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragment"
         android:label="fragment_home_dashboard"
         tools:layout="@layout/fragment_home_dashboard" >
-        <action
-            android:id="@+id/action_homeDashboardFragment3_to_signInDetailsWithEmailFragment2"
-            app:destination="@id/signInDetailsWithEmailFragment2" />
+        <argument
+            android:name="username"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/signInDetailsWithEmailFragment2"

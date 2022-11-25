@@ -162,7 +162,8 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragment"
         android:label="fragment_home_dashboard"
         tools:layout="@layout/fragment_home_dashboard" >
-        <argument android:name="username" />
+        <argument android:name="username"
+            app:argType="string" />
         <argument
             android:name="name"
             app:argType="string" />
