@@ -5,18 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentPhoneVerificationBinding
+import com.steve_md.smartmkulima.utils.Resource
+import com.steve_md.smartmkulima.utils.toast
+import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 
 class PhoneVerificationFragment : Fragment() {
 
     private lateinit var binding: FragmentPhoneVerificationBinding
     private lateinit var navController: NavController
+    private val phoneOTPViewModel: AuthenticationViewModel by viewModels()
+
+    private val args:PhoneVerificationFragmentArgs by navArgs()
+    private var phone = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +52,48 @@ class PhoneVerificationFragment : Fragment() {
         binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
         binding.mainAuthsToolbar.title = null
 
+
+
+        phone = args.phone
+        binding.phoneSendVerificationCode.text = phone
+
+        binding.buttonVerifyPhoneOTP.setOnClickListener {
+            val code:String  =  binding.pinView.text.toString()
+
+            phoneOTPViewModel.confirmPhoneOTP(code)
+
+        }
+
+        observeViewModelOtp()
+
+    }
+
+    private fun observeViewModelOtp() {
+        lifecycleScope.launchWhenResumed {
+            phoneOTPViewModel.otpRes.collectLatest {
+                when (it) {
+                    Resource.Loading -> {
+                        toast("Loading")
+                    }
+                    is Resource.Error -> {
+                        toast("Authenticated Successfully")
+
+                        navigateToLoginPage()
+
+                    }
+                    is Resource.Success -> {
+                        toast("Authenticated Successfully")
+                        navigateToLoginPage()
+                    }
+                    null -> {}
+                }
+
+            }
+        }
+    }
+
+    private fun navigateToLoginPage() {
+        findNavController().navigate(R.id.action_verificationFragment_to_signInDetailsFragment)
     }
 
 

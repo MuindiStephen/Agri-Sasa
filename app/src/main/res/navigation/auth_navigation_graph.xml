@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_authsMainFragment"
-            app:destination="@id/authsMainFragment" />
+            app:destination="@id/authsMainFragment"
+            app:popUpTo="@id/authsMainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/authsMainFragment"
@@ -27,7 +29,9 @@
             app:destination="@id/signUpDetailsMainFragment" />
         <action
             android:id="@+id/action_authsMainFragment_to_signUpDetailsWithEmailFragment"
-            app:destination="@id/signUpDetailsWithEmailFragment" />
+            app:destination="@id/signUpDetailsWithEmailFragment"
+            app:popUpTo="@id/signUpDetailsWithEmailFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginMainFragment"
@@ -60,6 +64,9 @@
         <action
             android:id="@+id/action_signInDetailsFragment_to_homeDashboardFragment2"
             app:destination="@id/homeDashboardFragment2" />
+        <action
+            android:id="@+id/action_signInDetailsFragment_to_recoverPasswordFragment"
+            app:destination="@id/recoverPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/verificationFragment"
@@ -75,9 +82,9 @@
         <action
             android:id="@+id/action_verificationFragment_to_signInDetailsFragment"
             app:destination="@id/signInDetailsFragment" />
-        <action
-            android:id="@+id/action_verificationFragment_to_signInDetailsFragment2"
-            app:destination="@id/signInDetailsFragment" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/recoverPasswordFragment"
@@ -94,11 +101,11 @@
         android:label="fragment_sign_up_details"
         tools:layout="@layout/fragment_sign_up_details_with_phone" >
         <action
-            android:id="@+id/action_signUpDetailsMainFragment_to_verificationFragment"
-            app:destination="@id/verificationFragment" />
-        <action
             android:id="@+id/action_signUpDetailsMainFragment_to_signUpDetailsWithEmailFragment"
             app:destination="@id/signUpDetailsWithEmailFragment" />
+        <action
+            android:id="@+id/action_signUpDetailsMainFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/recoverPasswordWithEmailFragment"

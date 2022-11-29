@@ -57,6 +57,7 @@ class HomeDashboardFragment : Fragment() {
 
 
 
+
         getUserViewModel.user.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Success -> {
@@ -89,6 +90,8 @@ class HomeDashboardFragment : Fragment() {
 //            }
 //        }
 
+        
+
         val menuIcon:ImageView = view.findViewById(R.id.menuIcon)
 
         menuIcon.setOnClickListener{
@@ -112,5 +115,8 @@ class HomeDashboardFragment : Fragment() {
     private fun performLogout() {
 
     }
+
+
+
 
 }

@@ -17,6 +17,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSignInDetailsWithEmailBinding
 import com.steve_md.smartmkulima.utils.Resource
+import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -73,6 +75,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
                 }
                 findNavController().navigate(directions!!)
                 loginUser()
+                this.hideKeyboard()
             }
             else toast("Enter valid credentials")
         }
@@ -95,12 +98,13 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         it.value.email.let {
                             binding.progressBar.isVisible = false
                             // if available then login the user successfully.
-                            toast("Successfully Logged In")
+                            displaySnackBar("You Logged in successfully")
                              navigateToHomeDashboardFragment()
 
                             savePrefsToken("token")
 
                         }
+                        displaySnackBar("Invalid details or account does not exist.")
 
                     }
                     null -> {}
@@ -118,6 +122,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
     private fun navigateToHomeDashboardFragment() {
         findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_homeDashboardFragment2)
+        requireActivity().finish()
     }
 
     private fun loginUser() {

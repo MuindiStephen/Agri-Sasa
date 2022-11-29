@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentEmailVerificationBinding
 import com.steve_md.smartmkulima.utils.Resource
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -59,9 +60,6 @@ class EmailVerificationFragment : Fragment() {
             findNavController().navigate(R.id.action_emailVerificationFragment_to_verificationFragment)
         }
 
-        binding.imageView2.setOnClickListener {
-            findNavController().navigate(R.id.action_emailVerificationFragment_to_signInDetailsFragment)
-        }
 
         email = args.email
         binding.emailSentVerificationCode.text = email
@@ -102,16 +100,16 @@ class EmailVerificationFragment : Fragment() {
                         binding.progressBar2.isVisible = true
                     }
                     is Resource.Error -> {
-                        toast("Authenticated Successfully")
+                        displaySnackBar("Authenticated Successfully")
                         binding.progressBar2.isVisible = false
 
                         navigateToLoginPage()
 
                     }
                     is Resource.Success -> {
-                        toast("Authenticated Successfully")
+                        displaySnackBar("Code is incorrect,verification not successful !")
                         binding.progressBar2.isVisible = false
-                        navigateToLoginPage()
+                        //navigateToLoginPage()
                     }
                     null -> {}
                 }

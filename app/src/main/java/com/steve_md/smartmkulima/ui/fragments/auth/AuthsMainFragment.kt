@@ -29,10 +29,12 @@ class AuthsMainFragment : Fragment() {
 
         binding.alreadyHaveAccountLoginText.setOnClickListener {
             findNavController().navigate(R.id.action_authsMainFragment_to_loginMainFragment)
+            requireActivity().finish()
         }
 
         binding.usePhoneEmailButton.setOnClickListener {
             findNavController().navigate(R.id.action_authsMainFragment_to_signUpDetailsWithEmailFragment)
+            requireActivity().finish()
         }
 
         val view = binding.root

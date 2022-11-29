@@ -1,20 +1,29 @@
 package com.steve_md.smartmkulima.data.repositories
 
-import com.steve_md.smartmkulima.model.requests.EmailLoginRequest
-import com.steve_md.smartmkulima.model.requests.EmailOTPRequest
-import com.steve_md.smartmkulima.model.requests.EmailSignUpRequest
-import com.steve_md.smartmkulima.model.responses.EmailLoginResponse
-import com.steve_md.smartmkulima.model.responses.EmailOTPResponse
-import com.steve_md.smartmkulima.model.responses.EmailSignUpResponse
+import com.steve_md.smartmkulima.model.requests.*
+import com.steve_md.smartmkulima.model.responses.*
 import com.steve_md.smartmkulima.utils.Resource
 
 
 // Communicates with remote data source (from web service/server)
 
 interface AuthenticationUserRepository {
+
     suspend fun userLoginWithEmail(emailLoginRequest: EmailLoginRequest) : Resource<EmailLoginResponse>
 
     suspend fun userRegisterWithEmail(emailSignUpRequest: EmailSignUpRequest) : Resource<EmailSignUpResponse>
 
     suspend fun userEmailOTPVerification(emailOTPRequest: EmailOTPRequest) : Resource<EmailOTPResponse>
+
+    suspend fun userLoginWithPhone(phoneLoginRequest: PhoneLoginRequest) : Resource<PhoneLoginResponse>
+
+    suspend fun userRegisterWithPhone(phoneSignUpRequest: PhoneSignUpRequest) : Resource<PhoneSignUpResponse>
+
+    suspend fun userPhoneOTPVerification(phoneOTPRequest: PhoneOTPRequest) : Resource<PhoneOTPResponse>
+
+    suspend fun recoverPasswordWithPhone(forgotPasswordWithPhone: ForgotPasswordWithPhone) : Resource<PhoneSignUpResponse>
+
+    suspend fun validateForgotPasswordWithPhone(phoneOTPRequest: PhoneOTPRequest) : Resource<PhoneOTPResponse>
+
+    suspend fun changeForgotPasswordWithPhone(changePasswordRequest: ChangePasswordRequest) : Resource<ChangePasswordResponse>
 }

@@ -1,4 +1,5 @@
 package com.steve_md.smartmkulima.model.responses
 
-class PhoneOTPResponse {
-}
+data class PhoneOTPResponse (
+    val smsMessage: String
+        )

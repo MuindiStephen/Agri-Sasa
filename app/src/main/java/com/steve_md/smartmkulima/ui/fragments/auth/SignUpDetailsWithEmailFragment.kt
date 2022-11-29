@@ -56,7 +56,6 @@ class SignUpDetailsWithEmailFragment : Fragment() {
 
 
         binding.buttonSignUpWithEmail.setOnClickListener {
-//            findNavController().navigate(R.id.action_signUpDetailsWithEmailFragment_to_emailVerificationFragment)
             if (isValidRegistrationDetails())
             {
               findNavController().navigate(
