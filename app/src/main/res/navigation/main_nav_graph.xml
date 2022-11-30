@@ -12,6 +12,10 @@
         <argument
             android:name="username"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeDashboardFragment3_to_signInDetailsWithEmailFragment2"
+            app:destination="@id/signInDetailsWithEmailFragment2"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/signInDetailsWithEmailFragment2"

@@ -76,7 +76,7 @@
         app:cursorWidth="2dp"
         app:hideLineWhenFilled="false"
         app:itemCount="6"
-        android:itemBackground="@color/white"
+        android:itemBackground="@color/text_color"
         app:itemHeight="45dp"
         app:itemRadius="10dp"
         app:itemWidth="45dp"

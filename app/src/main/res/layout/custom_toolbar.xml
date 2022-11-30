@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -34,9 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Hi, Syd."
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_medium"
+                android:text="Hi,"
                 android:textColor="@color/main_black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -77,6 +78,20 @@
                 app:layout_constraintStart_toEndOf="@+id/notificationIcon"
                 app:layout_constraintTop_toTopOf="@+id/notificationIcon"
                 app:srcCompat="@drawable/ic_hamburger_menu" />
+
+            <TextView
+                android:id="@+id/userNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Syd"
+                android:textColor="@color/main_black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewUserNameProfile"
+                app:layout_constraintStart_toEndOf="@+id/textViewUserNameProfile"
+                app:layout_constraintTop_toTopOf="@+id/textViewUserNameProfile" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

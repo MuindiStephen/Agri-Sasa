@@ -35,13 +35,10 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        @Override
-        fun onStart(){
-            super.onStart()
             Handler().postDelayed({
                 if (isOnline(requireContext())) {
                     findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
-                    requireActivity().finish()
+
                 } else {
                     snackBar("No internet connection")
                 }
@@ -64,7 +61,6 @@ class SplashFragment : Fragment() {
 //        splashViewModel.setValue()
 //    }
     }
-}
 
 
 

@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSignUpDetailsWithEmailBinding
 import com.steve_md.smartmkulima.utils.Resource
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -66,7 +67,7 @@ class SignUpDetailsWithEmailFragment : Fragment() {
 
             }
 
-                else toast("Unable to register. Invalid credentials!")
+                else displaySnackBar("Unable to register. Empty Strings or invalid")
         }
 
         lifecycleScope.launchWhenResumed {

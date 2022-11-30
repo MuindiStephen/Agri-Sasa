@@ -77,7 +77,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
                 loginUser()
                 this.hideKeyboard()
             }
-            else toast("Enter valid credentials")
+            else displaySnackBar("Empty Strings or Invalid credentials")
         }
 
         lifecycleScope.launchWhenResumed {
@@ -85,10 +85,10 @@ class SignInDetailsWithEmailFragment : Fragment() {
                 when (it) {
                     Resource.Loading -> {
                         toast("Loading")
-                        binding.progressBar.isVisible = true
+                        binding.progressBar.isVisible = false
                     }
                     is Resource.Error -> {
-                        toast("Couldn't log in")
+                        toast("Couldn't log in! Invalid details or Account does not exist.")
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Success -> {
@@ -101,10 +101,10 @@ class SignInDetailsWithEmailFragment : Fragment() {
                             displaySnackBar("You Logged in successfully")
                              navigateToHomeDashboardFragment()
 
-                            savePrefsToken("token")
+                           //  savePrefsToken("token")
 
                         }
-                        displaySnackBar("Invalid details or account does not exist.")
+//                        displaySnackBar("Invalid details or account does not exist.")
 
                     }
                     null -> {}
@@ -122,7 +122,6 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
     private fun navigateToHomeDashboardFragment() {
         findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_homeDashboardFragment2)
-        requireActivity().finish()
     }
 
     private fun loginUser() {

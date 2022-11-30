@@ -24,7 +24,9 @@ fun Fragment.hideKeyboard(): Boolean {
 
 fun Fragment.snackBar(text: String) {
     Snackbar.make(requireView(), text, Snackbar.LENGTH_INDEFINITE)
-
+        .setAction("TRY AGAIN",View.OnClickListener {
+            onStart()
+        } )
         .show()
 }
 

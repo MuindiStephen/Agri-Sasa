@@ -8,6 +8,7 @@ import com.steve_md.smartmkulima.data.repositories.AuthenticationUserRepositoryI
 import com.steve_md.smartmkulima.model.requests.*
 import com.steve_md.smartmkulima.model.responses.*
 import com.steve_md.smartmkulima.utils.Resource
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,6 +17,8 @@ class AuthenticationViewModel : ViewModel() {
 
     private val authenticationUserRepository:AuthenticationUserRepository =
         AuthenticationUserRepositoryImpl(RetrofitApiService.getApiClient())
+
+    private var apiJob:Job? = null
 
     /**
      * view model will communicate with repository

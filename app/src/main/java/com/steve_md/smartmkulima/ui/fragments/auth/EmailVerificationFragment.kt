@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.ui.fragments.auth
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,26 +66,49 @@ class EmailVerificationFragment : Fragment() {
         binding.emailSentVerificationCode.text = email
 
 
-        // Email verification
-//        val code:String = binding.pinView.text.toString()
-//
-//        if (code.equals(otp)) {
-//            suspend {
-//                otp.verifyUserWithEmail(code)
+//        binding.pinView.addTextChangedListener(object : TextWatcher{
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                TODO("Not yet implemented")
 //            }
-//            toast("Authenticated successfully")
-//            findNavController().navigate(R.id.action_emailVerificationFragment_to_signInDetailsWithEmailFragment)
-//        } else {
-//            toast("Failed to authenticate")
-//        }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                val code:String  =  binding.pinView.text.toString()
+//                binding.progressBar2.isVisible = false
+//                emailOtpViewModel.verifyEmailOtp(code)
+//
+//            }
+//
+//            override fun afterTextChanged(s: Editable?) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
 
 
+        // time count down for 30 seconds,
+        // with 1 second as countDown interval
+        object : CountDownTimer(30000, 1000) {
 
+            // Callback function, fired on regular interval
+            override fun onTick(millisUntilFinished: Long) {
+                binding.resendCodeTimer.setText("0." + millisUntilFinished / 1000)
+                binding.callMeTimer.setText("1."+millisUntilFinished / 500)
+            }
+
+            // Callback function, fired
+            // when the time is up
+            override fun onFinish() {
+                binding.resendCodeTimer.setText("done!")
+                binding.callMeTimer.setText("Time exceeded")
+            }
+        }.start()
+
+
+        //  Button email verify OTP
         binding.buttonVerifyEmailOTP.setOnClickListener {
            val code:String  =  binding.pinView.text.toString()
-            binding.progressBar2.isVisible = false
+            binding.progressBar2.isVisible = true
           emailOtpViewModel.verifyEmailOtp(code)
-
         }
 
         observeViewModelOtp()
@@ -100,7 +124,7 @@ class EmailVerificationFragment : Fragment() {
                         binding.progressBar2.isVisible = true
                     }
                     is Resource.Error -> {
-                        displaySnackBar("Authenticated Successfully")
+                        toast("Verified")
                         binding.progressBar2.isVisible = false
 
                         navigateToLoginPage()

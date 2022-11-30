@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.ui.fragments.auth
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +58,23 @@ class PhoneVerificationFragment : Fragment() {
         phone = args.phone
         binding.phoneSendVerificationCode.text = phone
 
+
+        object : CountDownTimer(30000, 1000) {
+
+            // Callback function, fired on regular interval
+            override fun onTick(millisUntilFinished: Long) {
+                binding.textView15.setText("0." + millisUntilFinished / 1000)
+                binding.textView18.setText("1."+millisUntilFinished / 500)
+            }
+
+            // Callback function, fired
+            // when the time is up
+            override fun onFinish() {
+                binding.textView15.setText("done!")
+                binding.textView18.setText("Time exceeded")
+            }
+        }.start()
+
         binding.buttonVerifyPhoneOTP.setOnClickListener {
             val code:String  =  binding.pinView.text.toString()
 
@@ -76,7 +94,7 @@ class PhoneVerificationFragment : Fragment() {
                         toast("Loading")
                     }
                     is Resource.Error -> {
-                        toast("Authenticated Successfully")
+                        //toast("")
 
                         navigateToLoginPage()
 

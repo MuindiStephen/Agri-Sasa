@@ -93,7 +93,7 @@
         app:cursorWidth="2dp"
         app:hideLineWhenFilled="false"
         app:itemCount="6"
-        android:itemBackground="@color/white"
+        android:itemBackground="@color/text_color"
         app:itemHeight="45dp"
         app:itemRadius="10dp"
         app:itemWidth="45dp"
@@ -212,12 +212,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="16dp"
         android:indeterminateTint="@color/main"
         android:visibility="gone"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonVerifyEmailOTP" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutForTimer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

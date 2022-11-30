@@ -34,9 +34,11 @@
         android:text="What would you like to know??"
         android:textColor="@color/main_black"
         android:textSize="22sp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
+        app:layout_constraintTop_toBottomOf="@+id/includeToolBar"
+        android:focusable="true" />
 
     <HorizontalScrollView
         android:id="@+id/TopicsChipGroup"
@@ -291,6 +293,18 @@
                 android:textColor="@color/white"
                 android:layout_gravity="center"/>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/logoutText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="TextView"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/includeToolBar"
+            app:layout_constraintEnd_toEndOf="@+id/includeToolBar"
+            app:layout_constraintTop_toTopOf="@+id/includeToolBar"
+            app:layout_constraintVertical_bias="0.54" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

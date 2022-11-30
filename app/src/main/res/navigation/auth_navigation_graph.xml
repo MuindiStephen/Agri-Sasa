@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_splashFragment_to_authsMainFragment"
             app:destination="@id/authsMainFragment"
-            app:popUpTo="@id/authsMainFragment"
+            app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -23,14 +23,18 @@
         tools:layout="@layout/fragment_main_auths" >
         <action
             android:id="@+id/action_authsMainFragment_to_loginMainFragment"
-            app:destination="@id/loginMainFragment" />
+            app:destination="@id/loginMainFragment"
+            app:popUpTo="@id/authsMainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_authsMainFragment_to_signUpDetailsMainFragment"
-            app:destination="@id/signUpDetailsMainFragment" />
+            app:destination="@id/signUpDetailsMainFragment"
+            app:popUpTo="@id/authsMainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_authsMainFragment_to_signUpDetailsWithEmailFragment"
             app:destination="@id/signUpDetailsWithEmailFragment"
-            app:popUpTo="@id/signUpDetailsWithEmailFragment"
+            app:popUpTo="@id/authsMainFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -174,5 +178,8 @@
         <argument
             android:name="name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_signInDetailsWithEmailFragment"
+            app:destination="@id/signInDetailsWithEmailFragment" />
     </fragment>
 </navigation>
