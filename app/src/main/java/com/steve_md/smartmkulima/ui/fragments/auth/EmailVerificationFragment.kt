@@ -26,7 +26,6 @@ import kotlinx.coroutines.flow.collectLatest
 class EmailVerificationFragment : Fragment() {
 
     private lateinit var binding: FragmentEmailVerificationBinding
-
     private val emailOtpViewModel: AuthenticationViewModel by viewModels()
 
     private lateinit var navController:NavController
