@@ -1,0 +1,109 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id("androidx.navigation.safeargs.kotlin")
+    id("com.google.dagger.hilt.android")
+}
+
+android {
+    namespace 'com.steve_md.smartmkulima'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.steve_md.smartmkulima"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    // Java 8 features
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    def nav_version = "2.5.3"
+    def lifecycle_version = "2.5.1"
+    def timber_version = "5.0.1"
+    def hilt_version = "2.44"
+
+
+    // Ktx
+    implementation 'androidx.core:core-ktx:1.9.0'
+
+    // AppCompat
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+
+    // Material
+    implementation 'com.google.android.material:material:1.7.0'
+
+    // Constraint Layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    // Navigation Components
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+
+    // Alternatively - just LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+
+    // Alternatively - just ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+
+    // Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Timber for Logging
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    // Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.1'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+
+    // Pin code View dependency
+    implementation 'io.github.chaosleung:pinview:1.4.4'
+
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/customToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:civ_border_width="1dp"
+                android:scaleType="centerCrop"
+                android:rotation="0"
+                android:layout_marginStart="8dp"
+                app:civ_border_color="@color/bg_gray"
+                android:src="@drawable/ic_profile_picture"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewUserNameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Hi,"
+                android:textColor="@color/main_black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/profile_image"
+                app:layout_constraintTop_toTopOf="@+id/profile_image" />
+
+            <TextView
+                android:id="@+id/greetingsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good morning"
+                android:alpha="1"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                app:layout_constraintStart_toStartOf="@+id/textViewUserNameProfile"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUserNameProfile" />
+
+            <ImageView
+                android:id="@+id/notificationIcon"
+                android:layout_width="13.13dp"
+                android:layout_height="13.13dp"
+                android:layout_marginStart="110dp"
+                app:layout_constraintBottom_toBottomOf="@+id/greetingsTextView"
+                app:layout_constraintStart_toEndOf="@+id/greetingsTextView"
+                app:layout_constraintTop_toTopOf="@+id/textViewUserNameProfile"
+                app:layout_constraintVertical_bias="0.5"
+                app:srcCompat="@drawable/ic_notification" />
+
+            <ImageView
+                android:id="@+id/menuIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/notificationIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/notificationIcon"
+                app:layout_constraintTop_toTopOf="@+id/notificationIcon"
+                app:srcCompat="@drawable/ic_hamburger_menu" />
+
+            <TextView
+                android:id="@+id/userNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Syd"
+                android:textColor="@color/main_black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewUserNameProfile"
+                app:layout_constraintStart_toEndOf="@+id/textViewUserNameProfile"
+                app:layout_constraintTop_toTopOf="@+id/textViewUserNameProfile" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+</RelativeLayout>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    tools:context=".ui.fragments.main.HomeDashboardFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <include
+            android:id="@+id/includeToolBar"
+            layout="@layout/custom_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="What would you like to know??"
+        android:textColor="@color/main_black"
+        android:textSize="22sp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeToolBar"
+        android:focusable="true" />
+
+    <HorizontalScrollView
+        android:id="@+id/TopicsChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/textView10">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Hot topics"
+                android:textColor="@color/text_color"
+                app:chipBackgroundColor="@color/main1"
+                app:chipCornerRadius="14dp"
+                app:chipIcon="@drawable/ic_plant_growing_svgrepo_com2"
+                app:chipIconTint="@color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Recommended"
+                app:chipCornerRadius="14dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Most popular"
+                app:chipCornerRadius="14dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Trending topics"
+                app:chipCornerRadius="14dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+
+        <androidx.cardview.widget.CardView
+            android:scrollbars="horizontal"
+            android:id="@+id/cardView1"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="20dp"
+
+            app:layout_constraintEnd_toStartOf="@+id/cardView7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TopicsChipGroup" >
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_grains_farming"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="Did you know??"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:verticalScrollbarPosition="defaultPosition"
+            android:background="@color/text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu" />
+
+        <androidx.cardview.widget.CardView
+            android:scrollbars="horizontal"
+            android:id="@+id/cardView"
+            android:layout_width="151dp"
+            android:layout_height="146dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView1"
+            app:layout_constraintStart_toStartOf="@+id/cardView1"
+            app:layout_constraintTop_toBottomOf="@+id/cardView1" >
+
+            <ImageView
+                android:layout_width="151dp"
+                android:layout_height="146dp"
+                android:src="@drawable/ic_guide_onion_farming"
+                android:scaleType="centerCrop"/>
+
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_semibold"
+                android:layout_gravity="center"
+                android:text="The complete guide to start onion farming"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:scrollbars="horizontal"
+            android:id="@+id/cardView7"
+            android:layout_width="150dp"
+            android:layout_height="195dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardView1"
+            app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" >
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="195dp"
+                android:src="@drawable/ic_smart_agriculture"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="@color/white"
+                android:text="Kenya must embrace smart agriculture" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:scrollbars="horizontal"
+            android:id="@+id/cardView9"
+            android:layout_width="150dp"
+            android:layout_height="248dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" >
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="248dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_underfunded_agriculture"/>
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agriculture remains underfunded in East Africa"
+                android:layout_marginTop="48dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_semibold"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:scrollbars="horizontal"
+            android:id="@+id/cardView8"
+            android:layout_width="150dp"
+            android:layout_height="105dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView7"
+            app:layout_constraintStart_toStartOf="@+id/cardView7"
+            app:layout_constraintTop_toBottomOf="@+id/cardView7" >
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="105dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_passion_fruit_farming"/>
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passion fruit farming"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:scrollbars="horizontal"
+            android:layout_width="150dp"
+            android:layout_height="146dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView8"
+            app:layout_constraintStart_toStartOf="@+id/cardView8"
+            app:layout_constraintTop_toBottomOf="@+id/cardView8"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="146dp"
+                android:src="@drawable/ic_tea_factories"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tea Factories In Africa Urged To Adopt Green, Renewal Energy"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/logoutText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="TextView"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/includeToolBar"
+            app:layout_constraintEnd_toEndOf="@+id/includeToolBar"
+            app:layout_constraintTop_toTopOf="@+id/includeToolBar"
+            app:layout_constraintVertical_bias="0.54" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

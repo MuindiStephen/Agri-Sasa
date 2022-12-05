@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    tools:context=".ui.fragments.auth.PhoneVerificationFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainAuthsToolbar"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="31dp"
+        android:background="@color/bg_gray"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="38.75dp"
+        android:layout_height="50.45dp"
+        android:layout_marginTop="1dp"
+        android:alpha="1"
+        android:src="@drawable/ic_plant_growing_svgrepo_com2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAuthsToolbar" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="VERIFICATION"
+        android:textSize="30sp"
+        android:textColor="@color/main_black"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="We have sent a verification code to "
+        android:textSize="13sp"
+
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <com.chaos.view.PinView
+        style="@style/PinWidget.PinView"
+        android:id="@+id/pinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:cursorVisible="true"
+        android:gravity="center"
+        android:inputType="number"
+        app:cursorColor="@color/black"
+        app:cursorWidth="2dp"
+        app:hideLineWhenFilled="false"
+        app:itemCount="6"
+        android:itemBackground="@color/text_color"
+        app:itemHeight="45dp"
+        app:itemRadius="10dp"
+        app:itemWidth="45dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:lineWidth="1dp"
+        app:viewType="rectangle" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:text="Call me:"
+        android:textSize="15sp"
+        android:textColor="@color/light_gray"
+        android:fontFamily="@font/nunito_sans_semibold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pinView" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:alpha="1"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:text="1:09"
+        android:textColor="@color/main1"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/pinView" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:text="Resend code:"
+        android:textColor="@color/light_gray"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/pinView" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:text="0:29"
+        android:textSize="15sp"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:textColor="@color/main1"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="334dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Send verification code to "
+        android:textColor="@color/main_black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.849" />
+
+    <TextView
+        android:id="@+id/emailVerificationCodeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Email"
+        android:textColor="@color/main"
+        android:textSize="12sp"
+        android:layout_marginStart="212dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="instead"
+        android:textSize="12sp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="@color/main_black"
+        android:layout_marginStart="256dp"
+        app:layout_constraintBottom_toBottomOf="@+id/emailVerificationCodeText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/emailVerificationCodeText" />
+
+    <Button
+        android:id="@+id/buttonVerifyPhoneOTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Verify Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pinView" />
+
+    <TextView
+        android:id="@+id/phoneSendVerificationCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" +254789****456"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="256dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

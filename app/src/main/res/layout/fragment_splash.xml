@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main"
+    tools:context=".ui.fragments.splash.SplashFragment">
+
+    <ImageView
+        android:id="@+id/splashScreenImageView"
+        android:layout_width="65.11dp"
+        android:layout_height="84.76dp"
+        android:alpha="1"
+        android:rotation="0"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_plant_growing_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="SHAMBA"
+        android:textSize="22sp"
+        android:fontFamily="@font/noteworthy_bold"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/splashScreenImageView"
+        app:layout_constraintStart_toStartOf="@+id/splashScreenImageView"
+        app:layout_constraintTop_toBottomOf="@+id/splashScreenImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
