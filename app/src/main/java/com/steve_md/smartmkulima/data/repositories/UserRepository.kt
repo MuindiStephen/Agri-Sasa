@@ -4,10 +4,10 @@ import com.steve_md.smartmkulima.data.remote.BaseRepositorySafeApiCall
 import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 
 class UserRepository (
-    private val getUserApi : RetrofitApiService
+       private val getUserApi : RetrofitApiService
     )  : BaseRepositorySafeApiCall() {
 
-            suspend fun getUser() = safeApiCall {
-                getUserApi.getUser()
-            }
+    suspend fun getUser() = safeApiCall {
+        getUserApi.getUser()
+    }
 }

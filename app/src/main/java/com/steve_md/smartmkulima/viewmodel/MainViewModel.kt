@@ -14,8 +14,7 @@ class MainViewModel : ViewModel() {
 
     private val getUserRepository:UserRepository = UserRepository(RetrofitApiService.getApiClient())
 
-            // Get the user directly from the database
-
+    // Get the user directly from the database
 //    private val _userValue = MutableStateFlow<Resource<UserResponseItem>?>(null)
 //    val userValue: StateFlow<Resource<UserResponseItem>?>
 //    get() = _userValue
@@ -26,9 +25,9 @@ class MainViewModel : ViewModel() {
 //    }
 
 
-            private val _user : MutableLiveData<Resource<UserResponseItem>> = MutableLiveData()
-                 val user: LiveData<Resource<UserResponseItem>>
-                 get() = _user
+    private val _user : MutableLiveData<Resource<UserResponseItem>> = MutableLiveData()
+    val user: LiveData<Resource<UserResponseItem>>
+    get() = _user
 
     fun getUser() = viewModelScope.launch {
         _user.value = Resource.Loading
