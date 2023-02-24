@@ -81,7 +81,7 @@ class EmailVerificationFragment : Fragment() {
 //                TODO("Not yet implemented")
 //            }
 //
-//        })
+//       })
 
 
         // time count down for 30 seconds,
