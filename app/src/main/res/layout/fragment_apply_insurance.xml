@@ -219,8 +219,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Manage Insurance"
         android:fontFamily="@font/nunito_sans_semibold"
+        android:text="Manage Insurance"
         app:layout_constraintEnd_toEndOf="@+id/cardView12"
         app:layout_constraintStart_toStartOf="@+id/cardView12"
         app:layout_constraintTop_toBottomOf="@+id/cardView12" />
@@ -229,7 +229,7 @@
         android:id="@+id/cardView13"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="78dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView12"
@@ -263,5 +263,44 @@
         app:layout_constraintStart_toStartOf="@+id/cardView13"
         app:layout_constraintTop_toBottomOf="@+id/cardView13">
     </TextView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView14"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/main"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView50">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_faqs"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="FAGs"
+        android:fontFamily="@font/nunito_sans_semibold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView14"
+        app:layout_constraintStart_toStartOf="@+id/cardView14"
+        app:layout_constraintTop_toBottomOf="@+id/cardView14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
