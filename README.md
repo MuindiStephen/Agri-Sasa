@@ -14,6 +14,9 @@ The proposed solution for this android app is a platform to help farmers get suf
 
 ## Demo
 
+
+## Tech Stack
+
 ##
 -   WORK IN PROGRESS [ALL MODULE FEATURE IMPLEMENTATION IN PROGRESS]
 
