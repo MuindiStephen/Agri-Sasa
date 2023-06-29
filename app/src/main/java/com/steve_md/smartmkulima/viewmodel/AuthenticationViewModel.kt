@@ -20,19 +20,6 @@ class AuthenticationViewModel : ViewModel() {
 
     private var apiJob:Job? = null
 
-    /**
-     * view model will communicate with repository
-     * repository sends and gets data from the web server api
-     * and then use the data to update the UI
-     *
-     * **/
-
-
-    // use kotlin flows instead of live data
-
-    /**
-     * Using  mutable state flow
-     */
 
     //Email Login Observable
     private val _loginResult = MutableStateFlow<Resource<EmailLoginResponse>?>(null)
