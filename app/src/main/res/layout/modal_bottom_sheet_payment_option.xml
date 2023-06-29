@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lottiePayOption" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView15"
+        android:id="@+id/mpesaCardView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="50dp"
@@ -49,13 +49,14 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/visaCardView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="108dp"
         android:layout_marginTop="16dp"
         app:cardCornerRadius="20dp"
         android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView15"
+        app:layout_constraintBottom_toBottomOf="@+id/mpesaCardView"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/textView54"

@@ -26,7 +26,6 @@ class AuthsMainFragment : Fragment() {
         binding = FragmentMainAuthsBinding.inflate(layoutInflater, container, false)
 
 
-
         binding.alreadyHaveAccountLoginText.setOnClickListener {
             findNavController().navigate(R.id.action_authsMainFragment_to_loginMainFragment)
         }
@@ -41,8 +40,6 @@ class AuthsMainFragment : Fragment() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
         binding.mainAuthsToolbar.title = null
-
-
 
         return view
     }

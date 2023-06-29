@@ -40,7 +40,7 @@ class HomeDashboardFragment : Fragment() {
         binding = FragmentHomeDashboardBinding.inflate(layoutInflater, container, false)
 
 
-        binding.includeToolBar.menuIcon.setOnClickListener{
+        binding.includeToolBar.menuIcon.setOnClickListener {
             AlertDialog.Builder(
                 requireActivity()
             ) .setTitle("Logout")
@@ -66,7 +66,7 @@ class HomeDashboardFragment : Fragment() {
                     // Whatsapp chat with expert
                     val sendIntent = Intent()
                     sendIntent.action = Intent.ACTION_SEND
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello Expert at Shamba App Company.")
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello Expert at Shamba App(Agri-Sasa) Company.")
                     sendIntent.type = "text/plain"
                     sendIntent.setPackage("com.whatsapp")
 //                        sendIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=254740495903"))

@@ -181,5 +181,21 @@
         <action
             android:id="@+id/action_homeDashboardFragment2_to_signInDetailsWithEmailFragment"
             app:destination="@id/signInDetailsWithEmailFragment" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_applyInsuranceFragment"
+            app:destination="@id/applyInsuranceFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/applyInsuranceFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.ApplyInsuranceFragment"
+        android:label="fragment_apply_insurance"
+        tools:layout="@layout/fragment_apply_insurance" >
+        <action
+            android:id="@+id/action_applyInsuranceFragment_to_payInsuranceModalBottomSheet"
+            app:destination="@id/payInsuranceModalBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/payInsuranceModalBottomSheet"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.PayInsuranceModalBottomSheet"
+        android:label="PayInsuranceModalBottomSheet" />
 </navigation>

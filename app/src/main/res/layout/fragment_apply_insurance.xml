@@ -268,7 +268,7 @@
         android:id="@+id/cardView14"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
         app:layout_constraintHorizontal_bias="0.5"
@@ -302,5 +302,17 @@
         app:layout_constraintEnd_toEndOf="@+id/cardView14"
         app:layout_constraintStart_toStartOf="@+id/cardView14"
         app:layout_constraintTop_toBottomOf="@+id/cardView14" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/transactions"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
