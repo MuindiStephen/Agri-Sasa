@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -36,6 +38,9 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_monitor_farm_condition, container, false)
+
+        val backIcon = view.findViewById<ImageView>(R.id.imageView11)
+        backIcon.setOnClickListener { findNavController().navigateUp() }
 
         mapView = view.findViewById(R.id.mapViewFarmMonitoring)
         mapView.onCreate(savedInstanceState)
