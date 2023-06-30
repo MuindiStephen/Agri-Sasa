@@ -315,4 +315,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="620dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/allInsuranceTransactionsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:listitem="@layout/transaction_row" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvViewAllTransactions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View All >>>"
+        app:layout_constraintBottom_toBottomOf="@+id/textView53"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toEndOf="@+id/textView53"
+        app:layout_constraintTop_toTopOf="@+id/textView53" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
