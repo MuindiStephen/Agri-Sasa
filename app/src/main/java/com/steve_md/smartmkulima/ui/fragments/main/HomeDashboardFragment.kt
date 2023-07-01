@@ -19,6 +19,7 @@ import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import timber.log.Timber
+import java.util.*
 
 
 class HomeDashboardFragment : Fragment() {
@@ -36,8 +37,6 @@ class HomeDashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-
         binding = FragmentHomeDashboardBinding.inflate(layoutInflater, container, false)
 
 
@@ -92,17 +91,22 @@ class HomeDashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
-        // TODO UPDATE TIME.
+        //greetingDateTime.text = System.currentTimeMillis().toString()
+        // Get Current Time
+        val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
-
-
+        greetingDateTime.text =  when (currentTime) {
+            in 0..11 -> "Good Morning"
+            in 12..15 -> "Good Afternoon"
+            else -> "Good Evening"
+        }
         username = args.username
         binding.includeToolBar.userNameTextView.text = username
 
 //        var getUserViewModel =
 //            ViewModelProvider(
 //                requireActivity(),
-//                defaultViewModelProviderF actory
+//                defaultViewModelProviderFactory
 //            )[MainViewModel::class.java]
         getUserViewModel.getUser()
 
