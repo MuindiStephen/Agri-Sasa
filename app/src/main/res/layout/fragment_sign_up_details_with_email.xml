@@ -38,7 +38,7 @@
         android:gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="SIGN UP TO SHAMBA"
+        android:text="SIGN UP TO AGRISASA"
         android:textSize="30sp"
         android:textColor="@color/main_black"
         android:fontFamily="@font/montserrat_medium"

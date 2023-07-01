@@ -33,7 +33,7 @@
         android:layout_marginStart="45dp"
         android:layout_marginEnd="45dp"
         android:gravity="center"
-        android:text="KARIBU SHAMBA"
+        android:text="KARIBU AGRI SASA"
         android:textAllCaps="true"
         android:textStyle="normal"
         android:textColor="@color/main_black"

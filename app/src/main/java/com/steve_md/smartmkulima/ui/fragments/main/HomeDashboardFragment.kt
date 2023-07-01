@@ -3,10 +3,10 @@ package com.steve_md.smartmkulima.ui.fragments.main
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -18,6 +18,7 @@ import com.steve_md.smartmkulima.utils.Resource
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
+import timber.log.Timber
 
 
 class HomeDashboardFragment : Fragment() {
@@ -90,6 +91,11 @@ class HomeDashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
+        // TODO UPDATE TIME.
+
+
+
         username = args.username
         binding.includeToolBar.userNameTextView.text = username
 
@@ -101,12 +107,10 @@ class HomeDashboardFragment : Fragment() {
         getUserViewModel.getUser()
 
 
-
-
         getUserViewModel.user.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Success -> {
-                    Log.d("User Profile", "profile: ${it.value.userName}")
+                    Timber.tag("User Profile").d("profile: %s", it.value.userName)
                     binding.includeToolBar.textViewUserNameProfile.text = it.value.userName
                 }
                 is Resource.Loading -> {
