@@ -1,4 +1,4 @@
-package com.steve_md.smartmkulima.data.room
+package com.steve_md.smartmkulima.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

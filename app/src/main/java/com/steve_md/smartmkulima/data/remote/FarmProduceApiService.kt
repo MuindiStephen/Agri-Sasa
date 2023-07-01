@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface FarmProduceApiService {
 
     @GET("farm-produce")
-    suspend fun getProducts() : ArrayList<FarmProduce>
+    suspend fun getAllFarmProduce() : ArrayList<FarmProduce>
 }

@@ -1,11 +1,14 @@
 package com.steve_md.smartmkulima.model
 
-/**
- * Light weight model to display farm produce to the UI
- */
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
+@Entity(tableName = "produce")
 data class FarmProduce(
-    val id:Int,
-    val productImageUrl:String,
-    val productTitle:String,
-    val productPrice:Double
+    @PrimaryKey(autoGenerate = true) val id:Int,
+    @ColumnInfo(name = "image") val productImageUrl:String,
+    @ColumnInfo(name = "title") val productTitle:String,
+    @ColumnInfo(name = "price") val productPrice:Double
 )

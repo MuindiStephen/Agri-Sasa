@@ -4,12 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.steve_md.smartmkulima.model.FarmProduce
+import com.steve_md.smartmkulima.model.Transaction
 import kotlinx.coroutines.CoroutineScope
 
 
-@Database(entities = [Transaction::class], version = 1, exportSchema = true)
+@Database(entities = [Transaction::class,FarmProduce::class], version = 2, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun transactionDao(): TransactionDao
+    abstract fun farmProduceDao() : FarmProduceDao
 
     /**
      * Implement singleton pattern in room to prevent
