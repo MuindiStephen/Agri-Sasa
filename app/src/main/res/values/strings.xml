@@ -14,4 +14,5 @@
     <string name="insurance_plan_starting_from_ksh_1000">Insurance plan starting from Ksh. 1000</string>
     <string name="plan_validity_1_year">PLAN VALIDITY : 1 YEAR</string>
     <string name="transactions">Transactions</string>
+    <string name="we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_output">We use Linear Regression Machine Learning Algorithm to predict Your Farm Output.</string>
 </resources>

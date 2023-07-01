@@ -197,5 +197,19 @@
     <dialog
         android:id="@+id/payInsuranceModalBottomSheet"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.PayInsuranceModalBottomSheet"
-        android:label="PayInsuranceModalBottomSheet" />
+        android:label="PayInsuranceModalBottomSheet" >
+        <action
+            android:id="@+id/action_payInsuranceModalBottomSheet_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/marketProduce"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.MarketProduce"
+        android:label="fragment_market_produce"
+        tools:layout="@layout/fragment_market_produce" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
 </navigation>

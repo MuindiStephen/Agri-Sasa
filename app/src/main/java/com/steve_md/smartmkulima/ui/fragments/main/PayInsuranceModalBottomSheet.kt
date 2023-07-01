@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.utils.displaySnackBar
 
 class PayInsuranceModalBottomSheet : BottomSheetDialogFragment() {
 
@@ -21,5 +23,12 @@ class PayInsuranceModalBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val mpesa = view.findViewById<CardView>(R.id.mpesaCardView)
         val visa = view.findViewById<CardView>(R.id.visaCardView)
+
+        mpesa.setOnClickListener {
+            findNavController().navigate(R.id.action_payInsuranceModalBottomSheet_to_paymentFragment)
+        }
+        visa.setOnClickListener {
+            displaySnackBar("Feature coming soon...")
+        }
     }
 }
