@@ -26,8 +26,6 @@ class MainViewModel @Inject constructor(
     val produce: SharedFlow<FarmProduceState> = _produce
 
 
-    val farmProduce: SharedFlow<FarmProduceState> = _produce
-
     private fun getAllFarmProduce() {
         viewModelScope.launch {
             _produce.emit(
@@ -57,6 +55,8 @@ class MainViewModel @Inject constructor(
                                farmProduce = result.data!!
                            )
                        )
+
+                        Timber.e("Get All Farm Produce: ${result.data}")
                     }
                     else -> {}
                 }
