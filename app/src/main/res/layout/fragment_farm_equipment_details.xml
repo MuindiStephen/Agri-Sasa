@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_gray"
+    tools:context=".ui.fragments.main.FarmEquipmentDetailsFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout11"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/main"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/arrow_back"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/textView108"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="Fragment Equipment Details"
+            android:textColor="#F1ECE7"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView17"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="@color/gray"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="280dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/buttonRequestHire"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="48dp"
+        android:text="Request"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/equipmentImageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tractor"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/cardView17"
+        app:layout_constraintTop_toBottomOf="@+id/cardView17" />
+
+    <TextView
+        android:id="@+id/equipmentYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Year: 2000"
+        android:fontFamily="@font/montserrat"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/equipmentImageText"
+        app:layout_constraintTop_toBottomOf="@+id/equipmentImageText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/costEquipmentHire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ksh. 5000"
+        android:textSize="22sp"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintStart_toStartOf="@+id/equipmentYear"
+        app:layout_constraintTop_toBottomOf="@+id/equipmentYear" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
