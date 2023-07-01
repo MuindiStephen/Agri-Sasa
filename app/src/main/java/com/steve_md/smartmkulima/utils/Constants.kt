@@ -7,6 +7,8 @@ object Constants {
     const val LOGIN_END_POINT = "/login/email"
     const val CONFIRM_REGISTRATION_END_POINT = "/signup/confirm"
 
+    const val FARM_PRODUCE_BASE_URL = "https://path.com/"
+
     const val CONNECT_TIMEOUT = 60 * 1000
 
     const val READ_TIMEOUT = 60 * 1000

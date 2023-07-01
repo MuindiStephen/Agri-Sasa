@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nunito_sans_semibold"
-            android:text="$10.00"
+            android:text="Ksh. 1000"
             android:textColor="@color/main"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/productTitle"
