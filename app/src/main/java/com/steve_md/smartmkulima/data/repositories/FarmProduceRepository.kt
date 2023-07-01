@@ -9,10 +9,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+
+
 class FarmProduceRepository @Inject constructor(
-    private val  farmProduceApiService: FarmProduceApiService,
+    private val farmProduceApiService: FarmProduceApiService,
     private val appDatabase: AppDatabase
-){
+) {
     private val farmProduceDao = appDatabase.farmProduceDao()
 
     fun getAllFarmProduce() = networkBoundResource(
@@ -45,9 +47,7 @@ class FarmProduceRepository @Inject constructor(
     )
 
     // Fetching products from the remote api web service
-    fun searchDatabase(searchQuery: String) : Flow<List<FarmProduce>> {
+    fun searchDatabase(searchQuery: String): Flow<List<FarmProduce>> {
         return farmProduceDao.searchDatabase(searchQuery)
     }
-
-
 }
