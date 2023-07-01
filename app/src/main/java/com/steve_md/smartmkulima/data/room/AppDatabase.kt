@@ -1,12 +1,9 @@
 package com.steve_md.smartmkulima.data.room
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.Transaction
-import kotlinx.coroutines.CoroutineScope
 
 
 @Database(entities = [Transaction::class,FarmProduce::class], version = 2, exportSchema = true)
@@ -20,6 +17,7 @@ abstract class AppDatabase : RoomDatabase() {
      * multiple instances of room database opening at the sametime
      */
 
+    /**
     companion object {
 
         @Volatile
@@ -39,4 +37,5 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
     }
+    */
 }
