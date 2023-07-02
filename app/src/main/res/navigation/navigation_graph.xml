@@ -184,6 +184,9 @@
         <action
             android:id="@+id/action_homeDashboardFragment2_to_applyInsuranceFragment"
             app:destination="@id/applyInsuranceFragment" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_marketProduce"
+            app:destination="@id/marketProduce" />
     </fragment>
     <fragment
         android:id="@+id/applyInsuranceFragment"
@@ -211,5 +214,65 @@
         android:id="@+id/paymentFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.PaymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" />
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_successfulPaymentFragment"
+            app:destination="@id/successfulPaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/farmEquipmentDetailsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.FarmEquipmentDetailsFragment"
+        android:label="fragment_farm_equipment_details"
+        tools:layout="@layout/fragment_farm_equipment_details" >
+        <action
+            android:id="@+id/action_farmEquipmentDetailsFragment_to_paymentEquipmentFragment"
+            app:destination="@id/paymentEquipmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hireFarmEquipmentsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.HireFarmEquipmentsFragment"
+        android:label="fragment_hire_farm_equipments"
+        tools:layout="@layout/fragment_hire_farm_equipments" >
+        <action
+            android:id="@+id/action_hireFarmEquipmentsFragment_to_farmEquipmentDetailsFragment"
+            app:destination="@id/farmEquipmentDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/monitorFarmConditionFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.MonitorFarmConditionFragment"
+        android:label="fragment_monitor_farm_condition"
+        tools:layout="@layout/fragment_monitor_farm_condition" />
+    <fragment
+        android:id="@+id/locateAgriTechCompaniesFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.LocateAgriTechCompaniesFragment"
+        android:label="fragment_locate_agri_tech_companies"
+        tools:layout="@layout/fragment_locate_agri_tech_companies" />
+    <fragment
+        android:id="@+id/predictYourCropProductionFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.PredictYourCropProductionFragment"
+        android:label="fragment_predict_your_crop_production"
+        tools:layout="@layout/fragment_predict_your_crop_production" />
+    <fragment
+        android:id="@+id/successfulPaymentFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.SuccessfulPaymentFragment"
+        android:label="fragment_successful_payment"
+        tools:layout="@layout/fragment_successful_payment" >
+        <action
+            android:id="@+id/action_successfulPaymentFragment_to_homeDashboardFragment2"
+            app:destination="@id/homeDashboardFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/recommendedTopicsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.RecommendedTopicsFragment"
+        android:label="fragment_recommended_topics"
+        tools:layout="@layout/fragment_recommended_topics" />
+    <fragment
+        android:id="@+id/paymentEquipmentFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.PaymentEquipmentFragment"
+        android:label="fragment_payment_equipment"
+        tools:layout="@layout/fragment_payment_equipment" >
+        <action
+            android:id="@+id/action_paymentEquipmentFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
 </navigation>

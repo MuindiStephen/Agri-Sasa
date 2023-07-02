@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="36dp"
-        android:layout_height="38dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvReceipt"
-        app:srcCompat="@drawable/ic_agrisasa_logo" />
+        app:srcCompat="@drawable/ic_plant_growing_svgrepo_com2" />
 
     <TextView
         android:id="@+id/tvReceipt"
