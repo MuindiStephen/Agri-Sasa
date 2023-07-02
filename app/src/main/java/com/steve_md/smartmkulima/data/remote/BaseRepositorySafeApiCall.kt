@@ -5,11 +5,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
-/*
-*  Safe APi Call through HTTP which is not secure
-*
-*  */
-
+/**
+ * Safe APi Call through HTTP which is not secure
+ */
 abstract class BaseRepositorySafeApiCall() {
 
     // use of coroutines for asynchronous programming -> without non blocking execution

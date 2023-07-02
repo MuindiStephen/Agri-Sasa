@@ -272,11 +272,6 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/recommendedTopicsFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.main.RecommendedTopicsFragment"
-        android:label="fragment_recommended_topics"
-        tools:layout="@layout/fragment_recommended_topics" />
-    <fragment
         android:id="@+id/paymentEquipmentFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.PaymentEquipmentFragment"
         android:label="fragment_payment_equipment"

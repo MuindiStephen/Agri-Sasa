@@ -23,17 +23,17 @@ import timber.log.Timber
 @AndroidEntryPoint
 class HireFarmEquipmentsFragment : Fragment() {
 
-    private lateinit var binding:FragmentHireFarmEquipmentsBinding
+    private lateinit var binding: FragmentHireFarmEquipmentsBinding
     private lateinit var farmEquipmentsRecylerView: RecyclerView
     private lateinit var farmEquipmentsAdapter: FarmEquipmentAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHireFarmEquipmentsBinding.inflate(inflater,container,false)
+        binding = FragmentHireFarmEquipmentsBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,36 +41,37 @@ class HireFarmEquipmentsFragment : Fragment() {
 
         farmEquipmentsRecylerView = view.findViewById(R.id.farmEquipmentsRecyclerView)
 
-        farmEquipmentsAdapter = FarmEquipmentAdapter(FarmEquipmentAdapter.OnClickListener { farmEquipment ->  
-            Timber.i("Farm Equipments: $farmEquipment.name")
+        farmEquipmentsAdapter =
+            FarmEquipmentAdapter(FarmEquipmentAdapter.OnClickListener { farmEquipment ->
+                Timber.i("Farm Equipments: $farmEquipment.name")
 
-            val action = HireFarmEquipmentsFragmentDirections
-                .actionHireFarmEquipmentsFragmentToFarmEquipmentDetailsFragment(farmEquipmentItem = farmEquipment)
-            findNavController().navigate(action)
-        })
-
-       FarmEquipmentsApiClient.api.getAllEquipments().enqueue(object :retrofit2.Callback<ArrayList<FarmEquipment>>{
-           override fun onResponse(
-               call: Call<ArrayList<FarmEquipment>>,
-               response: Response<ArrayList<FarmEquipment>>
-           ) {
-               if (response.isSuccessful) {
-                   farmEquipmentsAdapter.submitList(response.body())
-                   farmEquipmentsRecylerView.adapter = farmEquipmentsAdapter
-               }
-           }
-           override fun onFailure(call: Call<ArrayList<FarmEquipment>>, t: Throwable) {
-               toast("No available Farm Equipments to hire.${t.localizedMessage}")
-           }
-       })
-
+                val action =
+                    HireFarmEquipmentsFragmentDirections.actionHireFarmEquipmentsFragmentToFarmEquipmentDetailsFragment(
+                        farmEquipmentItem = farmEquipment
+                    )
+                findNavController().navigate(action)
+            })
         /**
          * Get a List of all available Farm Equipments
          */
+        FarmEquipmentsApiClient.api.getAllEquipments()
+            .enqueue(object : retrofit2.Callback<ArrayList<FarmEquipment>> {
+                override fun onResponse(
+                    call: Call<ArrayList<FarmEquipment>>,
+                    response: Response<ArrayList<FarmEquipment>>
+                ) {
+                    if (response.isSuccessful) {
+                        farmEquipmentsAdapter.submitList(response.body())
+                        farmEquipmentsRecylerView.adapter = farmEquipmentsAdapter
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<FarmEquipment>>, t: Throwable) {
+                    toast("No available Farm Equipments to hire.${t.localizedMessage}")
+                }
+            })
+
+
 
     }
-    companion object {
-        const val TAG = "HireFarmEquipmentsFragment"
-    }
-
 }

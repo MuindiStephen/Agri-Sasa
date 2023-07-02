@@ -8,10 +8,14 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.data.remote.DarajaApiClient
+import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.databinding.FragmentPaymentBinding
+import com.steve_md.smartmkulima.model.Transaction
 import com.steve_md.smartmkulima.payment.mpesa.dto.AuthorizationResponse
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushRequest
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
@@ -24,6 +28,9 @@ import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.smartmkulima.utils.RegEx
 import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -76,7 +83,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
 
     private fun getAccessToken() {
         mApiClient!!.setGetAccessToken(true)
-        mApiClient!!.mpesaService()!!.getAccessToken().enqueue(object :
+        mApiClient!!.mpesaService().getAccessToken().enqueue(object :
             Callback<AuthorizationResponse?> {
             override fun onResponse(call: Call<AuthorizationResponse?>, response: Response<AuthorizationResponse?>) {
                 if (response.isSuccessful) {
@@ -118,7 +125,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
 
         mApiClient!!.setGetAccessToken(false)
 
-        mApiClient!!.mpesaService()!!.sendPush(stkPush).enqueue(object : Callback<StkPushSuccessResponse> {
+        mApiClient!!.mpesaService().sendPush(stkPush).enqueue(object : Callback<StkPushSuccessResponse> {
             override fun onResponse(call: Call<StkPushSuccessResponse>, response: Response<StkPushSuccessResponse>) {
 
                 try {
@@ -126,6 +133,32 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
                         toast("Response : ${response.body().toString()}")
 
                         navigateToDeliveryScreen()
+
+                         val transaction = Transaction(id = "RG221IWK728".toInt() ,mAmount.toString().toDouble(),System.currentTimeMillis())
+
+                           val db = Room.databaseBuilder(
+                               requireContext(),AppDatabase::class.java,"transactions-db"
+                           ).build()
+
+                        val transactionDao = db.transactionDao()
+
+                        lifecycleScope.launch {
+                            withContext(Dispatchers.IO) {
+                                transactionDao.saveTransaction(transaction)
+                            }
+                        }
+
+                             /**
+                        fun StkPushSuccessResponse.toTransaction() : com.steve_md.smartmkulima.model.Transaction {
+
+                            return com.steve_md.smartmkulima.model.Transaction(
+                                id = ,
+                                amount = mAmount.toString().toDouble(),
+                                transactionDateTime = value.toLong()
+                            )
+                        }
+                        */
+
 
                         Timber.tag("Post submitted to the API")
                     } else {

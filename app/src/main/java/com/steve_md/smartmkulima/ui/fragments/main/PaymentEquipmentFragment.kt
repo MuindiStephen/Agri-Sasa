@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieDrawable
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentPaymentEquipmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,9 +27,7 @@ class PaymentEquipmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         (activity as AppCompatActivity).supportActionBar?.hide()
-
         setUpBinding()
     }
     private fun setUpBinding() {
@@ -37,6 +36,10 @@ class PaymentEquipmentFragment : Fragment() {
             buttonProceedToPayHiredEquipment.setOnClickListener {
                 findNavController().navigate(R.id.action_paymentEquipmentFragment_to_paymentFragment)
             }
+
+            lottieAnimationView.setAnimation(R.raw.approved_verified)
+            lottieAnimationView.repeatCount = LottieDrawable.INFINITE
+            lottieAnimationView.playAnimation()
         }
     }
 }
