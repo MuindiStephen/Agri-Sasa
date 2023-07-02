@@ -137,7 +137,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
                          val transaction = Transaction(id = "RG221IWK728".toInt() ,mAmount.toString().toDouble(),System.currentTimeMillis())
 
                            val db = Room.databaseBuilder(
-                               requireContext(),AppDatabase::class.java,"transactions-db"
+                               requireContext(),AppDatabase::class.java,"shambaapp-db"
                            ).build()
 
                         val transactionDao = db.transactionDao()
@@ -149,10 +149,10 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
                         }
 
                              /**
-                        fun StkPushSuccessResponse.toTransaction() : com.steve_md.smartmkulima.model.Transaction {
+                        fun Item.toTransaction() : com.steve_md.smartmkulima.model.Transaction {
 
                             return com.steve_md.smartmkulima.model.Transaction(
-                                id = ,
+                                id = id,
                                 amount = mAmount.toString().toDouble(),
                                 transactionDateTime = value.toLong()
                             )

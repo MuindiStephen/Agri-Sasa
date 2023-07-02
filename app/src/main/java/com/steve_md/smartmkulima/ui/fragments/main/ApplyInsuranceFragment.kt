@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
 import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.databinding.FragmentApplyInsuranceBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,10 +33,14 @@ class ApplyInsuranceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.hide()
-
         binding.cardView11.setOnClickListener {
             findNavController().navigate(R.id.action_applyInsuranceFragment_to_payInsuranceModalBottomSheet)
         }
+
+        val db = Room.databaseBuilder(requireContext(),AppDatabase::class.java,"shambaapp-db")
+            .build()
+
+        // TODO room
     }
 
 }
