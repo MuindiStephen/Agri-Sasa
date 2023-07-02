@@ -59,8 +59,6 @@ class AuthenticationViewModel : ViewModel() {
         get() = _changePassword
 
 
-
-
     fun loginUserUsingEmail(email: String, password: String) = viewModelScope.launch {
         _loginResult.value = authenticationUserRepository
             .userLoginWithEmail(EmailLoginRequest(email = email, password = password))

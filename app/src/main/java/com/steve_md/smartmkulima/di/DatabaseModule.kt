@@ -30,6 +30,4 @@ object DatabaseModule {
     fun providesFarmProduceDao(appDatabase: AppDatabase): FarmProduceDao {
         return appDatabase.farmProduceDao()
     }
-
-
 }

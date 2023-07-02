@@ -49,12 +49,12 @@ class MainViewModel @Inject constructor(
                         Timber.e("Get all Farm Produce: ${result.error?.message ?: "Unknown Error Occurred"}")
                     }
                     is ApiStates.Success -> {
-                       _produce.emit(
-                           FarmProduceState(
-                               isLoading = false,
-                               farmProduce = result.data!!
-                           )
-                       )
+                        _produce.emit(
+                            FarmProduceState(
+                                isLoading = false,
+                                farmProduce = result.data!!
+                            )
+                        )
 
                         Timber.e("Get All Farm Produce: ${result.data}")
                     }
@@ -68,5 +68,5 @@ class MainViewModel @Inject constructor(
 data class FarmProduceState(
     val isLoading: Boolean = false,
     val error: String? = null,
-    val farmProduce : List<FarmProduce> = emptyList()
+    val farmProduce: List<FarmProduce> = emptyList()
 )

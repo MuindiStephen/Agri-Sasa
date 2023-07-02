@@ -126,7 +126,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/farmEquipmentsL"
+        android:id="@+id/farmEquipmentsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="32dp"

@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 
-
 @AndroidEntryPoint
 class HomeDashboardFragment : Fragment() {
 
@@ -24,7 +23,7 @@ class HomeDashboardFragment : Fragment() {
 
     //private val getUserViewModel: MainViewModel by viewModels()
 
-   // private lateinit var currentFragment: Fragment
+    // private lateinit var currentFragment: Fragment
 
     private val args: HomeDashboardFragmentArgs by navArgs()
     private var username = ""
@@ -36,14 +35,14 @@ class HomeDashboardFragment : Fragment() {
         binding = FragmentHomeDashboardBinding.inflate(layoutInflater, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.hide()
+
         binding.includeToolBar.menuIcon.setOnClickListener {
             AlertDialog.Builder(
                 requireActivity()
             ).setTitle("Logout")
                 .setMessage("Are you sure you want to logout?")
                 .setPositiveButton("Yes") { dialog, which ->
-//                    requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE)
-//                        .edit().clear().apply()
+
                     performLogout()
                 }
                 .setNegativeButton("No") { dialog, which ->
@@ -61,7 +60,6 @@ class HomeDashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
         //greetingDateTime.text = System.currentTimeMillis().toString()
         // Get Current Time
@@ -73,8 +71,6 @@ class HomeDashboardFragment : Fragment() {
             else -> "Good Evening"
         }
         username = args.username
-        binding.includeToolBar.userNameTextView.text = username
-
+        binding.includeToolBar.userNameTextView.text = username.substring(0,username.indexOf('@'))
     }
-
 }

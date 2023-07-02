@@ -123,17 +123,6 @@
                 android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:verticalScrollbarPosition="defaultPosition"
-            android:background="@color/text_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_navigation_menu" />
-
         <androidx.cardview.widget.CardView
             android:scrollbars="horizontal"
             android:id="@+id/cardView"
@@ -206,7 +195,7 @@
             android:layout_height="248dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/cardView" >
@@ -270,7 +259,7 @@
             app:layout_constraintEnd_toEndOf="@+id/cardView8"
             app:layout_constraintStart_toStartOf="@+id/cardView8"
             app:layout_constraintTop_toBottomOf="@+id/cardView8"
-            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:layout_width="150dp"
@@ -304,6 +293,4 @@
             app:layout_constraintVertical_bias="0.54" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>

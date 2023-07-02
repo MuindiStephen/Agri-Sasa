@@ -13,13 +13,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
+
     @Singleton
     @Provides
     fun providesRepository(
         farmProduceApiService: FarmProduceApiService,
         appDatabase: AppDatabase
-    )
-    : FarmProduceRepository {
-        return FarmProduceRepository(farmProduceApiService,appDatabase)
+    ): FarmProduceRepository {
+        return FarmProduceRepository(farmProduceApiService, appDatabase)
     }
 }

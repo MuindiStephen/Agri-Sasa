@@ -232,6 +232,9 @@
         <action
             android:id="@+id/action_farmEquipmentDetailsFragment_to_paymentEquipmentFragment"
             app:destination="@id/paymentEquipmentFragment" />
+        <argument
+            android:name="farmEquipmentItem"
+            app:argType="com.steve_md.smartmkulima.model.FarmEquipment" />
     </fragment>
     <fragment
         android:id="@+id/hireFarmEquipmentsFragment"
