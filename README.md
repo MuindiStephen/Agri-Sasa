@@ -10,6 +10,12 @@
   - Reach ready market for their produce to maximise their profits
 
 
+## Screens
+<img src="Screenshot_20221124_154707.png" width="25%"/>
+
+##
+> NOTE: other screens coming soon.
+
 ## Tech Stack & Concepts
 - 
     * [Kotlin](https://kotlinlang.org/) - a cross-platform, statically typed, general-purpose programming language with type inference.
