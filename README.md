@@ -1,4 +1,13 @@
-# Shamba App is an AgriTech Android App.
+# Shamba App
+- Shamba App is an AgriTech Android app with the following solution features for the farmer:)
+  - Hire Farm Equipments Feature
+  - Apply and Pay for Crop Insurance
+  - Access to Online farm content(Knowledge) Hosted on Cloud
+  - Chat With Farm Experts
+  - A GPS to monitor their farms (Smart Digital)
+  - Track nearby AgriTech Companies
+  - Predict Their farm production via an integrated Machine Learning Algorithm (Linear regression)
+  - Reach ready market for their produce to maximise their profits
 
 
 ## Tech Stack & Concepts
@@ -25,7 +34,6 @@
 - Datastore
 
 ## Payment Integration Gateways
- * [Paystack](https://paystack.com/docs/guides/accept_payments_on_your_android_app/)
  * [Mpesa-Daraja-API](http://developer.safaricom.co.ke/)
 
 ## DevOps Tool
