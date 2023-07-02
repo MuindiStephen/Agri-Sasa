@@ -8,11 +8,11 @@
     <item
         android:id="@+id/applyInsuranceFragment"
         android:title="Insurance"
-        android:icon="@drawable/ic_search"/>
+        android:icon="@drawable/ic_insurance"/>
     <item
         android:id="@+id/newFarmingTechnologyFragment"
         android:title="New Technology"
-        android:icon="@drawable/ic_post_add"/>
+        android:icon="@drawable/ic_new_tech"/>
     <item
         android:id="@+id/hireFarmEquipmentsFragment"
         android:title="Hire Equipment"
