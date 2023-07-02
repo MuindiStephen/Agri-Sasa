@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView19"
+            android:id="@+id/imageViewNewTechFarming"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"

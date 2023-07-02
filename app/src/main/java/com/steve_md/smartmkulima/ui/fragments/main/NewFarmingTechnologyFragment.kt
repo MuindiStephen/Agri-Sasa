@@ -43,6 +43,9 @@ class NewFarmingTechnologyFragment : Fragment() {
             cardViewPredictFarmProduce.setOnClickListener {
                 goToPredictFarmYield()
             }
+            imageViewNewTechFarming.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 
