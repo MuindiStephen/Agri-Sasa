@@ -185,8 +185,11 @@
             android:id="@+id/action_homeDashboardFragment2_to_applyInsuranceFragment"
             app:destination="@id/applyInsuranceFragment" />
         <action
-            android:id="@+id/action_homeDashboardFragment2_to_marketProduce"
-            app:destination="@id/marketProduce" />
+            android:id="@+id/action_homeDashboardFragment2_to_hireFarmEquipmentsFragment"
+            app:destination="@id/hireFarmEquipmentsFragment" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_newFarmingTechnologyFragment"
+            app:destination="@id/newFarmingTechnologyFragment" />
     </fragment>
     <fragment
         android:id="@+id/applyInsuranceFragment"
@@ -203,7 +206,9 @@
         android:label="PayInsuranceModalBottomSheet" >
         <action
             android:id="@+id/action_payInsuranceModalBottomSheet_to_paymentFragment"
-            app:destination="@id/paymentFragment" />
+            app:destination="@id/paymentFragment"
+            app:popUpTo="@id/payInsuranceModalBottomSheet"
+            app:popUpToInclusive="true" />
     </dialog>
     <fragment
         android:id="@+id/marketProduce"
@@ -259,7 +264,9 @@
         tools:layout="@layout/fragment_successful_payment" >
         <action
             android:id="@+id/action_successfulPaymentFragment_to_homeDashboardFragment2"
-            app:destination="@id/homeDashboardFragment2" />
+            app:destination="@id/homeDashboardFragment2"
+            app:popUpTo="@id/successfulPaymentFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/recommendedTopicsFragment"
@@ -274,5 +281,28 @@
         <action
             android:id="@+id/action_paymentEquipmentFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_paymentEquipmentFragment_to_successfulPaymentFragment"
+            app:destination="@id/successfulPaymentFragment"
+            app:popUpTo="@id/paymentEquipmentFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/newFarmingTechnologyFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.NewFarmingTechnologyFragment"
+        android:label="fragment_new_farming_technology"
+        tools:layout="@layout/fragment_new_farming_technology" >
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_monitorFarmConditionFragment"
+            app:destination="@id/monitorFarmConditionFragment" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_locateAgriTechCompaniesFragment"
+            app:destination="@id/locateAgriTechCompaniesFragment" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_predictYourCropProductionFragment"
+            app:destination="@id/predictYourCropProductionFragment" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_marketProduce"
+            app:destination="@id/marketProduce" />
     </fragment>
 </navigation>

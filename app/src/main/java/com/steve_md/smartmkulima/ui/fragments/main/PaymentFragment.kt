@@ -82,7 +82,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
             }
 
             override fun onFailure(call: Call<AuthorizationResponse?>, t: Throwable) {
-                Timber.tag("MainActivity").e(t.printStackTrace().toString())
+                Timber.tag(TAG).e(t.printStackTrace().toString())
             }
         })
     }
@@ -146,6 +146,6 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
 
     companion object {
         val httpException : HttpException? = null
-        const val TAG = "MpesaPaymentFragment"
+        const val TAG = "PaymentFragment"
     }
 }
