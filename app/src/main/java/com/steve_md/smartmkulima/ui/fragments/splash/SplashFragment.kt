@@ -14,8 +14,10 @@ import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSplashBinding
 import com.steve_md.smartmkulima.others.isOnline
 import com.steve_md.smartmkulima.utils.snackBar
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
 
     private lateinit var binding: FragmentSplashBinding

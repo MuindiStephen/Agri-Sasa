@@ -11,8 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.databinding.FragmentRecoverPasswordWithEmailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class RecoverPasswordWithEmailFragment : Fragment() {
 
     private lateinit var binding:FragmentRecoverPasswordWithEmailBinding

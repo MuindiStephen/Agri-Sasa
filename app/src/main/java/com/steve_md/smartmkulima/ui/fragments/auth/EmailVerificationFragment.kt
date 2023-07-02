@@ -21,9 +21,11 @@ import com.steve_md.smartmkulima.utils.Resource
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 
+@AndroidEntryPoint
 class EmailVerificationFragment : Fragment() {
 
     private lateinit var binding: FragmentEmailVerificationBinding

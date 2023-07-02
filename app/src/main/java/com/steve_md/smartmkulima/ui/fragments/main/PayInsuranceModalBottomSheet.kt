@@ -9,7 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PayInsuranceModalBottomSheet : BottomSheetDialogFragment() {
 
     override fun onCreateView(

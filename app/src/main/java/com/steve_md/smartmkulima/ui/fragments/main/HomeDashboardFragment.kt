@@ -12,9 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 
+
+@AndroidEntryPoint
 class HomeDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeDashboardBinding

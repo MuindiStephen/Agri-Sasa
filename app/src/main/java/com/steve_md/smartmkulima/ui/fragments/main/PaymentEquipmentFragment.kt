@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentPaymentEquipmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class PaymentEquipmentFragment : Fragment() {
 
     private lateinit var binding: FragmentPaymentEquipmentBinding
@@ -28,7 +31,6 @@ class PaymentEquipmentFragment : Fragment() {
 
         setUpBinding()
     }
-
     private fun setUpBinding() {
         binding.apply {
             imageView3.setOnClickListener { findNavController().navigateUp() }

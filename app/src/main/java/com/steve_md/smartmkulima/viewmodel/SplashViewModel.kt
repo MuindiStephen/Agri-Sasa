@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+// TDDO
+// NOT USED in this code
 class SplashViewModel : ViewModel() {
     private val _splashValue = MutableStateFlow<Boolean>(false)
     val splashValue: StateFlow<Boolean> get() = _splashValue

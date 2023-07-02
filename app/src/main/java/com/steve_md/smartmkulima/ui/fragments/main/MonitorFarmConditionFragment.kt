@@ -22,9 +22,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.FarmConditions
 import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-
+@AndroidEntryPoint
 class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
     private lateinit var mapView: MapView

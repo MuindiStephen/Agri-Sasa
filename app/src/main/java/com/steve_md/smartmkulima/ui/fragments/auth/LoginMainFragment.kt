@@ -12,8 +12,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentLoginMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class LoginMainFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginMainBinding

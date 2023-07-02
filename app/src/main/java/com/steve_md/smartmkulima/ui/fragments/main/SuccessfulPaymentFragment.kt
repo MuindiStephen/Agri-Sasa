@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieDrawable
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSuccessfulPaymentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class SuccessfulPaymentFragment : Fragment() {
 
 

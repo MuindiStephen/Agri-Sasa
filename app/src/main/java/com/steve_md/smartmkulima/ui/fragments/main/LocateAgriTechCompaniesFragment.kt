@@ -16,9 +16,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.AgriTechCompany
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 
+@AndroidEntryPoint
 class LocateAgriTechCompaniesFragment : Fragment() {
 
      private lateinit var map: GoogleMap

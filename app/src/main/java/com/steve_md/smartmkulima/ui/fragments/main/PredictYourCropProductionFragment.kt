@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.steve_md.smartmkulima.databinding.FragmentPredictYourCropProductionBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class PredictYourCropProductionFragment : Fragment() {
 
     private lateinit var binding:FragmentPredictYourCropProductionBinding

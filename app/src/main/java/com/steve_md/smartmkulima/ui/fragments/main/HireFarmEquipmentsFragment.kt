@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.steve_md.smartmkulima.databinding.FragmentHireFarmEquipmentsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class HireFarmEquipmentsFragment : Fragment() {
 
     private lateinit var binding:FragmentHireFarmEquipmentsBinding

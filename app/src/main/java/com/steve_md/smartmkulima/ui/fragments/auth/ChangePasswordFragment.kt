@@ -11,8 +11,10 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.databinding.FragmentChangePasswordBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class ChangePasswordFragment : Fragment() {
 
     private lateinit var binding:FragmentChangePasswordBinding

@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.steve_md.smartmkulima.databinding.FragmentHotTopicsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class HotTopicsFragment : Fragment() {
 
     private lateinit var binding: FragmentHotTopicsBinding

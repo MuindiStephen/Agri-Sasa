@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentNewFarmingTechnologyBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class NewFarmingTechnologyFragment : Fragment() {
 
     private lateinit var binding: FragmentNewFarmingTechnologyBinding

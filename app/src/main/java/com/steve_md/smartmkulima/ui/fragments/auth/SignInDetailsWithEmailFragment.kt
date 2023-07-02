@@ -22,9 +22,11 @@ import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 
+@AndroidEntryPoint
 class SignInDetailsWithEmailFragment : Fragment() {
 
     // According to the docs this is a nice way get binding

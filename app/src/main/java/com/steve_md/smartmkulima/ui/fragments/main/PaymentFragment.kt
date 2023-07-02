@@ -23,12 +23,15 @@ import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.smartmkulima.utils.RegEx
 import com.steve_md.smartmkulima.utils.toast
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import timber.log.Timber
 
+
+@AndroidEntryPoint
 class PaymentFragment : Fragment() ,View.OnClickListener{
 
 
