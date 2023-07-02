@@ -10,7 +10,7 @@
         android:title="Insurance"
         android:icon="@drawable/ic_search"/>
     <item
-        android:id="@+id/postFragment"
+        android:id="@+id/newFarmingTechnologyFragment"
         android:title="New Technology"
         android:icon="@drawable/ic_post_add"/>
     <item
