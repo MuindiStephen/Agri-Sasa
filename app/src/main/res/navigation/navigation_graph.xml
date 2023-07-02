@@ -281,11 +281,6 @@
         <action
             android:id="@+id/action_paymentEquipmentFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
-        <action
-            android:id="@+id/action_paymentEquipmentFragment_to_successfulPaymentFragment"
-            app:destination="@id/successfulPaymentFragment"
-            app:popUpTo="@id/paymentEquipmentFragment"
-            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/newFarmingTechnologyFragment"

@@ -1,24 +1,17 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
-import com.steve_md.smartmkulima.utils.Resource
-import com.steve_md.smartmkulima.utils.displaySnackBar
-import com.steve_md.smartmkulima.utils.toast
-import com.steve_md.smartmkulima.viewmodel.MainViewModel
-import timber.log.Timber
 import java.util.*
 
 
@@ -26,11 +19,11 @@ class HomeDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeDashboardBinding
 
-    private val getUserViewModel : MainViewModel by viewModels()
+    //private val getUserViewModel: MainViewModel by viewModels()
 
-    private lateinit var currentFragment: Fragment
+   // private lateinit var currentFragment: Fragment
 
-    private val args:HomeDashboardFragmentArgs by navArgs()
+    private val args: HomeDashboardFragmentArgs by navArgs()
     private var username = ""
 
     override fun onCreateView(
@@ -39,11 +32,11 @@ class HomeDashboardFragment : Fragment() {
     ): View {
         binding = FragmentHomeDashboardBinding.inflate(layoutInflater, container, false)
 
-
+        (activity as AppCompatActivity).supportActionBar?.hide()
         binding.includeToolBar.menuIcon.setOnClickListener {
             AlertDialog.Builder(
                 requireActivity()
-            ) .setTitle("Logout")
+            ).setTitle("Logout")
                 .setMessage("Are you sure you want to logout?")
                 .setPositiveButton("Yes") { dialog, which ->
 //                    requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE)
@@ -56,31 +49,7 @@ class HomeDashboardFragment : Fragment() {
                 .create()
                 .show()
         }
-
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.homeDashboardFragment -> {
-                  currentFragment = HomeDashboardFragment()
-                }
-                R.id.chatFragment -> {
-                    // Whatsapp chat with expert
-                    val sendIntent = Intent()
-                    sendIntent.action = Intent.ACTION_SEND
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello Expert at Shamba App(Agri-Sasa) Company.")
-                    sendIntent.type = "text/plain"
-                    sendIntent.setPackage("com.whatsapp")
-//                        sendIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=254740495903"))
-                    startActivity(Intent.createChooser(sendIntent, "Chat With Shamba App Expert"))
-                    startActivity(sendIntent)
-                }
-            }
-            true
-        }
-
-
         return binding.root
-
-
     }
 
     private fun performLogout() {
@@ -95,7 +64,7 @@ class HomeDashboardFragment : Fragment() {
         // Get Current Time
         val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
-        greetingDateTime.text =  when (currentTime) {
+        greetingDateTime.text = when (currentTime) {
             in 0..11 -> "Good Morning"
             in 12..15 -> "Good Afternoon"
             else -> "Good Evening"
@@ -103,54 +72,6 @@ class HomeDashboardFragment : Fragment() {
         username = args.username
         binding.includeToolBar.userNameTextView.text = username
 
-//        var getUserViewModel =
-//            ViewModelProvider(
-//                requireActivity(),
-//                defaultViewModelProviderFactory
-//            )[MainViewModel::class.java]
-        getUserViewModel.getUser()
-
-
-        getUserViewModel.user.observe(viewLifecycleOwner, Observer {
-            when(it){
-                is Resource.Success -> {
-                    Timber.tag("User Profile").d("profile: %s", it.value.userName)
-                    binding.includeToolBar.textViewUserNameProfile.text = it.value.userName
-                }
-                is Resource.Loading -> {
-                    toast("Loading....")
-                }
-                is Resource.Error -> {
-                    displaySnackBar("Profile Updated")
-//                    toast("${it.errorCode}")
-                }
-            }
-        })
-
-        // Get user
-//        lifecycleScope.launchWhenResumed {
-//            getUserViewModel.userValue.collectLatest {
-//                when(it) {
-//                    is Resource.Success -> {
-//                        updateUserProfile(it.value)
-//                        Log.d("$it.value.userName", " Good morning!")
-//                    }
-//                    is Resource.Loading -> {
-//
-//                    }
-//                    else -> {}
-//                }
-//            }
-//        }
-
-        
-
-//        val menuIcon:ImageView = view.findViewById(R.id.menuIcon)
-
-
     }
-
-
-
 
 }
