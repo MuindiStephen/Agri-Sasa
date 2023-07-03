@@ -2,7 +2,6 @@ package com.steve_md.smartmkulima.ui.fragments.auth
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +23,7 @@ import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -88,8 +88,8 @@ class SignInDetailsWithEmailFragment : Fragment() {
         lifecycleScope.launchWhenResumed {
             loginWithEmailViewModel.loginResult.collectLatest {
                 when (it) {
-                    Resource.Loading -> {
-                        toast("Loading")
+                   is Resource.Loading -> {
+                        toast("Loading...")
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Error -> {
@@ -97,7 +97,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Success -> {
-                        val userId = it.value.email
+                      //  val userId = it.value.email
 
                         // check whether user data is null or available in the backend db api
                         it.value.email.let {
@@ -130,7 +130,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
     }
 
     private fun loginUser() {
-        Log.i("VAVAVA","VIEWMODEL IS nUll -> ${loginWithEmailViewModel == null}")
+        Timber.i("$loginWithEmailViewModel == null")
         loginWithEmailViewModel.loginUserUsingEmail(
             binding.inputLoginEmail.text.toString(),
             binding.inputLoginPassword.text.toString()
@@ -148,7 +148,4 @@ class SignInDetailsWithEmailFragment : Fragment() {
     private fun navigateToSignInWithPhoneFragment() {
         findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_signInDetailsFragment)
     }
-
-
-
 }

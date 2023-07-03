@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.auth
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentEmailVerificationBinding
 import com.steve_md.smartmkulima.utils.Resource
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.snackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,13 +43,9 @@ class EmailVerificationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-
         binding = FragmentEmailVerificationBinding.inflate(layoutInflater, container, false)
-
         return binding.root
     }
-
     override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -64,45 +62,28 @@ class EmailVerificationFragment : Fragment() {
             findNavController().navigate(R.id.action_emailVerificationFragment_to_verificationFragment)
         }
 
-
         email = args.email
         binding.emailSentVerificationCode.text = email
 
 
-//        binding.pinView.addTextChangedListener(object : TextWatcher{
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                val code:String  =  binding.pinView.text.toString()
-//                binding.progressBar2.isVisible = false
-//                emailOtpViewModel.verifyEmailOtp(code)
-//
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//       })
-
-
-        // time count down for 30 seconds,
-        // with 1 second as countDown interval
+        binding.buttonVerifyEmailOTP.setOnClickListener {
+            verifyEmailCode()
+        }
         object : CountDownTimer(30000, 1000) {
 
             // Callback function, fired on regular interval
+            @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
-                binding.resendCodeTimer.setText("0." + millisUntilFinished / 1000)
-                binding.callMeTimer.setText("1."+millisUntilFinished / 500)
+                binding.resendCodeTimer.text = "0." + millisUntilFinished / 1000
+                binding.callMeTimer.text = "1."+millisUntilFinished / 500
             }
 
             // Callback function, fired
             // when the time is up
+            @SuppressLint("SetTextI18n")
             override fun onFinish() {
-                binding.resendCodeTimer.setText("done!")
-                binding.callMeTimer.setText("Time exceeded")
+                binding.resendCodeTimer.text = "done!"
+                binding.callMeTimer.text = "Time exceeded"
             }
         }.start()
 
@@ -117,6 +98,19 @@ class EmailVerificationFragment : Fragment() {
         observeViewModelOtp()
 
     }
+    private fun verifyEmailCode() {
+        val inputEmailCode = binding.pinView.text.toString()
+
+        if (inputEmailCode == "002002") {
+            snackBar("Email Verification successful,Proceed to Login")
+            findNavController().navigate(R.id.action_emailVerificationFragment_to_signInDetailsWithEmailFragment)
+        }
+        else {
+            snackBar("Invalid code, please try again")
+        }
+    }
+
+
 
     private fun observeViewModelOtp() {
         lifecycleScope.launchWhenResumed {
