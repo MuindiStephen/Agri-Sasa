@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -18,13 +16,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentEmailVerificationBinding
-import com.steve_md.smartmkulima.utils.Resource
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.snackBar
-import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 
 
 @AndroidEntryPoint
@@ -33,10 +28,10 @@ class EmailVerificationFragment : Fragment() {
     private lateinit var binding: FragmentEmailVerificationBinding
     private val emailOtpViewModel: AuthenticationViewModel by viewModels()
 
-    private lateinit var navController:NavController
+    private lateinit var navController: NavController
 
 
-    private val args:EmailVerificationFragmentArgs by navArgs()
+    private val args: EmailVerificationFragmentArgs by navArgs()
     private var email = ""
 
     override fun onCreateView(
@@ -46,7 +41,8 @@ class EmailVerificationFragment : Fragment() {
         binding = FragmentEmailVerificationBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
-    override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.hide()
@@ -59,7 +55,8 @@ class EmailVerificationFragment : Fragment() {
 
 
         binding.sendCodeToEmailInsteadText.setOnClickListener {
-            findNavController().navigate(R.id.action_emailVerificationFragment_to_verificationFragment)
+           // findNavController().navigate(R.id.action_emailVerificationFragment_to_verificationFragment)
+            displaySnackBar("Feature coming soon")
         }
 
         email = args.email
@@ -75,7 +72,7 @@ class EmailVerificationFragment : Fragment() {
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 binding.resendCodeTimer.text = "0." + millisUntilFinished / 1000
-                binding.callMeTimer.text = "1."+millisUntilFinished / 500
+                binding.callMeTimer.text = "1." + millisUntilFinished / 500
             }
 
             // Callback function, fired
@@ -88,29 +85,34 @@ class EmailVerificationFragment : Fragment() {
         }.start()
 
 
+        // TODO (Not working)
         //  Button email verify OTP
+        /**
         binding.buttonVerifyEmailOTP.setOnClickListener {
-           val code:String  =  binding.pinView.text.toString()
-            binding.progressBar2.isVisible = true
-          emailOtpViewModel.verifyEmailOtp(code)
+        val code:String  =  binding.pinView.text.toString()
+        binding.progressBar2.isVisible = true
+        emailOtpViewModel.verifyEmailOtp(code)
         }
+         */
 
-        observeViewModelOtp()
+        //observeViewModelOtp()
 
     }
+
     private fun verifyEmailCode() {
         val inputEmailCode = binding.pinView.text.toString()
 
         if (inputEmailCode == "002002") {
             snackBar("Email Verification successful,Proceed to Login")
             findNavController().navigate(R.id.action_emailVerificationFragment_to_signInDetailsWithEmailFragment)
-        }
-        else {
+        } else {
             snackBar("Invalid code, please try again")
         }
     }
+}
 
 
+    /** TODO (not working for now)
 
     private fun observeViewModelOtp() {
         lifecycleScope.launchWhenResumed {
@@ -145,5 +147,6 @@ class EmailVerificationFragment : Fragment() {
 
 
 }
+     */
 
 

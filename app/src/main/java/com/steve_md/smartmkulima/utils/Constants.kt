@@ -4,16 +4,17 @@ package com.steve_md.smartmkulima.utils
 object Constants {
 
     // Authentication Endpoints
-    const val BASE_URL = "https://shamba-app-onboarding.herokuapp.com"
-    const val REGISTER_END_POINT = "/signup/email"
-    const val LOGIN_END_POINT = "/login/email"
-    const val CONFIRM_REGISTRATION_END_POINT = "/signup/confirm"
-
-
-
+    const val BASE_URL = "https://shamba-app-onboarding.herokuapp.com"   // TODO (change this base url)
+    const val REGISTER_END_POINT = "/api/authaccount/registration"
+    const val LOGIN_END_POINT = "/api/authaccount/login"
 
 
     const val FARM_PRODUCE_BASE_URL = "https://path.com/"
+
+
+    /**
+     *  Payment Integration constants
+     */
 
     const val CONNECT_TIMEOUT = 60 * 1000
 
