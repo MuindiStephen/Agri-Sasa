@@ -1,6 +1,5 @@
 package com.steve_md.smartmkulima.ui.fragments.auth
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -66,7 +65,8 @@ class SignInDetailsWithEmailFragment : Fragment() {
         }
 
         binding.forgotPasswordText.setOnClickListener {
-            findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_recoverPasswordWithEmailFragment)
+            // findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_recoverPasswordWithEmailFragment)
+            displaySnackBar("Feature coming soon")
         }
 
         binding.signInWithEmailButton.setOnClickListener {
@@ -93,7 +93,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Error -> {
-                        toast("Couldn't log in! Invalid details or Account does not exist.")
+                        displaySnackBar("Couldn't log in! Invalid Login credentials.")
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Success -> {
@@ -103,7 +103,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         it.value.email.let {
                             binding.progressBar.isVisible = false
                             // if available then login the user successfully.
-                            displaySnackBar("You Logged in successfully")
+                             displaySnackBar("You Logged in successfully")
                              navigateToHomeDashboardFragment()
 
                            //  savePrefsToken("token")
@@ -119,12 +119,13 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
     }
 
+    /** TODO (now working)
     private fun savePrefsToken(token:String) {
         requireContext().getSharedPreferences("login", Context.MODE_PRIVATE)
             .edit().putString("login", token)
             .apply()
     }
-
+*/
     private fun navigateToHomeDashboardFragment() {
         findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_homeDashboardFragment2)
     }
@@ -146,6 +147,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
     }
 
     private fun navigateToSignInWithPhoneFragment() {
-        findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_signInDetailsFragment)
+        displaySnackBar("Feature coming soon")
+       // findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_signInDetailsFragment)
     }
 }

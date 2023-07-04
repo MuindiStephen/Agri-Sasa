@@ -128,7 +128,9 @@
             app:destination="@id/signInDetailsFragment" />
         <action
             android:id="@+id/action_signInDetailsWithEmailFragment_to_homeDashboardFragment2"
-            app:destination="@id/homeDashboardFragment2" />
+            app:destination="@id/homeDashboardFragment2"
+            app:popUpTo="@id/signInDetailsWithEmailFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signInDetailsWithEmailFragment_to_recoverPasswordWithEmailFragment"
             app:destination="@id/recoverPasswordWithEmailFragment" />
