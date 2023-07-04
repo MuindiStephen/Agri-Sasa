@@ -30,9 +30,9 @@ class SignUpDetailsWithEmailFragment : Fragment() {
     private val binding get() = _binding!!
 
     // View model
-    private val signUpWithEmailViewModel : AuthenticationViewModel by viewModels()
+    private val signUpWithEmailViewModel: AuthenticationViewModel by viewModels()
 
-    private lateinit var navController:NavController
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,39 +62,39 @@ class SignUpDetailsWithEmailFragment : Fragment() {
 
 
         binding.buttonSignUpWithEmail.setOnClickListener {
-            if (isValidRegistrationDetails())
-            {
-              findNavController().navigate(
-                    SignUpDetailsWithEmailFragmentDirections.actionSignUpDetailsWithEmailFragmentToEmailVerificationFragment
-                    (binding.inputEmailAddress.text.toString())
+            if (isValidRegistrationDetails()) {
+                val direction =
+                    SignUpDetailsWithEmailFragmentDirections.actionSignUpDetailsWithEmailFragmentToEmailVerificationFragment(
+                        binding.inputEmailAddress.text.toString()
+                    )
+                findNavController().navigate(
+                    direction
                 )
                 registerUser()
 
-            }
-
-                else displaySnackBar("Unable to register. Empty Strings or invalid")
+            } else displaySnackBar("Unable to register. Empty Strings or invalid")
         }
 
         lifecycleScope.launchWhenResumed {
-           signUpWithEmailViewModel.registerResult.collectLatest {
-               when (it) {
-                   is Resource.Success -> {
-                       toast("Registered Successfully, Please Login")
-                       navigateToEmailVerificationFragment()
-                   }
+            signUpWithEmailViewModel.registerResult.collectLatest { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        toast("Registered Successfully, Please Login")
+                        navigateToEmailVerificationFragment()
+                    }
 
-                   is Resource.Error -> {
-                       toast("Registered Successfully. An email verification code has been send to your email!")
-                       navigateToEmailVerificationFragment()
-                   }
+                    is Resource.Error -> {
+                        toast("Registered Successfully. An email verification code has been send to your email!")
+                        navigateToEmailVerificationFragment()
+                    }
 
-                   is Resource.Loading -> {
-                         toast("Registered please verify your email!")
-                   }
-                   null -> {}
+                    is Resource.Loading -> {
+                        toast("Registered please verify your email!")
+                    }
+                    null -> {}
 
-               }
-           }
+                }
+            }
         }
 
 

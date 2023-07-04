@@ -27,11 +27,6 @@
             app:popUpTo="@id/authsMainFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_authsMainFragment_to_signUpDetailsMainFragment"
-            app:destination="@id/signUpDetailsMainFragment"
-            app:popUpTo="@id/authsMainFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_authsMainFragment_to_signUpDetailsWithEmailFragment"
             app:destination="@id/signUpDetailsWithEmailFragment"
             app:popUpTo="@id/authsMainFragment"
