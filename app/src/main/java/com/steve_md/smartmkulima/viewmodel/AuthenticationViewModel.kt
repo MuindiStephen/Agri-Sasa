@@ -70,7 +70,7 @@ class AuthenticationViewModel : ViewModel() {
     }
     fun registerUsingEmail(username:String, email:String, password: String, confirmPassword:String) = viewModelScope.launch {
         _registerResult.value = authenticationUserRepository
-            .userRegisterWithEmail(EmailSignUpRequest(username = username, email = email, password = password, confirmPassword = confirmPassword))
+            .userRegisterWithEmail(EmailSignUpRequest(name = username, email = email, password = password, confirmPassword = confirmPassword))
     }
 
 

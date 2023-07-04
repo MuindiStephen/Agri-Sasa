@@ -22,6 +22,18 @@ interface RetrofitApiService {
         @Body emailLoginRequest: EmailLoginRequest
     ) : EmailLoginResponse
 
+
+    companion object {
+        fun getApiClient() : RetrofitApiService {
+            return ApiClient.retrofit.create(RetrofitApiService::class.java)
+        }
+    }
+
+
+
+
+
+    // TODO (Not working for now)
     @POST("/signup/email/confirm")
     suspend fun verifyUserWithEmail(
         @Query("OTP") otp : String
@@ -62,11 +74,4 @@ interface RetrofitApiService {
     // To get the user from the database
      @GET("/signup/usersByEmail/")
      suspend fun getUser(): UserResponseItem
-
-    companion object {
-        fun getApiClient() : RetrofitApiService {
-            return ApiClient.retrofit.create(RetrofitApiService::class.java)
-        }
-    }
-
 }

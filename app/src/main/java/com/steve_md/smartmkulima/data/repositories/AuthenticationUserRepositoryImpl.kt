@@ -6,7 +6,7 @@ import com.steve_md.smartmkulima.model.requests.*
 
 class AuthenticationUserRepositoryImpl(
     private val retrofitApiService :  RetrofitApiService
-) : AuthenticationUserRepository, BaseRepositorySafeApiCall(){
+) : AuthenticationUserRepository, BaseRepositorySafeApiCall() {
 
     // To implement the interface AuthenticationUserRepository
 
@@ -19,6 +19,11 @@ class AuthenticationUserRepositoryImpl(
       retrofitApiService.registerUserWithEmail(emailSignUpRequest)
     }
 
+
+
+
+
+    // TODO (not working for now)
     override suspend fun userEmailOTPVerification(emailOTPRequest: EmailOTPRequest) = safeApiCall {
        retrofitApiService.verifyUserWithEmail(emailOTPRequest.otp)
     }
