@@ -5,7 +5,9 @@ import com.steve_md.smartmkulima.model.responses.*
 import com.steve_md.smartmkulima.utils.Resource
 
 
-// Communicates with remote data source (from web service/server)
+/**
+ * Communicates with remote data source (from web service/server)
+ */
 
 interface AuthenticationUserRepository {
 
@@ -13,6 +15,11 @@ interface AuthenticationUserRepository {
 
     suspend fun userRegisterWithEmail(emailSignUpRequest: EmailSignUpRequest) : Resource<EmailSignUpResponse>
 
+
+
+
+
+    // TODO (Not working for now)
     suspend fun userEmailOTPVerification(emailOTPRequest: EmailOTPRequest) : Resource<EmailOTPResponse>
 
     suspend fun userLoginWithPhone(phoneLoginRequest: PhoneLoginRequest) : Resource<PhoneLoginResponse>

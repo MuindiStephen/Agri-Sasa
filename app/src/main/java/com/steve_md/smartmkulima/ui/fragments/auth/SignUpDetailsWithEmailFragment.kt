@@ -79,17 +79,15 @@ class SignUpDetailsWithEmailFragment : Fragment() {
             signUpWithEmailViewModel.registerResult.collectLatest { result ->
                 when (result) {
                     is Resource.Success -> {
-                        toast("Registered Successfully, Please Login")
+                        displaySnackBar("Account Registration Successful.")
                         navigateToEmailVerificationFragment()
                     }
 
                     is Resource.Error -> {
-                        toast("Registered Successfully. An email verification code has been send to your email!")
-                        navigateToEmailVerificationFragment()
+                        displaySnackBar("Could not register Account!")
                     }
-
                     is Resource.Loading -> {
-                        toast("Registered please verify your email!")
+                        toast("Loading...")
                     }
                     null -> {}
 
@@ -124,10 +122,7 @@ class SignUpDetailsWithEmailFragment : Fragment() {
             if (!it) binding.confirmPassword.error = "Invalid Password"
         }
     }
-
     private fun navigateToPhoneFragment() {
         findNavController().navigate(R.id.action_signUpDetailsWithEmailFragment_to_signUpDetailsMainFragment)
     }
-
-
 }
