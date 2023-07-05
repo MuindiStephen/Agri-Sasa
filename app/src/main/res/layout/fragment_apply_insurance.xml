@@ -322,6 +322,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="620dp"
         android:layout_marginEnd="20dp"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

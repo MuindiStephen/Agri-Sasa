@@ -24,7 +24,8 @@ class ApplyInsuranceFragment : Fragment() {
     private val transactionAdapter by lazy { TransactionAdapter() }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentApplyInsuranceBinding.inflate(inflater, container, false)

@@ -20,12 +20,13 @@ class NewFarmingTechnologyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNewFarmingTechnologyBinding.inflate(inflater,container,false)
+        binding = FragmentNewFarmingTechnologyBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         setUpBinding()
