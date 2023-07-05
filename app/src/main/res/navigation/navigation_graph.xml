@@ -187,6 +187,9 @@
         <action
             android:id="@+id/action_homeDashboardFragment2_to_newFarmingTechnologyFragment"
             app:destination="@id/newFarmingTechnologyFragment" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_didYouKnow"
+            app:destination="@id/didYouKnow" />
     </fragment>
     <fragment
         android:id="@+id/applyInsuranceFragment"
@@ -295,4 +298,9 @@
             android:id="@+id/action_newFarmingTechnologyFragment_to_marketProduce"
             app:destination="@id/marketProduce" />
     </fragment>
+    <fragment
+        android:id="@+id/didYouKnow"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.knowledgebase.DidYouKnow"
+        android:label="fragment_did_you_know"
+        tools:layout="@layout/fragment_did_you_know" />
 </navigation>

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -55,14 +56,15 @@ class HomeDashboardFragment : Fragment() {
     }
 
     private fun performLogout() {
+        displaySnackBar("Logged out successfully")
         findNavController().navigate(R.id.action_homeDashboardFragment2_to_signInDetailsWithEmailFragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
-        //greetingDateTime.text = System.currentTimeMillis().toString()
-        // Get Current Time
         val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
         greetingDateTime.text = when (currentTime) {
@@ -71,6 +73,19 @@ class HomeDashboardFragment : Fragment() {
             else -> "Good Evening"
         }
         username = args.username
-        binding.includeToolBar.userNameTextView.text = username.substring(0,username.indexOf('@'))
+        binding.includeToolBar.userNameTextView.text = username.substring(0, username.indexOf('@'))
+
+        setUpBinding()
+    }
+
+    private fun setUpBinding() {
+        binding.apply {
+            cardView1.setOnClickListener {
+                findNavController().navigate(R.id.action_homeDashboardFragment2_to_didYouKnow)
+            }
+            cardView9.setOnClickListener {
+
+            }
+        }
     }
 }

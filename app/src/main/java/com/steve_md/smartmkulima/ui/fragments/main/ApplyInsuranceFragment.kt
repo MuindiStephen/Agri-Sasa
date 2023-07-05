@@ -12,6 +12,7 @@ import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.TransactionAdapter
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.databinding.FragmentApplyInsuranceBinding
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -44,9 +45,14 @@ class ApplyInsuranceFragment : Fragment() {
 
         val transactionDao = db.transactionDao()
 
-        transactionDao.getAllTransactions().observe(this) { transaction ->
-            transactionAdapter.submitList(transaction)
-            binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
+        transactionDao.getAllTransactions().observe(this) { transactions ->
+            if (transactions.isEmpty()) {
+               displaySnackBar("No new transactions")
+            }
+            else {
+                transactionAdapter.submitList(transactions)
+                binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
+            }
         }
     }
 
