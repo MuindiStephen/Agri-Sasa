@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface FarmEquipmentApiService {
-    @GET("equipments")
+    @GET("farmequipments")
     fun getAllEquipments() : Call<ArrayList<FarmEquipment>>
 }

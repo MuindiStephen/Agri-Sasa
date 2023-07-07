@@ -70,8 +70,5 @@ class HireFarmEquipmentsFragment : Fragment() {
                     toast("No available Farm Equipments to hire.${t.localizedMessage}")
                 }
             })
-
-
-
     }
 }

@@ -9,8 +9,8 @@ object Constants {
     const val LOGIN_END_POINT = "/api/authaccount/login"
 
 
-    const val FARM_PRODUCE_BASE_URL = "https://path.com/"
-
+    const val FARM_PRODUCE_BASE_URL = "https://testapi.io/api/stevemd/"
+    const val FARM_EQUIPMENTS_BASE_URL = "https://testapi.io/api/stevemd/"
 
     /**
      *  Payment Integration constants
@@ -34,6 +34,7 @@ object Constants {
     const val PARTYB = "174379" // The party receiving the funds
 
     const val CALLBACKURL = "http://mpesa-requestbin.herokuapp.com/1fw79g11"
+
     object TransactionType {
         const val CustomerPayBillOnline = "CustomerPayBillOnline"
     }
