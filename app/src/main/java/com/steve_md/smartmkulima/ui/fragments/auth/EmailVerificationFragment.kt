@@ -17,7 +17,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentEmailVerificationBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
-import com.steve_md.smartmkulima.utils.snackBar
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -103,10 +102,10 @@ class EmailVerificationFragment : Fragment() {
         val inputEmailCode = binding.pinView.text.toString()
 
         if (inputEmailCode == "002002") {
-            snackBar("Email Verification successful,Proceed to Login")
+            displaySnackBar("Email Verification successful,Proceed to Login")
             findNavController().navigate(R.id.action_emailVerificationFragment_to_signInDetailsWithEmailFragment)
         } else {
-            snackBar("Invalid code, please try again")
+            displaySnackBar("Invalid code, please try again")
         }
     }
 }

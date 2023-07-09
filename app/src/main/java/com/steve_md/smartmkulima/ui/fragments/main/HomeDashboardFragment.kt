@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
@@ -26,8 +25,8 @@ class HomeDashboardFragment : Fragment() {
 
     // private lateinit var currentFragment: Fragment
 
-    private val args: HomeDashboardFragmentArgs by navArgs()
-    private var username = ""
+   // private val args: HomeDashboardFragmentArgs by navArgs()
+    //private var username = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,8 +71,17 @@ class HomeDashboardFragment : Fragment() {
             in 12..15 -> "Good Afternoon"
             else -> "Good Evening"
         }
-        username = args.username
-        binding.includeToolBar.userNameTextView.text = username.substring(0, username.indexOf('@'))
+       // username = args.username
+       // binding.includeToolBar.userNameTextView.text = username.substring(0, username.indexOf('@'))
+
+        /**
+        val atIndex = username.indexOf('@')
+        if (atIndex != -1) {
+            binding.includeToolBar.userNameTextView.text = username.substring(0, atIndex)
+        } else {
+            Timber.i(username)
+        }
+        **/
 
         setUpBinding()
     }

@@ -97,17 +97,18 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Success -> {
-                      //  val userId = it.value.email
+
+                        val userId = it.value.data.email
+
+                       // val token = it.value.data.token
 
                         // check whether user data is null or available in the backend db api
-                        it.value.email.let {
+                        userId.let {
                             binding.progressBar.isVisible = false
                             // if available then login the user successfully.
                              displaySnackBar("You Logged in successfully")
                              navigateToHomeDashboardFragment()
-
                            //  savePrefsToken("token")
-
                         }
 //                        displaySnackBar("Invalid details or account does not exist.")
 
@@ -124,8 +125,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
         requireContext().getSharedPreferences("login", Context.MODE_PRIVATE)
             .edit().putString("login", token)
             .apply()
-    }
-*/
+    }*/
     private fun navigateToHomeDashboardFragment() {
         findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_homeDashboardFragment2)
     }

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
+import com.steve_md.smartmkulima.BuildConfig
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.data.remote.DarajaApiClient
 import com.steve_md.smartmkulima.data.room.AppDatabase
@@ -65,9 +66,8 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
         mPhone = view.findViewById(R.id.inputPhoneNumber)
         mPay = view.findViewById(R.id.pay)
 
-        // TODO hide these Keys
-        val consumerKey = "FG8ad21FyJDGWALcyur1437M7sZ0kQuR"
-        val consumerSecret = "3rRqAkJcajHxzeur"
+        val consumerKey = BuildConfig.DARAJA_CONSUMER_KEY
+        val consumerSecret = BuildConfig.DARAJA_CONSUMER_SECRET
 
         mApiClient = DarajaApiClient(
             consumerKey,
