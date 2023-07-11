@@ -33,13 +33,15 @@ class HireFarmEquipmentsFragment : Fragment() {
         binding = FragmentHireFarmEquipmentsBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+
         farmEquipmentsRecylerView = view.findViewById(R.id.farmEquipmentsRecyclerView)
+
+        setUpBinding()
 
         farmEquipmentsAdapter =
             FarmEquipmentAdapter(FarmEquipmentAdapter.OnClickListener { farmEquipment ->
@@ -70,5 +72,11 @@ class HireFarmEquipmentsFragment : Fragment() {
                     toast("No available Farm Equipments to hire.${t.localizedMessage}")
                 }
             })
+    }
+
+    private fun setUpBinding() {
+        binding.imageViewBackFromFarmEquipments.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }
