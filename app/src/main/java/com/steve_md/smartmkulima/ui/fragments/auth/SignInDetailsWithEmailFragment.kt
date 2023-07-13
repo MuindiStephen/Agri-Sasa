@@ -22,7 +22,9 @@ import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import retrofit2.HttpException
 import timber.log.Timber
+import java.net.SocketException
 
 
 @AndroidEntryPoint
@@ -82,7 +84,12 @@ class SignInDetailsWithEmailFragment : Fragment() {
                 loginUser()
                 this.hideKeyboard()
             }
-            else displaySnackBar("Empty Strings or Invalid credentials")
+            else {
+                binding.progressBar.isVisible = false
+                displaySnackBar("Empty Strings or Invalid credentials")
+            }
+
+
         }
 
         lifecycleScope.launchWhenResumed {
@@ -93,6 +100,15 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Error -> {
+                        val exception = it.errorBody
+                        if (exception!!.equals("Socket closed") && exception is SocketException) {
+                            displaySnackBar("An error occurred. Please try again later.")
+                            // Optionally, you can reset the login form or perform any necessary cleanup here.
+                        } else {
+                            // Handle other types of failures or display a generic error message.
+                            displaySnackBar("An error occurred during login.")
+                        }
+
                         displaySnackBar("Couldn't log in! Invalid Login credentials.")
                         binding.progressBar.isVisible = false
                     }
@@ -100,9 +116,25 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
                         val userId = it.value.data.email
 
-                       // val token = it.value.data.token
+                        val token = it.value.data.token
 
+
+                        if (userId.isNotEmpty() && token.isNotEmpty()) {
+                            userId.let {
+                                binding.progressBar.isVisible = false
+                                displaySnackBar("You Logged in successfully")
+
+                                // Check if SocketException: Socket closed error occurred
+                                if (!isSocketClosedError()) {
+                                    navigateToHomeDashboardFragment()
+                                }
+                                //navigateToHomeDashboardFragment()
+                            }
+                        } else {
+                            displaySnackBar("Invalid email or account does not exist.")
+                        }
                         // check whether user data is null or available in the backend db api
+                        /**
                         userId.let {
                             binding.progressBar.isVisible = false
                             // if available then login the user successfully.
@@ -110,17 +142,25 @@ class SignInDetailsWithEmailFragment : Fragment() {
                              navigateToHomeDashboardFragment()
                            //  savePrefsToken("token")
                         }
+                        */
 //                        displaySnackBar("Invalid details or account does not exist.")
 
                     }
-                    null -> {}
+                    null -> {
+
+                    }
                 }
             }
         }
 
     }
 
-    /** TODO (now working)
+    private fun isSocketClosedError(): Boolean {
+        val lastException = Thread.currentThread().uncaughtExceptionHandler as? HttpException
+        return lastException?.message == "Socket closed"
+    }
+
+    /** TODO (not working)
     private fun savePrefsToken(token:String) {
         requireContext().getSharedPreferences("login", Context.MODE_PRIVATE)
             .edit().putString("login", token)

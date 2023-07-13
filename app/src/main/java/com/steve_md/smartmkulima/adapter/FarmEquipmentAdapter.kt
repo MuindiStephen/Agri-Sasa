@@ -33,7 +33,7 @@ class FarmEquipmentAdapter(private val onClickListener: OnClickListener) :
     }
 
     inner class MyViewHolder(private val binding: FarmEquipmentRowBinding) :
-        RecyclerView.ViewHolder(binding.root) //Returns outermost View in the associated layout.
+        RecyclerView.ViewHolder(binding.root)
     {
         fun bind(equipment: FarmEquipment?) {
             Glide.with(binding.equipmentImage).load(equipment?.imageUrl).into(binding.equipmentImage)
@@ -62,7 +62,6 @@ class FarmEquipmentAdapter(private val onClickListener: OnClickListener) :
             onClickListener.onClick(farmEquipment = equipment)
         }
     }
-
     // Handling OnclickListener on recyclerview holder
     class OnClickListener(val clickListener: (farmEquipment:FarmEquipment) -> Unit) {
         fun onClick(farmEquipment: FarmEquipment) = clickListener(farmEquipment)
