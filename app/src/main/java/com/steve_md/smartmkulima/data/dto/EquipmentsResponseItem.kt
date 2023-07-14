@@ -3,7 +3,7 @@ package com.steve_md.smartmkulima.data.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class EquipmenttsResponseItem(
+data class EquipmentsResponseItem(
     @SerializedName("id")
     val id: Int,
     @SerializedName("imageUrl")

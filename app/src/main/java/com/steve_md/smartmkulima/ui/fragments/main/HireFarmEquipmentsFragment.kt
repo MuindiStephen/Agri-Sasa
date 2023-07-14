@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -58,18 +59,20 @@ class HireFarmEquipmentsFragment : Fragment() {
          */
         FarmEquipmentsApiClient.api.getAllEquipments()
             .enqueue(object : retrofit2.Callback<ArrayList<FarmEquipment>> {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onResponse(
                     call: Call<ArrayList<FarmEquipment>>,
                     response: Response<ArrayList<FarmEquipment>>
                 ) {
                     if (response.isSuccessful) {
 
+                        Timber.i("Available Farm Equipments: ${response.body()}")
                         farmEquipmentsAdapter.submitList(response.body())
+                        farmEquipmentsAdapter.notifyDataSetChanged()
                         farmEquipmentsRecylerView.adapter = farmEquipmentsAdapter
                         farmEquipmentsRecylerView.visibility = View.VISIBLE
                     }
                 }
-
                 override fun onFailure(call: Call<ArrayList<FarmEquipment>>, t: Throwable) {
                     toast("No available Farm Equipments to hire.${t.localizedMessage}")
                     binding.textViewError.visibility = View.VISIBLE
@@ -77,7 +80,6 @@ class HireFarmEquipmentsFragment : Fragment() {
                 }
             })
     }
-
     private fun setUpBinding() {
         binding.imageViewBackFromFarmEquipments.setOnClickListener {
             findNavController().navigateUp()

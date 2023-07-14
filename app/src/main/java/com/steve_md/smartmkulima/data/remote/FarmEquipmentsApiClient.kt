@@ -11,7 +11,7 @@ object FarmEquipmentsApiClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val api by lazy {
+    val api: FarmEquipmentApiService by lazy {
         retrofit.create(FarmEquipmentApiService::class.java)
     }
 }
