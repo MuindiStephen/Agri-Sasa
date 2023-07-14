@@ -67,7 +67,14 @@ class HireFarmEquipmentsFragment : Fragment() {
                     if (response.isSuccessful) {
 
                         Timber.i("Available Farm Equipments: ${response.body()}")
-                        farmEquipmentsAdapter.submitList(response.body())
+
+                        val farmEquipments = response.body()
+
+                        val newList = ArrayList<FarmEquipment>()
+
+                        newList.addAll(farmEquipments!!)
+
+                        farmEquipmentsAdapter.submitList(newList)
                         farmEquipmentsAdapter.notifyDataSetChanged()
                         farmEquipmentsRecylerView.adapter = farmEquipmentsAdapter
                         farmEquipmentsRecylerView.visibility = View.VISIBLE

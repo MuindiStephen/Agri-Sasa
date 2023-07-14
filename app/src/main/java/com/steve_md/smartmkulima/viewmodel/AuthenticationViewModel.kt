@@ -72,10 +72,6 @@ class AuthenticationViewModel : ViewModel() {
         _registerResult.value = authenticationUserRepository
             .userRegisterWithEmail(EmailSignUpRequest(name = username, email = email, password = password, confirmPassword = confirmPassword))
     }
-
-
-
-
     // TODO (not working)
     fun verifyEmailOtp(otp:String) = viewModelScope.launch {
         _otpResult.value = authenticationUserRepository.userEmailOTPVerification(EmailOTPRequest(otp = otp))

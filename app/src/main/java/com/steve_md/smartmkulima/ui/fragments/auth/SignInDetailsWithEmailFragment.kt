@@ -91,6 +91,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
         }
 
+
         lifecycleScope.launchWhenResumed {
             loginWithEmailViewModel.loginResult.collectLatest { result ->
                 when (result) {

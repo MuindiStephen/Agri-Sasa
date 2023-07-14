@@ -40,13 +40,14 @@
 
     <TextView
         android:id="@+id/textView42"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/climate_change_or_the_weather_is_unpredictable_protect_your_crops_against_natural_calamities_such_as_pests_lack_of_rainfall_floods_and_theft"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:textSize="12sp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
+        android:text="@string/climate_change_or_the_weather_is_unpredictable_protect_your_crops_against_natural_calamities_such_as_pests_lack_of_rainfall_floods_and_theft"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
@@ -133,7 +134,7 @@
                 android:id="@+id/textView48"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="cursive"
                 android:text="Ksh"
                 android:textColor="@color/white"
@@ -148,7 +149,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView11"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
@@ -189,11 +190,12 @@
         android:id="@+id/cardView12"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginStart="22dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView11"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toEndOf="@id/cardView11"
         app:layout_constraintTop_toTopOf="@+id/cardView11"
         app:layout_constraintVertical_bias="0.0">
@@ -229,7 +231,7 @@
         android:id="@+id/cardView13"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="78dp"
+        android:layout_marginStart="60dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView12"
@@ -271,7 +273,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView50">
