@@ -22,7 +22,6 @@ import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import retrofit2.HttpException
 import timber.log.Timber
 import java.net.SocketException
 
@@ -93,15 +92,15 @@ class SignInDetailsWithEmailFragment : Fragment() {
         }
 
         lifecycleScope.launchWhenResumed {
-            loginWithEmailViewModel.loginResult.collectLatest {
-                when (it) {
+            loginWithEmailViewModel.loginResult.collectLatest { result ->
+                when (result) {
                    is Resource.Loading -> {
                         toast("Loading...")
                         binding.progressBar.isVisible = false
                     }
                     is Resource.Error -> {
-                        val exception = it.errorBody
-                        if (exception!!.equals("Socket closed") && exception is SocketException) {
+                        val exception = result.errorBody
+                        if (exception is SocketException && exception.message == "Socket closed") {
                             displaySnackBar("An error occurred. Please try again later.")
                             // Optionally, you can reset the login form or perform any necessary cleanup here.
                         } else {
@@ -114,22 +113,15 @@ class SignInDetailsWithEmailFragment : Fragment() {
                     }
                     is Resource.Success -> {
 
-                        val userId = it.value.data.email
+                        val userId = result.value.data.email
 
-                        val token = it.value.data.token
+                        val token = result.value.data.token
 
 
                         if (userId.isNotEmpty() && token.isNotEmpty()) {
-                            userId.let {
                                 binding.progressBar.isVisible = false
                                 displaySnackBar("You Logged in successfully")
-
-                                // Check if SocketException: Socket closed error occurred
-                                if (!isSocketClosedError()) {
-                                    navigateToHomeDashboardFragment()
-                                }
-                                //navigateToHomeDashboardFragment()
-                            }
+                                navigateToHomeDashboardFragment()
                         } else {
                             displaySnackBar("Invalid email or account does not exist.")
                         }
@@ -155,10 +147,6 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
     }
 
-    private fun isSocketClosedError(): Boolean {
-        val lastException = Thread.currentThread().uncaughtExceptionHandler as? HttpException
-        return lastException?.message == "Socket closed"
-    }
 
     /** TODO (not working)
     private fun savePrefsToken(token:String) {
