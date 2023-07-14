@@ -63,13 +63,17 @@ class HireFarmEquipmentsFragment : Fragment() {
                     response: Response<ArrayList<FarmEquipment>>
                 ) {
                     if (response.isSuccessful) {
+
                         farmEquipmentsAdapter.submitList(response.body())
                         farmEquipmentsRecylerView.adapter = farmEquipmentsAdapter
+                        farmEquipmentsRecylerView.visibility = View.VISIBLE
                     }
                 }
 
                 override fun onFailure(call: Call<ArrayList<FarmEquipment>>, t: Throwable) {
                     toast("No available Farm Equipments to hire.${t.localizedMessage}")
+                    binding.textViewError.visibility = View.VISIBLE
+                    binding.farmEquipmentsRecyclerView.visibility = View.INVISIBLE
                 }
             })
     }

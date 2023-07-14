@@ -37,6 +37,7 @@ class ApplyInsuranceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.hide()
+
         binding.cardView11.setOnClickListener {
             findNavController().navigate(R.id.action_applyInsuranceFragment_to_payInsuranceModalBottomSheet)
         }
