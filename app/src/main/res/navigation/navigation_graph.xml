@@ -222,7 +222,9 @@
         tools:layout="@layout/fragment_payment" >
         <action
             android:id="@+id/action_paymentFragment_to_successfulPaymentFragment"
-            app:destination="@id/successfulPaymentFragment" />
+            app:destination="@id/successfulPaymentFragment"
+            app:popUpTo="@id/paymentFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/farmEquipmentDetailsFragment"
@@ -270,6 +272,9 @@
             app:destination="@id/homeDashboardFragment2"
             app:popUpTo="@id/successfulPaymentFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_successfulPaymentFragment_to_applyInsuranceFragment"
+            app:destination="@id/applyInsuranceFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentEquipmentFragment"
