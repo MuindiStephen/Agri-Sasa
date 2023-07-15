@@ -119,6 +119,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         val token = result.value.data.token
 
 
+
                         if (userId.isNotEmpty() && token.isNotEmpty()) {
                                 binding.progressBar.isVisible = false
                                 displaySnackBar("You Logged in successfully")
@@ -155,6 +156,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
             .edit().putString("login", token)
             .apply()
     }*/
+
     private fun navigateToHomeDashboardFragment() {
         findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_homeDashboardFragment2)
     }
