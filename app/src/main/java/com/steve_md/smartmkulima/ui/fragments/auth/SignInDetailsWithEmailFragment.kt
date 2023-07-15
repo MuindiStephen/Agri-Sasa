@@ -119,6 +119,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         val token = result.value.data.token
 
 
+                        /**
 
                         if (userId.isNotEmpty() && token.isNotEmpty()) {
                                 binding.progressBar.isVisible = false
@@ -127,16 +128,17 @@ class SignInDetailsWithEmailFragment : Fragment() {
                         } else {
                             displaySnackBar("Invalid email or account does not exist.")
                         }
+                        */
                         // check whether user data is null or available in the backend db api
-                        /**
-                        userId.let {
+
+                        token.let {
                             binding.progressBar.isVisible = false
                             // if available then login the user successfully.
                              displaySnackBar("You Logged in successfully")
                              navigateToHomeDashboardFragment()
                            //  savePrefsToken("token")
                         }
-                        */
+
 //                        displaySnackBar("Invalid details or account does not exist.")
 
                     }
