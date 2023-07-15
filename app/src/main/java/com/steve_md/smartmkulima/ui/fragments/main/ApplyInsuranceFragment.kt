@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,7 @@ class ApplyInsuranceFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,8 +54,12 @@ class ApplyInsuranceFragment : Fragment() {
                displaySnackBar("No new transactions")
             }
             else {
-                transactionAdapter.submitList(transactions)
-                binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
+               activity?.runOnUiThread {
+                   transactionAdapter.submitList(transactions)
+                   transactionAdapter.notifyDataSetChanged()
+                   binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
+                   displaySnackBar("Transactions History updated")
+               }
             }
         }
     }
