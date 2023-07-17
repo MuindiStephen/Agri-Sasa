@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,9 +42,9 @@
                 android:id="@+id/textViewTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="23.00"
                 android:textSize="22sp"
-                android:fontFamily="@font/montserrat_medium"
                 app:layout_constraintBottom_toBottomOf="@+id/textView57"
                 app:layout_constraintStart_toEndOf="@+id/textView57"
                 app:layout_constraintTop_toTopOf="@+id/textView57" />
@@ -66,9 +66,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="25.00"
                 android:textSize="22sp"
-                android:fontFamily="@font/montserrat_medium"
                 app:layout_constraintBottom_toBottomOf="@+id/textView59"
                 app:layout_constraintStart_toEndOf="@+id/textView59"
                 app:layout_constraintTop_toTopOf="@+id/textView59" />
@@ -78,8 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Soil Moisture : "
                 android:fontFamily="@font/montserrat_medium"
+                android:text="Soil Moisture : "
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="@+id/textView59"
                 app:layout_constraintTop_toBottomOf="@+id/textView59" />
@@ -88,9 +88,9 @@
                 android:id="@+id/textViewSoilMoisture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="21.00"
                 android:textSize="22sp"
-                android:fontFamily="@font/montserrat_medium"
                 app:layout_constraintBottom_toBottomOf="@+id/textView61"
                 app:layout_constraintStart_toEndOf="@+id/textView61"
                 app:layout_constraintTop_toTopOf="@+id/textView61" />
@@ -100,8 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="This Week"
                 android:fontFamily="@font/montserrat_medium"
+                android:text="This Week"
                 android:textColor="@color/main"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.113"
@@ -123,8 +123,8 @@
             android:id="@+id/imageView11"
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
@@ -135,7 +135,7 @@
             android:layout_marginStart="32dp"
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:text="Monitor Your Farm" />
     </LinearLayout>
 

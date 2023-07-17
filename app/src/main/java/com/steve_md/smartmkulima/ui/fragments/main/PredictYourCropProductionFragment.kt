@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.databinding.FragmentPredictYourCropProductionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +25,10 @@ class PredictYourCropProductionFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.imageView13.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
        binding.buttonPredict.setOnClickListener {
            val temperature = binding.inputTemperature.text.toString().toDouble()

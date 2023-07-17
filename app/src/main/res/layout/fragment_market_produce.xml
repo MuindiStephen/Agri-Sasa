@@ -40,7 +40,7 @@
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Market Produce"
             android:textColor="@color/bg_gray"
-            android:textSize="22sp"
+            android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 

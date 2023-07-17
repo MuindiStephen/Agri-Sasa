@@ -34,10 +34,11 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // TODO handle the case where the user is already logged in
+
         Handler(Looper.getMainLooper()).postDelayed({
             if (isOnline(requireContext())) {
                 findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
-
             } else {
                 snackBar("No internet connection")
             }

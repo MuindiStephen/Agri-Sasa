@@ -20,15 +20,12 @@ import com.steve_md.smartmkulima.model.Transaction
 import com.steve_md.smartmkulima.payment.mpesa.dto.AuthorizationResponse
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushRequest
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
-import com.steve_md.smartmkulima.utils.Constants
+import com.steve_md.smartmkulima.utils.*
 import com.steve_md.smartmkulima.utils.Constants.BUSINESS_SHORT_CODE
 import com.steve_md.smartmkulima.utils.Constants.CALLBACKURL
 import com.steve_md.smartmkulima.utils.Constants.PARTYB
 import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
-import com.steve_md.smartmkulima.utils.RegEx
-import com.steve_md.smartmkulima.utils.displaySnackBar
-import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -133,7 +130,11 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
                     if (response.isSuccessful) {
                         toast("Response : ${response.body().toString()}")
 
-                         val transaction = Transaction(id = 0 , amount.toDouble(),System.currentTimeMillis())
+                        val timestamp = System.currentTimeMillis()
+                        val formattedDate = DateFormat.formatDate(timestamp)
+                       // val formattedTime = DateFormat.formatTime(timestamp)
+
+                         val transaction = Transaction(id = 0 , amount.toDouble(),formattedDate.toLong())
 
                            val db = Room.databaseBuilder(
                                requireContext(),AppDatabase::class.java,"shambaapp-db"

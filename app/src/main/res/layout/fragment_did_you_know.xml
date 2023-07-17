@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/GoBackFromDidYouKnow"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:contentDescription="@string/arrow_back"
@@ -35,7 +35,7 @@
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Did You Know?"
             android:textColor="#F1ECE7"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <WebView

@@ -2,7 +2,8 @@ package com.steve_md.smartmkulima.data.remote
 
 import android.os.Build
 import com.steve_md.smartmkulima.utils.Constants.BASE_URL
-import okhttp3.*
+import okhttp3.ConnectionSpec
+import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,10 +14,10 @@ import javax.net.SocketFactory
 /**
  * Retrofit Api client.
  * Sending data through Unsecure Http
- * */
+ */
 object ApiClient {
 
-    private val protocols: List<Protocol> = listOf(Protocol.HTTP_1_1, Protocol.HTTP_2)
+   // private val protocols: List<Protocol> = listOf(Protocol.HTTP_1_1, Protocol.HTTP_2)
 
     private var mHttpLoggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -32,15 +33,10 @@ object ApiClient {
                 connectionSpecs(listOf(ConnectionSpec.CLEARTEXT))
             }
         }
-        .connectTimeout(60,TimeUnit.SECONDS)
-        .readTimeout(60,TimeUnit.SECONDS)
-        .writeTimeout(60,TimeUnit.SECONDS)
-        .certificatePinner(certificatePinner = CertificatePinner.DEFAULT)
+            .connectTimeout(220,TimeUnit.SECONDS)
+            .readTimeout(220,TimeUnit.SECONDS)
+            .writeTimeout(120,TimeUnit.SECONDS)
         .socketFactory(socketFactory = SocketFactory.getDefault())
-        .authenticator(authenticator = Authenticator.NONE)
-        .cache(cache = null)
-        .pingInterval(60,TimeUnit.SECONDS)
-        .protocols(protocols)
         .build()
 
 

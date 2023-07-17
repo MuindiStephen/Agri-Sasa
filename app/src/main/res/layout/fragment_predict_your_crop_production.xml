@@ -35,8 +35,8 @@
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:src="@drawable/ic_arrow_back" />
@@ -48,7 +48,7 @@
             android:textColor="@color/white"
             android:layout_marginStart="32dp"
             android:layout_gravity="center"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat"
             android:text="Predict Your Farm Output" />
     </LinearLayout>
@@ -133,11 +133,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:fontFamily="@font/montserrat"
         android:text="Result?"
         android:textSize="22sp"
-        android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPredict" />

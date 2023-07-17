@@ -13,7 +13,6 @@ import com.google.android.gms.location.LocationServices
  *  Handle the location-related functionality.
  *  This class will be responsible for retrieving the user's location using GPS
  */
-
 class LocationProvider(private val context:Context) {
 
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
