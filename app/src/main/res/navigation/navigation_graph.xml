@@ -274,7 +274,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_successfulPaymentFragment_to_applyInsuranceFragment"
-            app:destination="@id/applyInsuranceFragment" />
+            app:destination="@id/applyInsuranceFragment"
+            app:popUpTo="@id/successfulPaymentFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/paymentEquipmentFragment"

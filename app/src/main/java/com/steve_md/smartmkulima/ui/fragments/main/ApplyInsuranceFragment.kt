@@ -40,9 +40,8 @@ class ApplyInsuranceFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        binding.cardView11.setOnClickListener {
-            findNavController().navigate(R.id.action_applyInsuranceFragment_to_payInsuranceModalBottomSheet)
-        }
+        setUpBinding()
+
 
         val db = Room.databaseBuilder(requireContext(),AppDatabase::class.java,"shambaapp-db")
             .build()
@@ -60,6 +59,18 @@ class ApplyInsuranceFragment : Fragment() {
                    binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
                    displaySnackBar("Transactions History updated")
                }
+            }
+        }
+    }
+
+    private fun setUpBinding() {
+        binding.apply {
+            cardView11.setOnClickListener {
+                findNavController().navigate(R.id.action_applyInsuranceFragment_to_payInsuranceModalBottomSheet)
+            }
+
+            imageView3.setOnClickListener {
+                findNavController().navigateUp()
             }
         }
     }

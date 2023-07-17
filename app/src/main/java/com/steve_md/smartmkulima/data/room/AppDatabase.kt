@@ -6,7 +6,7 @@ import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.Transaction
 
 
-@Database(entities = [Transaction::class,FarmProduce::class], version = 2, exportSchema = true)
+@Database(entities = [Transaction::class,FarmProduce::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao

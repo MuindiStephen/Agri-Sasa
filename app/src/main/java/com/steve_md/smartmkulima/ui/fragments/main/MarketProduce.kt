@@ -8,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.adapter.FarmProduceAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMarketProduceBinding
-import com.steve_md.smartmkulima.utils.snackBar
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -35,6 +36,16 @@ class MarketProduce : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
         subScribeToFarmProduceObserver()
+        setUpBinding()
+    }
+
+    private fun setUpBinding() {
+        binding.apply {
+            imageView4.setOnClickListener {
+                findNavController().navigateUp()
+                requireActivity().finish()
+            }
+        }
     }
 
     private fun subScribeToFarmProduceObserver() {
@@ -44,17 +55,20 @@ class MarketProduce : Fragment() {
 
 
                 if (farmProduceState.isLoading) {
-                   snackBar("Loading Farm Produce....")
+                   displaySnackBar("Loading Farm Produce...")
                 }
-
                 if (farmProduceState.error != null && !farmProduceState.isLoading) {
-                    snackBar("An error has occurred!")
+                    displaySnackBar("An error has occurred!")
+                    Timber.e(farmProduceState.error.toString())
                 }
                 if (farmProduceState.farmProduce.isNotEmpty() && !farmProduceState.isLoading) {
+
                     farmProduceAdapter.submitList(farmProduceState.farmProduce)
                     binding.farmProduceRecyclerView.adapter = farmProduceAdapter
 
                     Timber.i("Fetched successfully: ${farmProduceState.farmProduce}")
+
+                    displaySnackBar("Buy now, on discounted prices")
                 }
             }
         }

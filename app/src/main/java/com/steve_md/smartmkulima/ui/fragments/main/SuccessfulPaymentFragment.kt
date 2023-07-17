@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSuccessfulPaymentBinding
@@ -43,7 +44,7 @@ class SuccessfulPaymentFragment : Fragment() {
 
     private fun setUpBinding() {
        binding.buttonGoHome.setOnClickListener {
-
+          findNavController().navigate(R.id.action_successfulPaymentFragment_to_applyInsuranceFragment)
        }
     }
 }
