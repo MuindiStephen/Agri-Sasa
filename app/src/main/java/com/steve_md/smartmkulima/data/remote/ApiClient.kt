@@ -37,7 +37,9 @@ object ApiClient {
         .writeTimeout(60,TimeUnit.SECONDS)
         .certificatePinner(certificatePinner = CertificatePinner.DEFAULT)
         .socketFactory(socketFactory = SocketFactory.getDefault())
-        .authenticator(authenticator = Authenticator.JAVA_NET_AUTHENTICATOR)
+        .authenticator(authenticator = Authenticator.NONE)
+        .cache(cache = null)
+        .pingInterval(60,TimeUnit.SECONDS)
         .protocols(protocols)
         .build()
 
