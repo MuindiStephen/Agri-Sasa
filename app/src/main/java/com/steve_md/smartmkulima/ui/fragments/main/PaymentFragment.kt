@@ -146,7 +146,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
                                 transactionDao.saveTransaction(transaction)
                             }
                         }
-                        displaySnackBar("Saved Your transaction.")
+                        displaySnackBar("Saved transaction successfully.")
                         Timber.tag("Post submitted to the API")
 
                         navigateToDeliveryScreen()

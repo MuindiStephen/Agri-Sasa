@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/imageViewNewTechFarming"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:src="@drawable/ic_arrow_back"
@@ -35,7 +35,7 @@
            android:layout_gravity="center_vertical"
             android:layout_marginStart="12dp"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="New Technology in Farming" />
     </LinearLayout>
@@ -82,7 +82,7 @@
         android:id="@+id/cardViewTrackAgriTechCompany"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="20dp"
@@ -159,7 +159,7 @@
         android:id="@+id/cardViewReachMarket"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="60dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="20dp"
