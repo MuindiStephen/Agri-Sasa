@@ -13,13 +13,13 @@ interface TransactionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveTransaction(transaction: Transaction)
 
-    @Query("SELECT * FROM transactions")
-    fun getAllTransactions(): LiveData<List<Transaction>>
+    @Query("SELECT * FROM `transactions` ORDER by id ASC")
+    fun getAllTransactions(): List<Transaction>
 
-    @Query("SELECT * FROM transactions WHERE id = :id")
+    @Query("SELECT * FROM `transactions` WHERE id = :id")
     fun getOnlyOneUserTransaction(id:Int): LiveData<Transaction>
 
-    @Query("DELETE FROM transactions")
+    @Query("DELETE FROM `transactions`")
     suspend fun deleteAllTransactions()
 
 }

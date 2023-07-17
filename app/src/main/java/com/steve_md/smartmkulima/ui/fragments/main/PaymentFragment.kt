@@ -27,6 +27,7 @@ import com.steve_md.smartmkulima.utils.Constants.PARTYB
 import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.smartmkulima.utils.RegEx
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -132,9 +133,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
                     if (response.isSuccessful) {
                         toast("Response : ${response.body().toString()}")
 
-                        navigateToDeliveryScreen()
-
-                         val transaction = Transaction(id = "RG221IWK728".toInt() ,mAmount.toString().toDouble(),System.currentTimeMillis())
+                         val transaction = Transaction(id = 0 , amount.toDouble(),System.currentTimeMillis())
 
                            val db = Room.databaseBuilder(
                                requireContext(),AppDatabase::class.java,"shambaapp-db"
@@ -143,24 +142,14 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
                         val transactionDao = db.transactionDao()
 
                         lifecycleScope.launch {
-                            withContext(Dispatchers.IO) {
+                            withContext(Dispatchers.Main) {
                                 transactionDao.saveTransaction(transaction)
                             }
                         }
-
-                             /**
-                        fun Item.toTransaction() : com.steve_md.smartmkulima.model.Transaction {
-
-                            return com.steve_md.smartmkulima.model.Transaction(
-                                id = id,
-                                amount = mAmount.toString().toDouble(),
-                                transactionDateTime = value.toLong()
-                            )
-                        }
-                        */
-
-
+                        displaySnackBar("Saved Your transaction.")
                         Timber.tag("Post submitted to the API")
+
+                        navigateToDeliveryScreen()
                     } else {
                         Timber.tag("Response %s")
                     }
