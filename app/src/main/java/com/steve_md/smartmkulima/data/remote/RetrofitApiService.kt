@@ -29,10 +29,6 @@ interface RetrofitApiService {
         }
     }
 
-
-
-
-
     // TODO (Not working for now)
     @POST("/signup/email/confirm")
     suspend fun verifyUserWithEmail(

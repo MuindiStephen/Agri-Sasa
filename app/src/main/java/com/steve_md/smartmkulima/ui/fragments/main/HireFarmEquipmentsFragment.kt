@@ -14,6 +14,7 @@ import com.steve_md.smartmkulima.adapter.FarmEquipmentAdapter
 import com.steve_md.smartmkulima.data.remote.FarmEquipmentsApiClient
 import com.steve_md.smartmkulima.databinding.FragmentHireFarmEquipmentsBinding
 import com.steve_md.smartmkulima.model.FarmEquipment
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
@@ -46,7 +47,7 @@ class HireFarmEquipmentsFragment : Fragment() {
 
         farmEquipmentsAdapter =
             FarmEquipmentAdapter(FarmEquipmentAdapter.OnClickListener { farmEquipment ->
-                Timber.i("Farm Equipments: $farmEquipment.name")
+                Timber.i("Farm Equipments: ${farmEquipment.name}")
 
                 val action =
                     HireFarmEquipmentsFragmentDirections.actionHireFarmEquipmentsFragmentToFarmEquipmentDetailsFragment(
@@ -54,6 +55,7 @@ class HireFarmEquipmentsFragment : Fragment() {
                     )
                 findNavController().navigate(action)
             })
+
         /**
          * Get a List of all available Farm Equipments
          */
@@ -67,6 +69,7 @@ class HireFarmEquipmentsFragment : Fragment() {
                     if (response.isSuccessful) {
 
                         Timber.i("Available Farm Equipments: ${response.body()}")
+                        displaySnackBar("Farm Equipments for hire are available")
 
                         val farmEquipments = response.body()
 
@@ -81,7 +84,7 @@ class HireFarmEquipmentsFragment : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<ArrayList<FarmEquipment>>, t: Throwable) {
-                    toast("No available Farm Equipments to hire.${t.localizedMessage}")
+                    toast("No available Farm Equipments for hire.${t.localizedMessage}")
                     binding.textViewError.visibility = View.VISIBLE
                     binding.farmEquipmentsRecyclerView.visibility = View.INVISIBLE
                 }

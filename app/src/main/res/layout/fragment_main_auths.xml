@@ -27,17 +27,17 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="45dp"
         android:alpha="1"
         android:fontFamily="@font/montserrat_medium"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
         android:gravity="center"
         android:text="KARIBU AGRI SASA"
         android:textAllCaps="true"
-        android:textStyle="normal"
         android:textColor="@color/main_black"
         android:textSize="30sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -48,13 +48,13 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:textSize="12sp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:layout_marginStart="45dp"
         android:text="Start your journey with us. Create an account right now to quench all your curiosity when it comes to agriculture and more"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -65,17 +65,17 @@
         android:id="@+id/usePhoneEmailButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_profile_svgrepo_com"
-        android:text="Use phone or email"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="45dp"
         android:backgroundTint="@color/main1"
-        android:textAllCaps="false"
+        android:drawableLeft="@drawable/ic_profile_svgrepo_com"
         android:fontFamily="@font/montserrat_semibold"
         android:paddingLeft="32dp"
-        app:cornerRadius="10dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginTop="61dp"
+        android:text="Use phone or email"
+        android:textAllCaps="false"
         android:textColor="@color/text_color"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -84,73 +84,74 @@
         android:id="@+id/continueWithGoogleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:drawableLeft="@drawable/ic_google_svgrepo_com"
-        app:cornerRadius="10dp"
-        android:paddingLeft="32dp"
         android:alpha="1.0"
-        app:strokeColor="@color/SilverGray"
-        app:strokeWidth="1dp"
         android:backgroundTint="@color/bg_gray"
+        android:drawableLeft="@drawable/ic_google_svgrepo_com"
+        android:fontFamily="@font/montserrat_semibold"
+        android:paddingLeft="32dp"
         android:text="Continue with Google"
-        android:textColor="@color/main_black"
         android:textAllCaps="false"
+        android:textColor="@color/main_black"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usePhoneEmailButton" />
+        app:layout_constraintTop_toBottomOf="@+id/usePhoneEmailButton"
+        app:strokeColor="@color/SilverGray"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/continueWithFacebookButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
         android:backgroundTint="@color/bg_gray"
-        android:paddingLeft="32dp"
-        android:fontFamily="@font/montserrat_semibold"
         android:drawableLeft="@drawable/ic__awesome_facebook"
+        android:fontFamily="@font/montserrat_semibold"
+        android:paddingLeft="32dp"
         android:text="Continue with Facebook"
         android:textAllCaps="false"
-        app:cornerRadius="10dp"
-        app:strokeColor="@color/SilverGray"
-        app:strokeWidth="1dp"
         android:textColor="@color/main_black"
-        android:layout_marginTop="16dp"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/continueWithGoogleButton"
         app:layout_constraintStart_toStartOf="@+id/continueWithGoogleButton"
-        app:layout_constraintTop_toBottomOf="@+id/continueWithGoogleButton" />
+        app:layout_constraintTop_toBottomOf="@+id/continueWithGoogleButton"
+        app:strokeColor="@color/SilverGray"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/continueWithTwitterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
         android:backgroundTint="@color/bg_gray"
-        android:paddingLeft="32dp"
         android:drawableLeft="@drawable/ic_twitter_svgrepo_com"
+        android:paddingLeft="32dp"
         android:text="Continue with Twitter"
-        app:cornerRadius="10dp"
-        app:strokeColor="@color/SilverGray"
-        app:strokeWidth="1dp"
         android:textAllCaps="false"
         android:textColor="@color/main_black"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/continueWithFacebookButton"
         app:layout_constraintStart_toStartOf="@+id/continueWithFacebookButton"
-        app:layout_constraintTop_toBottomOf="@+id/continueWithFacebookButton" />
+        app:layout_constraintTop_toBottomOf="@+id/continueWithFacebookButton"
+        app:strokeColor="@color/SilverGray"
+        app:strokeWidth="1dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/continueWithTwitterButton"
-        android:layout_marginTop="10dp">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/continueWithTwitterButton">
 
 
         <TextView
@@ -158,6 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="45dp"
+
             android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="By continuing, you agree to our "
@@ -169,12 +171,11 @@
             android:id="@+id/termsOfServiceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:textSize="12sp"
             android:layout_marginTop="40dp"
-            android:text="Terms of Service"
             android:fontFamily="@font/montserrat_semibold"
+            android:text="Terms of Service"
             android:textColor="@color/main_black"
-            />
+            android:textSize="12sp" />
 
     </LinearLayout>
     <LinearLayout
@@ -251,33 +252,33 @@
 
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textView23"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView23">
 
 
         <TextView
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account? "
             android:layout_marginStart="80dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Already have an account? "
             android:textColor="@color/main_black"
-            android:textSize="12sp"
-            android:fontFamily="@font/montserrat_semibold"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/alreadyHaveAccountLoginText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
             android:fontFamily="@font/montserrat_semibold"
-            android:textSize="12sp"
-            android:textColor="@color/main1"/>
+            android:text="Login"
+            android:textColor="@color/main1"
+            android:textSize="12sp" />
     </LinearLayout>
 
 

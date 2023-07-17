@@ -41,7 +41,6 @@ class FarmEquipmentAdapter(private val onClickListener: OnClickListener) :
             binding.textViewYear.text = equipment?.year
             binding.priceEquipment.text = equipment?.priceHire
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
