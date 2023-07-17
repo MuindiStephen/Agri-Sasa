@@ -26,7 +26,7 @@ class FarmProduceAdapter : ListAdapter<FarmProduce, FarmProduceAdapter.MyViewHol
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(product: FarmProduce?) {
-            binding.productPrice.text = "Ksh. " + product?.productPrice.toString()
+            binding.productPrice.text = "Ksh. " + product?.productPrice
             binding.productTitle.text = product?.productTitle
 
             Glide.with(binding.productImageBox)

@@ -68,7 +68,7 @@ class MarketProduce : Fragment() {
 
                     Timber.i("Fetched successfully: ${farmProduceState.farmProduce}")
 
-                    displaySnackBar("Buy now, on discounted prices")
+                    displaySnackBar("Buy now, at discounted prices")
                 }
             }
         }

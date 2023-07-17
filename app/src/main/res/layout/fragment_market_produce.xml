@@ -46,16 +46,17 @@
 
     <TextView
         android:id="@+id/textView40"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
 
-        android:fontFamily="@font/nunito_sans_semibold"
-        android:text="Hello buyer, get affordable rates for market produce, directly from the farmer"
-        android:textSize="18sp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:text="@string/hello_buyer_get_affordable_rates_for_market_produce_directly_from_the_farmer"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/farmProduceRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

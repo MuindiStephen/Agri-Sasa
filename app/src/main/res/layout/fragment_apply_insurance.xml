@@ -222,7 +222,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/nunito_sans_semibold"
-        android:text="Manage Insurance"
+        android:text="Manage"
         app:layout_constraintEnd_toEndOf="@+id/cardView12"
         app:layout_constraintStart_toStartOf="@+id/cardView12"
         app:layout_constraintTop_toBottomOf="@+id/cardView12" />

@@ -13,10 +13,9 @@ abstract class BaseRepositorySafeApiCall() {
     // use of coroutines for asynchronous programming -> without non blocking execution
     suspend fun <T> safeApiCall(apiCall: suspend () -> T): Resource<T> {
 
-        /*
+        /**
          * try and catch block functions with return body
          */
-
 
         //  Execute all the Api calls asynchronously by use of coroutines
 

@@ -61,9 +61,6 @@ class AuthenticationViewModel : ViewModel() {
     val changePassword:StateFlow<Resource<ChangePasswordResponse>?>
         get() = _changePassword
 
-
-
-
     fun loginUserUsingEmail(email: String, password: String) = viewModelScope.launch {
         _loginResult.value = authenticationUserRepository
             .userLoginWithEmail(EmailLoginRequest(email = email, password = password))
@@ -96,10 +93,4 @@ class AuthenticationViewModel : ViewModel() {
     fun forgotPassword(phone:String) = viewModelScope.launch {
         _forgotPassword.value = authenticationUserRepository.recoverPasswordWithPhone(ForgotPasswordWithPhone(phone = phone))
     }
-
-
-
-
-
-
 }

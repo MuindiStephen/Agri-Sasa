@@ -10,7 +10,7 @@ import com.steve_md.smartmkulima.databinding.FarmEquipmentRowBinding
 import com.steve_md.smartmkulima.model.FarmEquipment
 
 /**
- * A recycler view to display a list of farm equipments for hire
+ * A recycler view to display a list of all available farm equipments for hire
  */
 class FarmEquipmentAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<FarmEquipment, FarmEquipmentAdapter.MyViewHolder>(MyDiffUtil) {
