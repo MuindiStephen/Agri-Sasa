@@ -69,13 +69,16 @@ class SignInDetailsWithEmailFragment : Fragment() {
             } else if (password.isEmpty()) {
                 binding.inputLoginPassword.error = "Empty Password or invalid";
             } else {
+                binding.progressBar.visibility = View.VISIBLE
                 firebaseAuth!!.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             displaySnackBar("Logged in Successfully")
+                            binding.progressBar.visibility = View.INVISIBLE
                             navigateToHomeDashboardFragment()
                         } else {
                             displaySnackBar("Could not login. Unsuccessful.")
+                            binding.progressBar.visibility = View.INVISIBLE
                         }
 
                     }
