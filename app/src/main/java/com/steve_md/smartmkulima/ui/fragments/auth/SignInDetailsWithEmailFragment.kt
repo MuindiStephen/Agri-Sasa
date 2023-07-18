@@ -89,6 +89,10 @@ class SignInDetailsWithEmailFragment : Fragment() {
             navigateToSignInWithPhoneFragment()
         }
 
+        binding.dontHaveAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_signUpDetailsWithEmailFragment)
+        }
+
         binding.forgotPasswordText.setOnClickListener {
             // findNavController().navigate(R.id.action_signInDetailsWithEmailFragment_to_recoverPasswordWithEmailFragment)
             displaySnackBar("Feature coming soon")
