@@ -47,7 +47,9 @@
             app:destination="@id/signInDetailsFragment" />
         <action
             android:id="@+id/action_loginMainFragment_to_signUpDetailsMainFragment"
-            app:destination="@id/signUpDetailsMainFragment" />
+            app:destination="@id/signUpDetailsMainFragment"
+            app:popUpTo="@id/loginMainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginMainFragment_to_signInDetailsWithEmailFragment"
             app:destination="@id/signInDetailsWithEmailFragment" />
@@ -67,7 +69,9 @@
             app:destination="@id/signInDetailsWithEmailFragment" />
         <action
             android:id="@+id/action_signInDetailsFragment_to_homeDashboardFragment2"
-            app:destination="@id/homeDashboardFragment2" />
+            app:destination="@id/homeDashboardFragment2"
+            app:popUpTo="@id/signInDetailsFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signInDetailsFragment_to_recoverPasswordFragment"
             app:destination="@id/recoverPasswordFragment" />
@@ -82,10 +86,14 @@
             app:destination="@id/emailVerificationFragment" />
         <action
             android:id="@+id/action_verificationFragment_to_emailVerificationFragment2"
-            app:destination="@id/emailVerificationFragment" />
+            app:destination="@id/emailVerificationFragment"
+            app:popUpTo="@id/verificationFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_verificationFragment_to_signInDetailsFragment"
-            app:destination="@id/signInDetailsFragment" />
+            app:destination="@id/signInDetailsFragment"
+            app:popUpTo="@id/verificationFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="phone"
             app:argType="string" />
@@ -106,7 +114,9 @@
         tools:layout="@layout/fragment_sign_up_details_with_phone" >
         <action
             android:id="@+id/action_signUpDetailsMainFragment_to_signUpDetailsWithEmailFragment"
-            app:destination="@id/signUpDetailsWithEmailFragment" />
+            app:destination="@id/signUpDetailsWithEmailFragment"
+            app:popUpTo="@id/signUpDetailsMainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpDetailsMainFragment_to_verificationFragment"
             app:destination="@id/verificationFragment" />
@@ -152,7 +162,9 @@
         tools:layout="@layout/fragment_sign_up_details_with_email" >
         <action
             android:id="@+id/action_signUpDetailsWithEmailFragment_to_signUpDetailsMainFragment"
-            app:destination="@id/signUpDetailsMainFragment" />
+            app:destination="@id/signUpDetailsMainFragment"
+            app:popUpTo="@id/signUpDetailsWithEmailFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpDetailsWithEmailFragment_to_emailVerificationFragment"
             app:destination="@id/emailVerificationFragment" />
@@ -192,16 +204,24 @@
             app:argType="string" />
         <action
             android:id="@+id/action_homeDashboardFragment2_to_signInDetailsWithEmailFragment"
-            app:destination="@id/signInDetailsWithEmailFragment" />
+            app:destination="@id/signInDetailsWithEmailFragment"
+            app:popUpTo="@id/homeDashboardFragment2"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeDashboardFragment2_to_applyInsuranceFragment"
-            app:destination="@id/applyInsuranceFragment" />
+            app:destination="@id/applyInsuranceFragment"
+            app:popUpTo="@id/homeDashboardFragment2"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeDashboardFragment2_to_hireFarmEquipmentsFragment"
-            app:destination="@id/hireFarmEquipmentsFragment" />
+            app:destination="@id/hireFarmEquipmentsFragment"
+            app:popUpTo="@id/homeDashboardFragment2"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeDashboardFragment2_to_newFarmingTechnologyFragment"
-            app:destination="@id/newFarmingTechnologyFragment" />
+            app:destination="@id/newFarmingTechnologyFragment"
+            app:popUpTo="@id/homeDashboardFragment2"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeDashboardFragment2_to_didYouKnow"
             app:destination="@id/didYouKnow" />
@@ -300,7 +320,9 @@
         tools:layout="@layout/fragment_payment_equipment" >
         <action
             android:id="@+id/action_paymentEquipmentFragment_to_paymentFragment"
-            app:destination="@id/paymentFragment" />
+            app:destination="@id/paymentFragment"
+            app:popUpTo="@id/paymentEquipmentFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/newFarmingTechnologyFragment"

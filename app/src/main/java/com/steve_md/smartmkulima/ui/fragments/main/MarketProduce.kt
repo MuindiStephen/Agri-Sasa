@@ -43,7 +43,6 @@ class MarketProduce : Fragment() {
         binding.apply {
             imageView4.setOnClickListener {
                 findNavController().navigateUp()
-                requireActivity().finish()
             }
         }
     }

@@ -3,6 +3,7 @@ package com.steve_md.smartmkulima
 import android.app.Application
 import android.os.Build
 import android.os.StrictMode
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -12,6 +13,7 @@ class ShambaApp : Application() {
         super.onCreate()
         timber()
         setNetworkSecurity()
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
     }
 
     private fun setNetworkSecurity() {

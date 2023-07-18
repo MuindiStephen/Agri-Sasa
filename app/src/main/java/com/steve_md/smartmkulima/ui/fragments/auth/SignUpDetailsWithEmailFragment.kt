@@ -109,36 +109,16 @@ class SignUpDetailsWithEmailFragment : Fragment() {
                         binding.progressBarSignUp.visibility = View.INVISIBLE
                         Toast.makeText(requireContext(),task.exception?.localizedMessage,Toast.LENGTH_SHORT).show()
                     }
-
                 }
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         binding.alreadyAcc.setOnClickListener {
             navigateToLogin()
         }
-
         binding.signUpWithPhoneInsteadText.setOnClickListener {
             navigateToPhoneFragment()
         }
-
-
         /**
         binding.buttonSignUpWithEmail.setOnClickListener {
             if (isValidRegistrationDetails()) {

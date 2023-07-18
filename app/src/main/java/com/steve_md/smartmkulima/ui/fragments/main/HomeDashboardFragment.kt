@@ -97,12 +97,11 @@ class HomeDashboardFragment : Fragment() {
 
 
         // Initialize Firebase
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("users").child(userId!!)
-            .ref
 
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -112,13 +111,14 @@ class HomeDashboardFragment : Fragment() {
 
                 if (username!= null) {
                     val usernameTextView = view.findViewById<TextView>(R.id.textViewUserNameProfile)
-                    usernameTextView.text = username
+                    usernameTextView.text = username.toString()
 
                     Timber.d("Logged in user: $username")
                     displaySnackBar("Welcome, $username!")
+                } else {
+                    displaySnackBar("Profile")
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                Timber.e("User name not updated: ${error.message}")
             }
