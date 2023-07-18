@@ -35,7 +35,7 @@ class ApplyInsuranceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentApplyInsuranceBinding.inflate(inflater, container, false)
+        binding = com.steve_md.smartmkulima.databinding.FragmentApplyInsuranceBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -90,6 +90,9 @@ class ApplyInsuranceFragment : Fragment() {
             }
             imageView3.setOnClickListener {
                 findNavController().navigateUp()
+            }
+            tvViewAllTransactions.setOnClickListener {
+                findNavController().navigate(R.id.action_applyInsuranceFragment_to_transactionsHistory2)
             }
         }
     }

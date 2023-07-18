@@ -11,26 +11,22 @@ import com.steve_md.smartmkulima.model.Transaction
 
 
 class TransactionAdapter : ListAdapter<Transaction, TransactionAdapter.MyViewHolder>(MyDiffUtil) {
+
     object MyDiffUtil : DiffUtil.ItemCallback<Transaction>() {
         override fun areItemsTheSame(oldItem: Transaction, newItem: Transaction): Boolean {
             return oldItem == newItem
         }
-
         override fun areContentsTheSame(oldItem: Transaction, newItem: Transaction): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
-    inner class MyViewHolder(private val binding: TransactionRowBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(private val binding: TransactionRowBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(transaction: Transaction?) {
             binding.tvAmount.text = transaction?.amount.toString()
             binding.tvDate.text = transaction?.transactionDateTime.toString()
         }
-
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
             TransactionRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -10,13 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
-import com.steve_md.smartmkulima.model.User
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import java.util.*
 
 
@@ -33,10 +31,10 @@ class HomeDashboardFragment : Fragment() {
 
     // private lateinit var currentFragment: Fragment
 
-   // private val args: HomeDashboardFragmentArgs by navArgs()
+    // private val args: HomeDashboardFragmentArgs by navArgs()
     //private var username = ""
 
-
+    private lateinit var userProfileTxt: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +43,20 @@ class HomeDashboardFragment : Fragment() {
         binding = FragmentHomeDashboardBinding.inflate(layoutInflater, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        val username = view?.findViewById<TextView>(R.id.userNameTextView)
+
+        val userId =  firebaseAuth!!.uid
+
+         username?.text = databaseReference.child("users").child(userId!!).child("username")
+             .setValue(username).toString()
+
+
+        binding.includeToolBar.notificationIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_homeDashboardFragment2_to_notificationsFragment)
+        }
 
         binding.includeToolBar.menuIcon.setOnClickListener {
             AlertDialog.Builder(
@@ -72,6 +84,7 @@ class HomeDashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
 
         val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
         val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
@@ -81,49 +94,24 @@ class HomeDashboardFragment : Fragment() {
             in 12..15 -> "Good Afternoon"
             else -> "Good Evening"
         }
-       // username = args.username
-       // binding.includeToolBar.userNameTextView.text = username.substring(0, username.indexOf('@'))
 
-        /**
-        val atIndex = username.indexOf('@')
-        if (atIndex != -1) {
-            binding.includeToolBar.userNameTextView.text = username.substring(0, atIndex)
-        } else {
-            Timber.i(username)
-        }
-        **/
+
+        //fetchCurrentlyLoggeinUser()
+
 
         setUpBinding()
-
-
-        // Initialize Firebase
-
-
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-
-        databaseReference = FirebaseDatabase.getInstance().reference.child("users").child(userId!!)
-
-        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val user  = snapshot.getValue(User::class.java)
-
-                val username = user?.username
-
-                if (username!= null) {
-                    val usernameTextView = view.findViewById<TextView>(R.id.textViewUserNameProfile)
-                    usernameTextView.text = username.toString()
-
-                    Timber.d("Logged in user: $username")
-                    displaySnackBar("Welcome, $username!")
-                } else {
-                    displaySnackBar("Profile")
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-               Timber.e("User name not updated: ${error.message}")
-            }
-        })
     }
+
+    /**
+    private fun fetchCurrentlyLoggeinUser() {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val name = user.email
+            userProfileTxt.text = name?.substringBefore("@").toString()
+        }
+    }
+    */
+
 
     private fun setUpBinding() {
         binding.apply {
@@ -131,7 +119,7 @@ class HomeDashboardFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeDashboardFragment2_to_didYouKnow)
             }
             cardView9.setOnClickListener {
-              // TODO()
+                // TODO()
             }
         }
     }

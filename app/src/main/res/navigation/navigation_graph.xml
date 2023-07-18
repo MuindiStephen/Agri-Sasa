@@ -225,6 +225,9 @@
         <action
             android:id="@+id/action_homeDashboardFragment2_to_didYouKnow"
             app:destination="@id/didYouKnow" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/applyInsuranceFragment"
@@ -234,6 +237,9 @@
         <action
             android:id="@+id/action_applyInsuranceFragment_to_payInsuranceModalBottomSheet"
             app:destination="@id/payInsuranceModalBottomSheet" />
+        <action
+            android:id="@+id/action_applyInsuranceFragment_to_transactionsHistory2"
+            app:destination="@id/transactionsHistory2" />
     </fragment>
     <dialog
         android:id="@+id/payInsuranceModalBottomSheet"
@@ -347,4 +353,14 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.others.knowledgebase.DidYouKnow"
         android:label="fragment_did_you_know"
         tools:layout="@layout/fragment_did_you_know" />
+    <fragment
+        android:id="@+id/transactionsHistory2"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.TransactionsHistory"
+        android:label="fragment_transactions_history"
+        tools:layout="@layout/fragment_transactions_history" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>

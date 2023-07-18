@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,8 @@ import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -128,11 +131,11 @@ class PaymentFragment : Fragment(), View.OnClickListener {
 
         mApiClient!!.mpesaService().sendPush(stkPush)
             .enqueue(object : Callback<StkPushSuccessResponse> {
+                @SuppressLint("SimpleDateFormat")
                 override fun onResponse(
                     call: Call<StkPushSuccessResponse>,
                     response: Response<StkPushSuccessResponse>
                 ) {
-
                     try {
                         if (response.isSuccessful) {
 
@@ -144,8 +147,13 @@ class PaymentFragment : Fragment(), View.OnClickListener {
                             val formattedDate = DateFormat.formatDate(timestamp)
                             // val formattedTime = DateFormat.formatTime(timestamp)
 
+                            val yourmilliseconds = System.currentTimeMillis()
+                            val sdf = SimpleDateFormat("MMM dd,yyyy HH:mm")
+                            val resultdate = Date(yourmilliseconds)
+
+
                             val transaction =
-                                Transaction(id = 0, amount.toDouble(), formattedDate.toLong())
+                                Transaction(id = 0, amount.toDouble(), sdf.format(resultdate))
 
                             val db = Room.databaseBuilder(
                                 requireContext(), AppDatabase::class.java, "shambaapp-db"

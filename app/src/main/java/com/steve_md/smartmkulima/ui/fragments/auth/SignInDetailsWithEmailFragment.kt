@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSignInDetailsWithEmailBinding
@@ -53,9 +51,10 @@ class SignInDetailsWithEmailFragment : Fragment() {
         navController = findNavController()
 
 
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
+     /**   val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
         binding.mainAuthsToolbar.title = null
+      */
 
         // Initiate firebase
         firebaseAuth = FirebaseAuth.getInstance()

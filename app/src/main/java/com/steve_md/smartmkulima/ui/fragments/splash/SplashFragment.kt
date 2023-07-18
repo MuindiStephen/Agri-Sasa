@@ -13,8 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSplashBinding
-import com.steve_md.smartmkulima.others.isOnline
-import com.steve_md.smartmkulima.utils.snackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -40,15 +38,13 @@ class SplashFragment : Fragment() {
 
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (isOnline(requireContext())) {
-                if (userIsLoggedIn != null) {
-                    findNavController().navigate(R.id.action_splashFragment_to_homeDashboardFragment2)
-                } else {
-                    findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
-                }
+
+            if (userIsLoggedIn != null) {
+                findNavController().navigate(R.id.action_splashFragment_to_homeDashboardFragment2)
             } else {
-                snackBar("No internet connection")
+                findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
             }
         }, 3000)
+
     }
 }
