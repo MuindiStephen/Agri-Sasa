@@ -12,5 +12,4 @@ data class StkErrorResponse(
     val errorCode:String,
     @SerializedName("errorMessage")
     val errorMessage:String
-
 )

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSplashBinding
 import com.steve_md.smartmkulima.others.isOnline
@@ -34,11 +35,17 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO handle the case where the user is already logged in
+
+        val userIsLoggedIn = FirebaseAuth.getInstance().currentUser
+
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (isOnline(requireContext())) {
-                findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
+                if (userIsLoggedIn != null) {
+                    findNavController().navigate(R.id.action_splashFragment_to_homeDashboardFragment2)
+                } else {
+                    findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
+                }
             } else {
                 snackBar("No internet connection")
             }

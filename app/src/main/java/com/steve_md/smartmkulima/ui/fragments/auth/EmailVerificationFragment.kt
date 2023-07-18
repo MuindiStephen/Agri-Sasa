@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.steve_md.smartmkulima.R
@@ -30,8 +29,8 @@ class EmailVerificationFragment : Fragment() {
     private lateinit var navController: NavController
 
 
-    private val args: EmailVerificationFragmentArgs by navArgs()
-    private var email = ""
+   // private val args: EmailVerificationFragmentArgs by navArgs()
+   // private var email = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,8 +57,8 @@ class EmailVerificationFragment : Fragment() {
             displaySnackBar("Feature coming soon")
         }
 
-        email = args.email
-        binding.emailSentVerificationCode.text = email
+       // email = args.email
+       // binding.emailSentVerificationCode.text = email
 
 
         binding.buttonVerifyEmailOTP.setOnClickListener {

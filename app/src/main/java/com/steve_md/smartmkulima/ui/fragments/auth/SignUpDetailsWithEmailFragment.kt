@@ -4,22 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSignUpDetailsWithEmailBinding
-import com.steve_md.smartmkulima.utils.Resource
+import com.steve_md.smartmkulima.model.User
 import com.steve_md.smartmkulima.utils.displaySnackBar
-import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -31,6 +33,11 @@ class SignUpDetailsWithEmailFragment : Fragment() {
 
     // View model
     private val signUpWithEmailViewModel: AuthenticationViewModel by viewModels()
+
+
+    // firebase
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var navController: NavController
 
@@ -56,11 +63,63 @@ class SignUpDetailsWithEmailFragment : Fragment() {
         binding.mainAuthsToolbar.setupWithNavController(navController, appBarConfiguration)
         binding.mainAuthsToolbar.title = null
 
+
+        // Initialize firebase
+        databaseReference =  FirebaseDatabase.getInstance().getReference("users")
+        firebaseAuth = FirebaseAuth.getInstance()
+
+
+        binding.buttonSignUpWithEmail.setOnClickListener {
+            val username: String = binding.inputUserName.text.toString()
+            val email: String = binding.inputEmailAddress.text.toString()
+            val password: String = binding.inputPassword.text.toString()
+            val confirmPassword: String = binding.inputConfirmPassword.text.toString()
+
+            if (username.isEmpty()) {
+                binding.inputUserName.error = "Empty Username"
+            }
+            else if (email.isEmpty()) {
+                binding.inputEmailAddress.error = ("Empty Email or invalid")
+            }
+            else if (password.isEmpty() || password.length<8) {
+                binding.inputPassword.error = ("Password too weak or password empty")
+            }
+            else if (confirmPassword.isEmpty() || confirmPassword.length<8) {
+                binding.inputConfirmPassword.error = ("Password too weak or password empty")
+            }
+            else {
+                binding.progressBarSignUp.visibility = View.VISIBLE
+
+                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task->
+
+                    if (task.isSuccessful) {
+                        val userId : String  = firebaseAuth.currentUser!!.uid
+                        val user = User(username, email, password, confirmPassword)
+                        databaseReference.child(userId).setValue(user)
+
+                        Timber.i("User account created: $user")
+                        displaySnackBar("Account created successfully")
+
+                        firebaseAuth.signOut()
+
+                        binding.progressBarSignUp.visibility = View.INVISIBLE
+
+                        navigateToEmailVerificationFragment()
+                    } else {
+                        binding.progressBarSignUp.visibility = View.INVISIBLE
+                        Toast.makeText(requireContext(),task.exception?.localizedMessage,Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
+        binding.alreadyAcc.setOnClickListener {
+            navigateToLogin()
+        }
         binding.signUpWithPhoneInsteadText.setOnClickListener {
             navigateToPhoneFragment()
         }
-
-
+        /**
         binding.buttonSignUpWithEmail.setOnClickListener {
             if (isValidRegistrationDetails()) {
                 val direction =
@@ -74,7 +133,9 @@ class SignUpDetailsWithEmailFragment : Fragment() {
 
             } else displaySnackBar("Unable to register. Empty Strings or invalid")
         }
+        */
 
+        /**
         lifecycleScope.launchWhenResumed {
             signUpWithEmailViewModel.registerResult.collectLatest { result ->
                 when (result) {
@@ -94,8 +155,13 @@ class SignUpDetailsWithEmailFragment : Fragment() {
                 }
             }
         }
+        */
 
 
+    }
+
+    private fun navigateToLogin() {
+        findNavController().navigate(R.id.action_signUpDetailsWithEmailFragment_to_signInDetailsWithEmailFragment)
     }
 
     private fun navigateToEmailVerificationFragment() {
@@ -123,6 +189,6 @@ class SignUpDetailsWithEmailFragment : Fragment() {
         }
     }
     private fun navigateToPhoneFragment() {
-        findNavController().navigate(R.id.action_signUpDetailsWithEmailFragment_to_signUpDetailsMainFragment)
+        displaySnackBar("Feature coming soon...")
     }
 }

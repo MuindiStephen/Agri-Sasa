@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932156534906",
+    "project_id": "shambaapp-fdb50",
+    "storage_bucket": "shambaapp-fdb50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932156534906:android:3827cdd8801b00f80d4bc3",
+        "android_client_info": {
+          "package_name": "com.steve_md.smartmkulima"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932156534906-587dea6pjrasreu0736famotohv3g00a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs6G2oWUzRBaNMoa46mYDkyHv588aVgCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932156534906-587dea6pjrasreu0736famotohv3g00a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

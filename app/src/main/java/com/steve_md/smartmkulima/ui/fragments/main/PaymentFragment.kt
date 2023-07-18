@@ -38,7 +38,7 @@ import timber.log.Timber
 
 
 @AndroidEntryPoint
-class PaymentFragment : Fragment() ,View.OnClickListener{
+class PaymentFragment : Fragment(), View.OnClickListener {
 
 
     private var mApiClient: DarajaApiClient? = null
@@ -47,7 +47,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
     var mPhone: EditText? = null
     var mPay: Button? = null
 
-    private lateinit var binding:FragmentPaymentBinding
+    private lateinit var binding: FragmentPaymentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,7 +60,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        mAmount= view.findViewById(R.id.inputAmountToPay)
+        mAmount = view.findViewById(R.id.inputAmountToPay)
         mPhone = view.findViewById(R.id.inputPhoneNumber)
         mPay = view.findViewById(R.id.pay)
 
@@ -83,7 +83,10 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
         mApiClient!!.setGetAccessToken(true)
         mApiClient!!.mpesaService().getAccessToken().enqueue(object :
             Callback<AuthorizationResponse?> {
-            override fun onResponse(call: Call<AuthorizationResponse?>, response: Response<AuthorizationResponse?>) {
+            override fun onResponse(
+                call: Call<AuthorizationResponse?>,
+                response: Response<AuthorizationResponse?>
+            ) {
                 if (response.isSuccessful) {
                     mApiClient!!.setAuthToken(response.body()?.accessToken)
                 }
@@ -96,7 +99,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
     }
 
     override fun onClick(v: View?) {
-        if (v === mPay ) {
+        if (v === mPay) {
 
             val phoneNumber = mPhone!!.text.toString()
             val amount = mAmount!!.text.toString()
@@ -113,7 +116,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
             timestamp = timestamp,
             transactionType = Constants.TransactionType.CustomerPayBillOnline,
             amount = amount,
-            partyA = RegEx.sanitizePhoneNumber(phoneNumber)!! ,
+            partyA = RegEx.sanitizePhoneNumber(phoneNumber)!!,
             partyB = PARTYB,
             phoneNumber = RegEx.sanitizePhoneNumber(phoneNumber)!!,
             callBackURL = CALLBACKURL,
@@ -123,47 +126,54 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
 
         mApiClient!!.setGetAccessToken(false)
 
-        mApiClient!!.mpesaService().sendPush(stkPush).enqueue(object : Callback<StkPushSuccessResponse> {
-            override fun onResponse(call: Call<StkPushSuccessResponse>, response: Response<StkPushSuccessResponse>) {
+        mApiClient!!.mpesaService().sendPush(stkPush)
+            .enqueue(object : Callback<StkPushSuccessResponse> {
+                override fun onResponse(
+                    call: Call<StkPushSuccessResponse>,
+                    response: Response<StkPushSuccessResponse>
+                ) {
 
-                try {
-                    if (response.isSuccessful) {
-                        toast("Response : ${response.body().toString()}")
+                    try {
+                        if (response.isSuccessful) {
 
-                        val timestamp = System.currentTimeMillis()
-                        val formattedDate = DateFormat.formatDate(timestamp)
-                       // val formattedTime = DateFormat.formatTime(timestamp)
+                            toast("Response : ${response.body().toString()}")
 
-                         val transaction = Transaction(id = 0 , amount.toDouble(),formattedDate.toLong())
+                            navigateToDeliveryScreen()
 
-                           val db = Room.databaseBuilder(
-                               requireContext(),AppDatabase::class.java,"shambaapp-db"
-                           ).build()
+                            val timestamp = System.currentTimeMillis()
+                            val formattedDate = DateFormat.formatDate(timestamp)
+                            // val formattedTime = DateFormat.formatTime(timestamp)
 
-                        val transactionDao = db.transactionDao()
+                            val transaction =
+                                Transaction(id = 0, amount.toDouble(), formattedDate.toLong())
 
-                        lifecycleScope.launch {
-                            withContext(Dispatchers.Main) {
-                                transactionDao.saveTransaction(transaction)
+                            val db = Room.databaseBuilder(
+                                requireContext(), AppDatabase::class.java, "shambaapp-db"
+                            ).build()
+
+                            val transactionDao = db.transactionDao()
+
+                            lifecycleScope.launch {
+                                withContext(Dispatchers.Main) {
+                                    transactionDao.saveTransaction(transaction)
+                                }
                             }
+                            displaySnackBar("Saved transaction successfully.")
+                            Timber.tag("Post submitted to the API")
+
+                        } else {
+                            Timber.tag("Response %s")
                         }
-                        displaySnackBar("Saved transaction successfully.")
-                        Timber.tag("Post submitted to the API")
-
-                        navigateToDeliveryScreen()
-                    } else {
-                        Timber.tag("Response %s")
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
                 }
-            }
 
-            override fun onFailure(call: Call<StkPushSuccessResponse>, t: Throwable) {
-                Timber.tag(TAG).e(httpException, t.printStackTrace().toString())
+                override fun onFailure(call: Call<StkPushSuccessResponse>, t: Throwable) {
+                    Timber.tag(TAG).e(httpException, t.printStackTrace().toString())
 
-            }
-        })
+                }
+            })
     }
 
     private fun navigateToDeliveryScreen() {
@@ -171,7 +181,7 @@ class PaymentFragment : Fragment() ,View.OnClickListener{
     }
 
     companion object {
-        val httpException : HttpException? = null
+        val httpException: HttpException? = null
         const val TAG = "PaymentFragment"
     }
 }

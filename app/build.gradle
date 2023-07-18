@@ -6,6 +6,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -54,6 +55,10 @@ android {
 dependencies {
 
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:22.1.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.0'
     def nav_version = "2.6.0"
     def lifecycle_version = "2.6.1"
     def timber_version = "5.0.1"

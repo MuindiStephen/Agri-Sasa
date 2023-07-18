@@ -9,10 +9,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
+import com.steve_md.smartmkulima.model.User
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.util.*
 
 
@@ -20,6 +24,10 @@ import java.util.*
 class HomeDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeDashboardBinding
+
+    private lateinit var databaseReference: DatabaseReference
+
+    var firebaseAuth: FirebaseAuth? = null
 
     //private val getUserViewModel: MainViewModel by viewModels()
 
@@ -44,7 +52,6 @@ class HomeDashboardFragment : Fragment() {
             ).setTitle("Logout")
                 .setMessage("Are you sure you want to logout?")
                 .setPositiveButton("Yes") { dialog, which ->
-
                     performLogout()
                 }
                 .setNegativeButton("No") { dialog, which ->
@@ -57,6 +64,7 @@ class HomeDashboardFragment : Fragment() {
     }
 
     private fun performLogout() {
+        firebaseAuth?.signOut()
         displaySnackBar("Logged out successfully")
         findNavController().navigate(R.id.action_homeDashboardFragment2_to_signInDetailsWithEmailFragment)
     }
@@ -86,6 +94,35 @@ class HomeDashboardFragment : Fragment() {
         **/
 
         setUpBinding()
+
+
+        // Initialize Firebase
+
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        databaseReference = FirebaseDatabase.getInstance().reference.child("users").child(userId!!)
+
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user  = snapshot.getValue(User::class.java)
+
+                val username = user?.username
+
+                if (username!= null) {
+                    val usernameTextView = view.findViewById<TextView>(R.id.textViewUserNameProfile)
+                    usernameTextView.text = username.toString()
+
+                    Timber.d("Logged in user: $username")
+                    displaySnackBar("Welcome, $username!")
+                } else {
+                    displaySnackBar("Profile")
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+               Timber.e("User name not updated: ${error.message}")
+            }
+        })
     }
 
     private fun setUpBinding() {
@@ -94,7 +131,7 @@ class HomeDashboardFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeDashboardFragment2_to_didYouKnow)
             }
             cardView9.setOnClickListener {
-
+              // TODO()
             }
         }
     }
