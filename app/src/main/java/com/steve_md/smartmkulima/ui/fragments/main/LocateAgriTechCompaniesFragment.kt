@@ -13,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
@@ -84,6 +85,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
         for (agrovet in agrovets) {
             val location = LatLng(agrovet.latitude, agrovet.longitude)
             googleMap.addMarker(MarkerOptions().position(location).title(agrovet.name))
+                ?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
         }
 
         if (agrovets.isNotEmpty()) {
@@ -105,7 +107,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
         // This is just a sample implementation
         return listOf(
             AgriTechCompany("SIKATA AGRITECH FARMERS CHOICE", 0.5929, 34.5429839),
-            AgriTechCompany("ROSE AGRITECH", 0.5960, 34.543333),
+            AgriTechCompany("ROSE AGRITECH COMPANY", 0.5960, 34.543333),
             AgriTechCompany("JOSEMO AGRITECH & DISTRIBUTORS BUNGOMA", 0.565110, 34.5431684),
             AgriTechCompany("OMUSALE AGRITECH & AGROVET", 0.565095, 34.5431600),
             AgriTechCompany("MULTIDUSH AGRITECH & AGROVET SUPPLIES", 0.565100, 34.545406)
