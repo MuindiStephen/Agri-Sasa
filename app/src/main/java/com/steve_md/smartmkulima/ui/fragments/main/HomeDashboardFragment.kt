@@ -64,6 +64,7 @@ class HomeDashboardFragment : Fragment() {
     }
 
     private fun performLogout() {
+        firebaseAuth?.signOut()
         displaySnackBar("Logged out successfully")
         findNavController().navigate(R.id.action_homeDashboardFragment2_to_signInDetailsWithEmailFragment)
     }
