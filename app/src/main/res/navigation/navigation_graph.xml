@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_signInDetailsWithEmailFragment_to_recoverPasswordWithEmailFragment"
             app:destination="@id/recoverPasswordWithEmailFragment" />
+        <action
+            android:id="@+id/action_signInDetailsWithEmailFragment_to_signUpDetailsWithEmailFragment"
+            app:destination="@id/signUpDetailsWithEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpDetailsWithEmailFragment"
@@ -146,6 +149,9 @@
         <action
             android:id="@+id/action_signUpDetailsWithEmailFragment_to_emailVerificationFragment"
             app:destination="@id/emailVerificationFragment" />
+        <action
+            android:id="@+id/action_signUpDetailsWithEmailFragment_to_signInDetailsWithEmailFragment"
+            app:destination="@id/signInDetailsWithEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/emailVerificationFragment"
