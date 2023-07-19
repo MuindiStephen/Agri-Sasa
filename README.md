@@ -1,7 +1,6 @@
 # Shamba App
 ##
-##
-##
+
 ## Run this App, it's available on Appetize.io
 
  <p float="center">
