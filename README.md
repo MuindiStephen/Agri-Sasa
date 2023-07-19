@@ -12,7 +12,37 @@
 
 
 ## Screens
-<img src="Screenshot_20221124_154707.png" width="25%"/>
+<p float="left">
+   <img src="art/splash.png" width="30%" />
+   <img src="art/mainauth.png" width="30%" />
+   <img src="art/mainlogin.png" width="30%" />
+   <img src="art/emailregister.png" width="30%" />
+   <img src="art/phoneregister.png" width="30%" />
+   <img src="art/emaillogin.png" width="30%" />
+   <img src="art/homepage.png" width="30%"/>
+   <img src="art/insurance.png" width="30%"/>
+   <img src="art/paymentoptions.png" width="30%"/>
+   <img src="art/transactionhistory.png" width="30%"/>
+   <img src="art/mpesa.png" width="30%"/>
+   <img src="art/successpayment.png" width="30%"/>
+   <img src="art/successpayment.png" width="30%"/>
+   <img src="art/newfarmingtechnology.png" width="30%"/>
+   <img src="art/map.png" width="30%" />
+   <img src="art/gps.png" width="30%" />
+   <img src="art/agritechmap.png" width="30%" />
+   <img src="art/trackagritech.png" width="30%" />
+   <img src="art/alerts.png" width="30%" />
+   <img src="art/predictfarm1.png" width="30%" />
+   <img src="art/predictfarm2.png" width="30%" />
+   <img src="art/marketproduce.png" width="30%" />
+   <img src="art/hirefarmequipments.png" width="30%" />
+   <img src="art/checkoutequipment.png" width="30%" />
+   <img src="art/approvedequipment.png" width="30%" />
+   <img src="art/alerts.png" width="30%" />
+
+</p>
+
+
 
 ##
 > NOTE: other screens coming soon.
