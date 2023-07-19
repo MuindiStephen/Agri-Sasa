@@ -96,7 +96,7 @@
 ## 
 > Important To Note
 - CI CD tool is failing
-- May now work exactly as per user preferences but its performance can be improved
+- The App not work exactly as per user preferences but its performance can be improved
 
 ##
 
