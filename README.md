@@ -10,8 +10,7 @@
   - Predict Their farm production via an ```integrated Machine Learning Algorithm (Linear regression)```
   - Reach ready market for their produce to maximise their profits
 
-
-## Screens
+> Screens
 <p float="left">
    <img src="art/splash.png" width="30%" />
    <img src="art/mainauth.png" width="30%" />
@@ -43,10 +42,6 @@
 </p>
 
 
-
-##
-> NOTE: other screens coming soon.
-
 ## Tech Stack & Concepts
 - 
     * [Kotlin](https://kotlinlang.org/) - a cross-platform, statically typed, general-purpose programming language with type inference.
@@ -66,7 +61,9 @@
         * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform action when lifecycle state changes.
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way.
 
-- Lottie Animations
+   - [Lottie Animations](https://lottiefiles.com/blog/working-with-lottie/getting-started-with-lottie-animations-in-android-app) - The lottie-android library provides a LottieAnimationView which will take care of rendering your animations for you. Add it to your layouts where you want to place your animations.
+   - [Google Map Services](https://developers.google.com/maps/documentation/android-sdk/start)- Maps data, map displays, and map gesture responses. You can also provide additional information for map locations and support user interaction by adding markers, polygons, and overlays to your map.
+   - [Linear Regression Algorithm](https://www.javatpoint.com/linear-regression-in-machine-learning) - Linear regression algorithm shows a linear relationship between a dependent (y) and one or more independent (y) variables
 
 
 ## Payment Integration Gateways
@@ -74,7 +71,12 @@
 
 ## DevOps Tool
 - Circle CI 
+## 
+> Important To Note
+- CI CD tool is failing
+- May now work exactly as per user preferences but its performance can be improved
 
+##
 
 ```
 MIT License
