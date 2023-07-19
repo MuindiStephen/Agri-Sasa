@@ -1,13 +1,16 @@
-# Shamba App
-##
+## 
+<p align="center">
+  <img src="logo.png" />
+</p>
 
-## Run this App, it's available on Appetize.io
+<H1 align="center">
+ Shamba App
+</H1>
 
- <p float="center">
+## 
 
-  ![appetize-light](https://github.com/MuindiStephen/Shamba-App/assets/57146128/c8482920-bd5f-469f-9f11-e8725d09a12c)
-   
- </p>
+
+
 
 ## 
 - Shamba App is an AgriTech Android app with the following solution features for the farmer:)
@@ -80,7 +83,16 @@
  * [Mpesa-Daraja-API](http://developer.safaricom.co.ke/)
 
 ## DevOps Tool
-- Circle CI 
+- Circle CI
+
+## To Run this App, it's available on Appetize.io
+
+ <p float="center">
+
+  ![appetize-light](https://github.com/MuindiStephen/Shamba-App/assets/57146128/c8482920-bd5f-469f-9f11-e8725d09a12c)
+   
+ </p>
+ 
 ## 
 > Important To Note
 - CI CD tool is failing
