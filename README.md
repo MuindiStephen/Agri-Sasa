@@ -100,6 +100,8 @@
 
 ##
 
+> Found something to add? Contributions are welcome :)
+
 ```
 MIT License
 
