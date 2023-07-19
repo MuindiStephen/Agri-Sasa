@@ -7,7 +7,7 @@
   - Chat With Farm Experts
   - A GPS to monitor their farms (Smart Digital)
   - Track nearby AgriTech Companies
-  - Predict Their farm production via an integrated Machine Learning Algorithm (Linear regression)
+  - Predict Their farm production via an ```integrated Machine Learning Algorithm (Linear regression)```
   - Reach ready market for their produce to maximise their profits
 
 
