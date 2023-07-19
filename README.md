@@ -1,4 +1,15 @@
 # Shamba App
+##
+##
+##
+## Run this App, it's available on Appetize.io
+
+ <p float="center">
+
+  ![appetize-light](https://github.com/MuindiStephen/Shamba-App/assets/57146128/c8482920-bd5f-469f-9f11-e8725d09a12c)
+   
+ </p>
+
 ## 
 - Shamba App is an AgriTech Android app with the following solution features for the farmer:)
   - Hire Farm Equipments Feature
