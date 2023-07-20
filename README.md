@@ -98,6 +98,14 @@
 - CI CD tool is failing
 - The App not work exactly as per user preferences but its performance can be improved
 
+## TODO
+- [ ] - Authentication using POST BACKEND APIs
+- [ ] - Configure CI CD workflow
+
+## Issues to Address
+> When using backend post apis, i encounter SocketException that is ```D/OkHttp: <-- HTTP FAILED: java.net.SocketException: Socket closed```
+
+
 ##
 
 > Found something to add? Contributions are welcome :)
