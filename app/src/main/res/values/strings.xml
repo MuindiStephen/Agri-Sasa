@@ -16,4 +16,8 @@
     <string name="transactions">Transactions</string>
     <string name="we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_output">We use Linear Regression Machine Learning Algorithm to predict Your Farm Output.</string>
     <string name="hello_buyer_get_affordable_rates_for_market_produce_directly_from_the_farmer">Hello buyer, get affordable rates for market produce, directly from the farmer</string>
+    <string name="insurance">Insurance</string>
+    <string name="new_technology">New Technology</string>
+    <string name="hire_equipment">Hire Equipment</string>
+    <string name="account">Account</string>
 </resources>
