@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Settings">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="Only enable app notifications"
+            android:title="Enable Notifications"
+            android:summary="Only enable app notifications"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="Stay logged in"
+            android:title="Stay logged in"
+            android:summary="Keep me logged in even when I am not using the app"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="wifi"
+            android:title="Limit mobile data usage"
+            android:summary="Prefer both WIFI and mobile data"/>
+    </PreferenceCategory>
+</PreferenceScreen>
