@@ -71,6 +71,9 @@ class YourAccountFragment : Fragment() {
             getHelpAndInquiries.setOnClickListener {
               findNavController().navigate(R.id.action_yourAccountFragment_to_helpFragment)
             }
+            imageViewBackFromAccount.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
     companion object {
