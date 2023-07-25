@@ -7,19 +7,18 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/applyInsuranceFragment"
-        android:title="Insurance"
+        android:title="@string/insurance"
         android:icon="@drawable/ic_insurance"/>
     <item
         android:id="@+id/newFarmingTechnologyFragment"
-        android:title="New Technology"
+        android:title="@string/new_technology"
         android:icon="@drawable/ic_new_tech"/>
     <item
         android:id="@+id/hireFarmEquipmentsFragment"
-        android:title="Hire Equipment"
+        android:title="@string/hire_equipment"
         android:icon="@drawable/ic_shopping_bag"/>
     <item
-        android:id="@+id/chatFragment"
-        android:title="@string/chat"
+        android:id="@+id/yourAccountFragment"
+        android:title="@string/account"
         android:icon="@drawable/ic_chat_1"/>
-
 </menu>
