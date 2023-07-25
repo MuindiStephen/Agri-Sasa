@@ -367,5 +367,23 @@
         android:id="@+id/yourAccountFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.YourAccountFragment"
         android:label="fragment_your_account"
-        tools:layout="@layout/fragment_your_account" />
+        tools:layout="@layout/fragment_your_account" >
+        <action
+            android:id="@+id/action_yourAccountFragment_to_loginMainFragment"
+            app:destination="@id/loginMainFragment"
+            app:popUpTo="@id/yourAccountFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_yourAccountFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_yourAccountFragment_to_transactionsHistory2"
+            app:destination="@id/transactionsHistory2" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+
 </navigation>

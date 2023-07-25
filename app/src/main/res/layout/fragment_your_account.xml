@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Get help and Inqueries"
+        android:text="Get help and FAQS"
         app:layout_constraintBottom_toBottomOf="@+id/imageView24"
         app:layout_constraintStart_toEndOf="@+id/imageView24"
         app:layout_constraintTop_toTopOf="@+id/imageView24" />
