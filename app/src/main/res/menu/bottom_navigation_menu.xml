@@ -18,7 +18,7 @@
         android:title="@string/hire_equipment"
         android:icon="@drawable/ic_shopping_bag"/>
     <item
-        android:id="@+id/yourAccount"
+        android:id="@+id/yourAccountFragment"
         android:title="@string/account"
         android:icon="@drawable/ic_chat_1"/>
 </menu>

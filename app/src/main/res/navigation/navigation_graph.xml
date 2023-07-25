@@ -363,4 +363,9 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.main.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/yourAccountFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.YourAccountFragment"
+        android:label="fragment_your_account"
+        tools:layout="@layout/fragment_your_account" />
 </navigation>
