@@ -92,6 +92,11 @@
   ![appetize-light](https://github.com/MuindiStephen/Shamba-App/assets/57146128/c8482920-bd5f-469f-9f11-e8725d09a12c)
    
  </p>
+
+## UX Designs Urls
+> UX designs are meant to translate the idea or concept of the project into a working prototype
+> 1. [Link 1](https://xd.adobe.com/view/df0c0eb0-e5a1-4751-a003-6561680f3e2d-8a5f/grid/)
+> 2. [Link 2](https://www.figma.com/file/0JbLHDVNhKGCiquyyo1mKs/Agri-Sasa-%5BShamba-App%5D?type=design&node-id=1-2&mode=design&t=ALIfym3gkeOhoQyV-0)
  
 ## 
 > Important To Note
