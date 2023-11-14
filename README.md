@@ -102,6 +102,7 @@
 > Important To Note
 - CI CD tool is failing
 - The App not work exactly as per user preferences but its performance can be improved
+- It is a minimum viable product
 
 ## TODO
 - [ ] - Authentication using POST BACKEND APIs
