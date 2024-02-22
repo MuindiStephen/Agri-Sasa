@@ -88,7 +88,7 @@ dependencies {
 
     // Dagger - Hilt
     implementation 'com.google.dagger:hilt-android:2.50'
-    annotationProcessor 'com.google.dagger:hilt-compiler:2.50'
+    kapt 'com.google.dagger:hilt-compiler:2.50'
 
     // Timber for Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
@@ -134,6 +134,5 @@ dependencies {
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-    //noinspection KaptUsageInsteadOfKsp
     kapt 'com.github.bumptech.glide:compiler:4.14.2'
 }
