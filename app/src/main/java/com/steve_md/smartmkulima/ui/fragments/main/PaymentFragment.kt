@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
-import com.steve_md.smartmkulima.BuildConfig
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.data.remote.DarajaApiClient
 import com.steve_md.smartmkulima.data.room.AppDatabase
@@ -22,6 +21,8 @@ import com.steve_md.smartmkulima.payment.mpesa.dto.AuthorizationResponse
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushRequest
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
 import com.steve_md.smartmkulima.utils.*
+import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.utils.Constants.BUSINESS_SHORT_CODE
 import com.steve_md.smartmkulima.utils.Constants.CALLBACKURL
 import com.steve_md.smartmkulima.utils.Constants.PARTYB
@@ -67,8 +68,8 @@ class PaymentFragment : Fragment(), View.OnClickListener {
         mPhone = view.findViewById(R.id.inputPhoneNumber)
         mPay = view.findViewById(R.id.pay)
 
-        val consumerKey = BuildConfig.DARAJA_CONSUMER_KEY
-        val consumerSecret = BuildConfig.DARAJA_CONSUMER_SECRET
+        val consumerKey = "NgGUJ2LGJlVvjdLu8P7yDGIs6v4RmMF1114mYRUVTVOjsCii"
+        val consumerSecret = "L5Ur0sgEuGfBAB7u8ynlH0bzerD1VABt7ABASfBAozvATLKETNHGcpTieX1vzLyv"
 
         mApiClient = DarajaApiClient(
             consumerKey,
