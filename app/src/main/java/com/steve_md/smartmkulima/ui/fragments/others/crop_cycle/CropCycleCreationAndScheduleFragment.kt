@@ -56,12 +56,9 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
         initBinding()
         initSchedulaCropCycleTask()
     }
-
-
     private fun initSchedulaCropCycleTask() {
         binding.buttonGenerateSchedule.setOnClickListener { generateSchedule() }
     }
-
 
     private fun initBinding() {
         binding.textViewTaskStartDate.setOnClickListener { showDatePickerDialog(true) }
@@ -125,7 +122,7 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
         val task = CropCycleTask(
             taskName,
             selectedCrop, startDate ?: Date(),
-            endDate ?: Date(), taskPriority, farmInputRequired
+            endDate ?: Date(), taskPriority, farmInputRequired, taskStatus = CropCycleTask.TaskStatus.valueOf("")
         )
 
         databaseReference = FirebaseDatabase.getInstance().reference
@@ -133,6 +130,6 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
 
         databaseReference.child("crop_cycle_tasks").push().setValue(task)
         Log.d(this.tag,"$task {} {} {} {}")
-        toast("Successfully generated crop cycle")
+        toast("Successfully new generated crop cycle task for crop $selectedCrop")
     }
 }

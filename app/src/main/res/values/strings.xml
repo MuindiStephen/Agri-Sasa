@@ -39,4 +39,11 @@
         <item>Low</item>
         <item>High</item>
     </string-array>
+
+    <string-array name="statuses">
+        <item>UPCOMING</item>
+        <item>IN PROGRESS</item>
+        <item>COMPLETED</item>
+        <item>EXPIRED</item>
+    </string-array>
 </resources>
