@@ -8,8 +8,8 @@ import java.util.Date
 data class CropCycleTask(
     val taskName: String,
     val selectedCrop: String,
-    val taskStartDate: Date,
-    val taskEndDate: Date,
+    val taskStartDate: Date?,
+    val taskEndDate: Date?,
     val farmInputRequired: String,
-    val taskPriority: String
+    val taskPriority: String // High/Low
 )
