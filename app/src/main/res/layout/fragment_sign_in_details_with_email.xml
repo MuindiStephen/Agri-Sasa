@@ -135,7 +135,7 @@
         android:textColor="@color/bg_gray"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/enterLoginPassword"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/enterLoginPassword"
         app:layout_constraintTop_toBottomOf="@+id/enterLoginPassword" />
 

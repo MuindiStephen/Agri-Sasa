@@ -1,14 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_gray"
     tools:context=".ui.fragments.others.crop_cycle.CropCycleCreationAndScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayoutCropCycle1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="60dp"
+        android:background="@color/main1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imageViewBackFromCropCycleSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/arrow_back"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/textViewCropCycleSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="Generate Crop Cycle"
+            android:textColor="#F1ECE7"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinnerSelectCrops"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/rounded_corner"
+        android:entries="@array/crop_list"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        android:prompt="Select Crop"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutCropCycle1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterTaskName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="45dp"
+        android:hint="@string/task_name"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeColor="@color/SilverGray"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/SilverGray"
+        app:layout_constraintEnd_toEndOf="@id/spinnerSelectCrops"
+        app:layout_constraintStart_toStartOf="@id/spinnerSelectCrops"
+        app:layout_constraintTop_toBottomOf="@id/spinnerSelectCrops">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTask"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterFarmInputNeeded"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="45dp"
+        android:hint="@string/farm_input_needed"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeColor="@color/SilverGray"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/SilverGray"
+        app:layout_constraintEnd_toEndOf="@id/enterTaskName"
+        app:layout_constraintStart_toStartOf="@id/enterTaskName"
+        app:layout_constraintTop_toBottomOf="@id/enterTaskName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputFarmInputNeeded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:fontFamily="@font/montserrat_medium"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewTaskStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Task Start Date?"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintStart_toStartOf="@+id/enterFarmInputNeeded"
+        app:layout_constraintTop_toBottomOf="@+id/enterFarmInputNeeded" />
+
+    <TextView
+        android:id="@+id/textViewTaskEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Task End Date?"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewTaskStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTaskStartDate" />
+
+    <Spinner
+        android:id="@+id/spinnerSelectTaskPriority"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="45dp"
+        android:prompt="Select task priotity"
+        android:background="@drawable/rounded_corner"
+        android:entries="@array/priorities"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTaskEndDate" />
+
+    <Button
+        android:id="@+id/buttonGenerateSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="45dp"
+        android:text="Generate Schedule"
+        android:fontFamily="@font/montserrat_medium"
+        android:textAllCaps="false"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerSelectTaskPriority"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/spinnerSelectTaskPriority"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSelectTaskPriority" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

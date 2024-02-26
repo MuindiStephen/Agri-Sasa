@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleListBinding
 
-class CropCycleListFragment : Fragment() {
+class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
