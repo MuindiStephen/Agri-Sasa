@@ -24,7 +24,6 @@
     <string name="task_name">Task name</string>
 
     <string-array name="crop_list">
-        <item>Select Crop</item>
         <item>Coriander</item>
         <item>Maize</item>
         <item>Beans</item>
@@ -42,8 +41,8 @@
 
     <string-array name="statuses">
         <item>UPCOMING</item>
-        <item>IN PROGRESS</item>
+        <item>IN_PROGRESS</item>
         <item>COMPLETED</item>
-        <item>EXPIRED</item>
+        <item>OVERDUE</item>
     </string-array>
 </resources>

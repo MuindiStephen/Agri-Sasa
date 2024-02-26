@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleCreationAndScheduleBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
+import com.steve_md.smartmkulima.model.TaskStatus
 import com.steve_md.smartmkulima.utils.toast
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -118,18 +119,23 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
             SimpleDateFormat("MM/dd/yyyy").parse(binding.textViewTaskEndDate.text.toString())
         val farmInputRequired: String = binding.inputFarmInputNeeded.text.toString()
         val taskPriority: String = binding.spinnerSelectTaskPriority.selectedItem.toString()
+        val taskStatus: String = binding.spinnerSelectTaskStatus.selectedItem.toString()
 
         val task = CropCycleTask(
             taskName,
-            selectedCrop, startDate ?: Date(),
-            endDate ?: Date(), taskPriority, farmInputRequired, taskStatus = CropCycleTask.TaskStatus.valueOf("")
+            selectedCrop,
+            startDate ?: Date(),
+            endDate ?: Date(),
+            taskPriority,
+            farmInputRequired,
+            TaskStatus.valueOf(taskStatus)
         )
 
         databaseReference = FirebaseDatabase.getInstance().reference
         firebaseAuth = FirebaseAuth.getInstance()
 
         databaseReference.child("crop_cycle_tasks").push().setValue(task)
-        Log.d(this.tag,"$task {} {} {} {}")
-        toast("Successfully new generated crop cycle task for crop $selectedCrop")
+        Log.d(this.tag,"$task {} {} {} {} {} {} {}")
+        toast("Successfully generated new crop cycle task for $selectedCrop crop")
     }
 }
