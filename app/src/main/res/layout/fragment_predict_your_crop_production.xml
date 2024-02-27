@@ -14,13 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_output"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,10 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="45dp"
         android:elevation="10dp"
-        android:hint="Temperature"
+        android:hint="Temperature in degrees celcius"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
@@ -91,10 +91,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
         android:elevation="10dp"
-        android:hint="Rainfall"
+        android:hint="Rainfall in mm"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
@@ -120,11 +120,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="228dp"
         android:layout_marginEnd="32dp"
-        android:text="Predict"
+        android:text="Predict crop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterRainfall" />
 
@@ -141,4 +141,64 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPredict" />
+
+    <Spinner
+        android:id="@+id/spinnerCropPredict"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
+        android:prompt="Select Crop"
+        android:background="@drawable/rounded_corner"
+        android:layout_marginEnd="45dp"
+        android:entries="@array/crop_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterRainfall" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterSoilQualityPh"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="45dp"
+        android:elevation="10dp"
+        android:hint="Soil Quality(pH value)"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeColor="@color/SilverGray"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/SilverGray"
+        app:hintTextColor="@color/SilverGray"
+        app:layout_constraintEnd_toEndOf="@id/spinnerCropPredict"
+        app:layout_constraintStart_toStartOf="@id/spinnerCropPredict"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCropPredict">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputSoilQualityPh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Spinner
+        android:id="@+id/spinnerSowingSeason"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
+        android:prompt="Sowing season"
+        android:background="@drawable/rounded_corner"
+        android:layout_marginEnd="45dp"
+        android:entries="@array/season"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterSoilQualityPh" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

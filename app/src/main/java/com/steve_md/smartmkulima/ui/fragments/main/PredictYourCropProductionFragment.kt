@@ -33,24 +33,38 @@ class PredictYourCropProductionFragment : Fragment() {
        binding.buttonPredict.setOnClickListener {
            val temperature = binding.inputTemperature.text.toString().toDouble()
            val rainfall = binding.inputRainfall.text.toString().toDouble()
+           val soilQualityPh = binding.inputSoilQualityPh.text.toString()
+           val selectedCrop = binding.spinnerCropPredict.selectedItem.toString()
+           val selectedSeason = binding.spinnerSowingSeason.selectedItem.toString()
 
            // call prediction function here :)
-           val prediction = predictFarmProduce(temperature, rainfall)
-
-           binding.textViewResult.text = "Expected production: $prediction"
-
+           if (temperature != null && rainfall != null){
+               val prediction = predictFarmProduce(
+                   temperature,
+                   rainfall,
+                   soilQualityPh,
+                   selectedSeason,
+                   selectedCrop
+               )
+               binding.textViewResult.text = "Expected production: $prediction"
+           }
        }
     }
-
-    private fun predictFarmProduce(temperature: Double, rainfall: Double): Double {
+    private fun predictFarmProduce(
+        temperature: Double,
+        rainfall: Double,
+        soilQualityPh: String,
+        selectedSeason: String,
+        selectedCrop: String,
+    ): Double {
         /**
          * Linear Regression Algorithm
          */
         val intercept = 10.0
         val tempCoeff = 2.0
         val rainCoeff = 1.5
-
-        val prediction = intercept + (temperature * tempCoeff) + (rainfall * rainCoeff)
+        val soilQualityPhValue = soilQualityPh.toDoubleOrNull() ?: 7.0 //Default soil ph to be 7.0 if not provided
+        val prediction = intercept + (temperature * tempCoeff) + (rainfall * rainCoeff) + (soilQualityPhValue*0.5)
 
         return prediction
     }

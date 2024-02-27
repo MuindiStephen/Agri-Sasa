@@ -37,6 +37,8 @@
     <string-array name="priorities">
         <item>Low</item>
         <item>High</item>
+        <item>Medium</item>
+        <item>Urgent</item>
     </string-array>
 
     <string-array name="statuses">
@@ -44,5 +46,11 @@
         <item>IN_PROGRESS</item>
         <item>COMPLETED</item>
         <item>OVERDUE</item>
+    </string-array>
+    <string-array name="season">
+        <item>WINTER</item>
+        <item>SUMMER</item>
+        <item>AUTUMN</item>
+        <item>SPRING</item>
     </string-array>
 </resources>
