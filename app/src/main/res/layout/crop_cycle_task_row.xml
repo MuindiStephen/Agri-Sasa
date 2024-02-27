@@ -85,27 +85,25 @@
                android:background="@drawable/rounded_corner"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.9"
+               app:layout_constraintHorizontal_bias="0.92"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintVertical_bias="0.9" />
+               app:layout_constraintVertical_bias="0.915" />
 
            <TextView
-               android:id="@+id/taskStatus"
+               android:id="@+id/taskStatusName"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_marginStart="208dp"
-               android:layout_marginEnd="9dp"
-               android:text="TextView"
                android:clickable="true"
+               android:focusable="true"
+               android:text="TextView"
+               android:textSize="14sp"
                app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="@+id/colorIndicatorTaskStatus"
-               app:layout_constraintEnd_toStartOf="@+id/colorIndicatorTaskStatus"
-               app:layout_constraintHorizontal_bias="0.8"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.72"
                app:layout_constraintStart_toEndOf="@+id/priority"
                app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintVertical_bias="0.9"
-               android:focusable="true" />
+               app:layout_constraintVertical_bias="0.915" />
        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

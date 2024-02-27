@@ -5,20 +5,18 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleCreationAndScheduleBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
-import com.steve_md.smartmkulima.model.TaskStatus
 import com.steve_md.smartmkulima.utils.toast
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -128,7 +126,7 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
             endDate ?: Date(),
             taskPriority,
             farmInputRequired,
-            TaskStatus.valueOf(taskStatus)
+            taskStatus
         )
 
         databaseReference = FirebaseDatabase.getInstance().reference
