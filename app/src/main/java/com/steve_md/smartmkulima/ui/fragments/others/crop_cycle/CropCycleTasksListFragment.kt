@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.google.api.Http
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -44,6 +45,11 @@ class CropCycleTasksListFragment : Fragment() {
         databaseReference = FirebaseDatabase.getInstance().getReference("crop_cycle_tasks")
 
         getAllAvailableCropCycle()
+        setUpBinding()
+    }
+
+    private fun setUpBinding() {
+        binding.imageViewBackFromCropCycleLists.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun getAllAvailableCropCycle() {

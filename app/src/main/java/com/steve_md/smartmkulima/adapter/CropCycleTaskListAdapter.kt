@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,56 +18,61 @@ class CropCycleTaskListAdapter  :
         override fun areItemsTheSame(oldItem: CropCycleTask, newItem: CropCycleTask): Boolean {
             return oldItem == newItem
         }
-
         override fun areContentsTheSame(oldItem: CropCycleTask, newItem: CropCycleTask): Boolean {
             return oldItem.taskName == newItem.taskName
         }
-
     }
     inner class MyViewHolder(private var binding: CropCycleTaskRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(task: CropCycleTask?) {
-            binding.textViewCropName.text = task?.selectedCrop
-            binding.startDay.text = task?.taskStartDate.toString()
-            binding.endDay.text = task?.taskEndDate.toString()
-            binding.farmInput.text = task?.farmInputRequired
-            binding.priority.text = task?.taskPriority
-            binding.taskStatusName.text = task?.taskStatus
+            binding.textViewCropCycleName.text = "${task?.taskName} ${task?.selectedCrop} F1 CYCLE"
+            binding.textViewCropName.text = "Crop: ${task?.selectedCrop}"
+            binding.startDay.text = "Start Day: ${task?.taskStartDate.toString()}"
+            binding.endDay.text = "End day: ${task?.taskEndDate.toString()}"
+            binding.farmInput.text = "Farm Input: ${task?.farmInputRequired}"
+            binding.priority.text = "Priority: ${task?.taskPriority}"
+            binding.taskStatusName.text = "Task Name: ${task?.taskStatus}"
+
+            binding.taskStatusName.setOnClickListener {
+                val updatedStatus = getNextStatus(task?.taskStatus)
+                task?.taskStatus = updatedStatus
+                notifyItemChanged(adapterPosition)
+            }
 
             // Now map status string to corresponding color resource ID
-            if (task?.taskStatus == "UPCOMING")
-            {
-                binding.colorIndicatorTaskStatus.setBackgroundColor(
-                    ContextCompat.getColor(binding.root.context,R.color.violet)
+            when (task?.taskStatus) {
+                "UPCOMING" -> binding.colorIndicatorTaskStatus.setBackgroundColor(
+                    ContextCompat.getColor(binding.root.context, R.color.violet)
                 )
-            }
-            else if (task?.taskStatus == "COMPLETED") {
-                binding.colorIndicatorTaskStatus.setBackgroundColor(
-                    ContextCompat.getColor(binding.root.context,R.color.green)
+                "COMPLETED" -> binding.colorIndicatorTaskStatus.setBackgroundColor(
+                    ContextCompat.getColor(binding.root.context, R.color.green)
                 )
-            }
-            else if (task?.taskStatus == "IN_PROGRESS") {
-                binding.colorIndicatorTaskStatus.setBackgroundColor(
-                    ContextCompat.getColor(binding.root.context,R.color.blue)
+                "IN_PROGRESS" -> binding.colorIndicatorTaskStatus.setBackgroundColor(
+                    ContextCompat.getColor(binding.root.context, R.color.blue)
                 )
-            }
-            else {
-                binding.colorIndicatorTaskStatus.setBackgroundColor(
-                    ContextCompat.getColor(binding.root.context,R.color.red)
+                else -> binding.colorIndicatorTaskStatus.setBackgroundColor(
+                    ContextCompat.getColor(binding.root.context, R.color.red)
                 )
             }
 
         }
 
+        private fun getNextStatus(taskStatus: String?): String {
+            return when (taskStatus) {
+                "UPCOMING" -> "IN_PROGRESS"
+                "IN_PROGRESS" -> "COMPLETED"
+                "COMPLETED" -> "UPCOMING"
+                else -> "UPCOMING" // Default to UPCOMING if status is unknown
+            }
+        }
+
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-
         return MyViewHolder(
             CropCycleTaskRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val task = getItem(position)
         holder.bind(task)

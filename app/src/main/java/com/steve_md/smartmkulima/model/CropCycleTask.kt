@@ -13,7 +13,7 @@ data class CropCycleTask(
     val taskEndDate: Date?,
     val farmInputRequired: String,
     val taskPriority: String, // High/Low
-    val taskStatus: String
+    var taskStatus: String
 )
 //    enum class TaskStatus(val status: String, val colorStatus: Int) {
 //        UPCOMING("Upcoming", R.color.violet),

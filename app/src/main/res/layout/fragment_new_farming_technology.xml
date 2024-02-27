@@ -193,4 +193,44 @@
         app:layout_constraintEnd_toEndOf="@+id/cardViewReachMarket"
         app:layout_constraintStart_toStartOf="@+id/cardViewReachMarket"
         app:layout_constraintTop_toBottomOf="@+id/cardViewReachMarket" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewCropCycle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/main"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardViewReachMarket">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewCropCycle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cycle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView73"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Farm Management - Crop Cycle"
+        android:fontFamily="@font/montserrat_semibold"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewCropCycle"
+        app:layout_constraintStart_toStartOf="@+id/cardViewCropCycle"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewCropCycle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -62,6 +63,7 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
     private fun initBinding() {
         binding.textViewTaskStartDate.setOnClickListener { showDatePickerDialog(true) }
         binding.textViewTaskEndDate.setOnClickListener { showDatePickerDialog(false) }
+        binding.imageViewBackFromCropCycleSchedule.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun showDatePickerDialog(isStartDate: Boolean) {
