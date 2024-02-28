@@ -129,6 +129,9 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
             && endDateString.isEmpty() && farmInputRequired.isEmpty()
             && taskPriority.isEmpty() && taskStatus.isEmpty()) {
             binding.inputTask.error = "Empty strings"
+            binding.textViewTaskStartDate.error = "Empty strings"
+            binding.textViewTaskEndDate.error = "Empty strings"
+            binding.inputFarmInputNeeded.error = "Empty strings"
         } else{
             val task = CropCycleTask(
                 taskName,

@@ -2,6 +2,7 @@ package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.databinding.FragmentPredictYourCropProductionBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -38,7 +40,9 @@ class PredictYourCropProductionFragment : Fragment() {
            val selectedSeason = binding.spinnerSowingSeason.selectedItem.toString()
 
            // call prediction function here :)
-           if (temperature != null && rainfall != null && soilQualityPh != null && selectedCrop!= null && selectedSeason!=null){
+           if (temperature != null && rainfall != null &&
+               soilQualityPh != null && selectedCrop!= null
+               && selectedSeason!=null){
                val prediction = predictFarmProduce(
                    temperature,
                    rainfall,
@@ -47,6 +51,8 @@ class PredictYourCropProductionFragment : Fragment() {
                    selectedCrop
                )
                binding.textViewResult.text = "Expected production: $prediction"
+
+               Timber.tag(this.tag.toString()).v("Prediction: $prediction")
            }
            else {
                binding.enterTemperature.error = "Empty strings"
