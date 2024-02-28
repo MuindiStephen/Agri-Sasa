@@ -67,7 +67,8 @@ class HomeDashboardFragment : Fragment() {
 
                      if (currentUserLogged!=null){
                          if (username != null) {
-                             binding.includeToolBar.userNameTextView.text = username
+                             val pascalCaseUsername = username.substring(0, 1).toUpperCase() + username.substring(1).toLowerCase()
+                             binding.includeToolBar.userNameTextView.text = pascalCaseUsername
                          }
                          Timber.tag("$this@HomeDashboardFragment").d("$username is loggedIn" )
                          toast("$username is loggedIn")
@@ -128,16 +129,6 @@ class HomeDashboardFragment : Fragment() {
 
         setUpBinding()
     }
-
-    /**
-    private fun fetchCurrentlyLoggeinUser() {
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user != null) {
-            val name = user.email
-            userProfileTxt.text = name?.substringBefore("@").toString()
-        }
-    }
-    */
 
 
     private fun setUpBinding() {
