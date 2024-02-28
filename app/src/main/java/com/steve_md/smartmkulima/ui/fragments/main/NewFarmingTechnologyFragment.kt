@@ -49,7 +49,14 @@ class NewFarmingTechnologyFragment : Fragment() {
             imageViewNewTechFarming.setOnClickListener {
                 findNavController().navigateUp()
             }
+            cardViewCropCycle.setOnClickListener {
+                goToGenerateNewCropCycle()
+            }
         }
+    }
+
+    private fun goToGenerateNewCropCycle() {
+        findNavController().navigate(R.id.action_newFarmingTechnologyFragment_to_cropCycleCreationAndScheduleFragment)
     }
 
     private fun goToPredictFarmYield() {

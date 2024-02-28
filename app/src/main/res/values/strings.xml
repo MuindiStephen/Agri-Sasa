@@ -20,4 +20,39 @@
     <string name="new_technology">New Technology</string>
     <string name="hire_equipment">Hire Equipment</string>
     <string name="account">Account</string>
+    <string name="farm_input_needed">Farm input needed</string>
+    <string name="task_name">Task name</string>
+    <string name="syd">Syd</string>
+    <string name="or_view_available_crop_cycles">Or View available crop cycles ?</string>
+
+    <string-array name="crop_list">
+        <item>Coriander</item>
+        <item>Maize</item>
+        <item>Beans</item>
+        <item>Wheat</item>
+        <item>Sukuma Wiki</item>
+        <item>Onions</item>
+        <item>Rice</item>
+        <item>Sweet potatoes</item>
+        <item>Mangoes</item>
+    </string-array>
+    <string-array name="priorities">
+        <item>Low</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Urgent</item>
+    </string-array>
+
+    <string-array name="statuses">
+        <item>UPCOMING</item>
+        <item>IN_PROGRESS</item>
+        <item>COMPLETED</item>
+        <item>OVERDUE</item>
+    </string-array>
+    <string-array name="season">
+        <item>WINTER</item>
+        <item>SUMMER</item>
+        <item>AUTUMN</item>
+        <item>SPRING</item>
+    </string-array>
 </resources>

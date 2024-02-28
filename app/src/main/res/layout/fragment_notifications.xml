@@ -43,8 +43,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/alerts"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="258dp"
+        android:layout_height="188dp"
         android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -63,5 +63,20 @@
         app:layout_constraintEnd_toEndOf="@+id/alerts"
         app:layout_constraintStart_toStartOf="@+id/alerts"
         app:layout_constraintTop_toBottomOf="@+id/alerts" />
+
+    <TextView
+        android:id="@+id/textViewNotificationsAvailable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        android:fontFamily="@font/montserrat_semibold"
+        android:visibility="visible"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutAlerts" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

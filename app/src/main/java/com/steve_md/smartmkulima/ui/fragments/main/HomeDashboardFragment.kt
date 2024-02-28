@@ -10,11 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.util.*
 
 
@@ -46,12 +52,34 @@ class HomeDashboardFragment : Fragment() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        val username = view?.findViewById<TextView>(R.id.userNameTextView)
-
         val userId =  firebaseAuth!!.uid
+        val currentUserLogged = firebaseAuth!!.currentUser
 
-         username?.text = databaseReference.child("users").child(userId!!).child("username")
-             .setValue(username).toString()
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId!!)
+
+//        val toolBar = binding.includeToolBar
+//        val usernameNew =toolBar.userNameTextView
+
+         databaseReference.child("username")
+             .addListenerForSingleValueEvent(object : ValueEventListener{
+                 override fun onDataChange(snapshot: DataSnapshot) {
+                     val username = snapshot.getValue(String::class.java)
+
+                     if (currentUserLogged!=null){
+                         if (username != null) {
+                             val pascalCaseUsername = username.substring(0, 1).toUpperCase() + username.substring(1).toLowerCase()
+                             binding.includeToolBar.userNameTextView.text = pascalCaseUsername
+                         }
+                         Timber.tag("$this@HomeDashboardFragment").d("$username is loggedIn" )
+                         toast("$username is loggedIn")
+                     }
+                 }
+
+                 override fun onCancelled(error: DatabaseError) {
+                     toast("Failed to retrieve username")
+                 }
+
+             })
 
 
         binding.includeToolBar.notificationIcon.setOnClickListener {
@@ -101,16 +129,6 @@ class HomeDashboardFragment : Fragment() {
 
         setUpBinding()
     }
-
-    /**
-    private fun fetchCurrentlyLoggeinUser() {
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user != null) {
-            val name = user.email
-            userProfileTxt.text = name?.substringBefore("@").toString()
-        }
-    }
-    */
 
 
     private fun setUpBinding() {

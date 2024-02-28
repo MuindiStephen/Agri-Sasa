@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Syd"
+                android:text="loading username...."
                 android:textColor="@color/main_black"
                 android:textSize="14sp"
                 android:textStyle="bold"
