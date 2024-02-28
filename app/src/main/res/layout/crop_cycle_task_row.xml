@@ -3,108 +3,122 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/bg_gray"
         app:cardCornerRadius="20dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
-           <TextView
-               android:id="@+id/textViewCropCycleName"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="8dp"
-               android:layout_marginTop="8dp"
-               android:fontFamily="@font/montserrat_medium"
-               android:text="Crop Cycle"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textViewCropCycleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:text="Crop Cycle"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-           <TextView
-               android:id="@+id/textViewCropName"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="12dp"
-               android:text="TextView"
-               app:layout_constraintStart_toStartOf="@+id/textViewCropCycleName"
-               app:layout_constraintTop_toBottomOf="@+id/textViewCropCycleName" />
+            <TextView
+                android:id="@+id/textViewCropName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/textViewCropCycleName"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCropCycleName" />
 
-           <TextView
-               android:id="@+id/startDay"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="12dp"
-               android:text="TextView"
-               app:layout_constraintStart_toStartOf="@+id/textViewCropName"
-               app:layout_constraintTop_toBottomOf="@+id/textViewCropName" />
+            <TextView
+                android:id="@+id/startDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/textViewCropName"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCropName" />
 
-           <TextView
-               android:id="@+id/endDay"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="12dp"
-               android:text="TextView"
-               app:layout_constraintStart_toStartOf="@+id/startDay"
-               app:layout_constraintTop_toBottomOf="@+id/startDay" />
+            <TextView
+                android:id="@+id/endDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/startDay"
+                app:layout_constraintTop_toBottomOf="@+id/startDay" />
 
-           <TextView
-               android:id="@+id/farmInput"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="12dp"
-               android:text="TextView"
-               app:layout_constraintStart_toStartOf="@+id/endDay"
-               app:layout_constraintTop_toBottomOf="@+id/endDay" />
-           <TextView
-               android:id="@+id/priority"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="12dp"
-               android:text="TextView"
-               app:layout_constraintStart_toStartOf="@+id/farmInput"
-               app:layout_constraintTop_toBottomOf="@+id/farmInput" />
+            <TextView
+                android:id="@+id/farmInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/endDay"
+                app:layout_constraintTop_toBottomOf="@+id/endDay" />
 
-           <View
-               android:id="@+id/colorIndicatorTaskStatus"
-               android:layout_width="20dp"
-               android:layout_height="20dp"
-               android:backgroundTint="@color/violet"
-               android:background="@drawable/rounded_corner"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.92"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintVertical_bias="0.915" />
+            <TextView
+                android:id="@+id/priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/farmInput"
+                app:layout_constraintTop_toBottomOf="@+id/farmInput" />
 
-           <TextView
-               android:id="@+id/taskStatusName"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:clickable="true"
-               android:focusable="true"
-               android:text="TextView"
-               android:textSize="14sp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.72"
-               app:layout_constraintStart_toEndOf="@+id/priority"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintVertical_bias="0.915" />
-       </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/colorIndicatorTaskStatus"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.92"
+                app:layout_constraintStart_toEndOf="@+id/taskStatusName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.915" />
+
+            <TextView
+                android:id="@+id/taskStatusName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintStart_toEndOf="@+id/priority"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.881" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,7 @@
     <string name="farm_input_needed">Farm input needed</string>
     <string name="task_name">Task name</string>
     <string name="syd">Syd</string>
+    <string name="or_view_available_crop_cycles">Or View available crop cycles ?</string>
 
     <string-array name="crop_list">
         <item>Coriander</item>

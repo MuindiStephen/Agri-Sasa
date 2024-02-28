@@ -6,15 +6,17 @@ import java.util.Date
 /**
  * A data class to create a list of crop cycles tasks properties
  */
-data class CropCycleTask(
-    val taskName: String,
-    val selectedCrop: String,
-    val taskStartDate: Date?,
-    val taskEndDate: Date?,
-    val farmInputRequired: String,
-    val taskPriority: String, // High/Low
+data class CropCycleTask (
+    var taskName: String? = null,
+    var selectedCrop: String? = null,
+    var taskStartDate: Date?,
+    var taskEndDate: Date?,
+    var farmInputRequired: String,
+    var taskPriority: String, // High/Low
     var taskStatus: String
-)
+) {
+    constructor() : this("","",Date(), Date(),"","","")
+}
 //    enum class TaskStatus(val status: String, val colorStatus: Int) {
 //        UPCOMING("Upcoming", R.color.violet),
 //        IN_PROGRESS("In Progress", R.color.blue),

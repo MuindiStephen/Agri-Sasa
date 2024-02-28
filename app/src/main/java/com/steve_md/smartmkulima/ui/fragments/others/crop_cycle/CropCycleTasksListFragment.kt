@@ -1,14 +1,13 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.api.Http
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,7 +17,6 @@ import com.google.firebase.database.ValueEventListener
 import com.steve_md.smartmkulima.adapter.CropCycleTaskListAdapter
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleListBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
-import com.steve_md.smartmkulima.utils.toast
 import timber.log.Timber
 import java.net.HttpURLConnection
 
@@ -46,8 +44,21 @@ class CropCycleTasksListFragment : Fragment() {
 
         getAllAvailableCropCycle()
         setUpBinding()
+        setUpRecyclerView()
     }
 
+    private fun setUpRecyclerView() {
+        // Set the layout manager
+        binding.cropCycleRecyclerView.layoutManager = LinearLayoutManager(requireContext()).apply {
+            LinearLayoutManager.VERTICAL
+        }
+
+        // Initialize the adapter
+        cropCycleListAdapter = CropCycleTaskListAdapter()
+
+        // Set the adapter to the RecyclerView
+        binding.cropCycleRecyclerView.adapter = cropCycleListAdapter
+    }
     private fun setUpBinding() {
         binding.imageViewBackFromCropCycleLists.setOnClickListener { findNavController().navigateUp() }
     }
@@ -57,8 +68,14 @@ class CropCycleTasksListFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
-                        val cropCycle: CropCycleTask? = i.getValue(CropCycleTask::class.java)
-                        cropCycleTaskList.add(cropCycle!!)
+
+                        try {
+                            val cropCycle: CropCycleTask? = i.getValue(CropCycleTask::class.java)
+
+                            cropCycle?.let { cropCycleTaskList.add(it) }
+                        } catch (e: Exception) {
+                            Timber.d(e.localizedMessage)
+                        }
                     }
                     cropCycleListAdapter = CropCycleTaskListAdapter()
                     cropCycleListAdapter!!.submitList(cropCycleTaskList)
@@ -78,7 +95,5 @@ class CropCycleTasksListFragment : Fragment() {
                             "${HttpURLConnection.HTTP_CLIENT_TIMEOUT}")
             }
         })
-
-
     }
 }

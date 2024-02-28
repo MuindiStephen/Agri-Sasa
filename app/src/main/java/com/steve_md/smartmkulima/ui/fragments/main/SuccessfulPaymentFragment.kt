@@ -41,7 +41,6 @@ class SuccessfulPaymentFragment : Fragment() {
             lottieSuccessfulPayment.playAnimation()
         }
     }
-
     private fun setUpBinding() {
        binding.buttonGoHome.setOnClickListener {
           findNavController().navigate(R.id.action_successfulPaymentFragment_to_applyInsuranceFragment)

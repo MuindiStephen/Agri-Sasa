@@ -16,9 +16,11 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleCreationAndScheduleBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
 import com.steve_md.smartmkulima.utils.toast
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -64,12 +66,15 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
         binding.textViewTaskStartDate.setOnClickListener { showDatePickerDialog(true) }
         binding.textViewTaskEndDate.setOnClickListener { showDatePickerDialog(false) }
         binding.imageViewBackFromCropCycleSchedule.setOnClickListener { findNavController().navigateUp() }
+        binding.viewAllCropCycles.setOnClickListener {
+            findNavController().navigate(R.id.action_cropCycleCreationAndScheduleFragment_to_cropCycleTasksListFragment)
+        }
     }
 
     private fun showDatePickerDialog(isStartDate: Boolean) {
         val calendar = if (isStartDate) startDate else endDate
 
-        val datePickerDialog = DatePickerDialog(requireActivity().applicationContext,
+        val datePickerDialog = DatePickerDialog(requireActivity(),
             { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, monthOfYear)
@@ -90,7 +95,7 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
 
         val calendar = if (isStartDate) startDate else endDate
 
-        val timePickerDialog = TimePickerDialog(requireActivity().applicationContext,
+        val timePickerDialog = TimePickerDialog(requireActivity(),
             { _: TimePicker, hourOfDay: Int, minute: Int ->
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 calendar.set(Calendar.MINUTE, minute)
@@ -109,33 +114,40 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
         timePickerDialog.show()
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun generateSchedule() {
         val taskName: String = binding.inputTask.text.toString()
         val selectedCrop: String = binding.spinnerSelectCrops.selectedItem.toString()
-        val startDate: Date? =
-            SimpleDateFormat("MM/dd/yyyy").parse(binding.textViewTaskStartDate.text.toString())
-        val endDate: Date? =
-            SimpleDateFormat("MM/dd/yyyy").parse(binding.textViewTaskEndDate.text.toString())
+        val startDateString: String = binding.textViewTaskStartDate.text.toString().substringAfter(": ").trim()
+        val endDateString: String = binding.textViewTaskEndDate.text.toString().substringAfter(": ").trim()
+        val startDate: Date? = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(startDateString)
+        val endDate: Date? = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(endDateString)
         val farmInputRequired: String = binding.inputFarmInputNeeded.text.toString()
         val taskPriority: String = binding.spinnerSelectTaskPriority.selectedItem.toString()
         val taskStatus: String = binding.spinnerSelectTaskStatus.selectedItem.toString()
 
-        val task = CropCycleTask(
-            taskName,
-            selectedCrop,
-            startDate ?: Date(),
-            endDate ?: Date(),
-            taskPriority,
-            farmInputRequired,
-            taskStatus
-        )
+        if (taskName.isEmpty() && selectedCrop.isEmpty() && startDateString.isEmpty()
+            && endDateString.isEmpty() && farmInputRequired.isEmpty()
+            && taskPriority.isEmpty() && taskStatus.isEmpty()) {
+            binding.inputTask.error = "Empty strings"
+        } else{
+            val task = CropCycleTask(
+                taskName,
+                selectedCrop,
+                startDate ?: Date(),
+                endDate ?: Date(),
+                taskPriority,
+                farmInputRequired,
+                taskStatus
+            )
+            databaseReference = FirebaseDatabase.getInstance().reference
+            firebaseAuth = FirebaseAuth.getInstance()
 
-        databaseReference = FirebaseDatabase.getInstance().reference
-        firebaseAuth = FirebaseAuth.getInstance()
+            databaseReference.child("crop_cycle_tasks").push().setValue(task)
 
-        databaseReference.child("crop_cycle_tasks").push().setValue(task)
-        Log.d(this.tag,"$task {} {} {} {} {} {} {}")
-        toast("Successfully generated new crop cycle task for $selectedCrop crop")
+            Timber.tag(this.tag.toString()).d("Task Details: {} $task")
+
+            toast("Successfully generated new crop cycle task for $selectedCrop crop")
+            findNavController().navigate(R.id.action_cropCycleCreationAndScheduleFragment_to_cropCycleTasksListFragment)
+        }
     }
 }

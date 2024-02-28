@@ -1,18 +1,18 @@
 package com.steve_md.smartmkulima.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DatabaseReference
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.CropCycleTaskRowBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
 
-class CropCycleTaskListAdapter  :
+class CropCycleTaskListAdapter :
     ListAdapter<CropCycleTask, CropCycleTaskListAdapter.MyViewHolder>(TaskDiffUtil) {
     object TaskDiffUtil : DiffUtil.ItemCallback<CropCycleTask>(){
         override fun areItemsTheSame(oldItem: CropCycleTask, newItem: CropCycleTask): Boolean {
@@ -38,9 +38,12 @@ class CropCycleTaskListAdapter  :
                 val updatedStatus = getNextStatus(task?.taskStatus)
                 task?.taskStatus = updatedStatus
                 notifyItemChanged(adapterPosition)
+
+
+
+               // task?.selectedCrop?.let { it1 -> databaseRef.child(it1).child("taskStatus").setValue(updatedStatus) }
             }
 
-            // Now map status string to corresponding color resource ID
             when (task?.taskStatus) {
                 "UPCOMING" -> binding.colorIndicatorTaskStatus.setBackgroundColor(
                     ContextCompat.getColor(binding.root.context, R.color.violet)
@@ -55,6 +58,8 @@ class CropCycleTaskListAdapter  :
                     ContextCompat.getColor(binding.root.context, R.color.red)
                 )
             }
+            // Now map status string to corresponding color resource ID
+
 
         }
 
