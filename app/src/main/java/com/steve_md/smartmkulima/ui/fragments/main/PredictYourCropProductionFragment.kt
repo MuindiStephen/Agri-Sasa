@@ -38,7 +38,7 @@ class PredictYourCropProductionFragment : Fragment() {
            val selectedSeason = binding.spinnerSowingSeason.selectedItem.toString()
 
            // call prediction function here :)
-           if (temperature != null && rainfall != null){
+           if (temperature != null && rainfall != null && soilQualityPh != null && selectedCrop!= null && selectedSeason!=null){
                val prediction = predictFarmProduce(
                    temperature,
                    rainfall,
@@ -47,6 +47,11 @@ class PredictYourCropProductionFragment : Fragment() {
                    selectedCrop
                )
                binding.textViewResult.text = "Expected production: $prediction"
+           }
+           else {
+               binding.enterTemperature.error = "Empty strings"
+               binding.enterRainfall.error = "Empty strings"
+               binding.enterSoilQualityPh.error = "Empty strings"
            }
        }
     }
