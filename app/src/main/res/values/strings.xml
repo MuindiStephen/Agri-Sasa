@@ -22,6 +22,7 @@
     <string name="account">Account</string>
     <string name="farm_input_needed">Farm input needed</string>
     <string name="task_name">Task name</string>
+    <string name="syd">Syd</string>
 
     <string-array name="crop_list">
         <item>Coriander</item>
