@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+
 @HiltAndroidApp
 class ShambaApp : Application() {
     override fun onCreate() {
@@ -14,6 +15,11 @@ class ShambaApp : Application() {
         timber()
         setNetworkSecurity()
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences("ui_mode", Context.MODE_PRIVATE)
+        val itemUIMode: Boolean = sharedPreferences.getBoolean("ISCHECKED", false)
+        Timber.d("UI Theme: $itemUIMode")
+        uiMode(itemUIMode)
     }
 
     private fun setNetworkSecurity() {
