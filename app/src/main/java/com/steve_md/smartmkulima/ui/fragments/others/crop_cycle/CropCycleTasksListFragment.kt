@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -54,7 +55,7 @@ class CropCycleTasksListFragment : Fragment() {
         }
 
         // Initialize the adapter
-        cropCycleListAdapter = CropCycleTaskListAdapter()
+        cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!,requireContext())
 
         // Set the adapter to the RecyclerView
         binding.cropCycleRecyclerView.adapter = cropCycleListAdapter
@@ -77,7 +78,7 @@ class CropCycleTasksListFragment : Fragment() {
                             Timber.d(e.localizedMessage)
                         }
                     }
-                    cropCycleListAdapter = CropCycleTaskListAdapter()
+                    cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!,requireContext())
                     cropCycleListAdapter!!.submitList(cropCycleTaskList)
                     binding.cropCycleRecyclerView.adapter = cropCycleListAdapter
                     Timber.tag(this.toString()).d("Alert! crop cycles available {}")
@@ -88,6 +89,7 @@ class CropCycleTasksListFragment : Fragment() {
                 }
             }
 
+            @SuppressLint("BinaryOperationInTimber")
             override fun onCancelled(error: DatabaseError) {
                 Timber.tag(this.toString())
                     .d("an error occurred, try again!" +

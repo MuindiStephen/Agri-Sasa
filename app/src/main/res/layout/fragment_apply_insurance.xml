@@ -45,6 +45,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
+        android:textColor="@color/textColor"
         android:fontFamily="@font/montserrat"
         android:text="@string/climate_change_or_the_weather_is_unpredictable_protect_your_crops_against_natural_calamities_such_as_pests_lack_of_rainfall_floods_and_theft"
         android:textSize="12sp"

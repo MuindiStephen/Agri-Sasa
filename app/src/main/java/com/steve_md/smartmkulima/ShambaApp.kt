@@ -1,11 +1,15 @@
 package com.steve_md.smartmkulima
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.StrictMode
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
+
 
 @HiltAndroidApp
 class ShambaApp : Application() {
@@ -14,6 +18,20 @@ class ShambaApp : Application() {
         timber()
         setNetworkSecurity()
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences("ui_mode", Context.MODE_PRIVATE)
+        val itemUIMode: Boolean = sharedPreferences.getBoolean("ISCHECKED", false)
+        Timber.d("UI Theme: $itemUIMode")
+        uiMode(itemUIMode)
+    }
+
+    private fun uiMode(itemUIMode: Boolean) {
+        if (itemUIMode) {
+            AppCompatDelegate.MODE_NIGHT_YES
+        }
+        else {
+            AppCompatDelegate.MODE_NIGHT_NO
+        }
     }
 
     private fun setNetworkSecurity() {

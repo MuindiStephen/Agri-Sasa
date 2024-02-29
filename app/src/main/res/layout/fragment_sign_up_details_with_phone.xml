@@ -54,6 +54,7 @@
         android:textSize="13sp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
+        android:textColor="@color/textColor"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
@@ -72,10 +73,12 @@
         android:layout_marginTop="50dp"
         app:endIconMode="clear_text"
         app:endIconTint="@color/SilverGray"
-        app:hintTextColor="@color/SilverGray"
+        app:hintTextColor="@color/textColor"
         android:elevation="10dp"
+        android:textColorHint="@color/textColor"
         app:boxStrokeColor="@color/SilverGray"
         app:boxStrokeWidthFocused="2dp"
+        android:textColor="@color/textColor"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -86,6 +89,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputUserName"
+            android:textColor="@color/textColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -103,9 +107,12 @@
         android:hint="Phone no."
         android:layout_marginTop="13dp"
         app:endIconMode="clear_text"
+        android:textColor="@color/textColor"
         app:endIconTint="@color/SilverGray"
+        app:hintTextColor="@color/textColor"
         app:boxStrokeColor="@color/SilverGray"
         app:boxStrokeWidthFocused="2dp"
+        android:textColorHint="@color/textColor"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -118,6 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
+            android:textColor="@color/textColor"
             android:id="@+id/inputPhoneNumber"
             />
 
@@ -136,7 +144,9 @@
         app:endIconTint="@color/SilverGray"
         app:boxStrokeColor="@color/SilverGray"
         app:boxStrokeWidthFocused="2dp"
+        android:textColorHint="@color/textColor"
         app:boxCornerRadiusTopEnd="10dp"
+        android:textColor="@color/textColor"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
@@ -147,6 +157,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:inputType="textPassword"
             android:id="@+id/inputPassword"
             />
@@ -166,7 +177,10 @@
         app:endIconMode="password_toggle"
         app:endIconTint="@color/SilverGray"
         app:boxStrokeColor="@color/SilverGray"
+        app:hintTextColor="@color/textColor"
         app:boxStrokeWidthFocused="2dp"
+        android:textColorHint="@color/textColor"
+        android:textColor="@color/textColor"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -179,6 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/textColor"
             android:id="@+id/inputConfirmPassword"
             />
 
