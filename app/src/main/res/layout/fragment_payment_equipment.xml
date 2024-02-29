@@ -56,6 +56,7 @@
         android:layout_marginTop="4dp"
         android:text="Approved To Be Hired !"
         android:textSize="22sp"
+        android:textColor="@color/textColor"
         android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"

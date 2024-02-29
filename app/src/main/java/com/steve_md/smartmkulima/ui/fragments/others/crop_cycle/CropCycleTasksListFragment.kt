@@ -55,7 +55,7 @@ class CropCycleTasksListFragment : Fragment() {
         }
 
         // Initialize the adapter
-        cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!)
+        cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!,requireContext())
 
         // Set the adapter to the RecyclerView
         binding.cropCycleRecyclerView.adapter = cropCycleListAdapter
@@ -78,7 +78,7 @@ class CropCycleTasksListFragment : Fragment() {
                             Timber.d(e.localizedMessage)
                         }
                     }
-                    cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!)
+                    cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!,requireContext())
                     cropCycleListAdapter!!.submitList(cropCycleTaskList)
                     binding.cropCycleRecyclerView.adapter = cropCycleListAdapter
                     Timber.tag(this.toString()).d("Alert! crop cycles available {}")

@@ -53,6 +53,7 @@
         android:layout_marginEnd="45dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
+        android:textColor="@color/textColor"
         android:text="Start your journey with us. Create an account right now to quench all your curiosity when it comes to agriculture and more"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
@@ -159,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="45dp"
-
+            android:textColor="@color/textColor"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="By continuing, you agree to our "
@@ -193,6 +194,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
+            android:textColor="@color/textColor"
             android:fontFamily="@font/montserrat_medium"
             android:text="and acknowledge that you have read our "
             android:layout_marginStart="45dp"/>
@@ -231,6 +233,7 @@
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:fontFamily="@font/montserrat_medium"
             android:text="to learn how we collect, use and share your "
             android:textSize="12sp" />
@@ -245,12 +248,11 @@
         android:gravity="center"
         android:textSize="12sp"
         android:text="data"
+        android:textColor="@color/textColor"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/montserrat_medium"
         app:layout_constraintStart_toStartOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="@id/linearLayout3"/>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -280,15 +282,6 @@
             android:textColor="@color/main1"
             android:textSize="12sp" />
     </LinearLayout>
-
-
-
-
-
-
-
-
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mainAuthsToolbar"
         android:layout_width="0dp"
@@ -300,8 +293,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="We have sent a verification code to "
         android:textSize="13sp"
-
+        android:textColor="@color/textColor"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
@@ -93,7 +93,7 @@
         android:layout_marginStart="85dp"
         android:text="Call me:"
         android:textSize="15sp"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/black"
         android:fontFamily="@font/nunito_sans_semibold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pinView" />
@@ -118,7 +118,7 @@
         android:layout_marginStart="46dp"
         android:fontFamily="@font/nunito_sans_semibold"
         android:text="Resend code:"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/pinView" />
