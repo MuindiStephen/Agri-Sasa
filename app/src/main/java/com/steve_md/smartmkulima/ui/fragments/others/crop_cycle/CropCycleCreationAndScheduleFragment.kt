@@ -56,9 +56,9 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         initBinding()
-        initSchedulaCropCycleTask()
+        initScheduleCropCycleTask()
     }
-    private fun initSchedulaCropCycleTask() {
+    private fun initScheduleCropCycleTask() {
         binding.buttonGenerateSchedule.setOnClickListener { generateSchedule() }
     }
 
@@ -133,6 +133,7 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
             binding.textViewTaskEndDate.error = "Empty strings"
             binding.inputFarmInputNeeded.error = "Empty strings"
         } else{
+
             val task = CropCycleTask(
                 taskName,
                 selectedCrop,
@@ -144,6 +145,8 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
             )
             databaseReference = FirebaseDatabase.getInstance().reference
             firebaseAuth = FirebaseAuth.getInstance()
+
+
 
             databaseReference.child("crop_cycle_tasks").push().setValue(task)
 

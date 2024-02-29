@@ -1,18 +1,30 @@
 package com.steve_md.smartmkulima.adapter
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.CropCycleTaskRowBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
+import timber.log.Timber
 
-class CropCycleTaskListAdapter :
+
+class CropCycleTaskListAdapter(
+    private val databaseReference: DatabaseReference,
+    private val context: Context
+    ) :
     ListAdapter<CropCycleTask, CropCycleTaskListAdapter.MyViewHolder>(TaskDiffUtil) {
     object TaskDiffUtil : DiffUtil.ItemCallback<CropCycleTask>(){
         override fun areItemsTheSame(oldItem: CropCycleTask, newItem: CropCycleTask): Boolean {
@@ -35,15 +47,27 @@ class CropCycleTaskListAdapter :
             binding.taskStatusName.text = "Task Name: ${task?.taskStatus}"
 
             binding.taskStatusName.setOnClickListener {
-                val updatedStatus = getNextStatus(task?.taskStatus)
-                task?.taskStatus = updatedStatus
-                notifyItemChanged(adapterPosition)
 
+                val dialogBuilder = AlertDialog.Builder(binding.root.context)
+                dialogBuilder.setMessage("Are you sure you want to change the status?")
+                    .setCancelable(false)
+                    .setIcon(R.drawable.ic_cycle)
+                    .setTitle("NEW TASK STATUS FOR ${task?.selectedCrop} ${task?.taskName} F1 CYCLE")
+                    .setPositiveButton("Yes") { dialog, _ ->
+                        dialog.dismiss()
+                        handleStatusChange(task)
+                        updateColorIndicator(task)
+                    }
+                    .setNegativeButton("No") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                val alert = dialogBuilder.create()
+                alert.show()
 
-
-               // task?.selectedCrop?.let { it1 -> databaseRef.child(it1).child("taskStatus").setValue(updatedStatus) }
             }
-
+        }
+        private fun updateColorIndicator(task: CropCycleTask?) {
+            // Now map status string to corresponding color resource ID
             when (task?.taskStatus) {
                 "UPCOMING" -> binding.colorIndicatorTaskStatus.setBackgroundColor(
                     ContextCompat.getColor(binding.root.context, R.color.violet)
@@ -58,8 +82,29 @@ class CropCycleTaskListAdapter :
                     ContextCompat.getColor(binding.root.context, R.color.red)
                 )
             }
-            // Now map status string to corresponding color resource ID
+        }
+        private fun handleStatusChange(task: CropCycleTask?) {
+            // Update the local UI
+            val updatedStatus = getNextStatus(task?.taskStatus)
+            task?.taskStatus = updatedStatus
+            notifyItemChanged(adapterPosition)
 
+            // Now update also the firebase database
+            val taskRef = databaseReference.child("crop_cycle_tasks")
+            val matchingCropCycleTask = taskRef.orderByChild("taskName").equalTo(task?.taskName)
+            matchingCropCycleTask.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(tasksSnapshot: DataSnapshot) {
+                    for (snapshot in tasksSnapshot.children) {
+                        snapshot.ref.child("taskStatus").setValue(updatedStatus)
+                        Timber.d("Mapped ${task?.taskStatus} status to $updatedStatus status for ${task?.taskName}${task?.selectedCrop} F1 CYCLE" )
+
+                        Toast.makeText(context, "Updated status", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Timber.v("Failed to update status {}", error.message)
+                }
+            })
 
         }
 
@@ -67,8 +112,8 @@ class CropCycleTaskListAdapter :
             return when (taskStatus) {
                 "UPCOMING" -> "IN_PROGRESS"
                 "IN_PROGRESS" -> "COMPLETED"
-                "COMPLETED" -> "UPCOMING"
-                else -> "UPCOMING" // Default to UPCOMING if status is unknown
+                "COMPLETED" -> "${!binding.taskStatusName.isClickable}"
+                else -> "${!binding.taskStatusName.isClickable}" // Default to UPCOMING if status is unknown
             }
         }
 
