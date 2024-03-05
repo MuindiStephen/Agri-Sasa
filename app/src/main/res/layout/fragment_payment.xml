@@ -80,6 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:textColor="@color/textColor"
         />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,6 +113,7 @@
             android:id="@+id/inputAmountToPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
