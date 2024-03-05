@@ -27,14 +27,14 @@
 
     <string-array name="crop_list">
         <item>Coriander</item>
-        <item>Maize</item>
-        <item>Beans</item>
-        <item>Wheat</item>
-        <item>Sukuma Wiki</item>
-        <item>Onions</item>
-        <item>Rice</item>
-        <item>Sweet potatoes</item>
-        <item>Mangoes</item>
+        <item>Capsicum Geva</item>
+        <item>Cucumber Mydas </item>
+        <item>Tomatoes Anna</item>
+        <item>Cucumber English</item>
+        <item>Cucumber Bologna</item>
+        <item>Capsicum</item>
+        <item>Spinach</item>
+        <item>Bullet Chillies</item>
     </string-array>
     <string-array name="priorities">
         <item>Low</item>
@@ -55,4 +55,31 @@
         <item>AUTUMN</item>
         <item>SPRING</item>
     </string-array>
+
+    <string-array name="task_names">
+        <item>Seedling Acquisition</item>
+        <item>Media Acquisition</item>
+        <item>Media washing and Treatment</item>
+        <item>Preparation of grow trays (washing and sterilizing)/potting of media</item>
+        <item>Loading of treated media and seedlings</item>
+        <item>Seed sowing</item>
+        <item>Watering and fertigation</item>
+        <item>Hardening</item>
+        <item>Land preparation</item>
+        <item>Manure application</item>
+        <item>Bed making/gypsum application</item>
+    </string-array>
+    <integer-array name="task_durations">
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>42</item>
+        <item>6</item>
+        <item>41</item>
+        <item>41</item>
+        <item>2</item>
+    </integer-array>
 </resources>
