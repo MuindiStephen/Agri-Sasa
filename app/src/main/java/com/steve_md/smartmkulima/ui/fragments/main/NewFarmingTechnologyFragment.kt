@@ -50,9 +50,14 @@ class NewFarmingTechnologyFragment : Fragment() {
                 findNavController().navigateUp()
             }
             cardViewCropCycle.setOnClickListener {
-                goToGenerateNewCropCycle()
+                //goToGenerateNewCropCycle()
+                goToAutoGenerateCropCycle()
             }
         }
+    }
+
+    private fun goToAutoGenerateCropCycle() {
+        findNavController().navigate(R.id.action_newFarmingTechnologyFragment_to_autoCreateCropCycleFragment)
     }
 
     private fun goToGenerateNewCropCycle() {

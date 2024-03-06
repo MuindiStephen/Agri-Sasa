@@ -137,4 +137,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     //noinspection KaptUsageInsteadOfKsp
     kapt 'com.github.bumptech.glide:compiler:4.14.2'
+
+
+    // Step View
+    implementation 'com.github.shuhart:stepview:1.5.1'
 }

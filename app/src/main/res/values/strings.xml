@@ -27,15 +27,24 @@
 
     <string-array name="crop_list">
         <item>Coriander</item>
-        <item>Maize</item>
-        <item>Beans</item>
-        <item>Wheat</item>
-        <item>Sukuma Wiki</item>
-        <item>Onions</item>
-        <item>Rice</item>
-        <item>Sweet potatoes</item>
-        <item>Mangoes</item>
+        <item>Capsicum Geva</item>
+        <item>Cucumber Mydas </item>
+        <item>Tomatoes Anna</item>
+        <item>Cucumber English</item>
+        <item>Cucumber Bologna</item>
+        <item>Capsicum</item>
+        <item>Spinach</item>
+        <item>Bullet Chillies</item>
     </string-array>
+
+    <string-array name="farm_block_list">
+        <item>Select Farm/Block ID</item>
+        <item>F0001</item>
+        <item>F0002</item>
+        <item>F0003</item>
+        <item>F0004</item>
+    </string-array>
+
     <string-array name="priorities">
         <item>Low</item>
         <item>High</item>
@@ -55,4 +64,46 @@
         <item>AUTUMN</item>
         <item>SPRING</item>
     </string-array>
+
+    <string-array name="task_names">
+        <item>Seedling Acquisition</item>
+        <item>Media Acquisition</item>
+        <item>Media washing and Treatment</item>
+        <item>Preparation of grow trays (washing and sterilizing)/potting of media</item>
+        <item>Loading of treated media and seedlings</item>
+        <item>Seed sowing</item>
+        <item>Watering and fertigation</item>
+        <item>Hardening</item>
+        <item>Land preparation</item>
+        <item>Manure application</item>
+        <item>Bed making/gypsum application</item>
+    </string-array>
+    <integer-array name="task_durations">
+        <item>2</item> <!-- Seedling Acquisition -->
+        <item>30</item> <!-- Media Acquisition -->
+        <item>21</item> <!-- Media washing and Treatment -->
+        <item>0</item> <!-- Preparation of grow trays (washing and sterilizing) -->
+        <item>10</item> <!-- Loading of treated media and seedlings -->
+        <item>0</item> <!-- Watering and Fertigation -->
+        <item>1</item> <!-- Hardening -->
+        <item>1</item> <!-- Media treatment -->
+        <item>2</item> <!-- Transplanting -->
+        <item>7</item> <!-- Weeks 1 -->
+        <item>0</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>2</item> <!-- Nutrient recycling -->
+        <item>0</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>2</item> <!-- Flushing with plain water and 50% Hydrogen Peroxide -->
+        <item>0</item> <!-- 1.25L of Vegegrow B+A 68% Nitric acid for pH correction and N supplementation -->
+        <item>7</item> <!-- Weeks 2 -->
+        <item>1</item> <!-- 2.5L of Bud Booster and 68% Nitric acid for pH correction and N supplementation -->
+        <item>0</item> <!-- Nutrient recycling -->
+        <item>1</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>1</item> <!-- Nutrient recycling -->
+        <item>0</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>1</item> <!-- Nutrient recycling -->
+        <item>7</item> <!-- Weeks 3 -->
+        <item>0</item> <!-- Flushing with plain water and 50% Hydrogen Peroxide -->
+        <item>1</item> <!-- 2.5L of Bud Booster and 68% Nitric acid for pH correction and N supplementation -->
+    </integer-array>
+
 </resources>
