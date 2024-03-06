@@ -69,18 +69,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/cropCycleStartDay"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="16dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Start Day?"
                 android:textColor="@color/textColor"
+                android:hint="Enter Start Day?"
                 app:layout_constraintStart_toStartOf="@id/spinnerSelectCropType"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerSelectCropType" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerSelectCropType"
+                android:inputType="date" />
 
             <Spinner
                 android:id="@+id/spinnerSelectFarmBlockID"
@@ -100,10 +101,11 @@
 
             <TextView
                 android:id="@+id/demoView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:layout_height="wrap_content"
-                android:text="---------------------------------------------------------------------------------------------"
+                android:text="-----------------------------------------------------------------------"
                 android:backgroundTint="@color/main"
                 android:textColor="@color/main1"
                 app:layout_constraintTop_toBottomOf="@id/buttonGeneratorCropCycle"
@@ -141,26 +143,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/demoView" />
 
-            <com.shuhart.stepview.StepView
-                android:id="@+id/stepViewCropCycle"
+            <LinearLayout
+                android:id="@+id/stepLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:padding="16dp"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textCropCycleMain"
-                app:sv_indicator_radius="12dp"
-                app:sv_step_indicator_complete_color="@color/colorPrimary"
-                app:sv_step_indicator_complete_icon="@drawable/ic_check_circle"
-                app:sv_step_indicator_inactive_color="@android:color/darker_gray"
-                app:sv_step_indicator_inactive_icon="@drawable/ic_radio_button_unchecked"
-                app:sv_step_number_text_color="@android:color/black"
-                app:sv_step_number_text_size="16sp"
-                app:sv_step_title_text_size="14sp" />
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+<!--            <com.shuhart.stepview.StepView-->
+<!--                android:id="@+id/stepViewCropCycle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:padding="16dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/textCropCycleMain"-->
+<!--                app:sv_doneCircleColor="@color/main1"-->
+<!--                app:sv_doneStepLineColor="@color/main"-->
+<!--                app:sv_doneCircleRadius="12dp"-->
+<!--                app:sv_selectedTextColor="@color/main"-->
+<!--                app:sv_selectedCircleRadius="12dp"-->
+<!--                app:sv_selectedStepNumberColor="@color/black"-->
+<!--                app:sv_doneStepMarkColor="@color/teal_700"-->
+<!--                app:sv_stepNumberTextSize="12sp"-->
+<!--                />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

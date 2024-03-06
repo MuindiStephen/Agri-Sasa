@@ -352,6 +352,9 @@
             app:destination="@id/cropCycleCreationAndScheduleFragment"
             app:popUpTo="@id/newFarmingTechnologyFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_autoCreateCropCycleFragment"
+            app:destination="@id/autoCreateCropCycleFragment" />
     </fragment>
     <fragment
         android:id="@+id/didYouKnow"
@@ -406,5 +409,10 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleTasksListFragment"
         android:label="fragment_crop_cycle_list"
         tools:layout="@layout/fragment_crop_cycle_list" />
+    <fragment
+        android:id="@+id/autoCreateCropCycleFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.AutoCreateCropCycleFragment"
+        android:label="fragment_auto_create_crop_cycle"
+        tools:layout="@layout/fragment_auto_create_crop_cycle" />
 
 </navigation>

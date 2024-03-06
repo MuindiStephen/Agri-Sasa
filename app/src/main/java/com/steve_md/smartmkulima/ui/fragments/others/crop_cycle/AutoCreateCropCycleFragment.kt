@@ -8,7 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import com.shuhart.stepview.StepView
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentAutoCreateCropCycleBinding
 import com.steve_md.smartmkulima.utils.toast
@@ -46,8 +50,13 @@ class AutoCreateCropCycleFragment : Fragment() {
         setUpBinding()
     }
 
+    @SuppressLint("ResourceType", "SetTextI18n")
     private fun setUpBinding() {
-        binding.cropCycleStartDay.setOnClickListener { showDatePickerDialog() }
+        binding.cropCycleStartDay.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                showDatePickerDialog()
+            }
+        }
 
         binding.buttonGeneratorCropCycle.setOnClickListener {
 
@@ -55,78 +64,108 @@ class AutoCreateCropCycleFragment : Fragment() {
             val startDayForCropCycle = binding.cropCycleStartDay.text.toString()
             val farmOrBlockId = binding.spinnerSelectFarmBlockID.selectedItem.toString()
 
-            if (startDayForCropCycle.isNotEmpty()) {
+            if (selectedCropType.isNotEmpty() && startDayForCropCycle.isNotEmpty() && farmOrBlockId.isNotEmpty()) {
+                // Parse start date
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val startDay = dateFormat.parse(startDayForCropCycle)
 
-                //val startDayString = "${startDayForCropCycle[Calendar.YEAR]}-${startDayForCropCycle[Calendar.MONTH] + 1}-${startDayForCropCycle[Calendar.DAY_OF_MONTH]}"
+                // Sample crop cycle stages
+                val stages = listOf(
+                    "Seedling Acquisition",
+                    "Media Acquisition",
+                    "Media washing and Treatment",
+                    "Preparation of grow trays (washing and sterilizing)/potting of media",
+                    "Loading of treated media and seedlings",
+                    "Seed sowing",
+                    "Watering and fertilisation",
+                    "Hardening",
+                    "Land preparation",
+                    "Manure application",
+                    "Bed making/gypsum application",
+                    "Flushing with plain water"
+                )
 
-                val cropCycle = generateNewCropCycleForThisCrop(selectedCropType, startDayForCropCycle, farmOrBlockId)
+                // Generate crop cycle schedule
+//                val stateBuilder = binding.stepViewCropCycle.state
+//                    .selectedTextColor(ContextCompat.getColor(requireContext(), R.color.main))
+//                    .animationType(StepView.ANIMATION_CIRCLE)
+//                    .selectedCircleColor(ContextCompat.getColor(requireContext(), R.color.main))
+//                    .selectedStepNumberColor(ContextCompat.getColor(requireContext(), R.color.bg_gray))
+//                    .steps(stages)
+//                    .animationDuration(resources.getInteger(android.R.integer.config_shortAnimTime))
+//                    .typeface(ResourcesCompat.getFont(requireContext(), R.font.nunito_sans_semibold))
+//
+//                stateBuilder.commit()
 
-                insertCropCycleToFirebase(selectedCropType, cropCycle)
+                // Display the result in linear layout
+                binding.stepLinearLayout.removeAllViews()
 
-                displayCropCycleSteps(cropCycle)
-            } else {
-                toast("Start Day is empty! Click to select.")
+                for (stage in stages) {
+                    val stepTextView = TextView(requireContext())
+                    val stageDescription = getStageDescription(stage)
+                    stepTextView.text = "$stage\n$stageDescription"
+                    stepTextView.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.main1
+                        )
+                    )
+                    stepTextView.textSize = 16f
+                    stepTextView.setPadding(16, 16, 16, 16)
+
+                    stepTextView.setOnClickListener {
+
+                    }
+                    binding.stepLinearLayout.addView(stepTextView)
+                }
+
+//
+//                binding.tvResulT.setText(stages.map { stage ->
+//                    val stageDescription = getStageDescription(stage)
+//                    "$stage\n$stageDescription"
+//                })
+
             }
+
         }
-    }
-
-    private fun displayCropCycleSteps(cropCycle: List<String>) {
-
-        binding.scrollCropCycle.visibility = View.VISIBLE
-
-        val steps = StringBuilder()
-        for (i in cropCycle.indices) {
-            steps.append("${i + 1}. ${cropCycle[i]}\n")
-        }
-        binding.displayCropCycle.text = steps.toString()
-    }
-
-    private fun insertCropCycleToFirebase(selectedCropType: String, cropCycle: List<String>) {
-
-    }
-    private fun generateNewCropCycleForThisCrop(selectedCropType: String, startDayCropCycle: String, farmOrBlockId: String): List<String> {
-        val taskNames = resources.getStringArray(R.array.task_names)
-        val taskDurations = resources.getIntArray(R.array.task_durations)
-        val format: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-        val calendar = Calendar.getInstance()
-
-        val cropCycle = mutableListOf<String>()
-        calendar.time = format.parse(startDayCropCycle) ?: Date()
-
-
-        var startDay = 1
-        for (i in taskNames.indices) {
-            val endDay = startDay + taskDurations[i]
-            cropCycle.add("${taskNames[i]}: Start Day $startDay - End Day $endDay")
-            startDay = endDay + 1
-        }
-        Timber.v("$cropCycle generated for $selectedCropType at Farm $farmOrBlockId")
-        return cropCycle
     }
 
     private fun showDatePickerDialog() {
-        val year = cropCycleStartDay?.get(Calendar.YEAR)
-        val month = cropCycleStartDay?.get(Calendar.MONTH)
-        val day = cropCycleStartDay?.get(Calendar.DAY_OF_MONTH)
+        val calendar = cropCycleStartDay ?: Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(requireActivity(),
-            { _, year, monthOfYear, dayOfMonth ->
-                cropCycleStartDay?.set(Calendar.YEAR, year)
-                cropCycleStartDay?.set(Calendar.MONTH, monthOfYear)
-                cropCycleStartDay?.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-                updateStartDay()
-
-            }, year!!, month!!, day!!)
-
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                // Update the selected date in the UI
+                cropCycleStartDay?.set(selectedYear, selectedMonth, selectedDay)
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                binding.cropCycleStartDay.setText(dateFormat.format(cropCycleStartDay!!.time))
+            },
+            year,
+            month,
+            day
+        )
         datePickerDialog.show()
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun updateStartDay() {
-        val dateFormat = "yyyy-MM-dd"
-        val sdf = SimpleDateFormat(dateFormat, Locale.getDefault())
-        val formattedStartDay = sdf.format(cropCycleStartDay?.time ?: Date())
-        binding.cropCycleStartDay.text = "Start Day: $formattedStartDay"
+    private fun getStageDescription(stageName: String): String {
+        return when (stageName) {
+            "Seedling Acquisition" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-03-10"
+            "Media Acquisition" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-03-10"
+            "Media washing and Treatment" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-03-11"
+            "Preparation of grow trays (washing and sterilizing)/potting of media" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-03-12"
+            "Loading of treated media and seedlings" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-03-14"
+            "Seed sowing" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-03-15"
+            "Watering and fertilisation" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-04-27"
+            "Hardening" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-04-27"
+            "Land preparation" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-04-27"
+            "Manure application" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-04-27"
+            "Bed making/gypsum application" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-04-23"
+            "Flushing with plain water" -> "Start Day: ${cropCycleStartDay!!.time} - End Day: 2024-04-24"
+            else -> ""
+        }
     }
 }
