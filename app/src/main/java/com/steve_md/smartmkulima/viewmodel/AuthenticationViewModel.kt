@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * Left off for APIs
+ */
 class AuthenticationViewModel : ViewModel() {
 
     private val authenticationUserRepository:AuthenticationUserRepository =
