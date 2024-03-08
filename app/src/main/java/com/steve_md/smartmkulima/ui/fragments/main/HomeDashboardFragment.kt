@@ -31,14 +31,8 @@ class HomeDashboardFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
 
-    var firebaseAuth: FirebaseAuth? = null
+    private var firebaseAuth: FirebaseAuth? = null
 
-    //private val getUserViewModel: MainViewModel by viewModels()
-
-    // private lateinit var currentFragment: Fragment
-
-    // private val args: HomeDashboardFragmentArgs by navArgs()
-    //private var username = ""
 
     private lateinit var userProfileTxt: TextView
 
@@ -57,9 +51,6 @@ class HomeDashboardFragment : Fragment() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId!!)
 
-//        val toolBar = binding.includeToolBar
-//        val usernameNew =toolBar.userNameTextView
-
          databaseReference.child("username")
              .addListenerForSingleValueEvent(object : ValueEventListener{
                  override fun onDataChange(snapshot: DataSnapshot) {
@@ -71,16 +62,13 @@ class HomeDashboardFragment : Fragment() {
                              binding.includeToolBar.userNameTextView.text = pascalCaseUsername
                          }
                          Timber.tag("$this@HomeDashboardFragment").d("$username is loggedIn" )
-                         toast("$username is loggedIn")
                      }
                  }
 
                  override fun onCancelled(error: DatabaseError) {
-                     toast("Failed to retrieve username")
+                     Timber.d("Failed to retrieve username {}",error.message)
                  }
-
              })
-
 
         binding.includeToolBar.notificationIcon.setOnClickListener {
             findNavController().navigate(R.id.action_homeDashboardFragment2_to_notificationsFragment)
@@ -122,11 +110,6 @@ class HomeDashboardFragment : Fragment() {
             in 12..15 -> "Good Afternoon"
             else -> "Good Evening"
         }
-
-
-        //fetchCurrentlyLoggeinUser()
-
-
         setUpBinding()
     }
 

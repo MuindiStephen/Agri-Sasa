@@ -4,7 +4,7 @@ import androidx.lifecycle.Observer
 
 
 class Event<out T>(private val content: T) {
-    var hasBeenHandled = false
+    private var hasBeenHandled = false
         private set
 
     fun getContentIfNotHandled(): T? {
@@ -34,14 +34,11 @@ class EventObserver<T>(
                     }
                 }
             }
-
             is Resource.Loading -> {
                 onLoading?.let { loading ->
                     loading()
                 }
             }
-
-
             is Resource.Empty -> TODO()
         }
     }
