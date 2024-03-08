@@ -25,6 +25,11 @@
     <string name="syd">Syd</string>
     <string name="or_view_available_crop_cycles">Or View available crop cycles ?</string>
 
+    <string-array name="cycle_types">
+        <item>Crop Cycle</item>
+        <item>Service Cycle</item>
+    </string-array>
+
     <string-array name="crop_list">
         <item>Coriander</item>
         <item>Capsicum Geva</item>
@@ -36,6 +41,7 @@
         <item>Spinach</item>
         <item>Bullet Chillies</item>
     </string-array>
+
 
     <string-array name="farm_block_list">
         <item>Select Farm/Block ID</item>

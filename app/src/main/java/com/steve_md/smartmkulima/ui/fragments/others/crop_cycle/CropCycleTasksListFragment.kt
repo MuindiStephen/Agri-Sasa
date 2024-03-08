@@ -10,92 +10,73 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
 import com.steve_md.smartmkulima.adapter.CropCycleTaskListAdapter
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleListBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
+import com.steve_md.smartmkulima.model.Cycle
 import timber.log.Timber
 import java.net.HttpURLConnection
 
 class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding
-    var cropCycleTaskList: ArrayList<CropCycleTask> = ArrayList()
-    var cropCycleListAdapter: CropCycleTaskListAdapter? = null
-    private var databaseReference: DatabaseReference? = null
-    private var firebaseAuth: FirebaseAuth? = null
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var cycleListAdapter: CropCycleTaskListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCropCycleListBinding.inflate(
-            layoutInflater, container, false
+            inflater, container, false
         )
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        firebaseAuth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().getReference("crop_cycle_tasks")
+        firestore = FirebaseFirestore.getInstance()
 
-        getAllAvailableCropCycle()
         setUpBinding()
         setUpRecyclerView()
+        getAllAvailableCropCycle()
     }
 
     private fun setUpRecyclerView() {
         // Set the layout manager
-        binding.cropCycleRecyclerView.layoutManager = LinearLayoutManager(requireContext()).apply {
-            LinearLayoutManager.VERTICAL
-        }
+        binding.cropCycleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize the adapter
-        cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!,requireContext())
+        cycleListAdapter = CropCycleTaskListAdapter()
 
         // Set the adapter to the RecyclerView
-        binding.cropCycleRecyclerView.adapter = cropCycleListAdapter
+        binding.cropCycleRecyclerView.adapter = cycleListAdapter
     }
+
     private fun setUpBinding() {
         binding.imageViewBackFromCropCycleLists.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun getAllAvailableCropCycle() {
-        databaseReference!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (i in snapshot.children) {
-
-                        try {
-                            val cropCycle: CropCycleTask? = i.getValue(CropCycleTask::class.java)
-
-                            cropCycle?.let { cropCycleTaskList.add(it) }
-                        } catch (e: Exception) {
-                            Timber.d(e.localizedMessage)
-                        }
+        firestore.collection("cycles")
+            .get()
+            .addOnSuccessListener { documents ->
+                val cropCycleTaskList = mutableListOf<Cycle>()
+                for (document in documents) {
+                    try {
+                        val cropCycle = document.toObject(Cycle::class.java)
+                        cropCycleTaskList.add(cropCycle)
+                    } catch (e: Exception) {
+                        Timber.d(e.localizedMessage)
                     }
-                    cropCycleListAdapter = CropCycleTaskListAdapter(databaseReference!!,requireContext())
-                    cropCycleListAdapter!!.submitList(cropCycleTaskList)
-                    binding.cropCycleRecyclerView.adapter = cropCycleListAdapter
-                    Timber.tag(this.toString()).d("Alert! crop cycles available {}")
-                } else {
-                    Timber.tag(this.toString())
-                        .d("No crop cycle found {}, an error occurred while fetching")
-
                 }
+                cycleListAdapter.submitList(cropCycleTaskList)
+                Timber.d("Alert! crop cycles available: $cropCycleTaskList")
             }
-
-            @SuppressLint("BinaryOperationInTimber")
-            override fun onCancelled(error: DatabaseError) {
-                Timber.tag(this.toString())
-                    .d("an error occurred, try again!" +
-                            "server connection failed" +
-                            "${HttpURLConnection.HTTP_CLIENT_TIMEOUT}")
+            .addOnFailureListener { exception ->
+                Timber.d("Error getting crop cycles: $exception")
             }
-        })
     }
 }

@@ -413,6 +413,10 @@
         android:id="@+id/autoCreateCropCycleFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.AutoCreateCropCycleFragment"
         android:label="fragment_auto_create_crop_cycle"
-        tools:layout="@layout/fragment_auto_create_crop_cycle" />
+        tools:layout="@layout/fragment_auto_create_crop_cycle" >
+        <action
+            android:id="@+id/action_autoCreateCropCycleFragment_to_cropCycleTasksListFragment"
+            app:destination="@id/cropCycleTasksListFragment" />
+    </fragment>
 
 </navigation>

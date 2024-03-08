@@ -54,18 +54,17 @@
             android:layout_height="wrap_content">
 
             <Spinner
-                android:id="@+id/spinnerSelectCropType"
-                android:layout_width="match_parent"
+                android:id="@+id/spinnerCycleType"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/rounded_corner"
-                android:entries="@array/crop_list"
+                android:entries="@array/cycle_types"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="8dp"
                 android:spinnerMode="dropdown"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,8 +78,8 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/textColor"
                 android:hint="Enter Start Day?"
-                app:layout_constraintStart_toStartOf="@id/spinnerSelectCropType"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerSelectCropType"
+                app:layout_constraintStart_toStartOf="@id/spinnerCycleType"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerCycleType"
                 android:inputType="date" />
 
             <Spinner
@@ -124,7 +123,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/spinnerSelectCropType"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerSelectFarmBlockID"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/spinnerSelectFarmBlockID"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSelectFarmBlockID" />
@@ -134,12 +133,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:padding="16dp"
                 android:text="Schedule"
                 android:textColor="@color/main1"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/demoView" />
 
@@ -160,7 +161,34 @@
 
             </LinearLayout>
 
-<!--            <com.shuhart.stepview.StepView-->
+            <Spinner
+                android:id="@+id/spinnerCrop"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:spinnerMode="dropdown"
+                android:visibility="gone"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_corner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/viewAllCycleTypes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="textEnd"
+                android:text="View cycles"
+                android:textColor="@color/main"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="8dp"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textCropCycleMain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/demoView" />
+
+            <!--            <com.shuhart.stepview.StepView-->
 <!--                android:id="@+id/stepViewCropCycle"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
