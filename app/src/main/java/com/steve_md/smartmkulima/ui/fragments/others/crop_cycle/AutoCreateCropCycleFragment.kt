@@ -109,7 +109,8 @@ class AutoCreateCropCycleFragment : Fragment() {
                 //displayServiceCycleTasks()
                 binding.stepLinearLayout.removeAllViews()
                 val stepTextView = TextView(requireContext())
-                stepTextView.text = "$cropCycleStartDay | ${binding.spinnerSelectFarmBlockID.selectedItem}"
+                stepTextView.text = "Next Heat -> Drying -> Steaming -> Calving"
+                binding.stepLinearLayout.addView(stepTextView)
             }
         }
 
@@ -180,33 +181,6 @@ class AutoCreateCropCycleFragment : Fragment() {
         }
 
     }
-
-
-    private fun displayServiceCycleTasks() {
-        try {
-            val farmOrBlockId = binding.spinnerSelectFarmBlockID?.selectedItem?.toString()
-            val serviceCycleTasks = listOf(
-                "$farmOrBlockId Next Heat $cropCycleStartDay",
-                "$farmOrBlockId Date of Drying $cropCycleStartDay",
-                "$farmOrBlockId Date of Steaming $cropCycleStartDay",
-                "$farmOrBlockId Expected calving dates $cropCycleStartDay"
-            )
-            binding.stepLinearLayout?.removeAllViews()
-
-            for (task in serviceCycleTasks) {
-                val stepTextView = TextView(requireContext())
-                stepTextView.text = task
-                stepTextView.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                binding.stepLinearLayout?.addView(stepTextView)
-            }
-        } catch (e: Exception) {
-            Timber.e(e, "Error in displayServiceCycleTasks")
-        }
-    }
-
 
     private fun populateCropSpinner() {
         val cropList = resources.getStringArray(R.array.crop_list)
