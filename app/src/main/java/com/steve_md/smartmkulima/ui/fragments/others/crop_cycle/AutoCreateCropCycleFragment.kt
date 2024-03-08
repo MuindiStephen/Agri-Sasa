@@ -3,24 +3,17 @@ package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
-import com.shuhart.stepview.StepView
+import androidx.fragment.app.Fragment
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentAutoCreateCropCycleBinding
-import com.steve_md.smartmkulima.utils.toast
-import timber.log.Timber
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 
@@ -114,7 +107,6 @@ class AutoCreateCropCycleFragment : Fragment() {
                     stepTextView.setPadding(16, 16, 16, 16)
 
                     stepTextView.setOnClickListener {
-
                     }
                     binding.stepLinearLayout.addView(stepTextView)
                 }
