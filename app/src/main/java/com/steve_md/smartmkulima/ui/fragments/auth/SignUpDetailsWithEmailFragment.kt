@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -13,21 +12,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSignUpDetailsWithEmailBinding
-import com.steve_md.smartmkulima.model.User
 import com.steve_md.smartmkulima.utils.EventObserver
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.snackBar
-import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.AuthViewModel
-import com.steve_md.smartmkulima.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -87,12 +79,12 @@ class SignUpDetailsWithEmailFragment : Fragment() {
         viewModel.registerStatus.observe(viewLifecycleOwner, EventObserver(
             onError = {
                 binding.progressBarSignUp.isVisible = false
-                snackBar(it)
+                displaySnackBar(it)
             },
             onLoading = { binding.progressBarSignUp.isVisible = true }
         ) {
             binding.progressBarSignUp.isVisible = false
-            snackBar("Account created successfully")
+            displaySnackBar("Account created successfully")
         })
     }
 
