@@ -12,7 +12,7 @@ import com.steve_md.smartmkulima.databinding.CropCycleTaskRowBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
 import com.steve_md.smartmkulima.model.Cycle
 
-class CropCycleTaskListAdapter() :
+class CropCycleTaskListAdapter :
     ListAdapter<Cycle, CropCycleTaskListAdapter.MyViewHolder>(TaskDiffUtil) {
 
     object TaskDiffUtil : DiffUtil.ItemCallback<Cycle>() {

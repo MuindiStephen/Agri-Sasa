@@ -35,7 +35,7 @@ class ApplyInsuranceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = com.steve_md.smartmkulima.databinding.FragmentApplyInsuranceBinding.inflate(inflater, container, false)
+        binding = FragmentApplyInsuranceBinding.inflate(inflater, container, false)
 
         return binding.root
     }

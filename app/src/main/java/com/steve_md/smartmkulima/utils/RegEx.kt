@@ -10,7 +10,7 @@ object RegEx {
         return SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(Date())
     }
 
-    fun sanitizePhoneNumber(phone: String): String? {
+    fun sanitizePhoneNumber(phone: String): String {
         if (phone == "") {
             return ""
         }

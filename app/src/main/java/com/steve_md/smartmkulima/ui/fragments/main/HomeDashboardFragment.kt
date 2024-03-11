@@ -58,7 +58,9 @@ class HomeDashboardFragment : Fragment() {
 
                      if (currentUserLogged!=null){
                          if (username != null) {
-                             val pascalCaseUsername = username.substring(0, 1).toUpperCase() + username.substring(1).toLowerCase()
+                             val pascalCaseUsername = username.substring(0, 1)
+                                 .uppercase(Locale.getDefault()) + username.substring(1)
+                                 .lowercase(Locale.getDefault())
                              binding.includeToolBar.userNameTextView.text = pascalCaseUsername
                          }
                          Timber.tag("$this@HomeDashboardFragment").d("$username is loggedIn" )

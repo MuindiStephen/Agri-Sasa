@@ -22,17 +22,17 @@ class DarajaApiClient(
     private var mAuthToken: String? = null
     private val httpLoggingInterceptor = HttpLoggingInterceptor()
 
-    fun setIsDebug(isDebug: Boolean): DarajaApiClient? {
+    fun setIsDebug(isDebug: Boolean): DarajaApiClient {
         this.isDebug = isDebug
         return this
     }
 
-    fun setAuthToken(authToken: String?): DarajaApiClient? {
+    fun setAuthToken(authToken: String?): DarajaApiClient {
         mAuthToken = authToken
         return this
     }
 
-    fun setGetAccessToken(getAccessToken: Boolean): DarajaApiClient? {
+    fun setGetAccessToken(getAccessToken: Boolean): DarajaApiClient {
         isGetAccessToken = getAccessToken
         return this
     }
