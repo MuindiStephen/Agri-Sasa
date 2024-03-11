@@ -1,0 +1,8 @@
+jobs:
+  build:
+    working_directory: ~/src
+
+    steps:
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies fix
