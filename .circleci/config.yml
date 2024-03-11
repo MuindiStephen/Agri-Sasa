@@ -1,0 +1,7 @@
+jobs:
+  build:
+    working_directory: ~/src
+
+    - run:
+    name: Download Dependcies
+    command: ./gradlew androidDependencies
