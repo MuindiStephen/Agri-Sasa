@@ -45,9 +45,7 @@ class AuthViewModel @Inject constructor(
                 "Confirm password too short"
             } else if (password.length < 8 && confirmPassword.length < 8) {
                 "Password too short"
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                "Not a valid Email"
-            } else null
+            }  else null
 
         error?.let {
             _registerStatus.postValue(Event(Resource.Error(it)))

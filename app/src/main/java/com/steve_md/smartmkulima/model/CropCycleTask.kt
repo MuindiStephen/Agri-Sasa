@@ -17,9 +17,4 @@ data class CropCycleTask (
 ) {
     constructor() : this("","",Date(), Date(),"","","")
 }
-//    enum class TaskStatus(val status: String, val colorStatus: Int) {
-//        UPCOMING("Upcoming", R.color.violet),
-//        IN_PROGRESS("In Progress", R.color.blue),
-//        COMPLETED("Completed", R.color.green),
-//        OVERDUE("Overdue", R.color.red)
-//    }
+
