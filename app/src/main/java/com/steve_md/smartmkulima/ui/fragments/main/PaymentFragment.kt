@@ -120,9 +120,9 @@ class PaymentFragment : Fragment(), View.OnClickListener {
             timestamp = timestamp,
             transactionType = Constants.TransactionType.CustomerPayBillOnline,
             amount = amount,
-            partyA = RegEx.sanitizePhoneNumber(phoneNumber)!!,
+            partyA = RegEx.sanitizePhoneNumber(phoneNumber),
             partyB = PARTYB,
-            phoneNumber = RegEx.sanitizePhoneNumber(phoneNumber)!!,
+            phoneNumber = RegEx.sanitizePhoneNumber(phoneNumber),
             callBackURL = CALLBACKURL,
             accountReference = "LIPA NA MPESA",
             transactionDesc = "LIPA NA MPESA C2B"
@@ -168,10 +168,9 @@ class PaymentFragment : Fragment(), View.OnClickListener {
                                 }
                             }
                             displaySnackBar("Saved transaction successfully.")
-                            Timber.tag("Post submitted to the API")
-
+                            Timber.e("Post submitted to the API")
                         } else {
-                            Timber.tag("Response %s")
+                            Timber.e("Response %s")
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()
@@ -180,7 +179,6 @@ class PaymentFragment : Fragment(), View.OnClickListener {
 
                 override fun onFailure(call: Call<StkPushSuccessResponse>, t: Throwable) {
                     Timber.tag(TAG).e(httpException, t.printStackTrace().toString())
-
                 }
             })
     }

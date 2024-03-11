@@ -65,6 +65,7 @@ class MainViewModel @Inject constructor(
     }
 }
 
+// UI State
 data class FarmProduceState(
     val isLoading: Boolean = false,
     val error: String? = null,

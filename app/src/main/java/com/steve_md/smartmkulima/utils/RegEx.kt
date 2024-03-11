@@ -24,7 +24,6 @@ object RegEx {
 
     fun getPassword(businessShortCode: String, passkey: String, timestamp: String): String? {
         val str = businessShortCode + passkey + timestamp
-        //encode the password to Base64
         return encodeToString(str.toByteArray(), NO_WRAP)
     }
 }
