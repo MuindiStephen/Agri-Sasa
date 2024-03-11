@@ -31,8 +31,8 @@ class AuthViewModel @Inject constructor(
 
 
     fun registerUser(
-        email: String,
         username: String,
+        email: String,
         confirmPassword: String,
         password: String,
     ) {
@@ -54,7 +54,7 @@ class AuthViewModel @Inject constructor(
         _registerStatus.postValue(Event(Resource.Loading()))
 
         viewModelScope.launch(dispatcher) {
-            val result = authRepository.register(email, username, password, confirmPassword)
+            val result = authRepository.register(username, email,password, confirmPassword)
             _registerStatus.postValue(Event(result))
         }
     }

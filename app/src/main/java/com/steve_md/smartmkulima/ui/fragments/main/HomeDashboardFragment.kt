@@ -51,7 +51,7 @@ class HomeDashboardFragment : Fragment() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId!!)
 
-         databaseReference.child("username")
+         databaseReference.child("email")
              .addListenerForSingleValueEvent(object : ValueEventListener{
                  override fun onDataChange(snapshot: DataSnapshot) {
                      val username = snapshot.getValue(String::class.java)
@@ -61,7 +61,7 @@ class HomeDashboardFragment : Fragment() {
                              val pascalCaseUsername = username.substring(0, 1)
                                  .uppercase(Locale.getDefault()) + username.substring(1)
                                  .lowercase(Locale.getDefault())
-                             binding.includeToolBar.userNameTextView.text = pascalCaseUsername
+                             binding.includeToolBar.userNameTextView.text = username
                          }
                          Timber.tag("$this@HomeDashboardFragment").d("$username is loggedIn" )
                      }

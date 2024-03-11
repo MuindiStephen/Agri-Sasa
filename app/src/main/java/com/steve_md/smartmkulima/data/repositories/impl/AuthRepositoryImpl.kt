@@ -18,8 +18,8 @@ class AuthRepositoryImpl : AuthRepository{
     private  val firebaseAuth: FirebaseAuth =  FirebaseAuth.getInstance()
 
     override suspend fun register(
+        username: String,
         email: String,
-        userName: String,
         password: String,
         confirmPassword: String
     ): Resource<AuthResult> {
@@ -27,7 +27,7 @@ class AuthRepositoryImpl : AuthRepository{
             safeCall{
                 val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
                 val uid = result.user?.uid!!
-                val user = User(uid,email,userName,password,confirmPassword)
+                val user = User(uid,email,username,password,confirmPassword)
                 databaseReference.child(uid).setValue(user).await()
                 Resource.Success(result)
             }

@@ -85,6 +85,7 @@ class SignUpDetailsWithEmailFragment : Fragment() {
         ) {
             binding.progressBarSignUp.isVisible = false
             displaySnackBar("Account created successfully")
+            navigateToLogin()
         })
     }
 
