@@ -36,7 +36,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:padding="8dp"
-                android:text="F001"
+                android:text="service"
                 android:textColor="@color/textColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:padding="8dp"
-                android:text="MAIZE"
+                android:text="startday"
                 android:textColor="@color/textColor"
                 app:layout_constraintBottom_toBottomOf="@+id/farmID"
                 app:layout_constraintStart_toEndOf="@+id/farmID"
@@ -61,7 +61,7 @@
                 android:layout_marginStart="16dp"
                 android:padding="8dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="07 07 2024"
+                android:text="endday"
                 app:layout_constraintBottom_toBottomOf="@+id/cycleData"
                 app:layout_constraintStart_toEndOf="@+id/cycleData"
                 app:layout_constraintTop_toTopOf="@+id/cycleData" />

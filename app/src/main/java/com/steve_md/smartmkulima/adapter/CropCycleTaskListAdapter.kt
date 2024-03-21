@@ -21,7 +21,7 @@ class CropCycleTaskListAdapter :
         }
 
         override fun areContentsTheSame(oldItem: Cycle, newItem: Cycle): Boolean {
-            return oldItem.farmId == newItem.farmId
+            return oldItem.type == newItem.type
         }
     }
 
@@ -30,9 +30,9 @@ class CropCycleTaskListAdapter :
 
         @SuppressLint("SetTextI18n")
         fun bind(cycle: Cycle?) {
-            binding.farmID.text = cycle?.farmId
-            binding.cycleData.text = cycle?.cycle
-            binding.dateForCycle.text = cycle?.startDate
+            binding.farmID.text = cycle?.type
+            binding.cycleData.text = "Starts: ${cycle?.startDate}"
+            binding.dateForCycle.text = "ends: ${cycle?.endDate}"
         }
     }
 

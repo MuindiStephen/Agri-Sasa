@@ -22,8 +22,3 @@ interface TransactionDao {
     @Query("DELETE FROM `transactions`")
     suspend fun deleteAllTransactions()
 }
-
-/** @return @Query("SELECT * FROM .... ") fun get() { }
- * non - suspend functions are performing synchronous database operations
- * Therefore: They are expected to return the result immediately
- */

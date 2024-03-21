@@ -25,6 +25,9 @@ class ShambaApp : Application() {
         uiMode(itemUIMode)
     }
 
+    /**
+     * Support for Dark and Light mode
+     */
     private fun uiMode(itemUIMode: Boolean) {
         if (itemUIMode) {
             AppCompatDelegate.MODE_NIGHT_YES

@@ -107,14 +107,35 @@ class AutoCreateCropCycleFragment : Fragment() {
                 generateCropCycle()
             } else {
                 //displayServiceCycleTasks()
-                binding.stepLinearLayout.removeAllViews()
-                val stepTextView = TextView(requireContext())
-                stepTextView.text = "Next Heat -> Drying -> Steaming -> Calving"
-                binding.stepLinearLayout.addView(stepTextView)
+
+//                val stepTextView = TextView(requireContext())
+//                stepTextView.text = "SERVNext Heat -> Drying -> Steaming -> Calving"
+//                binding.stepLinearLayout.addView(stepTextView)
+
+                displayPredefinedServiceCycle()
             }
         }
 
     }
+
+    private fun displayPredefinedServiceCycle() {
+        binding.stepLinearLayout.removeAllViews()
+        val steps = listOf(
+            Step("Date of Service", 1, 1),
+            Step("Next Heat", 21, 21),
+            Step("Date of Drying", 219, 219),
+            Step("Date of Steaming", 249, 249),
+            Step("Expected calving dates", 279, 279)
+        )
+
+        steps.forEach { step ->
+            val stepTextView = TextView(requireContext())
+            // Set text with step name and details
+            stepTextView.text = "${step.name}: Start Day ${cropCycleStartDay?.time}, End Day ${step.endDay} \n"
+            binding.stepLinearLayout.addView(stepTextView)
+        }
+    }
+    data class Step(val name: String, val startDay: Int, val endDay: Int)
 
     private fun generateCropCycle() {
         val selectedCycleType = binding.spinnerCycleType.selectedItem.toString()
@@ -126,7 +147,7 @@ class AutoCreateCropCycleFragment : Fragment() {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val startDay = dateFormat.parse(startDayForCropCycle)
 
-            val cycle = Cycle(farmOrBlockId,selectedCycleType,selectedCycleType,startDayForCropCycle)
+            val cycle = Cycle(farmOrBlockId,selectedCycleType,selectedCycleType)
             // save cycle therein the db
             db.collection("cycles")
                 .add(cycle)

@@ -55,9 +55,6 @@ class HireFarmEquipmentsFragment : Fragment() {
                     )
                 findNavController().navigate(action)
             })
-
-
-
         /**
          * Get a List of all available Farm Equipments
          */

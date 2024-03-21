@@ -46,7 +46,6 @@ class DarajaApiClient(
             .addInterceptor(httpLoggingInterceptor)
         return okHttpClient
     }
-
     private fun getRestAdapter(): Retrofit? {
         val builder = Retrofit.Builder()
         builder.baseUrl(environment)
@@ -65,7 +64,6 @@ class DarajaApiClient(
         retrofit = builder.build()
         return retrofit
     }
-
     fun mpesaService(): DarajaApiService {
         return getRestAdapter()!!.create(DarajaApiService::class.java)
     }

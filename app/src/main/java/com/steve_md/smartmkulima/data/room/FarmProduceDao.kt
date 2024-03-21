@@ -15,7 +15,8 @@ interface FarmProduceDao {
     suspend fun insertFarmProduce(products: List<FarmProduce>)
 
     @Query("SELECT * FROM produce")
-    fun getAllFarmProduce() : Flow<List<FarmProduce>>
+    fun getAllFarmProduce() : Flow<List<FarmProduce>> // Emits values anytime data changes in the Room-db
+    // instead of livedata
 
     // When the device is online, instead cached data will be deleted and replaced with another one
     @Query("DELETE FROM produce")
