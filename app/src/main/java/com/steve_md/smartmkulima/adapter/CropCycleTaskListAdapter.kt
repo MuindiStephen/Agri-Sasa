@@ -30,9 +30,9 @@ class CropCycleTaskListAdapter :
 
         @SuppressLint("SetTextI18n")
         fun bind(cycle: Cycle?) {
-            binding.farmID.text = cycle?.type
-            binding.cycleData.text = "Starts: ${cycle?.startDate}"
-            binding.dateForCycle.text = "ends: ${cycle?.endDate}"
+//            binding.farmID.text = cycle?.type
+//            binding.cycleData.text = "Starts: ${cycle?.startDate}"
+//            binding.dateForCycle.text = "ends: ${cycle?.endDate}"
         }
     }
 
