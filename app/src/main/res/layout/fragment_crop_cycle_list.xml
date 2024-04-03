@@ -60,5 +60,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList" />
 
+    <TextView
+        android:id="@+id/errorNotAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="Nothing available, hold on. Please check your internet connection and try again!"
+        android:visibility="invisible"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="@color/main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cropCycleRecyclerView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

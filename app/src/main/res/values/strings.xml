@@ -24,6 +24,8 @@
     <string name="task_name">Task name</string>
     <string name="syd">Syd</string>
     <string name="or_view_available_crop_cycles">Or View available crop cycles ?</string>
+    <string name="block_a">Block A</string>
+    <string name="textview">TextView</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>
@@ -95,21 +97,28 @@
         <item>1</item> <!-- Media treatment -->
         <item>2</item> <!-- Transplanting -->
         <item>7</item> <!-- Weeks 1 -->
-        <item>0</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>0
+        </item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
         <item>2</item> <!-- Nutrient recycling -->
-        <item>0</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>0
+        </item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
         <item>2</item> <!-- Flushing with plain water and 50% Hydrogen Peroxide -->
-        <item>0</item> <!-- 1.25L of Vegegrow B+A 68% Nitric acid for pH correction and N supplementation -->
+        <item>0
+        </item> <!-- 1.25L of Vegegrow B+A 68% Nitric acid for pH correction and N supplementation -->
         <item>7</item> <!-- Weeks 2 -->
-        <item>1</item> <!-- 2.5L of Bud Booster and 68% Nitric acid for pH correction and N supplementation -->
+        <item>1
+        </item> <!-- 2.5L of Bud Booster and 68% Nitric acid for pH correction and N supplementation -->
         <item>0</item> <!-- Nutrient recycling -->
-        <item>1</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>1
+        </item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
         <item>1</item> <!-- Nutrient recycling -->
-        <item>0</item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
+        <item>0
+        </item> <!-- 1.25L of Vegegrow B+A and 68% Nitric acid for pH correction and N supplementation -->
         <item>1</item> <!-- Nutrient recycling -->
         <item>7</item> <!-- Weeks 3 -->
         <item>0</item> <!-- Flushing with plain water and 50% Hydrogen Peroxide -->
-        <item>1</item> <!-- 2.5L of Bud Booster and 68% Nitric acid for pH correction and N supplementation -->
+        <item>1
+        </item> <!-- 2.5L of Bud Booster and 68% Nitric acid for pH correction and N supplementation -->
     </integer-array>
 
 </resources>

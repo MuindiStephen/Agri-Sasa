@@ -12,6 +12,8 @@ object Constants {
     const val FARM_PRODUCE_BASE_URL = "https://testapi.io/api/stevemd/"
     const val FARM_EQUIPMENTS_BASE_URL = "https://testapi.io/api/stevemd/"
 
+    const val CYCLES_BASE_URL = "https://testapi.io/api/stevemd/"
+
     /**
      *  Payment Integration constants
      */

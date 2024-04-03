@@ -12,15 +12,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.steve_md.smartmkulima.adapter.CropCycleTaskListAdapter
+import com.steve_md.smartmkulima.data.remote.CyclesApiClient
+import com.steve_md.smartmkulima.data.remote.FarmEquipmentsApiClient
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleListBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
 import com.steve_md.smartmkulima.model.Cycle
+import com.steve_md.smartmkulima.model.FarmEquipment
+import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.toast
+import retrofit2.Call
+import retrofit2.Response
 import timber.log.Timber
 import java.net.HttpURLConnection
 
 class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding
-    private lateinit var firestore: FirebaseFirestore
     private lateinit var cycleListAdapter: CropCycleTaskListAdapter
 
     override fun onCreateView(
@@ -35,9 +41,10 @@ class CropCycleTasksListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        firestore = FirebaseFirestore.getInstance()
+
 
         setUpBinding()
         setUpRecyclerView()
@@ -49,7 +56,14 @@ class CropCycleTasksListFragment : Fragment() {
         binding.cropCycleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize the adapter
-        cycleListAdapter = CropCycleTaskListAdapter()
+        cycleListAdapter = CropCycleTaskListAdapter(CropCycleTaskListAdapter.OnClickListener { cycle ->
+            Timber.i("=====Checking=======>: ${cycle.cropName} cycle")
+
+            val directions = CropCycleTasksListFragmentDirections.actionCropCycleTasksListFragmentToDetailedFarmCycleFragment(
+                cycle
+            )
+            findNavController().navigate(directions)
+        })
 
         // Set the adapter to the RecyclerView
         binding.cropCycleRecyclerView.adapter = cycleListAdapter
@@ -59,24 +73,37 @@ class CropCycleTasksListFragment : Fragment() {
         binding.imageViewBackFromCropCycleLists.setOnClickListener { findNavController().navigateUp() }
     }
 
+    // Fetch from remote API (web-service)
     private fun getAllAvailableCropCycle() {
-        firestore.collection("cycles")
-            .get()
-            .addOnSuccessListener { documents ->
-                val cropCycleTaskList = mutableListOf<Cycle>()
-                for (document in documents) {
-                    try {
-                        val cropCycle = document.toObject(Cycle::class.java)
-                        cropCycleTaskList.add(cropCycle)
-                    } catch (e: Exception) {
-                        Timber.d(e.localizedMessage)
+        CyclesApiClient.api.getAllFarmCycles()
+            .enqueue(object : retrofit2.Callback<ArrayList<Cycle>> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onResponse(
+                    call: Call<ArrayList<Cycle>>,
+                    response: Response<ArrayList<Cycle>>
+                ) {
+                    if (response.isSuccessful) {
+
+                        Timber.i("====Viewing Farm cycles${response.body()}=====")
+                        displaySnackBar("Farm Equipments for hire are available")
+
+                        val cycles = response.body()
+
+                        val newList = ArrayList<Cycle>()
+
+                        newList.addAll(cycles!!)
+
+                        cycleListAdapter.submitList(newList)
+                        cycleListAdapter.notifyDataSetChanged()
+                        binding.cropCycleRecyclerView.adapter = cycleListAdapter
+                        binding.cropCycleRecyclerView.visibility = View.VISIBLE
                     }
                 }
-                cycleListAdapter.submitList(cropCycleTaskList)
-                Timber.d("Alert! crop cycles available: $cropCycleTaskList")
-            }
-            .addOnFailureListener { exception ->
-                Timber.d("Error getting crop cycles: $exception")
-            }
+                override fun onFailure(call: Call<ArrayList<Cycle>>, t: Throwable) {
+                    toast("nothing here.${t.localizedMessage}")
+                    binding.errorNotAvailable.visibility = View.VISIBLE
+                    binding.cropCycleRecyclerView.visibility = View.INVISIBLE
+                }
+            })
     }
 }

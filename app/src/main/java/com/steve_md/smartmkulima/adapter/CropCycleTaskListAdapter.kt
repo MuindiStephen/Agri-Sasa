@@ -11,8 +11,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.steve_md.smartmkulima.databinding.CropCycleTaskRowBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
 import com.steve_md.smartmkulima.model.Cycle
+import com.steve_md.smartmkulima.model.FarmEquipment
 
-class CropCycleTaskListAdapter :
+class CropCycleTaskListAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Cycle, CropCycleTaskListAdapter.MyViewHolder>(TaskDiffUtil) {
 
     object TaskDiffUtil : DiffUtil.ItemCallback<Cycle>() {
@@ -30,9 +31,9 @@ class CropCycleTaskListAdapter :
 
         @SuppressLint("SetTextI18n")
         fun bind(cycle: Cycle?) {
-//            binding.farmID.text = cycle?.type
-//            binding.cycleData.text = "Starts: ${cycle?.startDate}"
-//            binding.dateForCycle.text = "ends: ${cycle?.endDate}"
+            binding.farmID.text = cycle?.farmId
+            binding.cycleData.text = cycle?.cropName
+            binding.dateForCycle.text = cycle?.startDate
         }
     }
 
@@ -45,5 +46,13 @@ class CropCycleTaskListAdapter :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val cycle = getItem(position)
         holder.bind(cycle)
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(cycle = cycle)
+        }
+    }
+
+    class OnClickListener(val clickListener: (cycle: Cycle) -> Unit) {
+        fun onClick(cycle: Cycle) = clickListener(cycle)
     }
 }

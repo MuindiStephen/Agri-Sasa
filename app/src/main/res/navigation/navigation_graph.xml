@@ -61,7 +61,7 @@
         tools:layout="@layout/fragment_change_password" />
     <fragment
         android:id="@+id/signInDetailsFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsWithPhoneFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.SignInDetailsFragment"
         android:label="fragment_sign_in_details"
         tools:layout="@layout/fragment_sign_in_details_with_phone" >
         <action
@@ -408,7 +408,11 @@
         android:id="@+id/cropCycleTasksListFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleTasksListFragment"
         android:label="fragment_crop_cycle_list"
-        tools:layout="@layout/fragment_crop_cycle_list" />
+        tools:layout="@layout/fragment_crop_cycle_list" >
+        <action
+            android:id="@+id/action_cropCycleTasksListFragment_to_detailedFarmCycleFragment"
+            app:destination="@id/detailedFarmCycleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/autoCreateCropCycleFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.AutoCreateCropCycleFragment"
@@ -417,6 +421,15 @@
         <action
             android:id="@+id/action_autoCreateCropCycleFragment_to_cropCycleTasksListFragment"
             app:destination="@id/cropCycleTasksListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedFarmCycleFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.DetailedFarmCycleFragment"
+        android:label="fragment_detailed_farm_cycle"
+        tools:layout="@layout/fragment_detailed_farm_cycle" >
+        <argument
+            android:name="cycle"
+            app:argType="com.steve_md.smartmkulima.model.Cycle" />
     </fragment>
 
 </navigation>
