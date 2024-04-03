@@ -83,7 +83,7 @@ class AutoCreateCropCycleFragment : Fragment() {
                         //displayServiceCycleTasks()
                         binding.stepLinearLayout.removeAllViews()
                         val stepTextView = TextView(requireContext())
-                        stepTextView.text = "$cropCycleStartDay | ${binding.spinnerSelectFarmBlockID.selectedItem}"
+                        stepTextView.text = "$cropCycleStartDay | ${binding.enterFarmBlockID.text}"
 
                     }
                     else {
@@ -140,26 +140,13 @@ class AutoCreateCropCycleFragment : Fragment() {
     private fun generateCropCycle() {
         val selectedCycleType = binding.spinnerCycleType.selectedItem.toString()
         val startDayForCropCycle = binding.cropCycleStartDay.text.toString()
-        val farmOrBlockId = binding.spinnerSelectFarmBlockID.selectedItem.toString()
+        val farmOrBlockId = binding.enterFarmBlockID.text.toString()
 
         if (selectedCycleType.isNotEmpty() && startDayForCropCycle.isNotEmpty() && farmOrBlockId.isNotEmpty()) {
             // Parse start date
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val startDay = dateFormat.parse(startDayForCropCycle)
 
-            val cycle = Cycle(farmOrBlockId,selectedCycleType,selectedCycleType)
-            // save cycle therein the db
-            db.collection("cycles")
-                .add(cycle)
-                .addOnSuccessListener { documentReference ->
-                    // Handle success
-                    Timber.tag("AutoCreateCropCycleFragment"
-                    ).d("Cycle document added with ID: " + documentReference.id)
-                }
-                .addOnFailureListener { e ->
-                    // Handle failure
-                    Timber.d("failed ${e.localizedMessage}")
-                }
 
 
             // Sample crop cycle stages

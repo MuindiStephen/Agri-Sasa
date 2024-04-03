@@ -35,7 +35,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/nunito_sans_semibold"
             android:gravity="center"
-            android:text="Crop Cycle Generator"
+            android:text="Farm Cycle Generator"
             android:textColor="#F1ECE7"
             android:textSize="18sp" />
     </LinearLayout>
@@ -82,21 +82,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/spinnerCycleType"
                 android:inputType="date" />
 
-            <Spinner
-                android:id="@+id/spinnerSelectFarmBlockID"
+            <EditText
+                android:id="@+id/enterFarmBlockID"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:inputType="text"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/rounded_corner"
-                android:entries="@array/farm_block_list"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="8dp"
-                android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cropCycleStartDay" />
+                app:layout_constraintTop_toBottomOf="@id/cropCycleStartDay"
+                android:autofillHints="farm" />
 
             <TextView
                 android:id="@+id/demoView"
@@ -123,10 +123,10 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/spinnerSelectFarmBlockID"
+                app:layout_constraintEnd_toEndOf="@+id/enterFarmBlockID"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/spinnerSelectFarmBlockID"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerSelectFarmBlockID" />
+                app:layout_constraintStart_toStartOf="@+id/enterFarmBlockID"
+                app:layout_constraintTop_toBottomOf="@+id/enterFarmBlockID" />
 
             <TextView
                 android:id="@+id/textCropCycleMain"

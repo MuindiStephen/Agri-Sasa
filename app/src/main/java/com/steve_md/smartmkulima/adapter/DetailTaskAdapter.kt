@@ -1,19 +1,20 @@
 package com.steve_md.smartmkulima.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.steve_md.smartmkulima.databinding.DetailCycleRowBinding
-import com.steve_md.smartmkulima.model.Task
+import com.steve_md.smartmkulima.model.Tasks
 
 class DetailTaskAdapter : RecyclerView.Adapter<DetailTaskAdapter.TaskViewHolder>() {
 
-    private var tasks: List<Task> = ArrayList()
+    private var tasks: List<Tasks> = ArrayList()
 
     inner class TaskViewHolder(private val binding: DetailCycleRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(task: Task) {
+        fun bind(task: Tasks) {
            binding.textView75.text = task.taskName
             binding.textView76.text = task.startDate
             binding.textView77.text = task.endDate
@@ -35,7 +36,8 @@ class DetailTaskAdapter : RecyclerView.Adapter<DetailTaskAdapter.TaskViewHolder>
         return tasks.size
     }
 
-    fun submitList(taskList: List<Task>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun submitList(taskList: List<Tasks>) {
         tasks = taskList
         notifyDataSetChanged()
     }

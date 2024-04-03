@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="105dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,9 +71,10 @@
         android:id="@+id/textView79"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tasks"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/textView78"
+        android:text="Tasks"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView78" />
 
     <View
@@ -85,4 +86,40 @@
         android:layout_marginEnd="50dp"
         android:background="@color/main"
         app:layout_constraintTop_toBottomOf="@id/textView78"/>
+
+    <TextView
+        android:id="@+id/textView80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="TaskName"
+        android:textSize="11sp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView79"
+        app:layout_constraintStart_toEndOf="@+id/textView79"
+        app:layout_constraintTop_toTopOf="@+id/textView79" />
+
+    <TextView
+        android:id="@+id/textView81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Start Date"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView80"
+        app:layout_constraintStart_toEndOf="@+id/textView80"
+        app:layout_constraintTop_toTopOf="@+id/textView80" />
+
+    <TextView
+        android:id="@+id/textView82"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Date"
+        android:textSize="11sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView81"
+        app:layout_constraintStart_toEndOf="@+id/textView81"
+        app:layout_constraintTop_toTopOf="@+id/textView81" />
 </androidx.constraintlayout.widget.ConstraintLayout>

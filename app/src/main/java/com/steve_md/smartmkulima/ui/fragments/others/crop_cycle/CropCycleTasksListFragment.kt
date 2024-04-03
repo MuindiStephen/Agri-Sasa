@@ -85,7 +85,7 @@ class CropCycleTasksListFragment : Fragment() {
                     if (response.isSuccessful) {
 
                         Timber.i("====Viewing Farm cycles${response.body()}=====")
-                        displaySnackBar("Farm Equipments for hire are available")
+                        displaySnackBar("Viewing Available cycles")
 
                         val cycles = response.body()
 
