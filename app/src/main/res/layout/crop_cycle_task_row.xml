@@ -66,6 +66,17 @@
                 app:layout_constraintStart_toEndOf="@+id/cycleData"
                 app:layout_constraintTop_toTopOf="@+id/cycleData" />
 
+            <TextView
+                android:id="@+id/textView85"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="cycle"
+                android:visibility="invisible"
+                android:textSize="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <!--            <TextView-->
 <!--                android:id="@+id/startDay"-->
 <!--                android:layout_width="wrap_content"-->

@@ -74,6 +74,12 @@
         <item>SPRING</item>
     </string-array>
 
+    <string-array name="cycle">
+        <item>Filter by:</item>
+        <item>Crops</item>
+        <item>Livestocks</item>
+    </string-array>
+
     <string-array name="task_names">
         <item>Seedling Acquisition</item>
         <item>Media Acquisition</item>

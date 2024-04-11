@@ -28,6 +28,7 @@ class HireFarmEquipmentsFragment : Fragment() {
     private lateinit var binding: FragmentHireFarmEquipmentsBinding
     private lateinit var farmEquipmentsRecylerView: RecyclerView
     private lateinit var farmEquipmentsAdapter: FarmEquipmentAdapter
+    private var farmEquipmentsList = ArrayList<FarmEquipment>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -72,11 +73,11 @@ class HireFarmEquipmentsFragment : Fragment() {
 
                         val farmEquipments = response.body()
 
-                        val newList = ArrayList<FarmEquipment>()
+                        farmEquipments?.let {
+                            farmEquipmentsList.addAll(it)
+                            farmEquipmentsAdapter.submitList(farmEquipmentsList)
+                        }
 
-                        newList.addAll(farmEquipments!!)
-
-                        farmEquipmentsAdapter.submitList(newList)
                         farmEquipmentsAdapter.notifyDataSetChanged()
                         farmEquipmentsRecylerView.adapter = farmEquipmentsAdapter
                         farmEquipmentsRecylerView.visibility = View.VISIBLE
@@ -93,5 +94,18 @@ class HireFarmEquipmentsFragment : Fragment() {
         binding.imageViewBackFromFarmEquipments.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        // performing filtering of farm equipments here
+        binding.card1.setOnClickListener {
+            filterFarmEquipments("F")
+        }
+        binding.card2.setOnClickListener { filterFarmEquipments("W") }
+        binding.card3.setOnClickListener { filterFarmEquipments("J") }
+        binding.card4.setOnClickListener { filterFarmEquipments("P") }
+    }
+
+    private fun filterFarmEquipments(query: String) {
+        val filteredList = farmEquipmentsList.filter { it.name.contains(query, ignoreCase = true) }
+        farmEquipmentsAdapter.submitList(filteredList.toMutableList())
     }
 }

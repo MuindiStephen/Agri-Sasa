@@ -34,6 +34,7 @@ class CropCycleTaskListAdapter(private val onClickListener: OnClickListener) :
             binding.farmID.text = cycle?.farmId
             binding.cycleData.text = cycle?.cropName
             binding.dateForCycle.text = cycle?.startDate
+            binding.textView85.text = cycle?.type
         }
     }
 

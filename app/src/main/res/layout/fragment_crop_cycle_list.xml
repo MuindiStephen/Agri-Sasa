@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_gray"
+    android:fitsSystemWindows="true"
     tools:context=".ui.fragments.others.crop_cycle.CropCycleTasksListFragment">
 
     <LinearLayout
@@ -42,21 +43,23 @@
         android:id="@+id/cropCycleRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        tools:listitem="@layout/crop_cycle_task_row"
+        android:layout_marginTop="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList"
+        app:layout_constraintVertical_bias="0.883"
+        tools:listitem="@layout/crop_cycle_task_row" />
 
     <TextView
         android:id="@+id/textView74"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Farm Cycles"
+        android:text="All Farm Cycles"
         android:fontFamily="@font/montserrat_semibold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList" />
 
@@ -73,6 +76,64 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cropCycleRecyclerView" />
+
+
+    <TextView
+        android:id="@+id/textView79"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="140dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Filter by:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView74"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList" />
+
+    <TextView
+        android:id="@+id/textView83CropCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crop"
+        android:background="@drawable/rounded_corner"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:padding="2dp"
+        android:backgroundTint="@color/main"
+        android:textColor="@color/whitish"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView79"
+        app:layout_constraintStart_toEndOf="@+id/textView79"
+        app:layout_constraintTop_toTopOf="@+id/textView79" />
+
+    <TextView
+        android:id="@+id/textView84"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Livestock"
+        android:layout_marginStart="8dp"
+        android:padding="4dp"
+        android:backgroundTint="@color/gray"
+        android:fontFamily="@font/montserrat_medium"
+        android:background="@drawable/rounded_corner"
+        app:layout_constraintBottom_toBottomOf="@+id/textView83CropCycle"
+        app:layout_constraintStart_toEndOf="@+id/textView83CropCycle"
+        app:layout_constraintTop_toTopOf="@+id/textView83CropCycle" />
+
+    <ProgressBar
+        android:id="@+id/progressBarCycles"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/cropCycleRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:indeterminateTint="@color/main"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList"
+        app:layout_constraintVertical_bias="0.08" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
