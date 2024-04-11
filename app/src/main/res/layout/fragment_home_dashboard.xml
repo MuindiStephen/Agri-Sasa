@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     android:scrollbars="none"
     tools:context=".ui.fragments.main.HomeDashboardFragment">
 
@@ -28,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="60dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="What would you like to know??"
@@ -195,6 +197,7 @@
             android:layout_height="248dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -256,6 +259,7 @@
             android:layout_height="146dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView8"
             app:layout_constraintStart_toStartOf="@+id/cardView8"
             app:layout_constraintTop_toBottomOf="@+id/cardView8"
@@ -292,5 +296,17 @@
             app:layout_constraintTop_toTopOf="@+id/includeToolBar"
             app:layout_constraintVertical_bias="0.54" />
 
+        <TextView
+            android:id="@+id/textViewLastLoggedInTimeDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:text="@string/last_login_apr_10_2024"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

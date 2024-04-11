@@ -6,40 +6,61 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-
-    <TextView
-        android:id="@+id/textView75"
+    <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="weeding"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="11sp"
-        android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView76"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="2024-04-08"
-        android:textSize="11sp"
-        android:fontFamily="@font/montserrat_semibold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView75"
-        app:layout_constraintStart_toEndOf="@+id/textView75"
-        app:layout_constraintTop_toTopOf="@+id/textView75" />
+        <TableRow>
 
-    <TextView
-        android:id="@+id/textView77"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="2024-08-30"
-        android:textSize="11sp"
-        android:fontFamily="@font/montserrat_semibold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView76"
-        app:layout_constraintStart_toEndOf="@+id/textView76"
-        app:layout_constraintTop_toTopOf="@+id/textView76" />
+            <androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                    android:id="@+id/textView75"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="weeding"
+                android:padding="4dp"
+                    android:layout_marginStart="8dp"
+                android:background="@drawable/custom_cell"
+                    android:layout_marginTop="1dp"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView76"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:text="2024-04-08"
+                    android:background="@drawable/custom_cell"
+                    android:textSize="11sp"
+                    android:padding="4dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView75"
+                    app:layout_constraintStart_toEndOf="@+id/textView75"
+                    app:layout_constraintTop_toTopOf="@+id/textView75" />
+
+                <TextView
+                    android:id="@+id/textView77"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:text="2024-08-30"
+                    android:background="@drawable/custom_cell"
+                    android:textSize="11sp"
+                    android:padding="4dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView76"
+                    app:layout_constraintStart_toEndOf="@+id/textView76"
+                    app:layout_constraintTop_toTopOf="@+id/textView76" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </TableRow>
+
+    </TableLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

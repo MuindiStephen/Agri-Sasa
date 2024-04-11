@@ -33,7 +33,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/nunito_sans_semibold"
             android:gravity="center"
-            android:text="Crop Cycles Available"
+            android:text="Farm Cycles Available"
             android:textColor="#F1ECE7"
             android:textSize="18sp" />
     </LinearLayout>
