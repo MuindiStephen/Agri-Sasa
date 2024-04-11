@@ -26,6 +26,7 @@
     <string name="or_view_available_crop_cycles">Or View available crop cycles ?</string>
     <string name="block_a">Block A</string>
     <string name="textview">TextView</string>
+    <string name="last_login_apr_10_2024">Last login: Apr 10, 2024</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>
@@ -71,6 +72,12 @@
         <item>SUMMER</item>
         <item>AUTUMN</item>
         <item>SPRING</item>
+    </string-array>
+
+    <string-array name="cycle">
+        <item>Filter by:</item>
+        <item>Crops</item>
+        <item>Livestocks</item>
     </string-array>
 
     <string-array name="task_names">

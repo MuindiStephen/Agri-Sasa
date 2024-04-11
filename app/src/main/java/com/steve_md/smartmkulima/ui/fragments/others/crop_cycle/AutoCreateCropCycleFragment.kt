@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
@@ -29,7 +30,6 @@ class AutoCreateCropCycleFragment : Fragment() {
     private lateinit var binding: FragmentAutoCreateCropCycleBinding
     private var cropCycleStartDay: Calendar? = null
 
-    private val db = FirebaseFirestore.getInstance()
 
     private val cycleTypes by lazy { resources.getStringArray(R.array.cycle_types) }
 
@@ -57,9 +57,7 @@ class AutoCreateCropCycleFragment : Fragment() {
     private fun setUpBinding() {
 
         binding.viewAllCycleTypes.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_autoCreateCropCycleFragment_to_cropCycleTasksListFragment
-            )
+            goToCropCycle()
         }
 
         val cycleTypeAdapter =
@@ -78,15 +76,14 @@ class AutoCreateCropCycleFragment : Fragment() {
                     val selectedCycleType = cycleTypes[position]
                     if (selectedCycleType == "Crop Cycle") {
                         populateCropSpinner()
-                    } else if (selectedCycleType == "Service Cycle"){
+                    } else if (selectedCycleType == "Service Cycle") {
                         binding.spinnerCrop.visibility = View.GONE
                         //displayServiceCycleTasks()
                         binding.stepLinearLayout.removeAllViews()
                         val stepTextView = TextView(requireContext())
                         stepTextView.text = "$cropCycleStartDay | ${binding.enterFarmBlockID.text}"
 
-                    }
-                    else {
+                    } else {
                         return
                     }
                 }
@@ -118,6 +115,13 @@ class AutoCreateCropCycleFragment : Fragment() {
 
     }
 
+    private fun goToCropCycle() {
+        findNavController().navigate(
+            R.id.action_autoCreateCropCycleFragment_to_cropCycleTasksListFragment
+        )
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun displayPredefinedServiceCycle() {
         binding.stepLinearLayout.removeAllViews()
         val steps = listOf(
@@ -131,10 +135,12 @@ class AutoCreateCropCycleFragment : Fragment() {
         steps.forEach { step ->
             val stepTextView = TextView(requireContext())
             // Set text with step name and details
-            stepTextView.text = "${step.name}: Start Day ${cropCycleStartDay?.time}, End Day ${step.endDay} \n"
+            stepTextView.text =
+                "${step.name}: Start Day ${cropCycleStartDay?.time}, End Day ${step.endDay} \n"
             binding.stepLinearLayout.addView(stepTextView)
         }
     }
+
     data class Step(val name: String, val startDay: Int, val endDay: Int)
 
     private fun generateCropCycle() {
@@ -146,7 +152,6 @@ class AutoCreateCropCycleFragment : Fragment() {
             // Parse start date
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val startDay = dateFormat.parse(startDayForCropCycle)
-
 
 
             // Sample crop cycle stages

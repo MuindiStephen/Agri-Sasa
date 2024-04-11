@@ -1,5 +1,7 @@
 package com.steve_md.smartmkulima.utils
 
+import android.annotation.SuppressLint
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,4 +18,13 @@ object DateFormat {
         val date = Date(timestamp)
         return timeFormat.format(date)
     }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getLastLoginDayAndDate(): String? {
+        val cal = Calendar.getInstance()
+        val sdf = SimpleDateFormat("EEE, MMM d, yyyy")
+        val dateformat = DateFormat.getDateInstance(DateFormat.MEDIUM)
+        return dateformat.format(cal.time)
+    }
+
 }

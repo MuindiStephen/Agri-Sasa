@@ -412,6 +412,9 @@
         <action
             android:id="@+id/action_cropCycleTasksListFragment_to_detailedFarmCycleFragment"
             app:destination="@id/detailedFarmCycleFragment" />
+        <action
+            android:id="@+id/action_cropCycleTasksListFragment_to_autoCreateCropCycleFragment"
+            app:destination="@id/autoCreateCropCycleFragment" />
     </fragment>
     <fragment
         android:id="@+id/autoCreateCropCycleFragment"

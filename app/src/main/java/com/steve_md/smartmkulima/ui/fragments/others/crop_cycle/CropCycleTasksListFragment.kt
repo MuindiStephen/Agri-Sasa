@@ -1,6 +1,8 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.CropCycleTaskListAdapter
 import com.steve_md.smartmkulima.data.remote.CyclesApiClient
 import com.steve_md.smartmkulima.data.remote.FarmEquipmentsApiClient
@@ -24,10 +27,12 @@ import retrofit2.Call
 import retrofit2.Response
 import timber.log.Timber
 import java.net.HttpURLConnection
+import java.util.logging.Handler
 
 class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding
     private lateinit var cycleListAdapter: CropCycleTaskListAdapter
+    private var cycleList = ArrayList<Cycle>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +48,6 @@ class CropCycleTasksListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.hide()
-
-
 
         setUpBinding()
         setUpRecyclerView()
@@ -69,15 +72,33 @@ class CropCycleTasksListFragment : Fragment() {
         binding.cropCycleRecyclerView.adapter = cycleListAdapter
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setUpBinding() {
         binding.imageViewBackFromCropCycleLists.setOnClickListener { findNavController().navigateUp() }
+
+        binding.textView74.setOnClickListener {
+           // binding.cropCycleRecyclerView.removeAllViews()
+            android.os.Handler().postDelayed({
+                binding.progressBarCycles.visibility = View.GONE
+//                getAllAvailableCropCycle()
+            }, 1500)
+        }
+
+        binding.textView83CropCycle.setOnClickListener {
+            filterCycles("Crop cycle")
+        }
+        binding.textView84.setOnClickListener {
+
+            filterCycles("Livestock cycle")
+        }
+
     }
 
     // Fetch from remote API (web-service)
     private fun getAllAvailableCropCycle() {
         CyclesApiClient.api.getAllFarmCycles()
             .enqueue(object : retrofit2.Callback<ArrayList<Cycle>> {
-                @SuppressLint("NotifyDataSetChanged")
+                @SuppressLint("NotifyDataSetChanged", "ResourceAsColor")
                 override fun onResponse(
                     call: Call<ArrayList<Cycle>>,
                     response: Response<ArrayList<Cycle>>
@@ -85,25 +106,31 @@ class CropCycleTasksListFragment : Fragment() {
                     if (response.isSuccessful) {
 
                         Timber.i("====Viewing Farm cycles${response.body()}=====")
-                        displaySnackBar("Viewing Available cycles")
+                       // displaySnackBar("Viewing Available cycles")
 
                         val cycles = response.body()
 
-                        val newList = ArrayList<Cycle>()
 
-                        newList.addAll(cycles!!)
-
-                        cycleListAdapter.submitList(newList)
+                        cycles?.let {
+                            cycleList.addAll(it)
+                            cycleListAdapter.submitList(cycleList)
+                        }
                         cycleListAdapter.notifyDataSetChanged()
                         binding.cropCycleRecyclerView.adapter = cycleListAdapter
                         binding.cropCycleRecyclerView.visibility = View.VISIBLE
+
                     }
                 }
                 override fun onFailure(call: Call<ArrayList<Cycle>>, t: Throwable) {
-                    toast("nothing here.${t.localizedMessage}")
+                    Timber.e("nothing here.${t.localizedMessage}")
                     binding.errorNotAvailable.visibility = View.VISIBLE
                     binding.cropCycleRecyclerView.visibility = View.INVISIBLE
                 }
             })
+    }
+
+    private fun filterCycles(s: String) {
+        val filteredList = cycleList.filter { it.type.equals(s, ignoreCase = true) }
+        cycleListAdapter.submitList(filteredList.toMutableList())
     }
 }
