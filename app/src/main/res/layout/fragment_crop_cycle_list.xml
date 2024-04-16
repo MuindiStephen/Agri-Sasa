@@ -39,17 +39,45 @@
             android:textSize="18sp" />
     </LinearLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchView"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/white"
+        app:endIconDrawable="@drawable/ic_search"
+        app:endIconMode="custom"
+        app:endIconTint="#aaaaaa"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView74">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search farm cycles"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:textColorHint="@color/main" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cropCycleRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="170dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList"
-        app:layout_constraintVertical_bias="0.883"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
         tools:listitem="@layout/crop_cycle_task_row" />
 
     <TextView
@@ -99,7 +127,7 @@
         android:background="@drawable/rounded_corner"
         android:clickable="true"
         android:fontFamily="@font/montserrat_medium"
-        android:padding="2dp"
+        android:padding="4dp"
         android:backgroundTint="@color/main"
         android:textColor="@color/whitish"
         android:layout_marginStart="2dp"
@@ -112,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Livestock"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="6dp"
         android:padding="4dp"
         android:backgroundTint="@color/gray"
         android:fontFamily="@font/montserrat_medium"

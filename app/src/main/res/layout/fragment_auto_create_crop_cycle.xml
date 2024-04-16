@@ -139,7 +139,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:padding="16dp"
                 android:text="Schedule"
-                android:textColor="@color/main1"
+                android:textColor="@color/main"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -22,6 +23,7 @@ import com.steve_md.smartmkulima.model.CropCycleTask
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmEquipment
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
 import retrofit2.Call
 import retrofit2.Response
@@ -90,6 +92,36 @@ class CropCycleTasksListFragment : Fragment() {
         binding.textView84.setOnClickListener {
 
             filterCycles("Livestock cycle")
+        }
+
+        binding.searchProduct.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                hideKeyboard()
+
+                val searchText = binding.searchView.editText?.text.toString().trim()
+
+                if (searchText.isEmpty()) {
+                    toast("Enter some text in order to search")
+                    false
+                }
+                filterCycles(searchText)
+                true
+            } else {
+                false
+            }
+
+        }
+
+        binding.searchView.setEndIconOnClickListener {
+            hideKeyboard()
+
+            if (binding.searchView.editText?.text.isNullOrEmpty()) {
+                return@setEndIconOnClickListener
+            }
+
+            binding.searchView.editText?.setText("")
+            getAllAvailableCropCycle()
         }
 
     }

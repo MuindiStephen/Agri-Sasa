@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSplashBinding
+import com.steve_md.smartmkulima.utils.makeStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -33,9 +34,9 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+       // makeStatusBarTransparent()
 
         val userIsLoggedIn = FirebaseAuth.getInstance().currentUser
-
 
         Handler(Looper.getMainLooper()).postDelayed({
 

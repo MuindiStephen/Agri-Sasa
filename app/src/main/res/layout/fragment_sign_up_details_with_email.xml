@@ -25,7 +25,7 @@
         android:layout_width="38.75dp"
         android:layout_height="50.45dp"
         android:layout_marginTop="1dp"
-        android:src="@drawable/ic_plant_growing_svgrepo_com2"
+        android:src="@drawable/group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainAuthsToolbar"/>

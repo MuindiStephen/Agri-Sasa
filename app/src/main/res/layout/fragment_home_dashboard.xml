@@ -303,6 +303,7 @@
             android:layout_marginStart="22dp"
             android:text="@string/last_login_apr_10_2024"
             android:textSize="12sp"
+            android:textColor="@color/main"
             android:fontFamily="@font/montserrat_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
