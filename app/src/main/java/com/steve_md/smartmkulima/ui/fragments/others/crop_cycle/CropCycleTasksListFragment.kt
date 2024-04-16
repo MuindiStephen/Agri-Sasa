@@ -105,7 +105,7 @@ class CropCycleTasksListFragment : Fragment() {
                     toast("Enter some text in order to search")
                     false
                 }
-                filterCycles(searchText)
+                searching(searchText)
                 true
             } else {
                 false
@@ -161,6 +161,10 @@ class CropCycleTasksListFragment : Fragment() {
             })
     }
 
+    private fun searching(s: String) {
+        val filteredList = cycleList.filter { it.farmId.equals(s, ignoreCase = true) }
+        cycleListAdapter.submitList(filteredList.toMutableList())
+    }
     private fun filterCycles(s: String) {
         val filteredList = cycleList.filter { it.type.equals(s, ignoreCase = true) }
         cycleListAdapter.submitList(filteredList.toMutableList())
