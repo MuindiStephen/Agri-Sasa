@@ -13,32 +13,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                     android:id="@+id/textView75"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="weeding"
-                android:padding="4dp"
+                    android:padding="4dp"
                     android:layout_marginStart="8dp"
-                android:background="@drawable/custom_cell"
+                    android:background="@drawable/custom_cell"
                     android:layout_marginTop="1dp"
                     android:textSize="11sp"
                     android:fontFamily="@font/montserrat_semibold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/textView76"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
                     android:text="2024-04-08"
                     android:background="@drawable/custom_cell"
                     android:textSize="11sp"
                     android:padding="4dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/montserrat_semibold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView75"
                     app:layout_constraintStart_toEndOf="@+id/textView75"
@@ -46,13 +50,14 @@
 
                 <TextView
                     android:id="@+id/textView77"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
                     android:text="2024-08-30"
                     android:background="@drawable/custom_cell"
                     android:textSize="11sp"
                     android:padding="4dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/montserrat_semibold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView76"
                     app:layout_constraintStart_toEndOf="@+id/textView76"
