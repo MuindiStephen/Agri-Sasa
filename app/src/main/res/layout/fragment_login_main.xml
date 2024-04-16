@@ -28,7 +28,7 @@
         android:fontFamily="@font/montserrat_semibold"
         android:layout_marginStart="160.62dp"
         android:layout_marginEnd="160.62dp"
-        android:src="@drawable/ic_plant_growing_svgrepo_com2"
+        android:src="@drawable/group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainAuthsToolbar"

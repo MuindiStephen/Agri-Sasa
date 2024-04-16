@@ -12,7 +12,7 @@
         android:id="@+id/showFarmId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="@string/block_a"
@@ -48,10 +48,10 @@
         android:id="@+id/textView78"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="crop cycle/service cycle"
-        android:fontFamily="@font/montserrat_semibold"
-        android:textSize="11sp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="crop cycle/service cycle"
+        android:textSize="11sp"
         app:layout_constraintStart_toStartOf="@+id/showFarmId"
         app:layout_constraintTop_toBottomOf="@+id/showFarmId" />
 
@@ -72,7 +72,7 @@
         android:id="@+id/viewSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="14dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="50dp"
         android:background="@color/main"
@@ -133,4 +133,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView81"
         app:layout_constraintStart_toEndOf="@+id/textView81"
         app:layout_constraintTop_toTopOf="@+id/textView81" />
+
+    <Spinner
+        android:id="@+id/spinnerStatusOfFarmCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_corner"
+        android:entries="@array/statuses"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/textView78"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView78"
+        app:layout_constraintTop_toTopOf="@+id/textView78" />
 </androidx.constraintlayout.widget.ConstraintLayout>
