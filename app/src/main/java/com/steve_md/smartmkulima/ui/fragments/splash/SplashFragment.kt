@@ -9,12 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSplashBinding
 import com.steve_md.smartmkulima.utils.makeStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -36,16 +39,37 @@ class SplashFragment : Fragment() {
 
        // makeStatusBarTransparent()
 
-        val userIsLoggedIn = FirebaseAuth.getInstance().currentUser
+        /**
+         * Deprecated and leads to an exception with :)
+         * java.lang.IllegalStateException: Fragment SplashFragment{4f425ca} (993704d7-7477-4650-a722-7b5ca352e26c) not associated with a fragment manager.
+         */
+//        Handler(Looper.getMainLooper()).postDelayed({
+//
+//            if (userIsLoggedIn != null) {
+//                findNavController().navigate(R.id.action_splashFragment_to_homeDashboardFragment2)
+//            } else {
+//                findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
+//            }
+//        }, 3000)
 
-        Handler(Looper.getMainLooper()).postDelayed({
+    }
 
+    override fun onResume() {
+        super.onResume()
+        performNavigation()
+    }
+
+    private fun performNavigation() {
+        lifecycleScope.launch {
+            delay(1500L)
+
+            val userIsLoggedIn = FirebaseAuth.getInstance().currentUser
             if (userIsLoggedIn != null) {
                 findNavController().navigate(R.id.action_splashFragment_to_homeDashboardFragment2)
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
             }
-        }, 3000)
 
+        }
     }
 }

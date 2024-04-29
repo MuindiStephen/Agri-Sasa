@@ -30,7 +30,6 @@ import java.util.*
 class HomeDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeDashboardBinding
-
     private lateinit var databaseReference: DatabaseReference
 
     private var firebaseAuth: FirebaseAuth? = null
@@ -121,7 +120,7 @@ class HomeDashboardFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setUpBinding() {
         binding.apply {
-            cardView1.setOnClickListener {
+            cardView.setOnClickListener {
                 findNavController().navigate(R.id.action_homeDashboardFragment2_to_didYouKnow)
             }
             cardView9.setOnClickListener {
