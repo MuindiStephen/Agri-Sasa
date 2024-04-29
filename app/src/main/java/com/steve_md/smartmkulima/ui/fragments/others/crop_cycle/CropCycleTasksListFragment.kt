@@ -22,6 +22,7 @@ import com.steve_md.smartmkulima.databinding.FragmentCropCycleListBinding
 import com.steve_md.smartmkulima.model.CropCycleTask
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmEquipment
+import com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragmentDirections
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
@@ -68,6 +69,7 @@ class CropCycleTasksListFragment : Fragment() {
                 cycle
             )
             findNavController().navigate(directions)
+
         })
 
         // Set the adapter to the RecyclerView
@@ -80,17 +82,19 @@ class CropCycleTasksListFragment : Fragment() {
 
         binding.textView74.setOnClickListener {
            // binding.cropCycleRecyclerView.removeAllViews()
+            binding.progressBarCycles.visibility = View.VISIBLE
             android.os.Handler().postDelayed({
                 binding.progressBarCycles.visibility = View.GONE
 //                getAllAvailableCropCycle()
-            }, 1500)
+            }, 1000)
         }
 
         binding.textView83CropCycle.setOnClickListener {
+            //binding.cropCycleRecyclerView.removeAllViews()
             filterCycles("Crop cycle")
         }
         binding.textView84.setOnClickListener {
-
+           // binding.cropCycleRecyclerView.removeAllViews()
             filterCycles("Livestock cycle")
         }
 
@@ -137,11 +141,10 @@ class CropCycleTasksListFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
 
-                        Timber.i("====Viewing Farm cycles${response.body()}=====")
+                        Timber.i("==== Viewing Farm cycles${response.body()}=====")
                        // displaySnackBar("Viewing Available cycles")
 
                         val cycles = response.body()
-
 
                         cycles?.let {
                             cycleList.addAll(it)
@@ -150,7 +153,6 @@ class CropCycleTasksListFragment : Fragment() {
                         cycleListAdapter.notifyDataSetChanged()
                         binding.cropCycleRecyclerView.adapter = cycleListAdapter
                         binding.cropCycleRecyclerView.visibility = View.VISIBLE
-
                     }
                 }
                 override fun onFailure(call: Call<ArrayList<Cycle>>, t: Throwable) {

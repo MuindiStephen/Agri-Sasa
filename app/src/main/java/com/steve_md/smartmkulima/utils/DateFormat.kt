@@ -22,9 +22,8 @@ object DateFormat {
     @SuppressLint("SimpleDateFormat")
     fun getLastLoginDayAndDate(): String? {
         val cal = Calendar.getInstance()
-        val sdf = SimpleDateFormat("EEE, MMM d, yyyy")
-        val dateformat = DateFormat.getDateInstance(DateFormat.MEDIUM)
-        return dateformat.format(cal.time)
+        val sdf = SimpleDateFormat("EEE, MMM d, yyyy, hh:mma")
+        return sdf.format(cal.time)
     }
 
 }

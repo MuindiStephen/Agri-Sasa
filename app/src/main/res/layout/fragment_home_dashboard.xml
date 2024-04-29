@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/includeToolBar"
@@ -42,56 +42,56 @@
         app:layout_constraintTop_toBottomOf="@+id/includeToolBar"
         android:focusable="true" />
 
-    <HorizontalScrollView
-        android:id="@+id/TopicsChipGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/textView10">
-
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:id="@+id/TopicsChipGroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp">
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/textView10">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip1"
+            <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Hot topics"
-                android:textColor="@color/text_color"
-                app:chipBackgroundColor="@color/main1"
-                app:chipCornerRadius="14dp"
-                app:chipIcon="@drawable/ic_plant_growing_svgrepo_com2"
-                app:chipIconTint="@color/white" />
+                android:layout_marginStart="20dp">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Recommended"
-                app:chipCornerRadius="14dp" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Hot topics"
+                    android:textColor="@color/text_color"
+                    app:chipBackgroundColor="@color/main1"
+                    app:chipCornerRadius="14dp"
+                    app:chipIcon="@drawable/ic_plant_growing_svgrepo_com2"
+                    app:chipIconTint="@color/white" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Most popular"
-                app:chipCornerRadius="14dp" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Recommended"
+                    app:chipCornerRadius="14dp" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Trending topics"
-                app:chipCornerRadius="14dp" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Most popular"
+                    app:chipCornerRadius="14dp" />
 
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Trending topics"
+                    app:chipCornerRadius="14dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
 
         <androidx.cardview.widget.CardView
@@ -103,6 +103,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="20dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/cardView7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/TopicsChipGroup" >
@@ -111,7 +112,7 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_grains_farming"
+                android:src="@drawable/spinach"
                 android:scaleType="centerCrop"/>
 
             <TextView
@@ -120,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="Did you know??"
+                android:text="Spinach GAP"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
@@ -132,6 +133,7 @@
             android:layout_height="146dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/cardView1"
             app:layout_constraintStart_toStartOf="@+id/cardView1"
             app:layout_constraintTop_toBottomOf="@+id/cardView1" >
@@ -139,7 +141,7 @@
             <ImageView
                 android:layout_width="151dp"
                 android:layout_height="146dp"
-                android:src="@drawable/ic_guide_onion_farming"
+                android:src="@drawable/coriander"
                 android:scaleType="centerCrop"/>
 
 
@@ -153,20 +155,21 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_semibold"
                 android:layout_gravity="center"
-                android:text="The complete guide to start onion farming"
+                android:text="Coriander GAP"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:scrollbars="horizontal"
             android:id="@+id/cardView7"
+            android:scrollbars="horizontal"
             android:layout_width="150dp"
             android:layout_height="195dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="20dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView1"
             app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" >
@@ -174,7 +177,7 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="195dp"
-                android:src="@drawable/ic_smart_agriculture"
+                android:src="@drawable/capsicum_geva"
                 android:scaleType="centerCrop"/>
 
             <TextView
@@ -187,7 +190,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@color/white"
-                android:text="Kenya must embrace smart agriculture" />
+                android:text="Capsicum Geva GAP" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -197,6 +200,7 @@
             android:layout_height="248dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
+            android:visibility="gone"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
@@ -229,6 +233,7 @@
             android:layout_height="105dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/cardView7"
             app:layout_constraintStart_toStartOf="@+id/cardView7"
             app:layout_constraintTop_toBottomOf="@+id/cardView7" >
@@ -260,6 +265,7 @@
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
             android:layout_marginBottom="16dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/cardView8"
             app:layout_constraintStart_toStartOf="@+id/cardView8"
             app:layout_constraintTop_toBottomOf="@+id/cardView8"
@@ -307,6 +313,19 @@
             android:fontFamily="@font/montserrat_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_gap_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            app:spanCount="2"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/home_gap_row"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,11 +17,15 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.adapter.GapAdapter
+import com.steve_md.smartmkulima.data.remote.GapApiClient
 import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
+import com.steve_md.smartmkulima.model.GAP
 import com.steve_md.smartmkulima.utils.DateFormat.getLastLoginDayAndDate
 import com.steve_md.smartmkulima.utils.displaySnackBar
-import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Call
+import retrofit2.Response
 import timber.log.Timber
 import java.util.*
 
@@ -30,8 +34,10 @@ import java.util.*
 class HomeDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeDashboardBinding
-
     private lateinit var databaseReference: DatabaseReference
+
+    private lateinit var adapter: GapAdapter
+    private var gapList = ArrayList<GAP>()
 
     private var firebaseAuth: FirebaseAuth? = null
 
@@ -115,13 +121,67 @@ class HomeDashboardFragment : Fragment() {
             else -> "Good Evening"
         }
         setUpBinding()
+
+        // fetch Good Agricultural practices
+        getGoodAgriculturalPractices()
+        setUpRecyclerView()
+    }
+
+
+    private fun setUpRecyclerView() {
+        // Set the layout manager
+       // binding.homeGapRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Initialize the adapter
+        adapter = GapAdapter(GapAdapter.OnClickListener { gap ->
+            Timber.i("=====Checking=======>: ${gap.nameGAP} Good Agricultural practice!")
+
+
+            val direction = HomeDashboardFragmentDirections.actionHomeDashboardFragment2ToGAPListFragment(
+                gap
+            )
+            findNavController().navigate(direction)
+        })
+
+        // Set the adapter to the RecyclerView
+        binding.homeGapRecyclerView.adapter = adapter
+    }
+
+    private fun getGoodAgriculturalPractices() {
+        GapApiClient.api.getAllGAPs()
+            .enqueue(object : retrofit2.Callback<ArrayList<GAP>> {
+                @SuppressLint("NotifyDataSetChanged", "ResourceAsColor")
+                override fun onResponse(
+                    call: Call<ArrayList<GAP>>,
+                    response: Response<ArrayList<GAP>>
+                ) {
+                    if (response.isSuccessful) {
+
+                        Timber.i("==== Viewing Good agri. practices${response.body()}=====")
+                        // displaySnackBar("Viewing Available cycles")
+
+                        val gaps = response.body()
+
+                        gaps?.let {
+                            gapList.addAll(it)
+                            adapter.submitList(gapList)
+                        }
+                        adapter.notifyDataSetChanged()
+                        binding.homeGapRecyclerView.adapter = adapter
+                        binding.homeGapRecyclerView.visibility = View.VISIBLE
+                    }
+                }
+                override fun onFailure(call: Call<ArrayList<GAP>>, t: Throwable) {
+                    Timber.e("nothing here.${t.localizedMessage}")
+                }
+            })
     }
 
 
     @SuppressLint("SetTextI18n")
     private fun setUpBinding() {
         binding.apply {
-            cardView1.setOnClickListener {
+            cardView.setOnClickListener {
                 findNavController().navigate(R.id.action_homeDashboardFragment2_to_didYouKnow)
             }
             cardView9.setOnClickListener {

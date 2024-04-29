@@ -197,11 +197,6 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragment"
         android:label="fragment_home_dashboard"
         tools:layout="@layout/fragment_home_dashboard" >
-        <argument android:name="username"
-            app:argType="string" />
-        <argument
-            android:name="name"
-            app:argType="string" />
         <action
             android:id="@+id/action_homeDashboardFragment2_to_signInDetailsWithEmailFragment"
             app:destination="@id/signInDetailsWithEmailFragment"
@@ -223,11 +218,20 @@
             app:popUpTo="@id/homeDashboardFragment2"
             app:popUpToInclusive="true" />
         <action
+            android:id="@+id/action_homeDashboardFragment2_to_GAPListFragment"
+            app:destination="@id/GAPListFragment" />
+        <action
             android:id="@+id/action_homeDashboardFragment2_to_didYouKnow"
             app:destination="@id/didYouKnow" />
         <action
             android:id="@+id/action_homeDashboardFragment2_to_notificationsFragment"
             app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_self"
+            app:destination="@id/homeDashboardFragment2" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_goodAgriPFragment2"
+            app:destination="@id/goodAgriPFragment" />
     </fragment>
     <fragment
         android:id="@+id/applyInsuranceFragment"
@@ -434,5 +438,19 @@
             android:name="cycle"
             app:argType="com.steve_md.smartmkulima.model.Cycle" />
     </fragment>
+    <fragment
+        android:id="@+id/GAPListFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.knowledgebase.GAPListFragment"
+        android:label="fragment_g_a_p_list"
+        tools:layout="@layout/fragment_g_a_p_list" >
+        <argument
+            android:name="gap"
+            app:argType="com.steve_md.smartmkulima.model.GAP" />
+    </fragment>
+    <fragment
+        android:id="@+id/goodAgriPFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.GoodAgriPFragment"
+        android:label="fragment_good_agri_p"
+        tools:layout="@layout/fragment_good_agri_p" />
 
 </navigation>
