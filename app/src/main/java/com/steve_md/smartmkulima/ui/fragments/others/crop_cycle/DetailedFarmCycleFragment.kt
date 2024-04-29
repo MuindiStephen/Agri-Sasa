@@ -47,7 +47,7 @@ class DetailedFarmCycleFragment : Fragment() {
             textView78.text = cycle.type
 
             Timber.tag(this@DetailedFarmCycleFragment.toString()).i("Viewing ${cycle.cropName} cycle")
-            displaySnackBar("Viewing ${cycle.cropName}${cycle.type} cycle")
+            displaySnackBar("Viewing ${cycle.cropName} cycle")
 
             tasksAdapter.submitList(cycle.tasks)
             recyclerView.apply {
