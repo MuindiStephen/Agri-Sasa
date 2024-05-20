@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object CyclesApiClient {
     private val retrofit = Retrofit.Builder()
-        .baseUrl(Constants.CYCLES_BASE_URL)
+        .baseUrl(Constants.getStringBaseUrlDevelopment())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

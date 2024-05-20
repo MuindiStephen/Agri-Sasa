@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)

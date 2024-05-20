@@ -3,17 +3,18 @@ package com.steve_md.smartmkulima.utils
 
 object Constants {
 
+    init {
+        System.loadLibrary("native-lib")
+    }
+    @JvmStatic
+    external fun getStringBaseUrlDevelopment() : String
+
     // Authentication Endpoints
     const val BASE_URL = "https://restapi.adequateshop.com"
     const val REGISTER_END_POINT = "/api/authaccount/registration"
     const val LOGIN_END_POINT = "/api/authaccount/login"
 
 
-    const val FARM_PRODUCE_BASE_URL = "https://testapi.io/api/stevemd/"
-    const val FARM_EQUIPMENTS_BASE_URL = "https://testapi.io/api/stevemd/"
-
-    const val CYCLES_BASE_URL = "https://testapi.io/api/stevemd/"
-    const val GAP_BASE_URL = "https://testapi.io/api/stevemd/"
 
     /**
      *  Payment Integration constants

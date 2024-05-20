@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.data.remote
 
+import com.steve_md.smartmkulima.utils.Constants
 import com.steve_md.smartmkulima.utils.Constants.FARM_EQUIPMENTS_BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -7,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object FarmEquipmentsApiClient {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(FARM_EQUIPMENTS_BASE_URL)
+        .baseUrl(Constants.getStringBaseUrlDevelopment())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

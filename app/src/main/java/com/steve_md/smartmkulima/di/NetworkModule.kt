@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.di
 
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
+import com.steve_md.smartmkulima.utils.Constants
 import com.steve_md.smartmkulima.utils.Constants.FARM_PRODUCE_BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -46,7 +47,7 @@ object NetworkModule {
         converter: Converter.Factory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(FARM_PRODUCE_BASE_URL)
+            .baseUrl(Constants.getStringBaseUrlDevelopment())
             .client(okHttpClient)
             .addConverterFactory(converter)
             .build()
