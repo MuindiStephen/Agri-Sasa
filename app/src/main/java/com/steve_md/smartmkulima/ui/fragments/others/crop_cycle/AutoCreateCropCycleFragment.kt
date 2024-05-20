@@ -33,6 +33,13 @@ import java.util.Locale
 import java.util.Random
 
 
+/**
+ * Creating Farm cycle  for both Crops and Livestock
+ *
+ * This also automates cycle creation
+ *
+ * Notify on upcoming tasks of different farm cycles
+ */
 class AutoCreateCropCycleFragment : Fragment() {
 
     private lateinit var binding: FragmentAutoCreateCropCycleBinding

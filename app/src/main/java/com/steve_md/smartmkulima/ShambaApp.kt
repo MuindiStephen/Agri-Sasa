@@ -11,6 +11,11 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 
+/**
+ * Serves as the main entry point of this android app
+ * With dependency injection (dagger-hilt)
+ */
+
 @HiltAndroidApp
 class ShambaApp : Application() {
     override fun onCreate() {

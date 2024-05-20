@@ -18,6 +18,9 @@ import com.steve_md.smartmkulima.utils.displaySnackBar
 import timber.log.Timber
 
 
+/**
+ * Show a detailed Good agricultural practice for each farm cycle
+ */
 class AllGAPHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentAllGAPHomeBinding
