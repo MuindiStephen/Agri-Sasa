@@ -232,6 +232,12 @@
         <action
             android:id="@+id/action_homeDashboardFragment2_to_goodAgriPFragment2"
             app:destination="@id/goodAgriPFragment" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_detailedGAP"
+            app:destination="@id/detailedGAP" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_allGAPHomeFragment"
+            app:destination="@id/allGAPHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/applyInsuranceFragment"
@@ -442,15 +448,30 @@
         android:id="@+id/GAPListFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.others.knowledgebase.GAPListFragment"
         android:label="fragment_g_a_p_list"
-        tools:layout="@layout/fragment_g_a_p_list" >
-        <argument
-            android:name="gap"
-            app:argType="com.steve_md.smartmkulima.model.GAP" />
+        tools:layout="@layout/fragment_g_a_p_list">
     </fragment>
     <fragment
         android:id="@+id/goodAgriPFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.GoodAgriPFragment"
         android:label="fragment_good_agri_p"
         tools:layout="@layout/fragment_good_agri_p" />
+    <fragment
+        android:id="@+id/detailedGAP"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.DetailedGAP"
+        android:label="fragment_detailed_g_a_p"
+        tools:layout="@layout/fragment_detailed_g_a_p">
+        <argument
+            android:name="gap"
+            app:argType="com.steve_md.smartmkulima.model.GAP" />
+    </fragment>
+    <fragment
+        android:id="@+id/allGAPHomeFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.knowledgebase.AllGAPHomeFragment"
+        android:label="fragment_all_g_a_p_home"
+        tools:layout="@layout/fragment_all_g_a_p_home" >
+        <argument
+            android:name="gap"
+            app:argType="com.steve_md.smartmkulima.model.GAP" />
+    </fragment>
 
 </navigation>
