@@ -3,6 +3,11 @@ package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +17,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -19,10 +25,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentAutoCreateCropCycleBinding
 import com.steve_md.smartmkulima.model.Cycle
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.util.Random
 
 
 class AutoCreateCropCycleFragment : Fragment() {
@@ -51,6 +59,79 @@ class AutoCreateCropCycleFragment : Fragment() {
 
         cropCycleStartDay = Calendar.getInstance()
         setUpBinding()
+
+        scheduleNotification(2)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun scheduleNotification(daysLater: Int) {
+        val notificationManager =
+            requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "notification_id"
+            val channelName = "Notification Channel"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance)
+            channel.enableLights(true)
+            channel.lightColor = Color.GREEN
+            channel.enableVibration(true)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val notificationId = Random().nextInt()
+
+        val builder = NotificationCompat.Builder(requireContext(), "notification_id")
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle("Crop cycle tasks")
+            .setContentText("Your have tasks due in $daysLater days.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+
+        val notification = builder.build()
+
+        // Schedule the notification
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        //calendar.set(Calendar.HOUR_OF_DAY,9)
+
+        //for reminding of upcoming tasks
+        calendar.add(Calendar.DATE,daysLater)
+
+        val intervalMillis = 60 * 60 * 1000 // Interval: 1 hour
+
+        var notifySuccess = true
+
+        for (i in 0 until 24) {
+            // 24 reminders in a day
+            try {
+                notificationManager.notify(notificationId + i, notification)
+                calendar.add(Calendar.HOUR_OF_DAY, intervalMillis)
+            } catch (e: Exception){
+                notifySuccess = false
+                break
+            }
+        }
+        notificationManager.notify(notificationId, notification)
+        Timber.tag(this.tag.toString()).d("unread msg: task notification available")
+
+        if (notifySuccess){
+
+            displaySnackBar("Crop cycle tasks upcoming in $daysLater days")
+//            binding.textViewNotificationsAvailable.visibility = View.VISIBLE
+//            binding.textView71.visibility = View.GONE
+//            binding.alerts.visibility = View.GONE
+//            binding.textViewNotificationsAvailable.text = "Success! Please check your background for available notifications\n\n" +
+//                    "Crop cycle tasks upcoming in $daysLater days\n"
+            Timber.v("Notify success: $notification")
+        }
+        else{
+            displaySnackBar("You will be reminded of upcoming tasks later today!")
+
+//            binding.textViewNotificationsAvailable.visibility = View.GONE
+//            binding.textView71.visibility = View.VISIBLE
+//            binding.alerts.visibility = View.VISIBLE
+        }
     }
 
     @SuppressLint("ResourceType", "SetTextI18n")
