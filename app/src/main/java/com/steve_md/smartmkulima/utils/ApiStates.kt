@@ -5,3 +5,4 @@ sealed class ApiStates<T>(val data: T? = null, val error: Throwable? = null) {
     class Loading<T>(data: T? = null) : ApiStates<T>(data)
     class Error<T>(throwable: Throwable?, data: T? = null) : ApiStates<T>(data, throwable)
 }
+
