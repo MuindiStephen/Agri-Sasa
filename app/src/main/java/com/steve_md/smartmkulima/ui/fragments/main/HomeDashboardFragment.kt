@@ -136,11 +136,17 @@ class HomeDashboardFragment : Fragment() {
         adapter = GapAdapter(GapAdapter.OnClickListener { gap ->
             Timber.i("=====Checking=======>: ${gap.nameGAP} Good Agricultural practice!")
 
+//            findNavController().navigate(
+//                HomeDashboardFragmentDirections.actionHomeDashboardFragment2ToDetailedGAP(gap)
+//            )
 
-            val direction = HomeDashboardFragmentDirections.actionHomeDashboardFragment2ToGAPListFragment(
-                gap
+            val bundle = Bundle().apply {
+                putParcelable("gap", gap)
+            }
+            findNavController().navigate(
+                R.id.action_homeDashboardFragment2_to_allGAPHomeFragment, bundle
             )
-            findNavController().navigate(direction)
+
         })
 
         // Set the adapter to the RecyclerView
