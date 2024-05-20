@@ -20,6 +20,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
+/**
+ * Laucher screen of this APP.
+ */
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
 
