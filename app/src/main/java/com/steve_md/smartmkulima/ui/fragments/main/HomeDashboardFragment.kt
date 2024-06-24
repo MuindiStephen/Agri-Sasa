@@ -55,6 +55,11 @@ class HomeDashboardFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         val userId =  firebaseAuth!!.uid
+
+        if (userId == null) {
+            Timber.e("Firebase User ID is null")
+            return binding.root
+        }
         val currentUserLogged = firebaseAuth!!.currentUser
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId!!)

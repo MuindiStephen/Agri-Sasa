@@ -60,7 +60,7 @@ class SignInDetailsWithEmailFragment : Fragment() {
         val biometricManager = BiometricManager.from(requireContext())
         when(biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
             BiometricManager.BIOMETRIC_SUCCESS -> {
-                Timber.tag("Biometric").e("Authenticate using biometrics")
+                Timber.tag("Biometric").e("Authenticated using biometrics")
                 val prompt = createBiometricPrompt()
                 prompt.authenticate(createPromptInfo())
             }
@@ -156,6 +156,8 @@ class SignInDetailsWithEmailFragment : Fragment() {
                 super.onAuthenticationSucceeded(result)
                 Timber.tag(this.toString()).d("Authentication was successful")
                 toast("Authenticated with biometrics successfully")
+
+                navigateHome()
                 // showEncryptedMessage(result.cryptoObject)
             }
 
