@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.steve_md.smartmkulima"
-        minSdk 21
+        minSdk 23
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -54,24 +54,22 @@ android {
 dependencies {
 
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-    implementation 'com.google.firebase:firebase-auth-ktx:22.3.1'
-    implementation 'com.google.firebase:firebase-database-ktx:20.3.0'
-    implementation 'com.google.firebase:firebase-storage-ktx:20.3.0'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.10.2'
-    def nav_version = "2.7.7"
-    def lifecycle_version = "2.7.0"
+    implementation 'com.google.firebase:firebase-auth-ktx:23.0.0'
+    implementation 'com.google.firebase:firebase-database-ktx:21.0.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:21.0.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:25.0.0'
     def timber_version = "5.0.1"
     def room_version = "2.6.1"
 
 
     // Ktx
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
 
     // AppCompat
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
 
     // Material
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.google.android.material:material:1.12.0'
 
     // Constraint Layout
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -82,15 +80,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Navigation Components
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
 
     // Alternatively - just LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.2")
 
     // Alternatively - just ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
 
     // Dagger - Hilt
     implementation 'com.google.dagger:hilt-android:2.50'
@@ -126,7 +124,7 @@ dependencies {
 
     // Maps - Dependency
     implementation 'com.google.android.gms:play-services-maps:18.2.0'
-    implementation 'com.google.android.gms:play-services-location:21.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
 
     // Lottie Animation
     implementation 'com.airbnb.android:lottie:6.0.0'
@@ -147,4 +145,8 @@ dependencies {
 
     // Step View
     implementation 'com.github.shuhart:stepview:1.5.1'
+
+    // Biometric authentication
+    implementation "androidx.biometric:biometric:1.1.0"
+
 }

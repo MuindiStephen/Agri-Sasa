@@ -82,12 +82,14 @@
         app:endIconMode="clear_text"
         android:textColor="@color/textColor"
         app:endIconTint="@color/SilverGray"
+
         app:layout_constraintEnd_toEndOf="@id/textView2"
         app:layout_constraintStart_toStartOf="@id/textView2"
         app:layout_constraintTop_toBottomOf="@id/textView2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputLoginEmail"
+            android:fontFamily="@font/montserrat"
             android:layout_width="match_parent"
             android:textColor="@color/textColor"
             android:layout_height="wrap_content"
@@ -124,6 +126,7 @@
             android:inputType="textPassword"
             android:textColor="@color/textColor"
             android:id="@+id/inputLoginPassword"
+            android:fontFamily="@font/montserrat"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +137,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="45dp"
         android:backgroundTint="@color/main1"
         android:fontFamily="@font/montserrat_bold"
@@ -162,7 +165,7 @@
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/signInWithEmailButton"
@@ -237,4 +240,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+    <TextView
+        android:id="@+id/textViewFingerprint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Use fingerprint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/fingerprintToPress"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_fingerprint_24"
+        app:layout_constraintBottom_toTopOf="@id/textViewFingerprint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="fingerprint" />
 </androidx.constraintlayout.widget.ConstraintLayout>
