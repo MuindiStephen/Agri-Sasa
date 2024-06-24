@@ -145,4 +145,8 @@ dependencies {
 
     // Step View
     implementation 'com.github.shuhart:stepview:1.5.1'
+
+    // Biometric authentication
+    implementation "androidx.biometric:biometric:1.1.0"
+
 }
