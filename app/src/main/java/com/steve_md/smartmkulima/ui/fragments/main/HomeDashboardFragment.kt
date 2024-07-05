@@ -142,7 +142,7 @@ class HomeDashboardFragment : Fragment() {
             Timber.i("=====Checking=======>: ${gap.nameGAP} Good Agricultural practice!")
 
 //            findNavController().navigate(
-//                HomeDashboardFragmentDirections.actionHomeDashboardFragment2ToDetailedGAP(gap)
+//                HomeDashboardFragmentDirections.actionHomeDashboardFragment2ToAllGAPHomeFragment(gap)
 //            )
 
             val bundle = Bundle().apply {
@@ -168,7 +168,7 @@ class HomeDashboardFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
 
-                        Timber.i("==== Viewing Good agri. practices${response.body()}=====")
+                        Timber.i("==== Viewing Good Agri. practices${response.body()}=====")
                         // displaySnackBar("Viewing Available cycles")
 
                         val gaps = response.body()
