@@ -4,7 +4,7 @@
 </p>
 
 <H1 align="center">
- Shamba App
+ AgriSasa App
 </H1>
  
 - AgriSasa :) Farming App is an AgriTech Android app with the following solution features for the farmer:)
