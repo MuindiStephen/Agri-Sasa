@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.data.room.FarmProduceDao
+import com.steve_md.smartmkulima.data.room.GAPDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +30,11 @@ object DatabaseModule {
     @Singleton
     fun providesFarmProduceDao(appDatabase: AppDatabase): FarmProduceDao {
         return appDatabase.farmProduceDao()
+    }
+
+    @Provides
+    @Singleton
+    fun providesCycleDao(appDatabase: AppDatabase): GAPDao {
+        return appDatabase.gapDao()
     }
 }

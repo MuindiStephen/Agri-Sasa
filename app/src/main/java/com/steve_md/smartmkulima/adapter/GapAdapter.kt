@@ -10,6 +10,10 @@ import com.bumptech.glide.Glide
 import com.steve_md.smartmkulima.databinding.HomeGapRowBinding
 import com.steve_md.smartmkulima.model.GAP
 
+/**
+ * Bind fetched GAPS to the Ui (Recycler View)
+ * - In order to display a list of available GAPs to the RecyclerView Ui
+ */
 class GapAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<GAP, GapAdapter.MyViewHolder>(TaskDiffUtil) {
 

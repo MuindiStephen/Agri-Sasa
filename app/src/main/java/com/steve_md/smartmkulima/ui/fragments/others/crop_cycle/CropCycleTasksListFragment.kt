@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -26,12 +28,15 @@ import com.steve_md.smartmkulima.ui.fragments.main.HomeDashboardFragmentDirectio
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Response
 import timber.log.Timber
 import java.net.HttpURLConnection
 import java.util.logging.Handler
 
+@AndroidEntryPoint
 class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding
     private lateinit var cycleListAdapter: CropCycleTaskListAdapter
@@ -130,8 +135,12 @@ class CropCycleTasksListFragment : Fragment() {
 
     }
 
-    // Fetch from remote API (web-service)
+
     private fun getAllAvailableCropCycle() {
+
+
+
+        // fetch from api(remote web service)
         CyclesApiClient.api.getAllFarmCycles()
             .enqueue(object : retrofit2.Callback<ArrayList<Cycle>> {
                 @SuppressLint("NotifyDataSetChanged", "ResourceAsColor")

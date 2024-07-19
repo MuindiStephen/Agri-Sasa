@@ -2,6 +2,7 @@ package com.steve_md.smartmkulima.di
 
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.repositories.AuthRepository
+import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.impl.AuthRepositoryImpl
 import com.steve_md.smartmkulima.data.room.AppDatabase
@@ -25,6 +26,14 @@ object RepositoryModule {
         appDatabase: AppDatabase
     ): FarmProduceRepository {
         return FarmProduceRepository(farmProduceApiService, appDatabase)
+    }
+
+    @Singleton
+    @Provides
+    fun providesFarmCycleRepo(
+        database: AppDatabase
+    ): FarmCycleRepository {
+        return FarmCycleRepository(database)
     }
 
     @Singleton

@@ -22,12 +22,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentAutoCreateCropCycleBinding
 import com.steve_md.smartmkulima.model.Cycle
+import com.steve_md.smartmkulima.model.Tasks
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -42,11 +48,11 @@ import java.util.Random
  *
  * Notify on upcoming tasks of different farm cycles
  */
+
 class AutoCreateCropCycleFragment : Fragment() {
 
     private lateinit var binding: FragmentAutoCreateCropCycleBinding
     private var cropCycleStartDay: Calendar? = null
-
 
     private val cycleTypes by lazy { resources.getStringArray(R.array.cycle_types) }
 
@@ -93,8 +99,11 @@ class AutoCreateCropCycleFragment : Fragment() {
         val intentId = Intent(requireActivity(),AutoCreateCropCycleFragment::class.java)
 
         val pendingIntent = PendingIntent.getActivity(
-            requireActivity(),notificationId,intentId,
-            PendingIntent.FLAG_IMMUTABLE)
+            requireActivity(),
+            notificationId,
+            intentId,
+            PendingIntent.FLAG_IMMUTABLE
+        )
 
         val builder = NotificationCompat.Builder(requireContext(), "notification_id")
             .setSmallIcon(R.drawable.ic_notification)
@@ -201,6 +210,8 @@ class AutoCreateCropCycleFragment : Fragment() {
 
             if (selectedCropCycle == "Crop Cycle") {
                 generateCropCycle()
+
+
             } else {
                 //displayServiceCycleTasks()
 
@@ -242,6 +253,8 @@ class AutoCreateCropCycleFragment : Fragment() {
 
     data class Step(val name: String, val startDay: Int, val endDay: Int)
 
+
+
     private fun generateCropCycle() {
         val selectedCycleType = binding.spinnerCycleType.selectedItem.toString()
         val startDayForCropCycle = binding.cropCycleStartDay.text.toString()
@@ -268,6 +281,9 @@ class AutoCreateCropCycleFragment : Fragment() {
                 "Bed making/gypsum application",
                 "Flushing with plain water"
             )
+
+
+
 
 
             binding.stepLinearLayout.removeAllViews()
