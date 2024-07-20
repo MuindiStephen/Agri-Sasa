@@ -85,6 +85,9 @@ class AutoCreateCropCycleFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        binding.viewAllCycleTypes.setOnClickListener {
+            goToCropCycle()
+        }
 
         cropCycleStartDay = Calendar.getInstance()
        // setUpBinding()
@@ -225,13 +228,8 @@ class AutoCreateCropCycleFragment : Fragment() {
         )
 
         lifecycleScope.launch {
-            farmCycleViewModel.addCropCycle(localFarmCycle).runCatching {
-                displaySnackBar("")
-            }
+            farmCycleViewModel.addCropCycle(localFarmCycle)
 
-            runCatching {
-
-            }
             Log.e("AutoCreateCropCycleFragment","$localFarmCycle")
 
             requireActivity().runOnUiThread {

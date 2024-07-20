@@ -445,7 +445,7 @@
         tools:layout="@layout/fragment_detailed_farm_cycle" >
         <argument
             android:name="cycle"
-            app:argType="com.steve_md.smartmkulima.model.Cycle" />
+            app:argType="com.steve_md.smartmkulima.model.LocalFarmCycle" />
     </fragment>
     <fragment
         android:id="@+id/GAPListFragment"
