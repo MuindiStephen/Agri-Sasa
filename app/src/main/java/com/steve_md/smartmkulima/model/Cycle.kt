@@ -27,3 +27,4 @@ data class Tasks (
     val startDate: String,
     val endDate: String
 ) : Parcelable
+

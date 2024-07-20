@@ -8,6 +8,7 @@ import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
+import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,9 +27,9 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    val allCycles: LiveData<List<Cycle>> = repository.allCycles.asLiveData()
+    val allCycles: LiveData<List<LocalFarmCycle>> = repository.allLocalFarmCyle.asLiveData()
 
-    fun addCropCycle(cycle: Cycle) = viewModelScope.launch {
+    fun addCropCycle(cycle: LocalFarmCycle) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             repository.insertCycle(cycle)
         }

@@ -1,7 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -25,17 +24,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.firestore.FirebaseFirestore
 import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.data.remote.GapApiClient
 import com.steve_md.smartmkulima.databinding.FragmentAutoCreateCropCycleBinding
-import com.steve_md.smartmkulima.model.Cycle
-import com.steve_md.smartmkulima.model.Tasks
+import com.steve_md.smartmkulima.model.GAP
+import com.steve_md.smartmkulima.model.GAPtask
+import com.steve_md.smartmkulima.model.LocalFarmCycle
+import com.steve_md.smartmkulima.model.LocalTasks
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Response
 import timber.log.Timber
 import java.text.SimpleDateFormat
+import java.util.ArrayList
 import java.util.Calendar
 import java.util.Locale
 import java.util.Random
@@ -49,12 +53,16 @@ import java.util.Random
  * Notify on upcoming tasks of different farm cycles
  */
 
+@AndroidEntryPoint
 class AutoCreateCropCycleFragment : Fragment() {
 
     private lateinit var binding: FragmentAutoCreateCropCycleBinding
     private var cropCycleStartDay: Calendar? = null
 
+    private var selectedCrop: String = ""
     private val cycleTypes by lazy { resources.getStringArray(R.array.cycle_types) }
+
+    private val farmCycleViewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,11 +80,166 @@ class AutoCreateCropCycleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+
+        binding.imageViewBackFromAutoCreateCropCycle.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+
         cropCycleStartDay = Calendar.getInstance()
-        setUpBinding()
+       // setUpBinding()
 
         scheduleNotification(2)
+
+
+        val cropList = resources.getStringArray(R.array.crop_list)
+        val cropAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, cropList)
+        cropAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerCrops.adapter = cropAdapter
+
+        binding.spinnerCrops.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedCrop = parent.getItemAtPosition(position).toString()
+                Timber.i("Selected Crop: $selectedCrop")
+                displaySnackBar(selectedCrop)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+               displaySnackBar("Nothing selected")
+            }
+        }
+
+        // Fetch first GAPs which are linked to Creation of crop cycles with exact date and time
+        binding.buttonGeneratorCropCycle.setOnClickListener {
+//            val selectedCrop = binding.spinnerCrops.selectedItem.toString()
+            getGoodAgriculturalPractices(selectedCrop)
+        }
+
+        configureUi()
     }
+
+    private fun configureUi() {
+        binding.cropCycleStartDay.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                showDatePickerDialog()
+            }
+        }
+    }
+
+
+    private fun getGoodAgriculturalPractices(selectedCrop: String) {
+        GapApiClient.api.getAllGAPs()
+            .enqueue(object : retrofit2.Callback<ArrayList<GAP>> {
+                @SuppressLint("NotifyDataSetChanged", "ResourceAsColor")
+                override fun onResponse(
+                    call: Call<ArrayList<GAP>>,
+                    response: Response<ArrayList<GAP>>
+                ) {
+                    if (response.isSuccessful) {
+
+                        val gapList = response.body()
+                        if (gapList != null) {
+                            // Filter GAPs based on the selected crop
+                            val gapForSelectedCrop =
+                                gapList.find { it.nameGAP.equals(selectedCrop, ignoreCase = true) }
+                            if (gapForSelectedCrop != null) {
+                                createCropCycle(
+                                    selectedCrop,
+                                    binding.enterFarmBlockID.text.toString(),
+                                    cropCycleStartDay,
+                                    gapForSelectedCrop.gap
+                                )
+                            }
+                    }
+
+//                        val ga
+//                        var gapFound = false
+//
+//                        Timber.i("==== Viewing Good Agri. practices${response.body()}=====")
+//                        // displaySnackBar("Viewing Available cycles")
+//
+//                        response.body()?.forEach { gapResponse ->
+//                            if (gapResponse.nameGAP.equals(selectedCrop, ignoreCase = true)) {
+//                                createCropCycle(
+//                                    selectedCrop,
+//                                    binding.enterFarmBlockID.text.toString(),
+//                                    cropCycleStartDay,
+//                                    gapResponse.gap
+//                                )
+//                            }
+//                        }
+
+//                        if (!gapFound) {
+//                            Timber.w("No GAP found for the selected crop: $selectedCrop")
+//                            requireActivity().runOnUiThread {
+//                                displaySnackBar("No GAP found for the selected crop: $selectedCrop")
+//                            }
+//                        }
+
+                    } else {
+                        Timber.e("Response was not successful: ${response.message()}")
+                        Timber.w("No GAP found for the selected crop: $selectedCrop")
+                        requireActivity().runOnUiThread {
+                            displaySnackBar("No GAP found for the selected crop: $selectedCrop")
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<ArrayList<GAP>>, t: Throwable) {
+                    Timber.e("nothing here.${t.localizedMessage}")
+                }
+            })
+    }
+
+    private fun createCropCycle(
+        selectedCrop: String,
+        farmName: String,
+        startDate: Calendar?,
+        gap: List<GAPtask>
+    ) {
+
+
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val calendar = startDate ?: Calendar.getInstance()
+
+        val localTasksList = mutableListOf<LocalTasks>()
+
+        gap.forEach { gapTask ->
+            val taskStartDate = calendar.clone() as Calendar
+            val taskEndDate = calendar.clone() as Calendar
+            taskEndDate.add(Calendar.DATE, gapTask.endDate.toInt())
+
+            val task = LocalTasks(
+                taskName = gapTask.taskName,
+                startDate = dateFormat.format(taskStartDate.time),
+                endDate = dateFormat.format(taskEndDate.time)
+            )
+            localTasksList.add(task)
+            calendar.add(Calendar.DATE, gapTask.endDate.toInt())
+        }
+
+        val localFarmCycle = LocalFarmCycle(
+            farmName = farmName,
+            cropName = selectedCrop,
+            startDate = dateFormat.format(startDate?.time ?: Calendar.getInstance().time),
+            tasks = localTasksList
+        )
+
+        lifecycleScope.launch {
+            farmCycleViewModel.addCropCycle(localFarmCycle).runCatching {
+                displaySnackBar("")
+            }
+
+            runCatching {
+
+            }
+            Log.e("AutoCreateCropCycleFragment","$localFarmCycle")
+
+            requireActivity().runOnUiThread {
+                displaySnackBar("Crop cycle for $selectedCrop created successfully!")
+            }
+        }
+    }
+
 
     @SuppressLint("SetTextI18n")
     private fun scheduleNotification(daysLater: Int) {
