@@ -57,7 +57,7 @@ class CropCycleTasksListFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        //setUpBinding()
+        setUpBinding()
         setUpRecyclerView()
         // getAllAvailableCropCycle()
 
@@ -119,8 +119,9 @@ class CropCycleTasksListFragment : Fragment() {
 
     @SuppressLint("ResourceAsColor")
     private fun setUpBinding() {
-        binding.imageViewBackFromCropCycleLists.setOnClickListener { findNavController().navigateUp() }
+       // binding.imageViewBackFromCropCycleLists.setOnClickListener { findNavController().navigateUp() }
 
+        binding.textView84.isVisible = false
         binding.textView74.setOnClickListener {
             // binding.cropCycleRecyclerView.removeAllViews()
             binding.progressBarCycles.visibility = View.VISIBLE
