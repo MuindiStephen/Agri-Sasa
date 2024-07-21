@@ -28,6 +28,21 @@ import retrofit2.Call
 import retrofit2.Response
 import timber.log.Timber
 
+/**
+ *
+ * Hey!
+ * This code looks Junk :(
+ *  @author MuindiStephen - Github
+ *
+ *  @year 2024
+ *
+ *  Was written in hurry to solve an issue
+ *  & to implement a feature in urgency
+ *
+ *
+ *
+ *
+ */
 @AndroidEntryPoint
 class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding

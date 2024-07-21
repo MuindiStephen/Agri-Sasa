@@ -37,4 +37,8 @@ class FarmCycleRepository @Inject constructor(
         return localCycleDao.getAllFarmCycle()
     }
 
+    suspend fun updateTaskStatus(status: String) {
+        localCycleDao.updateTaskStatus(status)
+    }
+
 }

@@ -1,18 +1,23 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.adapter.DetailTaskAdapter
 import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleTasksAdapter
 import com.steve_md.smartmkulima.databinding.FragmentDetailedFarmCycleBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -23,6 +28,8 @@ class DetailedFarmCycleFragment : Fragment() {
 
     // Navigation Args
     private val args: DetailedFarmCycleFragmentArgs by navArgs()
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +47,43 @@ class DetailedFarmCycleFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
 
+        val setStatus =  binding.spinnerStatusOfFarmCycle.selectedItem.toString()
+        viewModel.updateTaskStatus(setStatus)
+        binding.textView86.text = setStatus
+
+//
+//        binding.spinnerStatusOfFarmCycle.setSelection(
+//            (binding.spinnerStatusOfFarmCycle.adapter as ArrayAdapter<*>).getPosition(setStatus as Nothing?)
+//        )
+
+        /*
+        binding.spinnerStatusOfFarmCycle.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.updateTaskStatus(setStatus)
+                binding.textView86.text = setStatus
+                displaySnackBar(setStatus)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+               Log.e("STATUS","Nothing")
+            }
+
+        }
+
+         */
+
+
+
+
         val cycle = args.cycle
         binding.apply {
             // Link data with respective views
+
 
             showFarmId.text = ""
             ShowCropName.text = cycle.cropName

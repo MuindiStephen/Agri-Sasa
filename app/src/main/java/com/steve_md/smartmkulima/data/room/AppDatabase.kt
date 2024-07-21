@@ -14,7 +14,7 @@ import com.steve_md.smartmkulima.model.Transaction
 
 @TypeConverters(Converters::class,LocalFarmCycleConverter::class)
 @Database(entities = [Transaction::class, FarmProduce::class, Cycle::class,
-    Tasks::class, LocalFarmCycle::class], version = 4, exportSchema = false)
+    Tasks::class, LocalFarmCycle::class], version = 5, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao

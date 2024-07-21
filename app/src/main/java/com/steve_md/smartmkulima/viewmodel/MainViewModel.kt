@@ -38,6 +38,9 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun updateTaskStatus(status: String) = viewModelScope.launch {
+        repository.updateTaskStatus(status)
+    }
 
     init {
         getAllFarmProduce()
