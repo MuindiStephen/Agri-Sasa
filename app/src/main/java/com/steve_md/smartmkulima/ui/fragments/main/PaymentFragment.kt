@@ -41,7 +41,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Initiates Mpesa STK push for payment based on inputs @phone @amount
+ * Initiates Mpesa STK push for payment based on inputs
+ * @param phone
+ * @param amount
  */
 @AndroidEntryPoint
 class PaymentFragment : Fragment(), View.OnClickListener {

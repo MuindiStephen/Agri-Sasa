@@ -238,6 +238,9 @@
         <action
             android:id="@+id/action_homeDashboardFragment2_to_allGAPHomeFragment"
             app:destination="@id/allGAPHomeFragment" />
+        <action
+            android:id="@+id/action_homeDashboardFragment2_to_viewAllGAPsragment"
+            app:destination="@id/viewAllGAPsragment" />
     </fragment>
     <fragment
         android:id="@+id/applyInsuranceFragment"
@@ -442,7 +445,7 @@
         tools:layout="@layout/fragment_detailed_farm_cycle" >
         <argument
             android:name="cycle"
-            app:argType="com.steve_md.smartmkulima.model.Cycle" />
+            app:argType="com.steve_md.smartmkulima.model.LocalFarmCycle" />
     </fragment>
     <fragment
         android:id="@+id/GAPListFragment"
@@ -469,6 +472,24 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.others.knowledgebase.AllGAPHomeFragment"
         android:label="fragment_all_g_a_p_home"
         tools:layout="@layout/fragment_all_g_a_p_home" >
+        <argument
+            android:name="gap"
+            app:argType="com.steve_md.smartmkulima.model.GAP" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewAllGAPsragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.gap.ViewAllGAPsragment"
+        android:label="fragment_view_all_g_a_psragment"
+        tools:layout="@layout/fragment_view_all_g_a_psragment" >
+        <action
+            android:id="@+id/action_viewAllGAPsragment_to_viewDetailsGAPTasksFragment"
+            app:destination="@id/viewDetailsGAPTasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewDetailsGAPTasksFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.gap.ViewDetailsGAPTasksFragment"
+        android:label="fragment_view_details_g_a_p_tasks"
+        tools:layout="@layout/fragment_view_details_g_a_p_tasks" >
         <argument
             android:name="gap"
             app:argType="com.steve_md.smartmkulima.model.GAP" />

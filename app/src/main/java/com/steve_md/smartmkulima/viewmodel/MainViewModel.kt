@@ -1,29 +1,52 @@
 package com.steve_md.smartmkulima.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
+import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
+import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val farmProduceRepository: FarmProduceRepository
+    private val farmProduceRepository: FarmProduceRepository,
+    private val repository: FarmCycleRepository
 ) : ViewModel() {
+
+    private val _produce = MutableSharedFlow<FarmProduceState>()
+    val produce: SharedFlow<FarmProduceState> = _produce
+
+
+    val allCycles: LiveData<List<LocalFarmCycle>> = repository.getAllCycles()
+
+    fun addCropCycle(cycle: LocalFarmCycle) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.insertCycle(cycle)
+        }
+    }
+
+    fun updateTaskStatus(status: String) = viewModelScope.launch {
+        repository.updateTaskStatus(status)
+    }
 
     init {
         getAllFarmProduce()
     }
 
-    private val _produce = MutableSharedFlow<FarmProduceState>()
-    val produce: SharedFlow<FarmProduceState> = _produce
+
 
 
     private fun getAllFarmProduce() {

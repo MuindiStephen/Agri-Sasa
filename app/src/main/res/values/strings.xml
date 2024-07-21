@@ -27,6 +27,7 @@
     <string name="block_a">Block A</string>
     <string name="textview">TextView</string>
     <string name="last_login_apr_10_2024">Last login: Apr 10, 2024</string>
+    <string name="view_all_gaps">View All GAPs</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>
@@ -34,14 +35,22 @@
     </string-array>
 
     <string-array name="crop_list">
-        <item>Coriander</item>
         <item>Capsicum Geva</item>
-        <item>Cucumber Mydas </item>
         <item>Tomatoes Anna</item>
+        <item>Coriander</item>
+        <item>Cucumber Mydas </item>
         <item>Cucumber English</item>
         <item>Cucumber Bologna</item>
         <item>Capsicum</item>
         <item>Spinach</item>
+        <item>Tomatoes Anna F1</item>
+        <item>Backup-Tomatoes Anna F1</item>
+        <item>Cucumber Carmen</item>
+        <item>Tomatoes Gold Sun</item>
+        <item>Tomatoes Golden Sun</item>
+        <item>Capsicum</item>
+        <item>Tomatoes Big Rock F1</item>
+        <item>Lettuce</item>
         <item>Bullet Chillies</item>
     </string-array>
 

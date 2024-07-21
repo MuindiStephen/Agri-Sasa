@@ -69,6 +69,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         }
     }
 
+    // Mock farm conditions with Fake DATA
     private fun monitorFarmConditions(latitude: Double, longitude: Double) {
         val mockFarmConditions = FarmConditions(
             temperature = 22.0,
@@ -80,8 +81,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     }
 
     private fun displayFarmConditions(mockFarmConditions: FarmConditions) {
-        // Update Farmers UI
-        // Calling all Views
         val temp = view?.findViewById<TextView>(R.id.textViewTemperature)
         val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
         val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
@@ -102,7 +101,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         ) {
             googleMap.isMyLocationEnabled = true
         } else {
-            // Request location permission
             requestLocationPermission()
         }
         val location = LatLng(0.5699258, 34.5566803)

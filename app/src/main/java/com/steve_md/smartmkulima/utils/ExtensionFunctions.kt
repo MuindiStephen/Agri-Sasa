@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.updateMargins
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.HttpException
 
 
 fun Fragment.toast(text:String) {
@@ -48,6 +54,64 @@ inline fun <T> safeCall(action: () -> Resource<T>): Resource<T> {
         Resource.Error(e.message ?: "Unknown Error Occurred")
     }
 }
+
+sealed class ResourceNetwork<out T> {
+    data class Success<out T>(
+        val value: T
+    ) : ResourceNetwork<T>()
+    data class Failure(
+        val isNetworkError: Boolean,
+        val errorCode: Int?,
+        val errorBody: ResponseBody?,
+        val errorString: String?
+    ) : ResourceNetwork<Nothing>()
+
+    object Loading : ResourceNetwork<Nothing>()
+}
+
+suspend fun <T> apiRequestByResource(api: suspend () -> T): ResourceNetwork<T> {
+    return withContext(Dispatchers.IO) {
+        try {
+            ResourceNetwork.Success(api.invoke())
+
+        } catch (throwable: Throwable) {
+            //Timber.e("HttpException  throwable.message() ${throwable.message}")
+            if (throwable is HttpException) {
+//                    Timber.e(
+//                        "HttpException  throwable.response() ${
+//                            throwable.response()
+//                        }"
+
+
+
+                // ---------------------------------------------------------------------
+
+                val error = throwable.response()?.errorBody()!!.string()
+                val message = StringBuilder()
+
+                error.let {
+                    try {
+                        message.append(JSONObject(it).getString("error_description"))
+                    } catch (_: JSONException) {
+                    }
+                    message.append("\n")
+                }
+
+                // Timber.e("BASE REPOSITORY----->>>>>>>>>>>>>>>>>> $message")
+                // ---------------------------------------------------------------------
+                ResourceNetwork.Failure(
+                    false,
+                    throwable.code(),
+                    throwable.response()?.errorBody(),
+                    error
+                )
+            } else {
+                ResourceNetwork.Failure(true, null, null, "NO NETWORK FOUND")
+            }
+        }
+    }
+}
+
 
 fun Fragment.makeStatusBarTransparent() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

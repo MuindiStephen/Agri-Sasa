@@ -1,13 +1,19 @@
 package com.steve_md.smartmkulima.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+
+/**
+ * Illustrate how the GAP will look like
+ */
 
 @Parcelize
 data class GAP(
-    val nameGAP: String,
+    @PrimaryKey val nameGAP: String,
     val imageGAP: String,
-    val gap: List<GAPtask>
+    var gap: List<GAPtask>
 ): Parcelable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -39,9 +45,10 @@ data class GAP(
  *         } el
  */
 
+
 @Parcelize
 data class GAPtask (
-    val taskName: String,
+   @PrimaryKey val taskName: String,
     val startDate: String,
     val endDate: String
 ) : Parcelable

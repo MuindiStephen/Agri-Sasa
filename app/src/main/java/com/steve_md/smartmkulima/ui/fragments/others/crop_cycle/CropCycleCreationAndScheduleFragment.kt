@@ -57,6 +57,8 @@ class CropCycleCreationAndScheduleFragment : Fragment() {
 
         initBinding()
         initScheduleCropCycleTask()
+
+
     }
     private fun initScheduleCropCycleTask() {
         binding.buttonGenerateSchedule.setOnClickListener { generateSchedule() }

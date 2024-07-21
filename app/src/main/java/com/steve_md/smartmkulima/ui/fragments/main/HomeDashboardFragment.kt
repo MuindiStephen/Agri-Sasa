@@ -196,10 +196,13 @@ class HomeDashboardFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeDashboardFragment2_to_didYouKnow)
             }
             cardView9.setOnClickListener {
-                // TODO()
-            }
 
+            }
             textViewLastLoggedInTimeDate.text = "Last login: " +getLastLoginDayAndDate()
+
+            tvViewAllGAPs.setOnClickListener {
+                findNavController().navigate(R.id.viewAllGAPsragment)
+            }
         }
     }
 }

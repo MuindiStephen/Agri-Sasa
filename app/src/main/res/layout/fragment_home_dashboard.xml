@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
     android:fillViewport="true"
+    android:scrollbars="none"
     android:fitsSystemWindows="true"
     tools:context=".ui.fragments.main.HomeDashboardFragment">
 
@@ -317,10 +318,20 @@
             android:id="@+id/home_gap_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="48dp"
             app:spanCount="2"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/home_gap_row"
+            app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" />
+
+        <TextView
+            android:id="@+id/tvViewAllGAPs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="@string/view_all_gaps"
+            app:layout_constraintBottom_toTopOf="@+id/home_gap_recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" />
 
 
