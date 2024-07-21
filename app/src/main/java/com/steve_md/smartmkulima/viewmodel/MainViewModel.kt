@@ -26,8 +26,11 @@ class MainViewModel @Inject constructor(
     private val repository: FarmCycleRepository
 ) : ViewModel() {
 
+    private val _produce = MutableSharedFlow<FarmProduceState>()
+    val produce: SharedFlow<FarmProduceState> = _produce
 
-    val allCycles: LiveData<List<LocalFarmCycle>> = repository.allLocalFarmCyle.asLiveData()
+
+    val allCycles: LiveData<List<LocalFarmCycle>> = repository.getAllCycles()
 
     fun addCropCycle(cycle: LocalFarmCycle) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
@@ -40,8 +43,7 @@ class MainViewModel @Inject constructor(
         getAllFarmProduce()
     }
 
-    private val _produce = MutableSharedFlow<FarmProduceState>()
-    val produce: SharedFlow<FarmProduceState> = _produce
+
 
 
     private fun getAllFarmProduce() {

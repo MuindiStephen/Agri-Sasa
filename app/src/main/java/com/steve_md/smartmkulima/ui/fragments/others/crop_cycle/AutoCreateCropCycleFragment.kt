@@ -31,6 +31,8 @@ import com.steve_md.smartmkulima.model.GAP
 import com.steve_md.smartmkulima.model.GAPtask
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.LocalTasks
+import com.steve_md.smartmkulima.utils.DateFormat.formatDate
+import com.steve_md.smartmkulima.utils.DateFormat.getWhenStarts
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +66,7 @@ class AutoCreateCropCycleFragment : Fragment() {
 
     private val farmCycleViewModel: MainViewModel by viewModels()
 
+    var task : LocalTasks? = LocalTasks("","","")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,7 +82,6 @@ class AutoCreateCropCycleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
-
 
         binding.imageViewBackFromAutoCreateCropCycle.setOnClickListener {
             findNavController().navigateUp()
@@ -145,7 +147,12 @@ class AutoCreateCropCycleFragment : Fragment() {
                             // Filter GAPs based on the selected crop
                             val gapForSelectedCrop =
                                 gapList.find { it.nameGAP.equals(selectedCrop, ignoreCase = true) }
+
                             if (gapForSelectedCrop != null) {
+
+                                gapList.map {
+                                   gapForSelectedCrop.gap = it.gap
+                                }
                                 createCropCycle(
                                     selectedCrop,
                                     binding.enterFarmBlockID.text.toString(),
@@ -199,8 +206,6 @@ class AutoCreateCropCycleFragment : Fragment() {
         startDate: Calendar?,
         gap: List<GAPtask>
     ) {
-
-
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val calendar = startDate ?: Calendar.getInstance()
 
@@ -211,29 +216,37 @@ class AutoCreateCropCycleFragment : Fragment() {
             val taskEndDate = calendar.clone() as Calendar
             taskEndDate.add(Calendar.DATE, gapTask.endDate.toInt())
 
-            val task = LocalTasks(
+            task = LocalTasks(
                 taskName = gapTask.taskName,
                 startDate = dateFormat.format(taskStartDate.time),
                 endDate = dateFormat.format(taskEndDate.time)
             )
-            localTasksList.add(task)
+            localTasksList.add(task!!)
             calendar.add(Calendar.DATE, gapTask.endDate.toInt())
         }
+
+        val dateFormat1 = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val calendar1 = startDate ?: Calendar.getInstance()
+
+        val testStartDate = calendar1.clone() as Calendar
 
         val localFarmCycle = LocalFarmCycle(
             farmName = farmName,
             cropName = selectedCrop,
-            startDate = dateFormat.format(startDate?.time ?: Calendar.getInstance().time),
+            startDate = getWhenStarts()!!,
             tasks = localTasksList
         )
 
         lifecycleScope.launch {
-            farmCycleViewModel.addCropCycle(localFarmCycle)
-
-            Log.e("AutoCreateCropCycleFragment","$localFarmCycle")
-
-            requireActivity().runOnUiThread {
-                displaySnackBar("Crop cycle for $selectedCrop created successfully!")
+            try {
+                farmCycleViewModel.addCropCycle(localFarmCycle)
+                Log.d("AutoCreateCropCycleFragment","Added crop cycle: $localFarmCycle")
+                requireActivity().runOnUiThread {
+                    displaySnackBar("Crop cycle for $selectedCrop created successfully!")
+                }
+            } catch (e: Exception) {
+                Log.e("AutoCreateCropCycleFragment", "Error adding crop cycle: ${e.message}")
+                displaySnackBar("Failed to create Farm Cycle: ${e.message}")
             }
         }
     }
@@ -371,15 +384,7 @@ class AutoCreateCropCycleFragment : Fragment() {
 
             if (selectedCropCycle == "Crop Cycle") {
                 generateCropCycle()
-
-
             } else {
-                //displayServiceCycleTasks()
-
-//                val stepTextView = TextView(requireContext())
-//                stepTextView.text = "SERVNext Heat -> Drying -> Steaming -> Calving"
-//                binding.stepLinearLayout.addView(stepTextView)
-
                 displayPredefinedServiceCycle()
             }
         }
@@ -490,7 +495,7 @@ class AutoCreateCropCycleFragment : Fragment() {
             { _, selectedYear, selectedMonth, selectedDay ->
                 // Update the selected date in the UI
                 cropCycleStartDay?.set(selectedYear, selectedMonth, selectedDay)
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 binding.cropCycleStartDay.setText(dateFormat.format(cropCycleStartDay!!.time))
             },
             year,
@@ -499,6 +504,7 @@ class AutoCreateCropCycleFragment : Fragment() {
         )
         datePickerDialog.show()
     }
+
 
     private fun getStageDescription(stageName: String): String {
         return when (stageName) {

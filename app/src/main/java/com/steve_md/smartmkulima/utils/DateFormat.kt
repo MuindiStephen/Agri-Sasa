@@ -26,4 +26,11 @@ object DateFormat {
         return sdf.format(cal.time)
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun getWhenStarts(): String? {
+        val cal = Calendar.getInstance()
+        val sdf = SimpleDateFormat("d-MM-yyyy")
+        return sdf.format(cal.time)
+    }
+
 }

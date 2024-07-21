@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,9 +32,7 @@ import timber.log.Timber
 class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding
     //private lateinit var cycleListAdapter: CropCycleTaskListAdapter
-    private var cycleList = ArrayList<LocalFarmCycle>()
-
-
+    private var cycleList =  mutableListOf<LocalFarmCycle>()
 
     private lateinit var localFarmCycleAdapter: LocalFarmCycleAdapter
 
@@ -54,17 +53,20 @@ class CropCycleTasksListFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        setUpBinding()
+        binding.imageViewBackFromCropCycleLists.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        //setUpBinding()
         setUpRecyclerView()
         // getAllAvailableCropCycle()
-
 
         getAllCreatedCycles()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun getAllCreatedCycles() {
-        viewModel.allCycles.observe(viewLifecycleOwner){ it ->
+        /**viewModel.allCycles.observe(viewLifecycleOwner){ it ->
             when(it.isEmpty()) {
                 true -> {
                     displaySnackBar("No created farm cycles available")
@@ -80,6 +82,17 @@ class CropCycleTasksListFragment : Fragment() {
 
                     displaySnackBar("Alert! Created farm cycles")
                 }
+            }
+        }
+        */
+
+        viewModel.allCycles.observe(viewLifecycleOwner) { cycles ->
+            if (cycles.isNullOrEmpty()) {
+                displaySnackBar("No created farm cycles available")
+            } else {
+                cycleList.clear()
+                cycleList.addAll(cycles)
+                localFarmCycleAdapter.submitList(cycleList.toList())
             }
         }
     }
@@ -117,10 +130,13 @@ class CropCycleTasksListFragment : Fragment() {
             }, 1000)
         }
 
+        binding.textView83CropCycle.isVisible = false
         binding.textView83CropCycle.setOnClickListener {
             //binding.cropCycleRecyclerView.removeAllViews()
             filterCycles("")
         }
+
+        binding.textView84.isVisible = false
         binding.textView84.setOnClickListener {
             // binding.cropCycleRecyclerView.removeAllViews()
             filterCycles("")

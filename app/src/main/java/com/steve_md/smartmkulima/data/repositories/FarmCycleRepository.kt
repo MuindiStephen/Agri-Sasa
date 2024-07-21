@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.data.repositories
 
+import androidx.lifecycle.LiveData
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.data.room.GAPDao
 import com.steve_md.smartmkulima.data.room.LocalFarmCycleDao
@@ -29,8 +30,11 @@ class FarmCycleRepository @Inject constructor(
 
     val allCycles : Flow<List<Cycle>> = gapDao.getAllCycle()
 
-    val allLocalFarmCyle: Flow<List<LocalFarmCycle>> = flow {
-        localCycleDao.getAllFarmCycle()
+
+
+
+    fun getAllCycles(): LiveData<List<LocalFarmCycle>> {
+        return localCycleDao.getAllFarmCycle()
     }
 
 }

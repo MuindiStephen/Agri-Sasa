@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.data.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -21,5 +22,5 @@ interface LocalFarmCycleDao {
     suspend fun getFarmCycleBYName(cropName: String): LocalFarmCycle?
 
     @Query("SELECT * FROM localcycle")
-     fun getAllFarmCycle(): Flow<List<LocalFarmCycle>>
+     fun getAllFarmCycle(): LiveData<List<LocalFarmCycle>>
 }

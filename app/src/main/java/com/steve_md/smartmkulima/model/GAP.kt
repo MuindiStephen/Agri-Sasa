@@ -13,7 +13,7 @@ import kotlinx.parcelize.Parcelize
 data class GAP(
     @PrimaryKey val nameGAP: String,
     val imageGAP: String,
-    val gap: List<GAPtask>
+    var gap: List<GAPtask>
 ): Parcelable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

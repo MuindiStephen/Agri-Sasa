@@ -13,8 +13,10 @@ import com.steve_md.smartmkulima.adapter.DetailTaskAdapter
 import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleTasksAdapter
 import com.steve_md.smartmkulima.databinding.FragmentDetailedFarmCycleBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class DetailedFarmCycleFragment : Fragment() {
     private lateinit var binding: FragmentDetailedFarmCycleBinding
     private val tasksAdapter by lazy { LocalFarmCycleTasksAdapter() }
