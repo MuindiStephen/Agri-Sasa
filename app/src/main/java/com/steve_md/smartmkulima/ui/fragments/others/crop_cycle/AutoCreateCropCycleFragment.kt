@@ -150,9 +150,9 @@ class AutoCreateCropCycleFragment : Fragment() {
 
                             if (gapForSelectedCrop != null) {
 
-                                gapList.map {
-                                   gapForSelectedCrop.gap = it.gap
-                                }
+//                                gapList.map {
+//                                   gapForSelectedCrop.gap = it.gap
+//                                }
                                 createCropCycle(
                                     selectedCrop,
                                     binding.enterFarmBlockID.text.toString(),
@@ -212,9 +212,15 @@ class AutoCreateCropCycleFragment : Fragment() {
         val localTasksList = mutableListOf<LocalTasks>()
 
         gap.forEach { gapTask ->
+
+            val startDateInt = gapTask.startDate.toInt()
+            val endDateInt = gapTask.endDate.toInt()
+
             val taskStartDate = calendar.clone() as Calendar
+            taskStartDate.add(Calendar.DAY_OF_YEAR, startDateInt - 1)
+
             val taskEndDate = calendar.clone() as Calendar
-            taskEndDate.add(Calendar.DATE, gapTask.endDate.toInt())
+            taskEndDate.add(Calendar.DAY_OF_YEAR, endDateInt - 1)
 
             task = LocalTasks(
                 taskName = gapTask.taskName,
@@ -222,7 +228,7 @@ class AutoCreateCropCycleFragment : Fragment() {
                 endDate = dateFormat.format(taskEndDate.time)
             )
             localTasksList.add(task!!)
-            calendar.add(Calendar.DATE, gapTask.endDate.toInt())
+           // calendar.add(Calendar.DATE, gapTask.endDate.toInt())
         }
 
         val dateFormat1 = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -233,7 +239,7 @@ class AutoCreateCropCycleFragment : Fragment() {
         val localFarmCycle = LocalFarmCycle(
             farmName = farmName,
             cropName = selectedCrop,
-            startDate = getWhenStarts()!!,
+            startDate = getWhenStarts() ?: "${startDate?.time}",
             tasks = localTasksList
         )
 
@@ -276,13 +282,13 @@ class AutoCreateCropCycleFragment : Fragment() {
             requireActivity(),
             notificationId,
             intentId,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val builder = NotificationCompat.Builder(requireContext(), "notification_id")
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Farm cycle tasks")
-            .setContentText("Your have tasks due in $daysLater days.")
+            .setContentTitle("Farm cycles")
+            .setContentText("Hey, it's $daysLater days later! Time to check on your crop cycle.")
             .setTicker("Exit")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -447,9 +453,6 @@ class AutoCreateCropCycleFragment : Fragment() {
                 "Bed making/gypsum application",
                 "Flushing with plain water"
             )
-
-
-
 
 
             binding.stepLinearLayout.removeAllViews()
