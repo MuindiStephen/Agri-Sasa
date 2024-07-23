@@ -1,24 +1,34 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.media.app.NotificationCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.CropCycleTaskListAdapter
 import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleAdapter
 import com.steve_md.smartmkulima.data.remote.CyclesApiClient
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleListBinding
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.LocalFarmCycle
+import com.steve_md.smartmkulima.model.LocalTasks
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
@@ -27,6 +37,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Response
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import kotlin.random.Random
 
 /**
  *
@@ -46,7 +61,6 @@ import timber.log.Timber
 @AndroidEntryPoint
 class CropCycleTasksListFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleListBinding
-    //private lateinit var cycleListAdapter: CropCycleTaskListAdapter
     private var cycleList =  mutableListOf<LocalFarmCycle>()
 
     private lateinit var localFarmCycleAdapter: LocalFarmCycleAdapter
@@ -77,6 +91,16 @@ class CropCycleTasksListFragment : Fragment() {
         // getAllAvailableCropCycle()
 
         getAllCreatedCycles()
+
+        // Call scheduleNotification with tasks for today
+        viewModel.allCycles.observe(viewLifecycleOwner) { cycles ->
+            if (!cycles.isNullOrEmpty()) {
+                val todayTasks = getTasksForToday(cycles)
+                todayTasks.forEach { (cropName, tasks) ->
+                    scheduleNotification(cropName, tasks)
+                }
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -108,6 +132,7 @@ class CropCycleTasksListFragment : Fragment() {
                 cycleList.clear()
                 cycleList.addAll(cycles)
                 localFarmCycleAdapter.submitList(cycleList.toList())
+
             }
         }
     }
@@ -230,4 +255,77 @@ class CropCycleTasksListFragment : Fragment() {
         val filteredList = cycleList.filter { it.farmName.equals(s, ignoreCase = true) }
         localFarmCycleAdapter.submitList(filteredList.toMutableList())
     }
+
+
+    /**
+     * A method to fetch tasks for today from a list of crop cycles
+     */
+    private fun getTasksForToday(cycles: List<LocalFarmCycle>):  Map<String, List<LocalTasks>> {
+        val today = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+        return cycles.associate { cycle ->
+            val tasksForToday = cycle.tasks.filter { task ->
+                task.startDate == today || task.endDate == today
+            }
+            cycle.cropName to tasksForToday
+        }
+    }
+
+    /**
+     * Notification channel to accept a list of tasks for
+     * today and create notifications for them
+     */
+    @SuppressLint("SetTextI18n")
+    private fun scheduleNotification(cropName: String,tasks: List<LocalTasks>) {
+        val notificationManager =
+            requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "notification_id"
+            val channelName = "Notification Channel"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance)
+            channel.enableLights(true)
+            channel.lightColor = resources.getColor( R.color.main1)
+            channel.enableVibration(true)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        if (tasks.isNotEmpty()) {
+            tasks.forEach { task ->
+                val notificationId = Random.nextInt()
+                val intent = Intent(requireActivity(), AutoCreateCropCycleFragment::class.java)
+
+                val pendingIntent = PendingIntent.getActivity(
+                    requireActivity(),
+                    notificationId,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                )
+
+
+
+                val notificationMessage = "Today's task for ${cropName}: ${task.taskName}"
+
+                val builder = androidx.core.app.NotificationCompat.Builder(requireContext(), "notification_id")
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("Task Reminder")
+                    .setContentText(notificationMessage)
+                    .setTicker("Task Reminder")
+                    .setPriority(androidx.core.app.NotificationCompat.PRIORITY_DEFAULT)
+                    .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+
+                val notification = builder.build()
+
+                notificationManager.notify(notificationId, notification)
+            }
+
+            displaySnackBar("You have tasks scheduled for today!")
+        } else {
+            displaySnackBar("No tasks scheduled for today.")
+        }
+    }
+
+
 }
