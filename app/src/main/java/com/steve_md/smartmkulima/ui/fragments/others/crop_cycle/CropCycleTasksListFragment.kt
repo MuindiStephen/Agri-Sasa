@@ -92,12 +92,25 @@ class CropCycleTasksListFragment : Fragment() {
 
         getAllCreatedCycles()
 
+        val sharedPreferences = requireActivity().getSharedPreferences("notification_prefs", Context.MODE_PRIVATE)
+
+        val lastNotificationDate = sharedPreferences.getString("last_notification_date", null)
+        val currentDate = getCurrentDate()
+
+        /**
+         * Check if notifications have already been sent!
+         */
         // Call scheduleNotification with tasks for today
-        viewModel.allCycles.observe(viewLifecycleOwner) { cycles ->
-            if (!cycles.isNullOrEmpty()) {
-                val todayTasks = getTasksForToday(cycles)
-                todayTasks.forEach { (cropName, tasks) ->
-                    scheduleNotification(cropName, tasks)
+        if (lastNotificationDate != currentDate) {
+            // Call scheduleNotification with tasks for today
+            viewModel.allCycles.observe(viewLifecycleOwner) { cycles ->
+                if (!cycles.isNullOrEmpty()) {
+                    val todayTasks = getTasksForToday(cycles)
+                    todayTasks.forEach { (cropName, tasks) ->
+                        scheduleNotification(cropName, tasks)
+                    }
+                    // Update the last notification date in SharedPreferences
+                    sharedPreferences.edit().putString("last_notification_date", currentDate).apply()
                 }
             }
         }
@@ -325,6 +338,10 @@ class CropCycleTasksListFragment : Fragment() {
         } else {
             displaySnackBar("No tasks scheduled for today.")
         }
+    }
+
+    private fun getCurrentDate(): String {
+        return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
     }
 
 
