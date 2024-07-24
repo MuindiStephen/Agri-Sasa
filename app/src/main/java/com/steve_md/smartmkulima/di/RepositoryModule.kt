@@ -15,6 +15,9 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 
+/**
+ * Repository module - di
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
@@ -39,6 +42,8 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun providesDispatcher() = Dispatchers.Main as CoroutineDispatcher
+
+
     @Singleton
     @Provides
     fun providesAuthRepository() : AuthRepository {

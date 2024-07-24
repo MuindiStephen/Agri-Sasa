@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
@@ -7,6 +8,7 @@ import android.os.Build
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.database.FirebaseDatabase
+import com.steve_md.smartmkulima.utils.SnackbarHelper
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -15,7 +17,6 @@ import timber.log.Timber
  * Serves as the main entry point of this android app
  * With dependency injection (dagger-hilt)
  */
-
 @HiltAndroidApp
 class ShambaApp : Application() {
     override fun onCreate() {
@@ -28,7 +29,13 @@ class ShambaApp : Application() {
         val itemUIMode: Boolean = sharedPreferences.getBoolean("ISCHECKED", false)
         Timber.d("UI Theme: $itemUIMode")
         uiMode(itemUIMode)
+
+
+
+
     }
+
+
 
     /**
      * Support for Dark and Light mode
@@ -52,4 +59,6 @@ class ShambaApp : Application() {
     private fun timber() {
         Timber.plant(Timber.DebugTree())
     }
+
+
 }

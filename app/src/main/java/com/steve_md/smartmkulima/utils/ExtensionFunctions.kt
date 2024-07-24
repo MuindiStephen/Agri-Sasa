@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.utils
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
@@ -39,6 +40,11 @@ fun Fragment.snackBar(text: String) {
         .setAction("TRY AGAIN") {
             onStart()
         }
+        .show()
+}
+
+fun View.snackBar(text: String,view: View) {
+    Snackbar.make(view, text, Snackbar.LENGTH_INDEFINITE)
         .show()
 }
 
@@ -136,4 +142,8 @@ fun Fragment.hideSupportActionBar() {
     val layoutparams = view!!.layoutParams as FrameLayout.LayoutParams
     layoutparams.updateMargins(top = 0)
 }
+
+
+
+
 
