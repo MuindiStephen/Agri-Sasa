@@ -42,4 +42,22 @@ object Constants {
     object TransactionType {
         const val CustomerPayBillOnline = "CustomerPayBillOnline"
     }
+
+
+    /**
+     * Merchant
+     */
+    const val DIRECT_PAYMENT = "Direct payment"
+    const val SCAN_PAY = "Scan & Pay"
+    const val EVENTS_TICKETS = "Events & Tickets"
+    const val HOT_DEALS = "Hot deals"
+}
+
+fun String.getInitials(): String {
+    val array = this.split(" ")
+    return if (array.size == 1) {
+        array[0].substring(0, 1)
+    } else {
+        array[0].substring(0, 1) + array[1].substring(0, 1)
+    }
 }

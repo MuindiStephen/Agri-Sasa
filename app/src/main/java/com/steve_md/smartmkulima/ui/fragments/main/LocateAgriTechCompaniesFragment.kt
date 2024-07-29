@@ -80,17 +80,21 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             requestLocationPermission()
         }
 
-        // Add sample agrovet markers
+        // Add sample Agrovet markers
         val agrovets = getAgrovetsData()
         for (agrovet in agrovets) {
             val location = LatLng(agrovet.latitude, agrovet.longitude)
-            googleMap.addMarker(MarkerOptions().position(location).title(agrovet.name))
-                ?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+            googleMap.addMarker(MarkerOptions()
+                .position(location)
+                .title(agrovet.name))
+                ?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
         }
 
         if (agrovets.isNotEmpty()) {
             val firstLocation = LatLng(agrovets[0].latitude, agrovets[0].longitude)
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 18f))
+            googleMap.animateCamera(CameraUpdateFactory.zoomIn())
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(13f), 2000, null)
         }
     }
 
@@ -102,9 +106,8 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
         )
     }
 
+    // Just Dummy Data to Display Available AgriTech Companies
     private fun getAgrovetsData(): List<AgriTechCompany> {
-        // Replace with your actual data retrieval logic
-        // This is just a sample implementation
         return listOf(
             AgriTechCompany("SIKATA AGRITECH FARMERS CHOICE", 0.5929, 34.5429839),
             AgriTechCompany("ROSE AGRITECH COMPANY", 0.5960, 34.543333),

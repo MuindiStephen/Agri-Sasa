@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="16dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="#D7CDCACA">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/blue_band_merchant" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+            app:layout_constraintEnd_toEndOf="@+id/imageView7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView7"
+            app:layout_constraintVertical_bias="0.8"
+            app:strokeColor="@color/gray"
+            app:strokeWidth="1px">
+
+            <TextView
+                android:id="@+id/textViewDiscountPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
+                android:padding="4dp"
+                android:text="9% off"
+                android:textColor="@color/primary"
+                android:textSize="8dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textViewProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="Blue Band Peanut Butter 400G"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+        <TextView
+            android:id="@+id/textViewDiscountedPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="KES 164.00"
+            android:textColor="#F69414"
+            app:layout_constraintBottom_toBottomOf="@+id/materialCardView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="@+id/materialCardView4" />
+
+        <TextView
+            android:id="@+id/textViewActualPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="KES 164.00"
+            android:textSize="12sp"
+            android:background="@drawable/strikethrough_layerlist"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDiscountedPrice"
+            app:layout_constraintStart_toEndOf="@+id/textViewDiscountedPrice"
+            app:layout_constraintTop_toTopOf="@+id/textViewDiscountedPrice" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imageButtonAdd"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/primary"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewProductName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewProductName"
+            app:srcCompat="@drawable/ic_add_merchant" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imageButtonMinus"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewActualPrice"
+            app:layout_constraintEnd_toEndOf="@+id/imageButtonAdd"
+            app:layout_constraintStart_toStartOf="@+id/imageButtonAdd"
+            app:layout_constraintTop_toTopOf="@+id/textViewActualPrice"
+            app:srcCompat="@drawable/ic_remove" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="0"
+            android:textColor="@color/primary"
+            app:layout_constraintBottom_toTopOf="@+id/imageButtonMinus"
+            app:layout_constraintEnd_toEndOf="@+id/imageButtonAdd"
+            app:layout_constraintStart_toStartOf="@+id/imageButtonAdd"
+            app:layout_constraintTop_toBottomOf="@+id/imageButtonAdd" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

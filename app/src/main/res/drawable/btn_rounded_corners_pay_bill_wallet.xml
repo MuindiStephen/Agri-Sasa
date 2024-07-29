@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:shape="rectangle">
+    <solid android:color="@color/orange_wallet" />
+
+    <corners
+        android:bottomLeftRadius="@dimen/_8dp"
+        android:bottomRightRadius="@dimen/_8dp"
+        android:topLeftRadius="@dimen/_8dp"
+        android:topRightRadius="@dimen/_8dp" />
+
+</shape>

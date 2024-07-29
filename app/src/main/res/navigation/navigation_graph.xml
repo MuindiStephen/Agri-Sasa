@@ -494,5 +494,48 @@
             android:name="gap"
             app:argType="com.steve_md.smartmkulima.model.GAP" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentHomeMerchant"
+        android:name="com.steve_md.smartmkulima.ui.fragments.home.FragmentHomeMerchant"
+        android:label="fragment_home_merchant"
+        tools:layout="@layout/fragment_home_merchant" >
+        <action
+            android:id="@+id/action_fragmentHomeMerchant_to_fragmentDirectPayment"
+            app:destination="@id/fragmentDirectPayment" />
+        <action
+            android:id="@+id/action_fragmentHomeMerchant_to_eventsAndTicketsFragment"
+            app:destination="@id/eventsAndTicketsFragment" />
+        <action
+            android:id="@+id/action_fragmentHomeMerchant_to_hotDealsFragment"
+            app:destination="@id/hotDealsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successfulFragmentMerchant"
+        android:name="com.steve_md.smartmkulima.ui.fragments.merchant.SuccessfulFragmentMerchant"
+        android:label="fragment_sucessful_merchant"
+        tools:layout="@layout/fragment_sucessful_merchant" >
+        <action
+            android:id="@+id/action_successfulFragmentMerchant_to_fragmentHomeMerchant"
+            app:destination="@id/fragmentHomeMerchant" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDirectPayment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.directpayment.FragmentDirectPayment"
+        android:label="fragment_direct_payment_merchant"
+        tools:layout="@layout/fragment_direct_payment_merchant" >
+        <action
+            android:id="@+id/action_fragmentDirectPayment_to_successfulFragmentMerchant"
+            app:destination="@id/successfulFragmentMerchant" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventsAndTicketsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.merchant.EventsAndTicketsFragment"
+        android:label="fragment_events_tickets_merchant"
+        tools:layout="@layout/fragment_events_tickets_merchant" />
+    <fragment
+        android:id="@+id/hotDealsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.merchant.HotDealsFragment"
+        android:label="fragment_hot_deals_merchant"
+        tools:layout="@layout/fragment_hot_deals_merchant" />
 
 </navigation>

@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 
 /**
- * Laucher screen of this APP.
+ * Launcher screen of this APP.
  */
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
@@ -36,7 +36,6 @@ class SplashFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

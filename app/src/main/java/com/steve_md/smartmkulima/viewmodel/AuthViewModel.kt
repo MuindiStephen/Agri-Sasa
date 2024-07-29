@@ -36,7 +36,7 @@ class AuthViewModel @Inject constructor(
         confirmPassword: String,
         password: String,
     ) {
-        var error =
+        val error =
             if (email.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 "Empty Strings"
             } else if (confirmPassword != password) {

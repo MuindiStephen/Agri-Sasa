@@ -21,5 +21,19 @@
     <color name="blue">#0000FF</color>
     <color name="violet">#8f00ff</color>
     <color name="red">#F14519</color>
+
+    <color name="primary">#1AA8E4</color>
+    <color name="primarydark">#014bb3</color>
+    <color name="primaryDarker">#083273</color>
+    <color name="accent">#1AA7E1</color>
+    <color name="card_green">#41B21F</color>
+    <color name="back_groundgrey">#40E4E4E4</color>
+    <color name="withdraw_money">#B51F1F</color>
+    <color name="deposit_money">#36B51F</color>
+    <color name="textinputlayout_bordercolor">#666666</color>
+    <color name="textGrey">#b5b3b3</color>
+    <color name="mustard">#f6950c</color>
+    <color name="lightGrey">#dedada</color>
+    <color name="lineGrey">#989898</color>
     
 </resources>
