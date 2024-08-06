@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -166,8 +167,11 @@ class HomeDashboardFragment : Fragment() {
                     call: Call<ArrayList<GAP>>,
                     response: Response<ArrayList<GAP>>
                 ) {
+                    binding.progressBar6.isVisible = true
+
                     if (response.isSuccessful) {
 
+                        binding.progressBar6.isVisible = false
                         Timber.i("==== Viewing Good Agri. practices${response.body()}=====")
                         // displaySnackBar("Viewing Available cycles")
 
@@ -184,6 +188,7 @@ class HomeDashboardFragment : Fragment() {
                 }
                 override fun onFailure(call: Call<ArrayList<GAP>>, t: Throwable) {
                     Timber.e("nothing here.${t.localizedMessage}")
+                    binding.progressBar6.isVisible = false
                 }
             })
     }

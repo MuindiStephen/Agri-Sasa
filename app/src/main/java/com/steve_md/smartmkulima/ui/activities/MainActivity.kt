@@ -2,7 +2,9 @@ package com.steve_md.smartmkulima.ui.activities
 
 
 /**
- * Shamba App by Stephen Muindi
+ * Modern Agri-App
+ * @author by Stephen Muindi
+ * @year 2024
  */
 import android.app.Activity
 import android.os.Build
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setRecentsScreenshotEnabled(false)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -42,14 +44,9 @@ class MainActivity : AppCompatActivity() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        SnackbarHelper.setRootView(findViewById(android.R.id.content))
 
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE
-        )
 
-        registerListener()
+
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
                 as NavHostFragment
@@ -79,52 +76,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        window.addFlags(
-            WindowManager.LayoutParams.FLAG_SECURE
-        )
-    }
-
-    override fun onPause() {
-        super.onPause()
-        window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-    }
-
-    /**
-     * Detect Screenshots in the Android App
-     */
-    private fun registerListener() {
-        screenCaptureCallback = ScreenCaptureCallback {
-            SnackbarHelper.show("Detected unusual activity, screenshots capturing is not allowed.")
-        }
-    }
-
-    /**
-     * Register this listener
-     * @method onStart
-     */
-    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
-    override fun onStart() {
-        super.onStart()
-        registerScreenCaptureCallback(mainExecutor,screenCaptureCallback!!)
-    }
 
 
-    /**
-     * Unregister this listener
-     * @method onStop
-     */
-    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
-    override fun onStop() {
-        super.onStop()
-        unregisterScreenCaptureCallback(screenCaptureCallback!!)
-    }
+
 }
 
 

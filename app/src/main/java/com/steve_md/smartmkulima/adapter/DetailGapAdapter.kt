@@ -8,6 +8,11 @@ import com.steve_md.smartmkulima.databinding.DetailCycleRowBinding
 import com.steve_md.smartmkulima.model.GAPtask
 import com.steve_md.smartmkulima.model.Tasks
 
+/**
+ * Adapter to bind GAP data
+ * in detail to the Ui -> task activities : taskName | startDate | endDate
+ * for each crop and their respective GAPs
+ */
 class DetailGapAdapter : RecyclerView.Adapter<DetailGapAdapter.TaskViewHolder>() {
 
     private var gaps: List<GAPtask> = ArrayList()

@@ -227,38 +227,7 @@ class CropCycleTasksListFragment : Fragment() {
         }
 
     }
-    private fun getAllAvailableCropCycle() {
-        // fetch from api(remote web service)
-        CyclesApiClient.api.getAllFarmCycles()
-            .enqueue(object : retrofit2.Callback<ArrayList<Cycle>> {
-                @SuppressLint("NotifyDataSetChanged", "ResourceAsColor")
-                override fun onResponse(
-                    call: Call<ArrayList<Cycle>>,
-                    response: Response<ArrayList<Cycle>>
-                ) {
-                    if (response.isSuccessful) {
 
-                        Timber.i("==== Viewing Farm cycles${response.body()}=====")
-                       // displaySnackBar("Viewing Available cycles")
-
-                        val cycles = response.body()
-
-//                        cycles?.let {
-//                            cycleList.addAll(it)
-//                            cycleListAdapter.submitList(cycleList)
-//                        }
-//                        cycleListAdapter.notifyDataSetChanged()
-//                        binding.cropCycleRecyclerView.adapter = cycleListAdapter
-//                        binding.cropCycleRecyclerView.visibility = View.VISIBLE
-                    }
-                }
-                override fun onFailure(call: Call<ArrayList<Cycle>>, t: Throwable) {
-                    Timber.e("nothing here.${t.localizedMessage}")
-                    binding.errorNotAvailable.visibility = View.VISIBLE
-                    binding.cropCycleRecyclerView.visibility = View.INVISIBLE
-                }
-            })
-    }
 
     private fun searching(s: String) {
         val filteredList = cycleList.filter { it.cropName.equals(s, ignoreCase = true) }

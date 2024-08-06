@@ -35,5 +35,77 @@
     <color name="mustard">#f6950c</color>
     <color name="lightGrey">#dedada</color>
     <color name="lineGrey">#989898</color>
+
+    <color name="colorPrimary">#083273</color>
+    <color name="colorPrimaryVariant">#083273</color>
+    <color name="colorSecondary">#FF03DAC5</color>
+    <color name="colorSecondaryVariant">#FF018786</color>
+    <color name="colorOnPrimary">@color/white</color>
+    <color name="colorAccent">#083273</color>
+
+    <color name="ColorPrimaryTint">#D922285D</color>
+    <color name="orangebackground">#ff6400</color>
+    <color name="light_orange">#ffffb180</color>
+    <color name="dark_orange">#9F4E00</color>
+    <color name="colorOnSecondary">@color/black</color>
+    <color name="lightest_grey_wallet">#F7F7F7</color>
+    <color name="error">#d41a0c</color>
+
+    <color name="grey_custom">#ECF1FF</color>
+    <color name="actionbar_opacity">#33000000</color>
+
+    <color name="light_grey">#dddcdc</color>
+    <color name="grey">#F7F7F7</color>
+    <color name="hint_default_color">#808080</color>
+
+    <color name="flaming_hot">@color/colorPrimary</color>
+    <color name="successful">#009144</color>
+    <color name="light_maroon">@color/orange</color>
+    <color name="maroon">@color/orange</color>
+    <color name="orange">@color/colorPrimary</color>
+    <color name="translucent">#64ffffff</color>
+    <color name="transparent">#00f6711c</color>
+    <color name="yellow">#fef200</color>
+
+    <color name="slightly_transparent">#14ffffff</color>
+
+    <color name="colorGreyLight">#FAF9FC</color>
+    <color name="fireBrickRed">#B22222</color>
+    <color name="azure">#0080FF</color>
+    <color name="navyBlue">#000080</color>
+    <color name="teaBlue">#008081</color>
+    <color name="turquoise">#3FE0D0</color>
+    <color name="airforce">#588BAE</color>
+    <color name="carolina">#57A0D3</color>
+    <color name="steel">#4682B4</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+
+
+    <color name="grey_tint_wallet">#F7F7F7</color>
+
+
+
+    <color name="dark_blue_wallet">#083273</color>
+
+    <color name="light_blue_wallet">#1AA7E1</color>
+    <color name="orange_wallet">#F69414</color>
+
+    <color name="dark_blue">#083273</color>
+    <color name="light_blue">#1AA7E1</color>
+    <color name="red_text_color_wallet">#B51F1F</color>
+    <color name="gray_color_wallet">#6F7070</color>
+    <color name="gray1_wallet">#707070</color>
+
+
+    <color name="black_wallet">#FF000000</color>
+    <color name="white_wallet">#FFFFFFFF</color>
+    <color name="green_wallet">#40E11A</color>
+    <color name="text_input_layout_border_color_wallet">#666666</color>
+    <color name="text_grey_color_wallet">#6F7070</color>
+    <color name="light_gray_wallet2">#F7F7F7</color>
+    <color name="accent_blue">#1AA7E1</color>
+
+
     
 </resources>

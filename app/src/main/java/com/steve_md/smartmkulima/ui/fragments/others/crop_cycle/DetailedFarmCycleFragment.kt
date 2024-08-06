@@ -85,8 +85,8 @@ class DetailedFarmCycleFragment : Fragment() {
 
 
             showFarmId.text = ""
-            ShowCropName.text = cycle.cropName
-            ShowStartDate.text = cycle.startDate
+            ShowCropName.text = "Crop Name: ${cycle.cropName}"
+            ShowStartDate.text = "Cycle starts on: ${cycle.startDate}"
             textView78.text = "Crop cycle"
 
             Timber.tag(this@DetailedFarmCycleFragment.toString()).i("Viewing ${cycle.cropName} cycle")

@@ -162,30 +162,6 @@ class AutoCreateCropCycleFragment : Fragment() {
                             }
                     }
 
-//                        val ga
-//                        var gapFound = false
-//
-//                        Timber.i("==== Viewing Good Agri. practices${response.body()}=====")
-//                        // displaySnackBar("Viewing Available cycles")
-//
-//                        response.body()?.forEach { gapResponse ->
-//                            if (gapResponse.nameGAP.equals(selectedCrop, ignoreCase = true)) {
-//                                createCropCycle(
-//                                    selectedCrop,
-//                                    binding.enterFarmBlockID.text.toString(),
-//                                    cropCycleStartDay,
-//                                    gapResponse.gap
-//                                )
-//                            }
-//                        }
-
-//                        if (!gapFound) {
-//                            Timber.w("No GAP found for the selected crop: $selectedCrop")
-//                            requireActivity().runOnUiThread {
-//                                displaySnackBar("No GAP found for the selected crop: $selectedCrop")
-//                            }
-//                        }
-
                     } else {
                         Timber.e("Response was not successful: ${response.message()}")
                         Timber.w("No GAP found for the selected crop: $selectedCrop")

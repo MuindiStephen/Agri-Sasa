@@ -20,7 +20,9 @@ import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.AgriTechCompany
 import dagger.hilt.android.AndroidEntryPoint
 
-
+/**
+ * Display near Agrovet companies via a Map
+ */
 @AndroidEntryPoint
 class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
 
@@ -36,7 +38,11 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_locate_agri_tech_companies, container, false)
+        val rootView = inflater.inflate(
+            R.layout.fragment_locate_agri_tech_companies,
+            container,
+            false
+        )
         // Initialize the MapView
         mapView = rootView.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
@@ -80,7 +86,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             requestLocationPermission()
         }
 
-        // Add sample Agrovet markers
+        // Add sample Agrovet Markers
         val agrovets = getAgrovetsData()
         for (agrovet in agrovets) {
             val location = LatLng(agrovet.latitude, agrovet.longitude)

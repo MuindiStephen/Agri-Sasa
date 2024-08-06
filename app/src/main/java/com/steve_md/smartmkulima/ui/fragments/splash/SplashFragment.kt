@@ -35,27 +35,6 @@ class SplashFragment : Fragment() {
         binding = FragmentSplashBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-       // makeStatusBarTransparent()
-
-        /**
-         * Deprecated and leads to an exception with :)
-         * java.lang.IllegalStateException: Fragment SplashFragment{4f425ca} (993704d7-7477-4650-a722-7b5ca352e26c) not associated with a fragment manager.
-         */
-//        Handler(Looper.getMainLooper()).postDelayed({
-//
-//            if (userIsLoggedIn != null) {
-//                findNavController().navigate(R.id.action_splashFragment_to_homeDashboardFragment2)
-//            } else {
-//                findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
-//            }
-//        }, 3000)
-
-    }
-
     override fun onResume() {
         super.onResume()
         performNavigation()
@@ -63,15 +42,16 @@ class SplashFragment : Fragment() {
 
     private fun performNavigation() {
         lifecycleScope.launch {
-            delay(1500L)
 
+            delay(1500L)
             val userIsLoggedIn = FirebaseAuth.getInstance().currentUser
             if (userIsLoggedIn != null) {
-                findNavController().navigate(R.id.action_splashFragment_to_homeDashboardFragment2)
+                findNavController().navigate(
+                    R.id.action_splashFragment_to_homeDashboardFragment2)
             } else {
-                findNavController().navigate(R.id.action_splashFragment_to_authsMainFragment)
+                findNavController().navigate(
+                    R.id.action_splashFragment_to_authsMainFragment)
             }
-
         }
     }
 }

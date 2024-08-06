@@ -334,6 +334,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" />
 
+        <ProgressBar
+            android:id="@+id/progressBar6"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/includeToolBar"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

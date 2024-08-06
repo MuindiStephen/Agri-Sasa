@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ekenya.rnd.common.R
 import com.steve_md.smartmkulima.utils.dialogs.base.adapter_detail.DetailDialogAdapter
 import com.ekenya.rnd.common.dialogs.base.BaseDialogCommon
+import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.utils.dialogs.base.adapter_detail.model.DialogDetailCommon
 
 
