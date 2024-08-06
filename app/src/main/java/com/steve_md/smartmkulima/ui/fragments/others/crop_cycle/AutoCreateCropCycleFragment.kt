@@ -94,7 +94,7 @@ class AutoCreateCropCycleFragment : Fragment() {
         cropCycleStartDay = Calendar.getInstance()
        // setUpBinding()
 
-        scheduleNotification(2)
+       // scheduleNotification(2)
 
 
         val cropList = resources.getStringArray(R.array.crop_list)
@@ -150,9 +150,9 @@ class AutoCreateCropCycleFragment : Fragment() {
 
                             if (gapForSelectedCrop != null) {
 
-                                gapList.map {
-                                   gapForSelectedCrop.gap = it.gap
-                                }
+//                                gapList.map {
+//                                   gapForSelectedCrop.gap = it.gap
+//                                }
                                 createCropCycle(
                                     selectedCrop,
                                     binding.enterFarmBlockID.text.toString(),
@@ -212,9 +212,15 @@ class AutoCreateCropCycleFragment : Fragment() {
         val localTasksList = mutableListOf<LocalTasks>()
 
         gap.forEach { gapTask ->
+
+            val startDateInt = gapTask.startDate.toInt()
+            val endDateInt = gapTask.endDate.toInt()
+
             val taskStartDate = calendar.clone() as Calendar
+            taskStartDate.add(Calendar.DAY_OF_YEAR, startDateInt - 1)
+
             val taskEndDate = calendar.clone() as Calendar
-            taskEndDate.add(Calendar.DATE, gapTask.endDate.toInt())
+            taskEndDate.add(Calendar.DAY_OF_YEAR, endDateInt - 1)
 
             task = LocalTasks(
                 taskName = gapTask.taskName,
@@ -222,7 +228,7 @@ class AutoCreateCropCycleFragment : Fragment() {
                 endDate = dateFormat.format(taskEndDate.time)
             )
             localTasksList.add(task!!)
-            calendar.add(Calendar.DATE, gapTask.endDate.toInt())
+           // calendar.add(Calendar.DATE, gapTask.endDate.toInt())
         }
 
         val dateFormat1 = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -233,7 +239,7 @@ class AutoCreateCropCycleFragment : Fragment() {
         val localFarmCycle = LocalFarmCycle(
             farmName = farmName,
             cropName = selectedCrop,
-            startDate = getWhenStarts()!!,
+            startDate = getWhenStarts() ?: "${startDate?.time}",
             tasks = localTasksList
         )
 
@@ -244,6 +250,10 @@ class AutoCreateCropCycleFragment : Fragment() {
                 requireActivity().runOnUiThread {
                     displaySnackBar("Crop cycle for $selectedCrop created successfully!")
                 }
+
+                // Schedule notifications for tasks
+                scheduleNotification(localTasksList)
+
             } catch (e: Exception) {
                 Log.e("AutoCreateCropCycleFragment", "Error adding crop cycle: ${e.message}")
                 displaySnackBar("Failed to create Farm Cycle: ${e.message}")
@@ -253,7 +263,7 @@ class AutoCreateCropCycleFragment : Fragment() {
 
 
     @SuppressLint("SetTextI18n")
-    private fun scheduleNotification(daysLater: Int) {
+    private fun scheduleNotification(tasks: List<LocalTasks>) {
         val notificationManager =
             requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -268,72 +278,47 @@ class AutoCreateCropCycleFragment : Fragment() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        val notificationId = Random().nextInt()
+        val todayTasks = getTasksForToday(tasks)
 
-        val intentId = Intent(requireActivity(),AutoCreateCropCycleFragment::class.java)
+        if (todayTasks.isNotEmpty()) {
+            todayTasks.forEach { task ->
+                val notificationId = Random().nextInt()
+                val intent = Intent(requireActivity(), AutoCreateCropCycleFragment::class.java)
 
-        val pendingIntent = PendingIntent.getActivity(
-            requireActivity(),
-            notificationId,
-            intentId,
-            PendingIntent.FLAG_IMMUTABLE
-        )
+                val pendingIntent = PendingIntent.getActivity(
+                    requireActivity(),
+                    notificationId,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                )
 
-        val builder = NotificationCompat.Builder(requireContext(), "notification_id")
-            .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Farm cycle tasks")
-            .setContentText("Your have tasks due in $daysLater days.")
-            .setTicker("Exit")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
+                val builder = NotificationCompat.Builder(requireContext(), "notification_id")
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("Task Reminder")
+                    .setContentText("Today's task for $selectedCrop:${task.taskName}")
+                    .setTicker("Task Reminder")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
 
-        val notification = builder.build()
+                val notification = builder.build()
 
-        // Schedule the notification
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = System.currentTimeMillis()
-        //calendar.set(Calendar.HOUR_OF_DAY,9)
-
-        //for reminding of upcoming tasks
-        calendar.add(Calendar.DATE,daysLater)
-
-        val intervalMillis = 60 * 60 * 1000 // Interval: 1 hour
-
-        var notifySuccess = true
-
-        for (i in 0 until 24) {
-            // 24 reminders in a day
-            try {
-                notificationManager.notify(notificationId + i, notification)
-                calendar.add(Calendar.HOUR_OF_DAY, intervalMillis)
-            } catch (e: Exception){
-                notifySuccess = false
-                break
+                notificationManager.notify(notificationId, notification)
             }
-        }
-        notificationManager.notify(notificationId, notification)
-        Timber.tag(this.tag.toString()).d("unread msg: task notification available")
 
-        if (notifySuccess){
-
-            displaySnackBar("Crop cycle tasks upcoming in $daysLater days")
-//            binding.textViewNotificationsAvailable.visibility = View.VISIBLE
-//            binding.textView71.visibility = View.GONE
-//            binding.alerts.visibility = View.GONE
-//            binding.textViewNotificationsAvailable.text = "Success! Please check your background for available notifications\n\n" +
-//                    "Crop cycle tasks upcoming in $daysLater days\n"
-            Timber.v("Notify success: $notification")
-        }
-        else{
-            displaySnackBar("You will be reminded of upcoming tasks later today!")
-
-//            binding.textViewNotificationsAvailable.visibility = View.GONE
-//            binding.textView71.visibility = View.VISIBLE
-//            binding.alerts.visibility = View.VISIBLE
+            displaySnackBar("You have tasks scheduled for today!")
+        } else {
+            displaySnackBar("No tasks scheduled for today.")
         }
     }
+
+    private fun getTasksForToday(tasks: List<LocalTasks>): List<LocalTasks>  {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val todayDate = dateFormat.format(Calendar.getInstance().time)
+        return tasks.filter { it.startDate == todayDate }
+    }
+
 
     @SuppressLint("ResourceType", "SetTextI18n")
     private fun setUpBinding() {
@@ -447,9 +432,6 @@ class AutoCreateCropCycleFragment : Fragment() {
                 "Bed making/gypsum application",
                 "Flushing with plain water"
             )
-
-
-
 
 
             binding.stepLinearLayout.removeAllViews()

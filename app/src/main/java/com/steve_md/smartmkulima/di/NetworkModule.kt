@@ -14,7 +14,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
+/**
+ * Network module - di
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

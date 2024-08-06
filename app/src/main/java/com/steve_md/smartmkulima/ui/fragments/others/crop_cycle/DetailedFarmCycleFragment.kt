@@ -55,7 +55,6 @@ class DetailedFarmCycleFragment : Fragment() {
 //        binding.spinnerStatusOfFarmCycle.setSelection(
 //            (binding.spinnerStatusOfFarmCycle.adapter as ArrayAdapter<*>).getPosition(setStatus as Nothing?)
 //        )
-
         /*
         binding.spinnerStatusOfFarmCycle.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(

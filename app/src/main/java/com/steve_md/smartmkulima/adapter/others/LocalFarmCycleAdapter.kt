@@ -34,6 +34,10 @@ class LocalFarmCycleAdapter(private val onClickListener: OnClickListener) :
             binding.cycleData.text = cycle?.cropName
             binding.dateForCycle.text = cycle?.startDate
             binding.textView85.text = "Crop cycle"
+
+            // Attach the crop name to the item view for later use in the notification
+            itemView.tag = cycle?.cropName
+
         }
     }
 

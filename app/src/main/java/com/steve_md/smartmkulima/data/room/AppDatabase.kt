@@ -12,6 +12,9 @@ import com.steve_md.smartmkulima.model.Tasks
 import com.steve_md.smartmkulima.model.Transaction
 
 
+/**
+ * Room database
+ */
 @TypeConverters(Converters::class,LocalFarmCycleConverter::class)
 @Database(entities = [Transaction::class, FarmProduce::class, Cycle::class,
     Tasks::class, LocalFarmCycle::class], version = 5, exportSchema = false)
