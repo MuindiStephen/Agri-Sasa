@@ -5,33 +5,47 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentUserTypeAccountBinding
 
 /**
- * Select Account type could be either Supplier or Farmer
+ * Select Account type could be -:
+ * Either Supplier or Farmer
  */
 class UserTypeAccountFragment : Fragment() {
-    private lateinit var binding: FragmentUserTypeAccountBinding
+
+    private var _binding: FragmentUserTypeAccountBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FragmentUserTypeAccountBinding.inflate(inflater, container, false).apply {
-            binding = this
-        }.root
+        _binding = FragmentUserTypeAccountBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpBinding()
+    }
+
+    private fun setUpBinding() {
+        binding.apply {
+            toolbarUserTypeNavigationBack.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
+        binding
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        _binding = null
     }
 }

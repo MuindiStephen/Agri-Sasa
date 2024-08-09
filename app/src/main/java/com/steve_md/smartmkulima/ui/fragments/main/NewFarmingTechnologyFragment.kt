@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +42,14 @@ class NewFarmingTechnologyFragment : Fragment() {
                 navigateToMarketProduce()
             }
             cardViewTrackAgriTechCompany.setOnClickListener {
-                goToLocateAgriTechs()
+                // goToLocateAgriTechs()
+
+                val intent = Intent(requireActivity(), MapsActivity::class.java)
+                startActivity(intent)
+                intent.flags = 0
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                requireActivity().finish()
+
             }
             cardViewPredictFarmProduce.setOnClickListener {
                 goToPredictFarmYield()
@@ -57,7 +65,9 @@ class NewFarmingTechnologyFragment : Fragment() {
     }
 
     private fun goToAutoGenerateCropCycle() {
-        findNavController().navigate(R.id.action_newFarmingTechnologyFragment_to_autoCreateCropCycleFragment)
+        findNavController().navigate(
+            R.id.action_newFarmingTechnologyFragment_to_autoCreateCropCycleFragment
+        )
     }
 
     private fun goToGenerateNewCropCycle() {
@@ -65,7 +75,9 @@ class NewFarmingTechnologyFragment : Fragment() {
     }
 
     private fun goToPredictFarmYield() {
-        findNavController().navigate(R.id.action_newFarmingTechnologyFragment_to_predictYourCropProductionFragment)
+        findNavController().navigate(
+            R.id.action_newFarmingTechnologyFragment_to_predictYourCropProductionFragment
+        )
     }
 
     private fun goToLocateAgriTechs() {

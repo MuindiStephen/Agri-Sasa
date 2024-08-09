@@ -51,34 +51,6 @@ class DetailedFarmCycleFragment : Fragment() {
         viewModel.updateTaskStatus(setStatus)
         binding.textView86.text = setStatus
 
-//
-//        binding.spinnerStatusOfFarmCycle.setSelection(
-//            (binding.spinnerStatusOfFarmCycle.adapter as ArrayAdapter<*>).getPosition(setStatus as Nothing?)
-//        )
-        /*
-        binding.spinnerStatusOfFarmCycle.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                viewModel.updateTaskStatus(setStatus)
-                binding.textView86.text = setStatus
-                displaySnackBar(setStatus)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-               Log.e("STATUS","Nothing")
-            }
-
-        }
-
-         */
-
-
-
-
         val cycle = args.cycle
         binding.apply {
             // Link data with respective views

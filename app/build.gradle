@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:21.0.0'
     implementation 'com.google.firebase:firebase-storage-ktx:21.0.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:25.0.0'
+    implementation 'androidx.activity:activity:1.8.0'
     def timber_version = "5.0.1"
     def room_version = "2.6.1"
 
@@ -152,4 +153,5 @@ dependencies {
     // Barcode scanner
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
+    implementation 'com.google.maps.android:android-maps-utils:1.1.0'
 }

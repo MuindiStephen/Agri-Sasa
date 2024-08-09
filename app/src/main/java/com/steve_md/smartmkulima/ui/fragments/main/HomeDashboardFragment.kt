@@ -160,6 +160,9 @@ class HomeDashboardFragment : Fragment() {
     }
 
     private fun getGoodAgriculturalPractices() {
+
+        binding.progressBar6.isVisible = true
+
         GapApiClient.api.getAllGAPs()
             .enqueue(object : retrofit2.Callback<ArrayList<GAP>> {
                 @SuppressLint("NotifyDataSetChanged", "ResourceAsColor")
