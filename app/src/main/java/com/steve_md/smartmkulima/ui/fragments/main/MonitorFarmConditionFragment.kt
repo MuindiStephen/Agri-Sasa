@@ -31,7 +31,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var googleMap: GoogleMap
     private var LOCATION_PERMISSION_REQUEST_CODE = 1
-
     private lateinit var locationProvider: LocationProvider
 
     override fun onCreateView(
@@ -81,11 +80,11 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     }
 
     private fun displayFarmConditions(mockFarmConditions: FarmConditions) {
-        val temp = view?.findViewById<TextView>(R.id.textViewTemperature)
+        val temperature = view?.findViewById<TextView>(R.id.textViewTemperature)
         val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
         val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
 
-        temp?.text = mockFarmConditions.temperature.toString()
+        temperature?.text = mockFarmConditions.temperature.toString()
         humidity?.text = mockFarmConditions.humidity.toString()
         soilMoisture?.text = mockFarmConditions.soilMoisture.toString()
     }

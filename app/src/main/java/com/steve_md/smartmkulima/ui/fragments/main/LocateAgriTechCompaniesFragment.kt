@@ -34,7 +34,8 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
@@ -52,6 +53,8 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
         return rootView
     }
 
+
+
     override fun onResume() {
         super.onResume()
         mapView.onResume()
@@ -62,6 +65,14 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
         mapView.onPause()
     }
 
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().isDestroyed
+    }
     override fun onDestroy() {
         super.onDestroy()
         mapView.onDestroy()
@@ -71,7 +82,6 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
         super.onLowMemory()
         mapView.onLowMemory()
     }
-
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
 
