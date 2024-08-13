@@ -41,7 +41,7 @@ class UserTypeAccountFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding
+        binding.root
     }
 
     override fun onDestroy() {

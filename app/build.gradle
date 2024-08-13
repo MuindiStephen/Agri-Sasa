@@ -154,4 +154,10 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
     implementation 'com.google.maps.android:android-maps-utils:1.1.0'
+
+    // Print service
+    implementation files("libs/nexgo-smartpos-sdk-v3.0.3.aar")
+
+    implementation(name: 'A26Library-debug', ext: 'aar')
+    implementation files('libs/CpaySDKLib_V1.0_20210421.jar')
 }

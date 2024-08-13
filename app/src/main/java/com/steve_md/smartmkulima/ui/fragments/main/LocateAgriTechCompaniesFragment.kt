@@ -3,6 +3,7 @@ package com.steve_md.smartmkulima.ui.fragments.main
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.printservice.PrintService
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.AgriTechCompany
 import dagger.hilt.android.AndroidEntryPoint
+import com.nexgo.oaf.apiv3.device.printer.Printer
+
+
 
 /**
  * Display near Agrovet companies via a Map
@@ -51,6 +55,12 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
         return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 
 
