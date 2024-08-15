@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewCyclesLists"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
@@ -39,6 +39,7 @@
                 android:text="Block 1"
                 android:textSize="@dimen/_12sp_text_size"
                 android:textColor="@color/textColor"
+                app:layout_constraintEnd_toStartOf="@id/cycleData"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,12 +47,13 @@
                 android:id="@+id/cycleData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="16dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:padding="8dp"
                 android:text="Coriander"
                 android:textSize="@dimen/_12sp_text_size"
                 android:textColor="@color/textColor"
+                app:layout_constraintEnd_toStartOf="@id/dateForCycle"
                 app:layout_constraintBottom_toBottomOf="@+id/farmID"
                 app:layout_constraintStart_toEndOf="@+id/farmID"
                 app:layout_constraintTop_toTopOf="@+id/farmID" />
@@ -60,13 +62,14 @@
                 android:id="@+id/dateForCycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:padding="8dp"
+                android:layout_marginStart="16dp"
                 android:fontFamily="@font/montserrat_medium"
+                android:padding="8dp"
                 android:text="06/07/2024"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/_12sp_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/cycleData"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cycleData"
                 app:layout_constraintTop_toTopOf="@+id/cycleData" />
 
@@ -85,12 +88,13 @@
                 android:id="@+id/viewCycleMoreDetailsTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View >>"
-                android:fontFamily="@font/montserrat"
-                android:textSize="@dimen/_12sp_text_size"
-                app:layout_constraintBottom_toBottomOf="@+id/dateForCycle"
+                android:layout_marginTop="@dimen/_4dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:padding="@dimen/_8dp"
+                android:text="View More Details >>"
+                android:textSize="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dateForCycle" />
+                app:layout_constraintTop_toBottomOf="@+id/dateForCycle" />
 
             <!--            <TextView-->
 <!--                android:id="@+id/startDay"-->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph2"
+    app:startDestination="@id/autoCreateCropCycleFragment2">
+    <fragment
+        android:id="@+id/autoCreateCropCycleFragment2"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.AutoCreateCropCycleFragment"
+        android:label="fragment_auto_create_crop_cycle"
+        tools:layout="@layout/fragment_auto_create_crop_cycle" />
+    <fragment
+        android:id="@+id/cropCycleTasksListFragment2"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleTasksListFragment"
+        android:label="fragment_crop_cycle_list"
+        tools:layout="@layout/fragment_crop_cycle_list" >
+        <action
+            android:id="@+id/action_cropCycleTasksListFragment2_to_detailedFarmCycleFragment2"
+            app:destination="@id/detailedFarmCycleFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedFarmCycleFragment2"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.DetailedFarmCycleFragment"
+        android:label="fragment_detailed_farm_cycle"
+        tools:layout="@layout/fragment_detailed_farm_cycle" >
+        <argument
+            android:name="cycle"
+            app:argType="com.steve_md.smartmkulima.model.LocalFarmCycle" />
+    </fragment>
+</navigation>

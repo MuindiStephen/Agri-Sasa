@@ -23,7 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartMkulima"
         android:usesCleartextTraffic="true"
+        tools:replace="android:icon"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activities.DetailedFarmCycleActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.FarmManagementActivity"
             android:exported="false" />

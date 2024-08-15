@@ -15,6 +15,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.LayoutTabBarBinding
 
+/**
+ * Custom Tab Layout : )
+ */
 class CustomTabBar(context: Context?, attrs: AttributeSet?) :
     RelativeLayout(context, attrs) {
     private var binding: LayoutTabBarBinding

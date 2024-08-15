@@ -29,6 +29,7 @@ import com.steve_md.smartmkulima.databinding.FragmentCropCycleListBinding
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.LocalTasks
+import com.steve_md.smartmkulima.ui.activities.DetailedFarmCycleActivity
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
@@ -155,15 +156,31 @@ class CropCycleTasksListFragment : Fragment() {
         binding.cropCycleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize the adapter
-
         localFarmCycleAdapter = LocalFarmCycleAdapter(LocalFarmCycleAdapter.OnClickListener{ cycle->
             Log.e("...CreatedFarmCycles....", cycle.toString())
 
             Timber.i("=====Checking=======>: ${cycle.cropName} cycle")
 
-            val directions = CropCycleTasksListFragmentDirections
-                .actionCropCycleTasksListFragmentToDetailedFarmCycleFragment(cycle)
-            findNavController().navigate(directions)
+            // Start the new activity and pass the data
+            val intent = Intent(requireContext(), DetailedFarmCycleActivity::class.java)
+            intent.putExtra("localFarmCycle", cycle) // Pass the cycle as a parcelable
+            startActivity(intent)
+
+//            val directions = CropCycleTasksListFragmentDirections
+//                .actionCropCycleTasksListFragment2ToDetailedFarmCycleFragment2(cycle)
+//            findNavController().navigate(directions)
+
+//            // Navigate to the detailed fragment using FragmentTransaction
+//            val detailedFragment = DetailedFarmCycleFragment()
+//            val args = Bundle()
+//            args.putParcelable("localFarmCycle", cycle) // Pass the cycle as a parcelable
+//            detailedFragment.arguments = args
+//
+//            // Replace the current fragment with the detailed fragment
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.fragment_crop_cycle_list_id, detailedFragment) // Use the correct container ID
+//                .addToBackStack(null) // Optional: add this transaction to the back stack
+//                .commit()
         })
 
         // Set the adapter to the RecyclerView

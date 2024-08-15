@@ -44,12 +44,13 @@
         android:id="@+id/cardViewGPS"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="20dp"
         android:clickable="true"
         android:focusable="true"
+        app:layout_constraintEnd_toStartOf="@id/cardViewTrackAgriTechCompany"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView87">
@@ -76,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="     GPS\nMonitoring"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/cardViewGPS"
         app:layout_constraintStart_toStartOf="@+id/cardViewGPS"
         app:layout_constraintTop_toBottomOf="@+id/cardViewGPS" />
@@ -90,7 +91,8 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:layout_marginStart="@dimen/_70dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintEnd_toStartOf="@id/cardViewPredictFarmProduce"
         app:layout_constraintBottom_toBottomOf="@+id/cardViewGPS"
         app:layout_constraintStart_toEndOf="@id/cardViewGPS"
         app:layout_constraintTop_toTopOf="@id/cardViewGPS">
@@ -116,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="     Track \nAgro-Dealers"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/cardViewTrackAgriTechCompany"
         app:layout_constraintStart_toStartOf="@+id/cardViewTrackAgriTechCompany"
         app:layout_constraintTop_toBottomOf="@+id/cardViewTrackAgriTechCompany" />
@@ -125,13 +127,15 @@
         android:id="@+id/cardViewPredictFarmProduce"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginStart="40dp"
         android:backgroundTint="@color/main"
-        app:cardCornerRadius="20dp"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginEnd="@dimen/_16dp"
         android:foreground="?attr/selectableItemBackground"
-        android:layout_marginStart="@dimen/_70dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardViewTrackAgriTechCompany"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardViewTrackAgriTechCompany"
         app:layout_constraintTop_toTopOf="@+id/cardViewTrackAgriTechCompany">
 
@@ -156,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/montserrat_medium"
         android:text="Predict Farm\n    Produce"
         app:layout_constraintEnd_toEndOf="@+id/cardViewPredictFarmProduce"
         app:layout_constraintStart_toStartOf="@+id/cardViewPredictFarmProduce"
@@ -167,13 +171,15 @@
         android:id="@+id/cardViewReachMarket"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="@dimen/_60dp"
         android:backgroundTint="@color/main"
-        app:cardCornerRadius="20dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:layout_marginTop="@dimen/_60dp"
-        app:layout_constraintStart_toStartOf="@id/cardViewGPS"
+        app:cardCornerRadius="20dp"
+        android:layout_marginStart="@dimen/_20dp"
+        app:layout_constraintEnd_toStartOf="@id/cardViewCropCycle"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewGPS">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -198,7 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Reach Market"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/cardViewReachMarket"
         app:layout_constraintStart_toStartOf="@+id/cardViewReachMarket"
         app:layout_constraintTop_toBottomOf="@+id/cardViewReachMarket" />
@@ -212,7 +218,8 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:layout_marginStart="@dimen/_70dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintEnd_toStartOf="@id/cardViewTest"
         app:layout_constraintBottom_toBottomOf="@+id/cardViewReachMarket"
         app:layout_constraintStart_toEndOf="@+id/cardViewReachMarket"
         app:layout_constraintTop_toTopOf="@+id/cardViewReachMarket">
@@ -233,13 +240,47 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewTest"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/main"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="20dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewCropCycle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardViewCropCycle"
+        app:layout_constraintTop_toTopOf="@+id/cardViewCropCycle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewPr"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_prediction"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
     <TextView
         android:id="@+id/textView73"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Farm Management"
-        android:fontFamily="@font/montserrat"
+        android:text="     Farm \nManagement"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/cardViewCropCycle"
         app:layout_constraintStart_toStartOf="@+id/cardViewCropCycle"
         app:layout_constraintTop_toBottomOf="@+id/cardViewCropCycle" />

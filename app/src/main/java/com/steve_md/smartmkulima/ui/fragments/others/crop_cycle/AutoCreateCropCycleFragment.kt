@@ -116,7 +116,6 @@ class AutoCreateCropCycleFragment : Fragment() {
 
         // Fetch first GAPs which are linked to Creation of crop cycles with exact date and time
         binding.buttonGeneratorCropCycle.setOnClickListener {
-//            val selectedCrop = binding.spinnerCrops.selectedItem.toString()
             getGoodAgriculturalPractices(selectedCrop)
         }
 
@@ -124,7 +123,7 @@ class AutoCreateCropCycleFragment : Fragment() {
     }
 
     private fun configureUi() {
-        binding.cropCycleStartDay.setOnFocusChangeListener { _, hasFocus ->
+        binding.inputCropCycleStartDay.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 showDatePickerDialog()
             }
@@ -150,12 +149,9 @@ class AutoCreateCropCycleFragment : Fragment() {
 
                             if (gapForSelectedCrop != null) {
 
-//                                gapList.map {
-//                                   gapForSelectedCrop.gap = it.gap
-//                                }
                                 createCropCycle(
                                     selectedCrop,
-                                    binding.enterFarmBlockID.text.toString(),
+                                    binding.inputFarmBlockID.text.toString(),
                                     cropCycleStartDay,
                                     gapForSelectedCrop.gap
                                 )
@@ -324,7 +320,7 @@ class AutoCreateCropCycleFragment : Fragment() {
                         //displayServiceCycleTasks()
                         binding.stepLinearLayout.removeAllViews()
                         val stepTextView = TextView(requireContext())
-                        stepTextView.text = "$cropCycleStartDay | ${binding.enterFarmBlockID.text}"
+                        stepTextView.text = "$cropCycleStartDay | ${binding.inputFarmBlockID.text}"
 
                     } else {
                         return
@@ -384,8 +380,8 @@ class AutoCreateCropCycleFragment : Fragment() {
 
     private fun generateCropCycle() {
         val selectedCycleType = binding.spinnerCycleType.selectedItem.toString()
-        val startDayForCropCycle = binding.cropCycleStartDay.text.toString()
-        val farmOrBlockId = binding.enterFarmBlockID.text.toString()
+        val startDayForCropCycle = binding.inputCropCycleStartDay.text.toString()
+        val farmOrBlockId = binding.inputFarmBlockID.text.toString()
 
         if (selectedCycleType.isNotEmpty() && startDayForCropCycle.isNotEmpty() && farmOrBlockId.isNotEmpty()) {
             // Parse start date
@@ -454,7 +450,7 @@ class AutoCreateCropCycleFragment : Fragment() {
                 // Update the selected date in the UI
                 cropCycleStartDay?.set(selectedYear, selectedMonth, selectedDay)
                 val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                binding.cropCycleStartDay.setText(dateFormat.format(cropCycleStartDay!!.time))
+                binding.inputCropCycleStartDay.setText(dateFormat.format(cropCycleStartDay!!.time))
             },
             year,
             month,

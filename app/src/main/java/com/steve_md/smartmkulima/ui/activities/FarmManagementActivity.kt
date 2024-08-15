@@ -8,12 +8,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.tabadapter.VPAdapter
 import com.steve_md.smartmkulima.databinding.ActivityFarmManagementBinding
+import com.steve_md.smartmkulima.ui.fragments.main.NewFarmingTechnologyFragment
 import com.steve_md.smartmkulima.utils.customutilclasses.CustomTabBar
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
@@ -22,10 +28,13 @@ import com.steve_md.smartmkulima.utils.customutilclasses.CustomTabBar
  *
  * Will wrap  (+Add farm Cycle and View created / available farm cycle via a tabs layout )
  */
+@AndroidEntryPoint
 class FarmManagementActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFarmManagementBinding
     private val vpAdapter = VPAdapter(this)
+    private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +55,13 @@ class FarmManagementActivity : AppCompatActivity() {
         viewPager.adapter = vpAdapter
         val tabBar = findViewById<CustomTabBar>(R.id.tab_bar)
         tabBar.attachTo(viewPager)
+
+        // Setting Nav Controller
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                as NavHostFragment
+        navController = navHostFragment.findNavController()
+
+
     }
 
     override fun onCreateView(
@@ -55,5 +71,15 @@ class FarmManagementActivity : AppCompatActivity() {
         attrs: AttributeSet
     ): View? {
         return super.onCreateView(parent, name, context, attrs)
+    }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        if (navController.currentBackStackEntry != null && !navController.popBackStack()) {
+            super.onBackPressed()
+        } else {
+
+        }
     }
 }
