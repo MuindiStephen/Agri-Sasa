@@ -44,7 +44,7 @@ class AllGAPHomeFragment : Fragment() {
         if (gap != null) {
             binding.apply {
                 showFarmId.text = gap.nameGAP
-                ShowCropName.text = "Good Agricultural Practice"
+                ShowCropName.text = "GAP"
                 ShowStartDate.visibility = View.GONE
                 textView78.visibility = View.INVISIBLE
                 spinnerStatusOfFarmCycle.visibility = View.GONE

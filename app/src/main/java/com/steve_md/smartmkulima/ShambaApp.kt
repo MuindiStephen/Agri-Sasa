@@ -29,12 +29,7 @@ class ShambaApp : Application() {
         val itemUIMode: Boolean = sharedPreferences.getBoolean("ISCHECKED", false)
         Timber.d("UI Theme: $itemUIMode")
         uiMode(itemUIMode)
-
-
-
-
     }
-
 
 
     /**

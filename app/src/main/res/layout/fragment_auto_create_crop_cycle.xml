@@ -41,9 +41,10 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/fGScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +65,7 @@
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="8dp"
                 android:spinnerMode="dropdown"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +74,7 @@
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:entries="@array/crop_list"
                 android:paddingHorizontal="12dp"
@@ -154,6 +155,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:padding="16dp"
                 android:text="Schedule"
+                android:visibility="invisible"
                 android:textColor="@color/main"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -35,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:padding="2dp"
-                android:text="Farm: Block 1"
+                android:padding="8dp"
+                android:text="Block 1"
                 android:textSize="@dimen/_12sp_text_size"
                 android:textColor="@color/textColor"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +46,10 @@
                 android:id="@+id/cycleData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
+                android:layout_marginStart="30dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:padding="2dp"
-                android:text="Crop: Coriander"
+                android:padding="8dp"
+                android:text="Coriander"
                 android:textSize="@dimen/_12sp_text_size"
                 android:textColor="@color/textColor"
                 app:layout_constraintBottom_toBottomOf="@+id/farmID"
@@ -60,10 +60,10 @@
                 android:id="@+id/dateForCycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:padding="2dp"
+                android:layout_marginStart="30dp"
+                android:padding="8dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Starts: 06/07/2024"
+                android:text="06/07/2024"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/_12sp_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/cycleData"
@@ -80,6 +80,17 @@
                 android:textSize="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/viewCycleMoreDetailsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View >>"
+                android:fontFamily="@font/montserrat"
+                android:textSize="@dimen/_12sp_text_size"
+                app:layout_constraintBottom_toBottomOf="@+id/dateForCycle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dateForCycle" />
 
             <!--            <TextView-->
 <!--                android:id="@+id/startDay"-->

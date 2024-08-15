@@ -30,10 +30,10 @@ class LocalFarmCycleAdapter(private val onClickListener: OnClickListener) :
 
         @SuppressLint("SetTextI18n")
         fun bind(cycle: LocalFarmCycle?) {
-            binding.farmID.text = "Farm: ${cycle?.farmName}"
-            binding.cycleData.text = "Crop: ${cycle?.cropName}"
-            binding.dateForCycle.text = "Starts: ${cycle?.startDate}"
-            binding.textView85.text = "Crop cycle"
+            binding.farmID.text = "${cycle?.farmName}"
+            binding.cycleData.text = "${cycle?.cropName}"
+            binding.dateForCycle.text = "${cycle?.startDate}"
+            binding.textView85.text = "."
 
             // Attach the crop name to the item view for later use in the notification
             itemView.tag = cycle?.cropName

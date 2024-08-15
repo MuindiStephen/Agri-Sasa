@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:hint="Search farm cycles"
             android:inputType="text"
+            android:fontFamily="@font/montserrat_semibold"
             android:imeOptions="actionSearch"
             android:textColorHint="@color/main" />
 
@@ -71,11 +72,10 @@
         android:id="@+id/cropCycleRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/farmNameTV"
         tools:listitem="@layout/crop_cycle_task_row" />
 
     <TextView
@@ -164,4 +164,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCropCycleList"
         app:layout_constraintVertical_bias="0.08" />
+
+    <TextView
+        android:id="@+id/farmNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="     Farm"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginTop="@dimen/_40dp"
+        app:layout_constraintStart_toStartOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <TextView
+        android:id="@+id/cropNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="            Crop  "
+
+        app:layout_constraintBottom_toBottomOf="@+id/farmNameTV"
+        app:layout_constraintStart_toEndOf="@+id/farmNameTV"
+        app:layout_constraintTop_toTopOf="@+id/farmNameTV" />
+
+    <TextView
+        android:id="@+id/startDateTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="            Start Day"
+        app:layout_constraintBottom_toBottomOf="@+id/cropNameTV"
+
+        app:layout_constraintStart_toEndOf="@+id/cropNameTV"
+        app:layout_constraintTop_toTopOf="@+id/cropNameTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

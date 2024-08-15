@@ -28,6 +28,8 @@
     <string name="textview">TextView</string>
     <string name="last_login_apr_10_2024">Last login: Apr 10, 2024</string>
     <string name="view_all_gaps">View All GAPs</string>
+    <string name="proceed">Proceed</string>
+    <string name="timeout">Timeout</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

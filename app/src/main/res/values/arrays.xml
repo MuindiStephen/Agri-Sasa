@@ -17,4 +17,8 @@
         <item>Stephen MD- A/C #1234 •••• •••• 2344 (joint)</item>
         <item>Stephen MD- A/C #1234 •••• •••• 2344(personal)</item>
     </string-array>
+    <string-array name="tabs">
+        <item>Add Farm cycle</item>
+        <item>View farm cycles</item>
+    </string-array>
 </resources>

@@ -156,8 +156,12 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:1.1.0'
 
     // Print service
-    implementation files("libs/nexgo-smartpos-sdk-v3.0.3.aar")
+    implementation files("libs/nexgo-smartpos-sdk-v3.0.3.aar") // nexgen printer - nexg
 
-    implementation(name: 'A26Library-debug', ext: 'aar')
-    implementation files('libs/CpaySDKLib_V1.0_20210421.jar')
+    implementation files('libs/CpaySDKLib_V1.0_20210421.jar') // pos
+
+    implementation files('libs/A26Library-debug.aar')  // vpos
+
+    // Sweet Alert Dialog
+    implementation 'cn.pedant.sweetalert:library:1.3'
 }

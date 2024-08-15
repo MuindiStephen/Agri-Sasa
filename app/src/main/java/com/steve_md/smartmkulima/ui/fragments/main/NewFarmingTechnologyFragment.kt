@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentNewFarmingTechnologyBinding
+import com.steve_md.smartmkulima.ui.activities.FarmManagementActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,7 +25,6 @@ class NewFarmingTechnologyFragment : Fragment() {
         binding = FragmentNewFarmingTechnologyBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,9 +46,9 @@ class NewFarmingTechnologyFragment : Fragment() {
 
                 val intent = Intent(requireActivity(), MapsActivity::class.java)
                 startActivity(intent)
-                intent.flags = 0
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                requireActivity().finish()
+//                intent.flags = 0
+//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                requireActivity().finish()
 
             }
             cardViewPredictFarmProduce.setOnClickListener {
@@ -59,9 +59,16 @@ class NewFarmingTechnologyFragment : Fragment() {
             }
             cardViewCropCycle.setOnClickListener {
                 //goToGenerateNewCropCycle()
-                goToAutoGenerateCropCycle()
+                // goToAutoGenerateCropCycle()
+
+                navigateToFarmMngtActivity()
             }
         }
+    }
+
+    private fun navigateToFarmMngtActivity() {
+        startActivity(Intent(requireContext(), FarmManagementActivity::class.java))
+        requireActivity().finish()
     }
 
     private fun goToAutoGenerateCropCycle() {
