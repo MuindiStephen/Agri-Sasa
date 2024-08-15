@@ -152,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:inputType="date"
+                    android:inputType="text"
                     android:textColor="@color/textColor" />
 
             </com.google.android.material.textfield.TextInputLayout>

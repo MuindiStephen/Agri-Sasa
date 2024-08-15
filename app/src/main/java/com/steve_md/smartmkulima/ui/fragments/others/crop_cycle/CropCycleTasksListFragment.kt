@@ -142,6 +142,8 @@ class CropCycleTasksListFragment : Fragment() {
         viewModel.allCycles.observe(viewLifecycleOwner) { cycles ->
             if (cycles.isNullOrEmpty()) {
                 displaySnackBar("No created farm cycles available")
+                binding.imageView22.isVisible = true
+                binding.noRecordsTV.isVisible = true
             } else {
                 cycleList.clear()
                 cycleList.addAll(cycles)

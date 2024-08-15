@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.model.Gap
@@ -83,6 +84,7 @@ class ViewAllGAPsragment : Fragment() {
                     response: Response<java.util.ArrayList<GAP>>
                 ) {
                     if (response.isSuccessful) {
+                        binding.textViewError.isVisible = false
 
                         Timber.i("==== Viewing Good Agri. practices${response.body()}=====")
                         // displaySnackBar("Viewing Available cycles")
@@ -100,6 +102,7 @@ class ViewAllGAPsragment : Fragment() {
                 }
                 override fun onFailure(call: Call<java.util.ArrayList<GAP>>, t: Throwable) {
                     Timber.e("nothing here.${t.localizedMessage}")
+                    binding.textViewError.isVisible = true
                 }
             })
     }

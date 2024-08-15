@@ -175,6 +175,7 @@ class HomeDashboardFragment : Fragment() {
                     if (response.isSuccessful) {
 
                         binding.progressBar6.isVisible = false
+                        binding.textViewError.isVisible = false
                         Timber.i("==== Viewing Good Agri. practices${response.body()}=====")
                         // displaySnackBar("Viewing Available cycles")
 
@@ -192,6 +193,7 @@ class HomeDashboardFragment : Fragment() {
                 override fun onFailure(call: Call<ArrayList<GAP>>, t: Throwable) {
                     Timber.e("nothing here.${t.localizedMessage}")
                     binding.progressBar6.isVisible = false
+                    binding.textViewError.isVisible = true
                 }
             })
     }

@@ -97,14 +97,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
-        android:text="Nothing available, hold on. Please check your internet connection and try again!"
-        android:visibility="invisible"
         android:fontFamily="@font/montserrat_semibold"
+        android:text="Nothing available, hold on. Please check your internet connection and try again!"
         android:textColor="@color/main"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cropCycleRecyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView22" />
 
 
     <TextView
@@ -207,14 +207,31 @@
         app:layout_constraintTop_toTopOf="@+id/cropNameTV" />
 
     <TextView
-        android:id="@+id/textView88"
+        android:id="@+id/noRecordsTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No records."
+        android:text="No records. No created farm cycles. \nClick on add cycle to create a new crop cycle"
+        android:visibility="invisible"
         android:textSize="@dimen/_12sp_text_size"
         android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayoutCropCycleList" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/imageView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/farmNameTV"
+        app:layout_constraintVertical_bias="0.424"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/alerts"
+        tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
