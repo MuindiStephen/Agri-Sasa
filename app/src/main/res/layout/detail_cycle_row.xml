@@ -18,29 +18,30 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout>
-            <TextView
+
+                <TextView
                     android:id="@+id/textView75"
                     android:layout_width="100dp"
-                    android:layout_height="80dp"
-                    android:text="sdadafasfafafPreparation of grow trailing of the crop trailing of the crop"
-                    android:paddingTop="16dp"
-                    android:paddingStart="@dimen/_4dp"
-                    android:paddingEnd="@dimen/_4dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/custom_cell"
-                    android:layout_marginTop="0dp"
-                    android:textSize="11sp"
-                    android:maxLines="4"
                     android:ellipsize="end"
                     android:fontFamily="@font/montserrat_semibold"
+                    android:maxLines="6"
+                    android:paddingStart="@dimen/_4dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="@dimen/_4dp"
+                    android:text="eretrtetreetsdadafasfafafPreparation of grow trailing of the crop trailing of the crop"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_weight="1"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView76"
                     android:layout_width="100dp"
-                    android:layout_height="80dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="0dp"
                     android:text="2024-04-08"
                     android:background="@drawable/custom_cell"
@@ -55,7 +56,7 @@
                 <TextView
                     android:id="@+id/textView77"
                     android:layout_width="100dp"
-                    android:layout_height="80dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="0dp"
                     android:text="2024-08-30"
                     android:background="@drawable/custom_cell"

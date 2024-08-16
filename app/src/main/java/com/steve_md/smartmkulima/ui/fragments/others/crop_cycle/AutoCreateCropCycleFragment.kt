@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -97,6 +98,11 @@ class AutoCreateCropCycleFragment : Fragment() {
        // scheduleNotification(2)
 
 
+
+
+
+
+        // Adapter to attach Spinner with data
         val cropList = resources.getStringArray(R.array.crop_list)
         val cropAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, cropList)
         cropAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -111,7 +117,67 @@ class AutoCreateCropCycleFragment : Fragment() {
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                displaySnackBar("Nothing selected")
+               Timber.tag("AutoCreateCropCycle").d("No CROP FOUND")
             }
+        }
+
+        binding.imageViewSelectFarm.setOnClickListener {
+            binding.imageViewSelectFarm
+                .animate()
+                .rotation(180f)
+                .setDuration(200)
+                .withEndAction {
+                    binding.imageViewSelectFarm
+                        .animate()
+                        .rotation(0f)
+                        .setDuration(200)
+                        .start()
+                }
+                .start()
+
+
+            displaySnackBar("No Farm Found, Please enter.")
+        }
+
+        // Setting up Img and PopUpMenu
+        binding.imageView21.setOnClickListener {
+
+            binding.imageView21
+                .animate()
+                .rotation(180f)
+                .setDuration(200)
+                .withEndAction {
+
+                    val popUpMenu = androidx.appcompat.widget.PopupMenu(requireContext(), it)
+
+                    cropList.forEach { string ->
+                        popUpMenu.menu.add(string)
+                    }
+
+                    popUpMenu.setOnMenuItemClickListener { menuItem ->
+                        val selectedCrop = menuItem.title.toString()
+                        Timber.i("Selected Crop from ImageView: $selectedCrop")
+                        displaySnackBar(selectedCrop)
+                        // Optionally, you can also update the Spinner's selection to match the selected item
+                        binding.spinnerCrops.setSelection(cropList.indexOf(selectedCrop))
+                        true
+
+                    }
+                    popUpMenu.show()
+
+                    // After the PopupMenu is shown, reset the ImageView's rotation back to the initial position
+                    binding.imageView21
+                        .animate()
+                        .rotation(0f)
+                        .setDuration(200)
+                        .start()
+                }
+                .start()
+
+
+
+
+
         }
 
         // Fetch first GAPs which are linked to Creation of crop cycles with exact date and time

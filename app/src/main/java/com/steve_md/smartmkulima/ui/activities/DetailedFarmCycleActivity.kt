@@ -35,7 +35,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
         binding.apply {
             // Link data with respective views
-            ShowCropName.text = "Crop: ${localFarmCycle?.cropName}"
+            ShowCropName.text = "Crop: ${localFarmCycle?.cropName?.replace("-", "-\n")}"
             ShowStartDate.text = "Start day: ${localFarmCycle?.startDate}"
             textView78.text = "."
 

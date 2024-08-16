@@ -42,10 +42,10 @@ class NewFarmingTechnologyFragment : Fragment() {
                 navigateToMarketProduce()
             }
             cardViewTrackAgriTechCompany.setOnClickListener {
-                // goToLocateAgriTechs()
+                 goToLocateAgriTechs()
 
-                val intent = Intent(requireActivity(), MapsActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(requireActivity(), MapsActivity::class.java)
+//                startActivity(intent)
 //                intent.flags = 0
 //                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 //                requireActivity().finish()

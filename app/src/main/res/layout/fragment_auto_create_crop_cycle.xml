@@ -77,11 +77,11 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_corner"
                 android:entries="@array/crop_list"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="8dp"
                 android:spinnerMode="dropdown"
+                android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/_16dp"
@@ -263,11 +263,26 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/arrow_down"
                 android:clickable="true"
+                android:visibility="visible"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@+id/spinnerCrops"
                 app:layout_constraintEnd_toEndOf="@+id/spinnerCrops"
                 app:layout_constraintTop_toTopOf="@+id/spinnerCrops" />
+
+            <ImageView
+                android:id="@+id/imageViewSelectFarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/arrow_down"
+                android:clickable="true"
+                android:visibility="visible"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="@+id/enterFarmBlockID"
+                app:layout_constraintEnd_toEndOf="@+id/enterFarmBlockID"
+                app:layout_constraintTop_toTopOf="@+id/enterFarmBlockID" />
 
             <!--            <com.shuhart.stepview.StepView-->
 <!--                android:id="@+id/stepViewCropCycle"-->

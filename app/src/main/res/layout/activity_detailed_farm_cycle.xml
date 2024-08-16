@@ -22,31 +22,31 @@
 
     <TextView
         android:id="@+id/ShowCropName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="24dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Crop: Spinach"
+        android:text="Crop: Backup-Tomatoes Anna F1"
         android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/showFarmId"
-        app:layout_constraintStart_toEndOf="@+id/showFarmId"
-        app:layout_constraintTop_toTopOf="@+id/showFarmId" />
+        android:textSize="16sp"
+        android:padding="@dimen/_8dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ShowStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
         android:layout_marginEnd="4dp"
+        android:padding="@dimen/_8dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Cycle starts on: 2024-04-04"
+        android:text="Start day: 2024-04-04"
         android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ShowCropName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ShowCropName"
-        app:layout_constraintTop_toTopOf="@+id/ShowCropName" />
+        android:textSize="16sp"
+        android:layout_marginTop="@dimen/_4dp"
+        app:layout_constraintStart_toStartOf="@+id/ShowCropName"
+        app:layout_constraintTop_toBottomOf="@+id/ShowCropName" />
 
     <TextView
         android:id="@+id/textView78"
@@ -57,8 +57,8 @@
         android:text="crop cycle/service cycle"
         android:textSize="11sp"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/showFarmId"
-        app:layout_constraintTop_toBottomOf="@+id/showFarmId" />
+        app:layout_constraintStart_toStartOf="@+id/ShowStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/ShowStartDate" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView78"
+        app:layout_constraintTop_toBottomOf="@+id/textView80"
         tools:listitem="@layout/detail_cycle_row" />
 
 
@@ -100,7 +100,7 @@
         android:textStyle="bold"
         android:layout_marginStart="26dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/ShowCropName"
+        app:layout_constraintTop_toBottomOf="@+id/ShowStartDate"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

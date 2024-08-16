@@ -37,6 +37,7 @@
     </string-array>
 
     <string-array name="crop_list">
+        <item>- Select A Crop - </item>
         <item>Capsicum Geva</item>
         <item>Tomatoes Anna</item>
         <item>Coriander</item>

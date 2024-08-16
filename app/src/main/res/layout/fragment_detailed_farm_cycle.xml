@@ -16,7 +16,8 @@
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="@string/block_a"
-        android:textSize="12dp"
+        android:textSize="14sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,29 +25,35 @@
         android:id="@+id/ShowCropName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Spinach"
+        android:text="Crop: Backup-Tomatoes Anna F1"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:breakStrategy="high_quality"
+        android:hyphenationFrequency="full"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        android:layout_marginEnd="@dimen/_4dp"
+        android:padding="@dimen/_8dp"
         app:layout_constraintBottom_toBottomOf="@+id/showFarmId"
-        app:layout_constraintStart_toEndOf="@+id/showFarmId"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/showFarmId" />
 
     <TextView
         android:id="@+id/ShowStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="4dp"
+        android:padding="@dimen/_8dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Cycle starts on: 2024-04-04"
+        android:text="Start day: 2024-04-04"
         android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ShowCropName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ShowCropName"
-        app:layout_constraintTop_toTopOf="@+id/ShowCropName" />
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/ShowCropName"
+        app:layout_constraintStart_toStartOf="@+id/ShowCropName"
+        android:layout_marginTop="@dimen/_4dp"
+        />
 
     <TextView
         android:id="@+id/textView78"
@@ -70,7 +77,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView78"
+        app:layout_constraintTop_toBottomOf="@+id/textView80"
         tools:listitem="@layout/detail_cycle_row" />
 
 
@@ -100,7 +107,7 @@
         android:textStyle="bold"
         android:layout_marginStart="26dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/ShowCropName"
+        app:layout_constraintTop_toBottomOf="@+id/ShowStartDate"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
