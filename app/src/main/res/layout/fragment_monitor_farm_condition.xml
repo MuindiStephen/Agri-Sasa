@@ -13,9 +13,9 @@
         android:id="@+id/cardView15"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="23.00"
+                android:text="0.00"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView57"
                 app:layout_constraintStart_toEndOf="@+id/textView57"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="25.00"
+                android:text="0.00"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView59"
                 app:layout_constraintStart_toEndOf="@+id/textView59"
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="21.00"
+                android:text="0.00"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView61"
                 app:layout_constraintStart_toEndOf="@+id/textView61"
@@ -107,6 +107,19 @@
                 app:layout_constraintHorizontal_bias="0.113"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar8"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/main"
+                android:layout_marginEnd="@dimen/_32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -133,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="32dp"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/montserrat_semibold"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:text="Monitor Your Farm" />
@@ -141,13 +154,14 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="350dp"
-        android:layout_height="190dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_graph"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,9 +171,9 @@
         android:id="@+id/mapViewFarmMonitoring"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:apiKey="AIzaSyAmjw_S5Bhy_Fq6qkepiXmoRLCYFrd6XUc"
         app:liteMode="true"
         app:layout_constraintEnd_toEndOf="parent"

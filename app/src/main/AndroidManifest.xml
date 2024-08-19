@@ -28,6 +28,10 @@
         <activity
             android:name=".ui.activities.DetailedFarmCycleActivity"
             android:exported="false" />
+
+        <activity
+            android:name="com.steve_md.smartmkulima.utils.services.PrintServiceActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.FarmManagementActivity"
             android:exported="false" />

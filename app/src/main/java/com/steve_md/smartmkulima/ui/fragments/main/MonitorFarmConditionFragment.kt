@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.FarmConditions
 import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -59,11 +62,19 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         // Request user's location
         locationProvider.getLastKnownLocation { location ->
+
+            val loading = view.findViewById<ProgressBar>(R.id.progressBar8)
+            loading.isVisible = true
+
             if (location != null) {
+                loading.isVisible = false
                 monitorFarmConditions(location.latitude, location.longitude)
+                displaySnackBar("Location Update successful.")
             } else {
                 // Handle case when location is null
+                loading.isVisible = false
                 Timber.e("An error occurred")
+                displaySnackBar("Could not update your location")
             }
         }
     }

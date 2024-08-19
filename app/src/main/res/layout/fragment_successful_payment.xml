@@ -16,7 +16,7 @@
        app:layout_constraintHorizontal_bias="0.5"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintVertical_bias="0.2"/>
+       app:layout_constraintVertical_bias="0.15"/>
 
     <TextView
         android:id="@+id/textView56"
@@ -25,21 +25,38 @@
         android:layout_marginTop="32dp"
         android:text="Payment Successful!"
         android:textSize="22sp"
+        android:letterSpacing="0.03"
         android:textColor="@color/textColor"
         android:fontFamily="@font/montserrat_bold"
         app:layout_constraintEnd_toEndOf="@+id/lottieSuccessfulPayment"
         app:layout_constraintStart_toStartOf="@+id/lottieSuccessfulPayment"
         app:layout_constraintTop_toBottomOf="@+id/lottieSuccessfulPayment" />
 
+
     <Button
-        android:id="@+id/buttonGoHome"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonPrintReceipt"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="84dp"
-        android:text="Go Home"
+        android:layout_marginTop="60dp"
+        android:text="Print Receipt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+    <Button
+        android:id="@+id/buttonGoHome"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="Go Home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPrintReceipt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

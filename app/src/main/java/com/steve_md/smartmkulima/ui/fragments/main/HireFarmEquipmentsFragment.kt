@@ -41,11 +41,13 @@ class HireFarmEquipmentsFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-
         farmEquipmentsRecylerView = view.findViewById(R.id.farmEquipmentsRecyclerView)
 
         setUpBinding()
 
+        /**
+         * Passing @param FarmEquipment as an argument
+         */
         farmEquipmentsAdapter =
             FarmEquipmentAdapter(FarmEquipmentAdapter.OnClickListener { farmEquipment ->
                 Timber.i("Farm Equipments: ${farmEquipment.name}")

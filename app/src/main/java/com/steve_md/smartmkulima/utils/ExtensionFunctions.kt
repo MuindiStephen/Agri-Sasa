@@ -29,6 +29,10 @@ fun Fragment.toast(text:String) {
     ).show()
 }
 
+fun Activity.showToast(text: String) {
+    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+}
+
 
 fun Fragment.hideKeyboard(): Boolean {
     return (context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)

@@ -310,7 +310,11 @@
         android:id="@+id/locateAgriTechCompaniesFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.LocateAgriTechCompaniesFragment"
         android:label="fragment_locate_agri_tech_companies"
-        tools:layout="@layout/fragment_locate_agri_tech_companies" />
+        tools:layout="@layout/fragment_locate_agri_tech_companies" >
+        <action
+            android:id="@+id/action_locateAgriTechCompaniesFragment_to_viewAgroDealerInDetailFragment"
+            app:destination="@id/viewAgroDealerInDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/predictYourCropProductionFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.PredictYourCropProductionFragment"
@@ -537,5 +541,14 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.merchant.HotDealsFragment"
         android:label="fragment_hot_deals_merchant"
         tools:layout="@layout/fragment_hot_deals_merchant" />
+    <fragment
+        android:id="@+id/viewAgroDealerInDetailFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.ViewAgroDealerInDetailFragment"
+        android:label="fragment_view_agro_dealer_in_detail"
+        tools:layout="@layout/fragment_view_agro_dealer_in_detail" >
+        <argument
+            android:name="agrodealer"
+            app:argType="com.steve_md.smartmkulima.model.AgroDealer" />
+    </fragment>
 
 </navigation>

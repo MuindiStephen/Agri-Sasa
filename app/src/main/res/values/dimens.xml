@@ -146,4 +146,5 @@
     <dimen name="card_view_padding_8dp">8dp</dimen>
     <dimen name="card_view_padding_4dp">4dp</dimen>
     <dimen name="_14dp">14dp</dimen>
+    <dimen name="_62dp">62dp</dimen>
 </resources>

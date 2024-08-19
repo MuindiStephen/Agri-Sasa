@@ -162,6 +162,10 @@ dependencies {
 
     implementation files('libs/A26Library-debug.aar')  // vpos
 
+    implementation files('libs/dpuareu.jar')
+
+
+
     // Sweet Alert Dialog
     implementation 'cn.pedant.sweetalert:library:1.3'
 }
