@@ -9,12 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -109,12 +112,16 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             return
         }
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+          //  view?.findViewById<ProgressBar>(R.id.progressBarLoadingAgroDealers)!!.visibility = View.VISIBLE
             location?.let {
                 val userLatLng = LatLng(it.latitude, it.longitude)
                 val filteredAgrodealers = getAgroDealersData().filter { agrovet ->
 
+                   // view?.findViewById<ProgressBar>(R.id.progressBarLoadingAgroDealers)!!.visibility = View.GONE
+
                     val agroDealerLatLng = LatLng(agrovet.latitude,agrovet.longitude)
                     calculateDistance(userLatLng, agroDealerLatLng) <= SEARCH_RADIUS_METERS
+
                 }
 
                 recyclerView.adapter = AgrodealerAdapter(
@@ -185,8 +192,17 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                     )?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 }
 
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 18f))
+
                 if (agrodealers.isNotEmpty()) {
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 13f))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 18f))
+                    view?.findViewById<TextView>(R.id.textViewAgrodealersNotavailable)?.visibility = View.GONE
+                    view?.findViewById<LottieAnimationView>(R.id.LottieNoRecords)?.visibility = View.GONE
+                }
+
+                if(agrodealers.isEmpty()) {
+                    view?.findViewById<TextView>(R.id.textViewAgrodealersNotavailable)?.visibility = View.VISIBLE
+                    view?.findViewById<LottieAnimationView>(R.id.LottieNoRecords)?.visibility = View.VISIBLE
                 }
             }
         }
@@ -231,6 +247,9 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             // Near Nairobi
             AgroDealer("Farmers Solution Agrovet","254700932932", "farmerssolutionagrovet@gmail.com",-1.2860464,36.8026465,"Agrochemicals","Agricultural inputs","false","Leasing is not available"),
             AgroDealer("Mifugo Agrovet centre","254701898905", "info@mifugoagrovetcentre.co.ke",-1.286548536,36.8067588,"Fertilizers, farm machinery","Agricultural","true","6 months duration, monthly payment terms"),
+            AgroDealer("Lessos Agrovets","25479053721", "info@lessonsagrovets.com",-1.2720571,36.7961583,"Fertilizers, farm machinery","Agricultural","true","1 month duration, weekly payment terms"),
+            AgroDealer("Kazi Agrodealers","254759007001", "info@kaziagridealers.com",-0.6068996,36.9981162,"Fertilizers, farm machinery","Agricultural","true","1 year duration, monthly payment terms"),
+            AgroDealer("DIHA AGRO DEALERS","254745003225", "info@dihaagridealers.com",-0.6799296,36.7066032,"Fertilizers, farm machinery","Agricultural","true","1 month duration, weekly payment terms"),
 
 
             // Near Kiambu
@@ -252,7 +271,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             // Near Kitui
 
             // Near Machakos
-
+            AgroDealer("Farmsquare Agro Dealers","254712505038", "farmsquareagrodealers@gmail.com",-1.2262432,37.1600463,"Fertilizers, farm machinery","Agricultural","true","2 months duration, monthly payment terms"),
             // Near Naivasha
 
             // Near Nakuru

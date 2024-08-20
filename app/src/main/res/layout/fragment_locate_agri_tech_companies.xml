@@ -75,6 +75,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tVFindAgroDealersNearYou"
         tools:listitem="@layout/item_agrodealer" />
+
+    <ProgressBar
+        android:id="@+id/progressBarLoadingAgroDealers"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/main"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/agrodealersListRecView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar_linear_layout" />
+
+    <TextView
+        android:id="@+id/textViewAgrodealersNotavailable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Oops! No nearby agrodealers\n found around your location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/topbar_linear_layout"
+        app:layout_constraintVertical_bias="0.88" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/LottieNoRecords"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/no_records_available"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAgrodealersNotavailable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:layout_constraintTop_toBottomOf="@+id/tVFindAgroDealersNearYou"
+        app:layout_constraintVertical_bias="0.866"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -51,11 +51,12 @@ class YourAccountFragment : Fragment() {
         binding.apply {
 
             settings.setOnClickListener {
-               startActivity(Intent(requireActivity().applicationContext, Settings::class.java))
-                requireActivity().finish()
+                // startActivity(Intent(requireActivity().applicationContext, Settings::class.java))
+                // requireActivity().finish()
             }
             signOutUser.setOnClickListener {
                 firebaseAuth!!.signOut()
+                findNavController().clearBackStack(R.id.yourAccountFragment)
                 findNavController().navigate(R.id.action_yourAccountFragment_to_loginMainFragment)
             }
             share.setOnClickListener {
