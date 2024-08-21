@@ -86,7 +86,7 @@ class HireFarmEquipmentsFragment : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<ArrayList<FarmEquipment>>, t: Throwable) {
-                    toast("No available Farm Equipments for hire.${t.localizedMessage}")
+                    toast("No available Farm Equipments for now! \nConsider checking your network connection")
                     binding.textViewError.visibility = View.VISIBLE
                     binding.farmEquipmentsRecyclerView.visibility = View.INVISIBLE
                 }

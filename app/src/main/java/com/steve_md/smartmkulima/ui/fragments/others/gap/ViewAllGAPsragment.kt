@@ -85,6 +85,7 @@ class ViewAllGAPsragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         binding.textViewError.isVisible = false
+                        binding.imageViewLottieGAPNoRecords.isVisible = false
 
                         Timber.i("==== Viewing Good Agri. practices${response.body()}=====")
                         // displaySnackBar("Viewing Available cycles")
@@ -103,6 +104,7 @@ class ViewAllGAPsragment : Fragment() {
                 override fun onFailure(call: Call<java.util.ArrayList<GAP>>, t: Throwable) {
                     Timber.e("nothing here.${t.localizedMessage}")
                     binding.textViewError.isVisible = true
+                    binding.imageViewLottieGAPNoRecords.isVisible = true
                 }
             })
     }
