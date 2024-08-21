@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 /**
  * Farm cycles repository
- * Manual creating of repositories
+ * Manual creating of cycle for automation
  */
 class FarmCycleRepository @Inject constructor(
     database: AppDatabase
