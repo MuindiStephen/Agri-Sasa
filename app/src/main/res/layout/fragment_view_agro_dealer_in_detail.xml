@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Services:"
+        android:text="Products:"
         app:layout_constraintStart_toStartOf="@+id/textView88"
         app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
@@ -95,6 +95,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Leasing Options: "
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textView92"
         app:layout_constraintTop_toBottomOf="@+id/textView92" />
 
@@ -104,6 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="true"
+        android:visibility="invisible"
         android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/textView94"
         app:layout_constraintStart_toEndOf="@+id/textView94"
@@ -115,6 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Leasing Details: "
+        android:visibility="invisible"
         android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintStart_toStartOf="@+id/textView94"
         app:layout_constraintTop_toBottomOf="@+id/textView94" />
@@ -125,6 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="@dimen/_8dp"
+        android:visibility="invisible"
         android:fontFamily="@font/montserrat_semibold"
         android:text="6 months duration, monthly payment terms"
         app:layout_constraintBottom_toBottomOf="@+id/textView96"

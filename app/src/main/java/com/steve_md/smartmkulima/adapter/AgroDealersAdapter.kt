@@ -30,6 +30,7 @@ class AgrodealerAdapter(
         val distanceTextView : TextView = view.findViewById(R.id.tvLocation)
         val viewAgroDealerMoreDetailsTV : TextView = view.findViewById(R.id.tvViewMoreDetailAboutAgroDealer)
         val itemAG: ConstraintLayout = view.findViewById(R.id.itemAG)
+        val agroDealerBuildingLoc: TextView = view.findViewById(R.id.textViewBuilding)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgrodealerViewHolder {
@@ -43,6 +44,8 @@ class AgrodealerAdapter(
         holder.nameTextView.text = agrodealer.name
         holder.contactTextView.text = agrodealer.phone
         holder.tvEmail.text = agrodealer.email
+        holder.agroDealerBuildingLoc.text = agrodealer.buildingLocation
+
 
         // Calculate the distance between the user's location and the agrodealer
         val agrovetLatLng = LatLng(agrodealer.latitude, agrodealer.longitude)

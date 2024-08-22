@@ -24,5 +24,6 @@ data class AgroDealer(
     val servicesOffered: String,
     val categories: String,
     val leasingOptionsAvailable: String,
-    val leasingDetails: String
+    val leasingDetails: String,
+    val buildingLocation: String
 ) : Parcelable

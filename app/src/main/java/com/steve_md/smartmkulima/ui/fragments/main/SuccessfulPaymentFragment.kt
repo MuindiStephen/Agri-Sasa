@@ -25,7 +25,7 @@ var map: HashMap<String, String> = HashMap()
 class SuccessfulPaymentFragment : Fragment() {
 
 
-    private lateinit var binding:FragmentSuccessfulPaymentBinding
+    private lateinit var binding: FragmentSuccessfulPaymentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
