@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none"
     tools:context=".ui.fragments.main.MonitorFarmConditionFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView15"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/bg_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +41,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="44dp"
+                android:textColor="@color/black"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Temperature : "
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="0.00"
+                android:text="0.00&#176;C"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView57"
                 app:layout_constraintStart_toEndOf="@+id/textView57"
@@ -55,11 +65,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Humidity : "
-                android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_4dp"
                 app:layout_constraintStart_toStartOf="@+id/textView57"
-                app:layout_constraintTop_toBottomOf="@+id/textView57"
-                app:layout_constraintVertical_bias="0.132" />
+                app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
             <TextView
                 android:id="@+id/textViewHumidity"
@@ -67,9 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="0.00"
+                android:text="0.00%"
                 android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView59"
                 app:layout_constraintStart_toEndOf="@+id/textView59"
                 app:layout_constraintTop_toTopOf="@+id/textView59" />
 
@@ -77,10 +86,11 @@
                 android:id="@+id/textView61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Soil Moisture : "
-                android:textSize="22sp"
+                android:textSize="18sp"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView59"
                 app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
@@ -89,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="0.00"
+                android:text="0.00%"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView61"
                 app:layout_constraintStart_toEndOf="@+id/textView61"
@@ -104,7 +114,7 @@
                 android:text="This Week"
                 android:textColor="@color/main"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.113"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,6 +129,115 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView89"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Wind speed: "
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/textView61"
+                app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+            <TextView
+                android:id="@+id/textViewWindSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="0.00km/h"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView89"
+                app:layout_constraintStart_toEndOf="@+id/textView89"
+                app:layout_constraintTop_toTopOf="@+id/textView89" />
+
+            <TextView
+                android:id="@+id/textView93"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Precipitation : "
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/textView89"
+                app:layout_constraintTop_toBottomOf="@+id/textView89" />
+
+            <TextView
+                android:id="@+id/textViewPrecipitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="0.00mm"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView93"
+                app:layout_constraintStart_toEndOf="@+id/textView93"
+                app:layout_constraintTop_toTopOf="@+id/textView93" />
+
+            <TextView
+                android:id="@+id/textView97"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Light density : "
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/textView93"
+                app:layout_constraintTop_toBottomOf="@+id/textView93" />
+
+            <TextView
+                android:id="@+id/textViewLightDensity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00cd/m&#179;"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView97"
+                app:layout_constraintStart_toEndOf="@+id/textView97"
+                app:layout_constraintTop_toBottomOf="@+id/textView93" />
+
+            <TextView
+                android:id="@+id/textView99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Nitrogen, Phosphorus, Potassium"
+                android:textSize="18sp"
+                android:layout_marginStart="32dp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView97" />
+
+            <TextView
+                android:id="@+id/textView102"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="nutrient level (NBK) : "
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/textView99"
+                app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
+            <TextView
+                android:id="@+id/textViewNBKLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="30%"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView102"
+                app:layout_constraintStart_toEndOf="@+id/textView102"
+                app:layout_constraintTop_toTopOf="@+id/textView102" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -152,32 +271,31 @@
             android:text="Monitor Your Farm" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView12"
+    <ir.mahozad.android.PieChart
+        android:id="@+id/pieChart"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_graph"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView15" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapViewFarmMonitoring"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:apiKey="AIzaSyAmjw_S5Bhy_Fq6qkepiXmoRLCYFrd6XUc"
-        app:liteMode="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapViewFarmMonitoring"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="@dimen/_16dp"
+            android:apiKey="AIzaSyAmjw_S5Bhy_Fq6qkepiXmoRLCYFrd6XUc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pieChart"
+            app:liteMode="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

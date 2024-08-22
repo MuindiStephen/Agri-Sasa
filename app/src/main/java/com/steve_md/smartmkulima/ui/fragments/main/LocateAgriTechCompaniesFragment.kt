@@ -343,7 +343,6 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
         mapView.onResume()
-        promptUserForLocationPermissions()
     }
 
     override fun onPause() {

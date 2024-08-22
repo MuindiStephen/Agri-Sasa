@@ -11,6 +11,9 @@ import com.steve_md.smartmkulima.model.mapmodels.responses.toPlace
 import java.io.InputStream
 import java.io.InputStreamReader
 
+/**
+ * Place Name, Latitude, Longitude, Address, Rating :(
+ */
 data class Place(
     val name: String,
     val latLng: LatLng,
@@ -28,7 +31,6 @@ data class Place(
     override fun getSnippet(): String {
         return address
     }
-
 }
 
 class PlacesReader(private val context: Context) {

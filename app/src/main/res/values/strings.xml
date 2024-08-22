@@ -30,6 +30,7 @@
     <string name="view_all_gaps">View All GAPs</string>
     <string name="proceed">Proceed</string>
     <string name="timeout">Timeout</string>
+    <string name="we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_crop_yields">We use Linear Regression Machine Learning Algorithm to predict your farm crop yields.</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

@@ -33,31 +33,35 @@ class PredictYourCropProductionFragment : Fragment() {
         }
 
        binding.buttonPredict.setOnClickListener {
-           val temperature = binding.inputTemperature.text.toString().toDouble()
-           val rainfall = binding.inputRainfall.text.toString().toDouble()
+           val temperature = binding.inputTemperature.text.toString().toDouble().toString()
+           val rainfall = binding.inputRainfall.text.toString().toDouble().toString()
            val soilQualityPh = binding.inputSoilQualityPh.text.toString()
            val selectedCrop = binding.spinnerCropPredict.selectedItem.toString()
            val selectedSeason = binding.spinnerSowingSeason.selectedItem.toString()
 
+
+           if (temperature.isNotEmpty() && rainfall.isNotEmpty() && soilQualityPh.isNotEmpty()) {
+
+           } else {
+
+           }
            // call prediction function here :)
-           if (temperature != null && rainfall != null &&
-               soilQualityPh != null && selectedCrop!= null
-               && selectedSeason!=null){
+           if (temperature != null && rainfall != null && selectedCrop!= null && selectedSeason!=null){
                val prediction = predictFarmProduce(
-                   temperature,
-                   rainfall,
+                   temperature.toDouble(),
+                   rainfall.toDouble(),
                    soilQualityPh,
                    selectedSeason,
                    selectedCrop
                )
                binding.textViewResult.text = "Expected production: $prediction"
-
                Timber.tag(this.tag.toString()).v("Prediction: $prediction")
            }
            else {
                binding.enterTemperature.error = "Empty strings"
                binding.enterRainfall.error = "Empty strings"
                binding.enterSoilQualityPh.error = "Empty strings"
+               Timber.tag(this.tag.toString()).v("Em")
            }
        }
     }
