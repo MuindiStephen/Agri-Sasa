@@ -36,7 +36,7 @@
             android:layout_marginStart="12dp"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="New Technology in Farming" />
     </LinearLayout>
 
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="     GPS\nMonitoring"
+        android:text="     Farm\nMonitoring"
         android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/cardViewGPS"
         app:layout_constraintStart_toStartOf="@+id/cardViewGPS"

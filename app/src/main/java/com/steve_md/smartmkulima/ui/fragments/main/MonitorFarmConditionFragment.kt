@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
@@ -28,6 +29,7 @@ import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.FarmConditions
 import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.isInternetAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import ir.mahozad.android.PieChart
 import ir.mahozad.android.unit.Dimension
@@ -73,9 +75,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
             if (location != null) {
                 loading.isVisible = false
-                monitorFarmConditions(location.latitude, location.longitude)
-                displaySnackBar("Location Update successful.")
-            } else {
+                monitorFarmConditions(location.latitude, location.longitude) } else {
                 // Handle case when location is null
                 loading.isVisible = false
                 Timber.e("An error occurred")
@@ -90,14 +90,15 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         val pieChart = view?.findViewById<PieChart>(R.id.pieChart)
 
         pieChart?.slices = listOf(
-            PieChart.Slice(0.3f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
-            PieChart.Slice(0.2f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
-            PieChart.Slice(0.2f, Color.rgb(0, 162, 216), Color.rgb(31, 199, 255), legend = "Soil Moisture"),
+            PieChart.Slice(0.30f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
+            PieChart.Slice(0.20f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
+            PieChart.Slice(0.20f, Color.rgb(0, 162, 216), Color.rgb(31, 199, 255), legend = "Soil Moisture"),
             PieChart.Slice(0.17f, Color.rgb(255, 4, 4), Color.rgb(255, 72, 86), legend = "Wind speed"),
-            PieChart.Slice(0.13f, Color.rgb(160, 165, 170), Color.rgb(175, 180, 185), legend = "Precipitation") ,
-            PieChart.Slice(0.13f, Color.rgb(160, 165, 170), Color.rgb(175, 180, 185), legend = "Light Density"),
-            PieChart.Slice(0.13f, Color.rgb(160, 165, 170), Color.rgb(175, 180, 185), legend = "NBK level")
+            PieChart.Slice(0.13f, Color.rgb(160, 100, 167), Color.rgb(160, 145, 175), legend = "Precipitation") ,
+            PieChart.Slice(0.23f, Color.rgb(0, 163, 170), Color.rgb(165, 180, 165), legend = "Light Density"),
+            PieChart.Slice(0.25f, Color.rgb(110, 165, 169), Color.rgb(175, 130, 185), legend = "NBK level")
         )
+
 
         pieChart?.gradientType = PieChart.GradientType.RADIAL
         pieChart?.legendIconsMargin = Dimension.DP(8F)
@@ -108,6 +109,15 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         pieChart?.legendsSize = Dimension.DP(11F)
         pieChart?.legendsPercentageSize = Dimension.DP(11F)
         pieChart?.legendsIcon = PieChart.DefaultIcons.SQUARE
+        pieChart?.legendsTitle = "Farm conditions"
+        pieChart?.legendPosition = PieChart.LegendPosition.BOTTOM
+        pieChart?.labelType = PieChart.LabelType.NONE
+        pieChart?.isLegendEnabled = true
+        pieChart?.legendsTitleColor = Color.BLACK
+        pieChart?.legendsColor = Color.BLACK
+
+//        pieChart?.isAnimationEnabled = true
+//        pieChart?.isLegendsPercentageEnabled = true
     }
 
     val Float.toSp get() = this * Resources.getSystem().displayMetrics.scaledDensity
@@ -124,7 +134,8 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             windspeed = 9.0,
             precipitation = 5.8,
             lightDensity = 45000.0,
-            nbkLevel = 30.5
+            nbkLevel = 30.5,
+            soilPh = 8.0
         )
 
         /*
@@ -150,17 +161,27 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         val lightDensity = view?.findViewById<TextView>(R.id.textViewLightDensity)
         val nbkLevel = view?.findViewById<TextView>(R.id.textViewNBKLevel)
 
-        temperature?.text = "${mockFarmConditions.temperature}&#176;C"
+        // As kotlin does not interpret html symbol entities
+        temperature?.text = "${mockFarmConditions.temperature}°C"
         humidity?.text = "${mockFarmConditions.humidity}%"
         soilMoisture?.text = "${mockFarmConditions.soilMoisture}%"
         windspeed?.text = "${mockFarmConditions.windspeed} m/s"
         precipitation?.text = "${mockFarmConditions.precipitation} mm"
         lightDensity?.text = "${mockFarmConditions.windspeed} lux"
         nbkLevel?.text = "${mockFarmConditions.nbkLevel} %"
+        view?.findViewById<TextView>(R.id.textViewSoilPH)?.text = "${mockFarmConditions.soilPh}"
     }
 
     override fun onMapReady(p0: GoogleMap) {
         googleMap = p0
+
+        // handle no internet connection when map is not loaded
+        if (!isInternetAvailable(requireContext())) {
+            showInternetErrorDialog()
+            return
+        } else {
+            displaySnackBar("Farm Location update successful")
+        }
 
         // Check Map Location Permission
         if (ActivityCompat.checkSelfPermission(
@@ -193,6 +214,10 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
      * Handle lifecycle for the Map
      * This is implemented in order for it to work pretty well
      */
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
     override fun onPause() {
         super.onPause()
         mapView.onPause()
@@ -207,4 +232,20 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         super.onLowMemory()
         mapView.onLowMemory()
     }
+
+    private fun showInternetErrorDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("No Internet Connection to load map")
+            .setMessage("Please check your internet connection and try again.")
+            .setPositiveButton("Retry") { dialog, _ ->
+                dialog.dismiss()
+                // Retry the map load or any other action
+                mapView.getMapAsync(this@MonitorFarmConditionFragment)
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
 }

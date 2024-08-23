@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -25,10 +26,14 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.AgrodealerAdapter
 import com.steve_md.smartmkulima.model.AgroDealer
+import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
+import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.isInternetAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -50,6 +55,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var googleMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationProvider: LocationProvider
 
 
     companion object {
@@ -145,6 +151,13 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
 
+        if (!isInternetAvailable(requireContext())) {
+            showInternetErrorDialog()
+            return
+        } else {
+            displaySnackBar("Agrodealers location updated successfully")
+        }
+
         /**
          * If permissions have been already granted
          */
@@ -173,12 +186,15 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             promptUserForLocationPermissions()
             return
         }
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-            location?.let {
-                val userLatLng = LatLng(it.latitude, it.longitude)
+        //fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+           // location?.let {
+
+        locationProvider = LocationProvider(this.requireContext())
+        locationProvider.getLastKnownLocation { location ->
+                val userLatLng = location?.let { LatLng(it.latitude, location.longitude) }
                 val agrodealers = getAgroDealersData().filter { agrovet ->
                     val agrovetLatLng = LatLng(agrovet.latitude, agrovet.longitude)
-                    calculateDistance(userLatLng, agrovetLatLng) <= SEARCH_RADIUS_METERS
+                    userLatLng?.let { calculateDistance(it, agrovetLatLng) }!! <= SEARCH_RADIUS_METERS
                 }
 
                 // Add filtered Agro-Dealers Markers to the map
@@ -189,16 +205,21 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                             .position(location2)
                             .title(agrodealer.name)
                     )?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+
                 }
 
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 18f))
+            userLatLng?.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
+                ?.let { googleMap.moveCamera(it)
+                googleMap.animateCamera(it)}
 
                 if (agrodealers.isNotEmpty()) {
 
-                    val userLatLng1 = LatLng(it.latitude, it.longitude)
+                    val boundsBuilder = LatLngBounds.Builder()
+
+                    val userLatLng1 = location?.let { LatLng(it.latitude, location.longitude) }
                     val agrodealers1 = getAgroDealersData().filter { agrovet ->
                         val agrovetLatLng = LatLng(agrovet.latitude, agrovet.longitude)
-                        calculateDistance(userLatLng1, agrovetLatLng) <= SEARCH_RADIUS_METERS
+                        userLatLng1?.let { calculateDistance(it, agrovetLatLng) }!! <= SEARCH_RADIUS_METERS
                     }
 
                     // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 18f))
@@ -212,16 +233,33 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                                 .position(location1)
                                 .title(agrodealer.name)
                         )?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                        boundsBuilder.include(location1)
                     }
 
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng1, 18f))
+
+                    userLatLng1?.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
+                        ?.let { googleMap.moveCamera(it) }
+
+                    // Include the user's location in the bounds
+                    userLatLng?.let { boundsBuilder.include(it) }
+
+                    /**
+                     * Adjust the map's camera zoom level after calculating the bounds that
+                     * include all agro-dealers within a 50 km radius.
+                     * using the `LatLngBounds` .
+                     */
+                    val bounds = boundsBuilder.build()
+                    val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 100) // 100 is padding
+                    googleMap.moveCamera(cameraUpdate)
+                    googleMap.animateCamera(cameraUpdate)
+
                 }
 
                 if(agrodealers.isEmpty()) {
                     view?.findViewById<TextView>(R.id.textViewAgrodealersNotavailable)?.visibility = View.VISIBLE
                     view?.findViewById<LottieAnimationView>(R.id.LottieNoRecords)?.visibility = View.VISIBLE
                 }
-            }
+           // }
         }
     }
 
@@ -376,6 +414,21 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     override fun onLowMemory() {
         super.onLowMemory()
         mapView.onLowMemory()
+    }
+
+    private fun showInternetErrorDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("No Internet Connection to load map")
+            .setMessage("Please check your internet connection and try again.")
+            .setPositiveButton("Retry") { dialog, _ ->
+                dialog.dismiss()
+                // Retry the map load or any other action
+                mapView.getMapAsync(this@LocateAgriTechCompaniesFragment)
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
 }

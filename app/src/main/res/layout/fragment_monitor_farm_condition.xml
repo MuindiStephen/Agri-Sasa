@@ -20,16 +20,16 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView15"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         app:cardCornerRadius="10dp"
         android:backgroundTint="@color/bg_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/topBarLL">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,14 +39,14 @@
                 android:id="@+id/textView57"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="44dp"
-                android:textColor="@color/black"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Temperature : "
-                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView104" />
 
             <TextView
                 android:id="@+id/textViewTemperature"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="0.00&#176;C"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView57"
                 app:layout_constraintStart_toEndOf="@+id/textView57"
                 app:layout_constraintTop_toTopOf="@+id/textView57" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Humidity : "
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="@dimen/_4dp"
                 app:layout_constraintStart_toStartOf="@+id/textView57"
@@ -78,7 +78,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="0.00%"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textView59"
                 app:layout_constraintTop_toTopOf="@+id/textView59" />
 
@@ -89,7 +89,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Soil Moisture : "
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView59"
                 app:layout_constraintTop_toBottomOf="@+id/textView59" />
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="0.00%"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView61"
                 app:layout_constraintStart_toEndOf="@+id/textView61"
                 app:layout_constraintTop_toTopOf="@+id/textView61" />
@@ -137,7 +137,7 @@
                 android:layout_marginTop="@dimen/_4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Wind speed: "
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView61"
                 app:layout_constraintTop_toBottomOf="@+id/textView61" />
@@ -149,7 +149,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="0.00km/h"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView89"
                 app:layout_constraintStart_toEndOf="@+id/textView89"
                 app:layout_constraintTop_toTopOf="@+id/textView89" />
@@ -161,7 +161,7 @@
                 android:layout_marginTop="@dimen/_4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Precipitation : "
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView89"
                 app:layout_constraintTop_toBottomOf="@+id/textView89" />
@@ -173,7 +173,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="0.00mm"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView93"
                 app:layout_constraintStart_toEndOf="@+id/textView93"
                 app:layout_constraintTop_toTopOf="@+id/textView93" />
@@ -185,7 +185,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Light density : "
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView93"
                 app:layout_constraintTop_toBottomOf="@+id/textView93" />
@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:text="0.00cd/m&#179;"
                 android:fontFamily="@font/montserrat_medium"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView97"
                 app:layout_constraintStart_toEndOf="@+id/textView97"
                 app:layout_constraintTop_toBottomOf="@+id/textView93" />
@@ -208,10 +208,10 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Nitrogen, Phosphorus, Potassium"
-                android:textSize="18sp"
-                android:layout_marginStart="32dp"
+                android:layout_marginEnd="@dimen/_8dp"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/textView97"
                 app:layout_constraintTop_toBottomOf="@+id/textView97" />
 
             <TextView
@@ -222,7 +222,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="nutrient level (NBK) : "
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView99"
                 app:layout_constraintTop_toBottomOf="@+id/textView99" />
 
@@ -233,16 +233,54 @@
                 android:layout_marginStart="8dp"
                 android:text="30%"
                 android:fontFamily="@font/montserrat_medium"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView102"
                 app:layout_constraintStart_toEndOf="@+id/textView102"
                 app:layout_constraintTop_toTopOf="@+id/textView102" />
+
+            <TextView
+                android:id="@+id/textView104"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                android:text="40 hectares farm"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+            <TextView
+                android:id="@+id/textView106"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Soil pH : "
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/textView102"
+                app:layout_constraintTop_toBottomOf="@+id/textView102" />
+
+            <TextView
+                android:id="@+id/textViewSoilPH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="5"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView106"
+                app:layout_constraintStart_toEndOf="@+id/textView106"
+                app:layout_constraintTop_toTopOf="@+id/textView106" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
+        android:id="@+id/topBarLL"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/main"
@@ -268,19 +306,19 @@
             android:fontFamily="@font/montserrat_semibold"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:text="Monitor Your Farm" />
+            android:text="Farm monitor" />
     </LinearLayout>
 
-    <ir.mahozad.android.PieChart
-        android:id="@+id/pieChart"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView15" />
+        <ir.mahozad.android.PieChart
+            android:id="@+id/pieChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView15" />
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapViewFarmMonitoring"
@@ -297,5 +335,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pieChart"
             app:liteMode="true" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView91"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Monitor your farm using GPS and IOT sensors"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView15"
+            app:layout_constraintStart_toStartOf="@+id/cardView15" />
+
+        <TextView
+            android:id="@+id/textView103"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="14sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:text="Below is your farm monitoring in summary, \nrepresented in a visual chart"
+            app:layout_constraintBottom_toTopOf="@+id/pieChart"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

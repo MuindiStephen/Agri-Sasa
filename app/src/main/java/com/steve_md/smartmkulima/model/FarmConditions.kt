@@ -7,5 +7,6 @@ data class FarmConditions(
     val windspeed: Double,
     val precipitation: Double,
     val lightDensity: Double,
-    val nbkLevel: Double
+    val nbkLevel: Double,
+    val soilPh: Double
 )

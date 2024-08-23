@@ -38,7 +38,6 @@
     </string-array>
 
     <string-array name="crop_list">
-        <item>- Select A Crop - </item>
         <item>Capsicum Geva</item>
         <item>Tomatoes Anna</item>
         <item>Coriander</item>
@@ -56,6 +55,12 @@
         <item>Tomatoes Big Rock F1</item>
         <item>Lettuce</item>
         <item>Bullet Chillies</item>
+    </string-array>
+
+    <string-array name="soil_type">
+        <item>Loam soil</item>
+        <item>Clay soil</item>
+        <item>Sandy soil</item>
     </string-array>
 
 
@@ -81,6 +86,7 @@
         <item>OVERDUE</item>
     </string-array>
     <string-array name="season">
+        <item>- Select Crop Season -</item>
         <item>WINTER</item>
         <item>SUMMER</item>
         <item>AUTUMN</item>

@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     tools:context=".ui.fragments.main.PredictYourCropProductionFragment">
 
+   <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView58"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_crop_yields"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+       <TextView
+           android:id="@+id/textView58"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="84dp"
+           android:layout_marginEnd="24dp"
+           android:fontFamily="@font/montserrat_semibold"
+           android:text="@string/we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_crop_yields"
+           android:textSize="16sp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.0"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,41 +54,37 @@
             android:layout_marginStart="32dp"
             android:layout_gravity="center"
             android:textSize="18sp"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="Predict Your Farm Output" />
     </LinearLayout>
 
+       <Spinner
+           android:id="@+id/spinnerCropPredict"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginStart="@dimen/_16dp"
+           android:layout_marginTop="32dp"
+           android:layout_marginEnd="@dimen/_16dp"
+           android:entries="@array/crop_list"
+           android:background="@drawable/rounded_corner"
+           android:fontFamily="@font/montserrat_medium"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/buttonGetGPSData" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/enterTemperature"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:elevation="10dp"
-        android:hint="Temperature in degrees celcius"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp"
-        app:boxStrokeColor="@color/SilverGray"
-        app:boxStrokeWidthFocused="2dp"
-        app:endIconMode="clear_text"
-        android:textColorHint="@color/textColor"
-        app:endIconTint="@color/SilverGray"
-        app:hintTextColor="@color/SilverGray"
-        app:layout_constraintEnd_toEndOf="@id/textView58"
-        app:layout_constraintStart_toStartOf="@id/textView58"
-        app:layout_constraintTop_toBottomOf="@id/textView58">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputTemperature"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+       <Spinner
+           android:id="@+id/enterSoilType"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="32dp"
+           android:layout_marginEnd="16dp"
+           android:background="@drawable/rounded_corner"
+           android:entries="@array/soil_type"
+           android:fontFamily="@font/montserrat_medium"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/buttonGetIotSensorData" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -106,12 +107,13 @@
         app:endIconMode="clear_text"
         app:endIconTint="@color/SilverGray"
         app:hintTextColor="@color/SilverGray"
-        app:layout_constraintEnd_toEndOf="@id/enterTemperature"
-        app:layout_constraintStart_toStartOf="@id/enterTemperature"
-        app:layout_constraintTop_toBottomOf="@id/enterTemperature">
+        app:layout_constraintEnd_toEndOf="@id/spinnerCropPredict"
+        app:layout_constraintStart_toStartOf="@id/spinnerCropPredict"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCropPredict">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputRainfall"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
@@ -121,43 +123,129 @@
         android:id="@+id/buttonPredict"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="228dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
         android:text="Predict yield"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterRainfall" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerSowingSeason" />
 
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat_medium"
         android:text="Result?"
-        android:textSize="22sp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPredict" />
 
-    <Spinner
-        android:id="@+id/spinnerCropPredict"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_corner"
-        android:layout_marginEnd="16dp"
-        android:entries="@array/crop_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterRainfall" />
+
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/enterTemperature"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="8dp"
+           android:layout_marginEnd="16dp"
+           android:elevation="10dp"
+           android:textColorHint="@color/textColor"
+           android:hint="Temperature (&#176;C)"
+           app:boxCornerRadiusBottomEnd="10dp"
+           app:boxCornerRadiusBottomStart="10dp"
+           app:boxCornerRadiusTopEnd="10dp"
+           app:boxCornerRadiusTopStart="10dp"
+           app:boxStrokeColor="@color/SilverGray"
+           app:boxStrokeWidthFocused="2dp"
+           app:endIconMode="clear_text"
+           app:endIconTint="@color/SilverGray"
+           app:hintTextColor="@color/SilverGray"
+           app:layout_constraintEnd_toEndOf="@id/enterRainfall"
+           app:layout_constraintStart_toStartOf="@id/enterRainfall"
+           app:layout_constraintTop_toBottomOf="@id/enterRainfall">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/inputTemperature"
+               android:layout_width="match_parent"
+               android:fontFamily="@font/montserrat_medium"
+               android:layout_height="wrap_content"
+               android:inputType="text" />
+       </com.google.android.material.textfield.TextInputLayout>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/enterHumidity"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="8dp"
+           android:layout_marginEnd="16dp"
+           android:elevation="10dp"
+           android:textColorHint="@color/textColor"
+           android:hint="Humidity (%)"
+           app:boxCornerRadiusBottomEnd="10dp"
+           app:boxCornerRadiusBottomStart="10dp"
+           app:boxCornerRadiusTopEnd="10dp"
+           app:boxCornerRadiusTopStart="10dp"
+           app:boxStrokeColor="@color/SilverGray"
+           app:boxStrokeWidthFocused="2dp"
+           app:endIconMode="clear_text"
+           app:endIconTint="@color/SilverGray"
+           app:hintTextColor="@color/SilverGray"
+           app:layout_constraintEnd_toEndOf="@id/enterTemperature"
+           app:layout_constraintStart_toStartOf="@id/enterTemperature"
+           app:layout_constraintTop_toBottomOf="@id/enterTemperature">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/inputHumidity"
+               android:layout_width="match_parent"
+               android:fontFamily="@font/montserrat_medium"
+               android:layout_height="wrap_content"
+               android:inputType="text" />
+       </com.google.android.material.textfield.TextInputLayout>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/enterFarmSizeInHa"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="8dp"
+           android:layout_marginEnd="16dp"
+           android:elevation="10dp"
+           android:textColorHint="@color/textColor"
+           android:hint="Enter farm size (hectares)"
+           app:boxCornerRadiusBottomEnd="10dp"
+           app:boxCornerRadiusBottomStart="10dp"
+           app:boxCornerRadiusTopEnd="10dp"
+           app:boxCornerRadiusTopStart="10dp"
+           app:boxStrokeColor="@color/SilverGray"
+           app:boxStrokeWidthFocused="2dp"
+           app:endIconMode="clear_text"
+           app:endIconTint="@color/SilverGray"
+           app:hintTextColor="@color/SilverGray"
+           app:layout_constraintEnd_toEndOf="@id/enterHumidity"
+           app:layout_constraintStart_toStartOf="@id/enterHumidity"
+           app:layout_constraintTop_toBottomOf="@id/enterHumidity">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/farmSize"
+               android:layout_width="match_parent"
+               android:fontFamily="@font/montserrat_medium"
+               android:layout_height="wrap_content"
+               android:inputType="text" />
+       </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/enterSoilQualityPh"
@@ -179,29 +267,143 @@
         app:endIconMode="clear_text"
         app:endIconTint="@color/SilverGray"
         app:hintTextColor="@color/SilverGray"
-        app:layout_constraintEnd_toEndOf="@id/spinnerCropPredict"
-        app:layout_constraintStart_toStartOf="@id/spinnerCropPredict"
-        app:layout_constraintTop_toBottomOf="@id/spinnerCropPredict">
+        app:layout_constraintEnd_toEndOf="@id/enterSoilType"
+        app:layout_constraintStart_toStartOf="@id/enterSoilType"
+        app:layout_constraintTop_toBottomOf="@id/enterSoilType">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputSoilQualityPh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/enterNBKLevel"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="8dp"
+           android:layout_marginEnd="16dp"
+           android:elevation="10dp"
+           android:textColorHint="@color/textColor"
+           android:hint="Nitrogen,Phosphorus, Potassium level (%)"
+           app:boxCornerRadiusBottomEnd="10dp"
+           app:boxCornerRadiusBottomStart="10dp"
+           app:boxCornerRadiusTopEnd="10dp"
+           app:boxCornerRadiusTopStart="10dp"
+           app:boxStrokeColor="@color/SilverGray"
+           app:boxStrokeWidthFocused="2dp"
+           app:endIconMode="clear_text"
+           app:endIconTint="@color/SilverGray"
+           app:hintTextColor="@color/SilverGray"
+           app:layout_constraintEnd_toEndOf="@id/enterSoilQualityPh"
+           app:layout_constraintStart_toStartOf="@id/enterSoilQualityPh"
+           app:layout_constraintTop_toBottomOf="@id/enterSoilQualityPh">
 
-    <Spinner
-        android:id="@+id/spinnerSowingSeason"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_corner"
-        android:layout_marginEnd="16dp"
-        android:entries="@array/season"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterSoilQualityPh" />
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/inputNBKLevel"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:fontFamily="@font/montserrat_medium"
+               android:inputType="text" />
+       </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+       <Spinner
+           android:id="@+id/spinnerSowingSeason"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="32dp"
+           android:layout_marginEnd="16dp"
+           android:background="@drawable/rounded_corner"
+           android:entries="@array/season"
+           android:fontFamily="@font/montserrat_medium"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/enterNBKLevel" />
+
+       <Button
+           android:id="@+id/buttonGetGPSData"
+           android:layout_width="match_parent"
+           android:layout_height="60dp"
+           android:layout_marginStart="@dimen/_16dp"
+           android:layout_marginTop="@dimen/_8dp"
+           android:layout_marginEnd="@dimen/_16dp"
+           android:fontFamily="@font/montserrat_medium"
+           android:text="Get GPS Monitor Data"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="@+id/textView58"
+           app:layout_constraintTop_toBottomOf="@+id/textView95" />
+
+       <TextView
+           android:id="@+id/textView95"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Click the button below to load GPS monitor\ndata"
+           android:fontFamily="@font/montserrat_medium"
+           android:layout_marginTop="@dimen/_32dp"
+           app:layout_constraintStart_toStartOf="@+id/textView58"
+           app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+       <TextView
+           android:id="@+id/textView98"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="2dp"
+           android:text="Select Crop"
+           android:textSize="@dimen/_14sp_text_size"
+           android:fontFamily="@font/montserrat_medium"
+           app:layout_constraintBottom_toTopOf="@+id/spinnerCropPredict"
+           app:layout_constraintStart_toStartOf="@+id/spinnerCropPredict" />
+
+       <TextView
+           android:id="@+id/textView100"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="2dp"
+           android:text="Select the type of soil in your farm"
+           android:textSize="@dimen/_14sp_text_size"
+           android:fontFamily="@font/montserrat_medium"
+           app:layout_constraintBottom_toTopOf="@+id/enterSoilType"
+           app:layout_constraintStart_toStartOf="@+id/enterSoilType" />
+
+       <TextView
+           android:id="@+id/textView101"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="2dp"
+           android:text="Select crop season"
+           android:textSize="@dimen/_14sp_text_size"
+           android:fontFamily="@font/montserrat_medium"
+           app:layout_constraintBottom_toTopOf="@+id/spinnerSowingSeason"
+           app:layout_constraintStart_toStartOf="@+id/spinnerSowingSeason" />
+
+       <Button
+           android:id="@+id/buttonGetIotSensorData"
+           android:layout_width="match_parent"
+           android:layout_height="60dp"
+           android:layout_marginStart="@dimen/_16dp"
+           android:layout_marginTop="40dp"
+           android:layout_marginEnd="@dimen/_16dp"
+           android:fontFamily="@font/montserrat_medium"
+           android:text="Get IOT sensor data"
+           app:layout_constraintEnd_toEndOf="@id/enterFarmSizeInHa"
+           app:layout_constraintStart_toStartOf="@+id/enterFarmSizeInHa"
+           app:layout_constraintTop_toBottomOf="@+id/enterFarmSizeInHa" />
+
+       <TextView
+           android:id="@+id/textView105"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginBottom="4dp"
+           android:text="Click the button below to load IOT sensor data"
+           android:fontFamily="@font/montserrat_medium"
+           app:layout_constraintBottom_toTopOf="@+id/buttonGetIotSensorData"
+           app:layout_constraintStart_toStartOf="parent" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
