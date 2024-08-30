@@ -155,6 +155,7 @@ class AddedNewFarmFieldsFragment : Fragment() {
     private fun searchingAFarm(searchText: String) {
         val filteredList = farmFieldsList.filter { it.farmName.equals(searchText, ignoreCase = true) }
         farmFieldsAdapter.submitList(filteredList.toMutableList())
+        binding.textViewFarmFieldInitialLr.text = filteredList.size.toString()
     }
 
 

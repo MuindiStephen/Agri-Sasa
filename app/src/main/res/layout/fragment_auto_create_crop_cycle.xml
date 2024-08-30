@@ -123,39 +123,19 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/enterFarmBlockID"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <Spinner
+                android:id="@+id/inputFarmBlockID"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_height="60dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:hint="Farm Name"
-                android:layout_marginStart="@dimen/_16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/_16dp"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/textColor"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="@color/SilverGray"
-                app:boxStrokeWidthFocused="2dp"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/SilverGray"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/rounded_corner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cropCycleStartDay">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputFarmBlockID"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:inputType="text"
-                    android:textColor="@color/textColor" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@id/cropCycleStartDay" />
 
 
             <TextView
@@ -188,10 +168,10 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:textColor="@color/bg_gray"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/enterFarmBlockID"
+                app:layout_constraintEnd_toEndOf="@+id/inputFarmBlockID"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/enterFarmBlockID"
-                app:layout_constraintTop_toBottomOf="@+id/enterFarmBlockID" />
+                app:layout_constraintStart_toStartOf="@+id/inputFarmBlockID"
+                app:layout_constraintTop_toBottomOf="@+id/inputFarmBlockID" />
 
 
             <TextView
@@ -280,9 +260,9 @@
                 android:visibility="visible"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintBottom_toBottomOf="@+id/enterFarmBlockID"
-                app:layout_constraintEnd_toEndOf="@+id/enterFarmBlockID"
-                app:layout_constraintTop_toTopOf="@+id/enterFarmBlockID" />
+                app:layout_constraintBottom_toBottomOf="@+id/inputFarmBlockID"
+                app:layout_constraintEnd_toEndOf="@+id/inputFarmBlockID"
+                app:layout_constraintTop_toTopOf="@+id/inputFarmBlockID" />
 
             <!--            <com.shuhart.stepview.StepView-->
 <!--                android:id="@+id/stepViewCropCycle"-->

@@ -78,7 +78,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         val farmField = args.newfarmfield
 
-        val whichFarm =  view.findViewById<Button>(R.id.textView104)
+        val whichFarm =  view.findViewById<TextView>(R.id.textView104)
 
         whichFarm.text = farmField.farmName
         
@@ -92,7 +92,8 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
             if (location != null) {
                 loading.isVisible = false
-                monitorFarmConditions(location.latitude, location.longitude) } else {
+                monitorFarmConditions(location.latitude, location.longitude)
+            } else {
                 // Handle case when location is null
                 loading.isVisible = false
                 Timber.e("An error occurred")

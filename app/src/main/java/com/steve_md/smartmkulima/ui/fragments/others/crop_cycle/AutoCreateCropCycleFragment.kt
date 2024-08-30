@@ -16,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -32,7 +31,7 @@ import com.steve_md.smartmkulima.model.GAP
 import com.steve_md.smartmkulima.model.GAPtask
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.LocalTasks
-import com.steve_md.smartmkulima.utils.DateFormat.formatDate
+import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.utils.DateFormat.getWhenStarts
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
@@ -63,9 +62,12 @@ class AutoCreateCropCycleFragment : Fragment() {
     private var cropCycleStartDay: Calendar? = null
 
     private var selectedCrop: String = ""
+    private var selectedfarm: String = ""
     private val cycleTypes by lazy { resources.getStringArray(R.array.cycle_types) }
 
     private val farmCycleViewModel: MainViewModel by viewModels()
+
+    private var farmFieldsList =  mutableListOf<NewFarmField>()
 
     var task : LocalTasks? = LocalTasks("","","")
     override fun onCreateView(
@@ -84,6 +86,8 @@ class AutoCreateCropCycleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        fetchAvailableFarms()
+
         binding.imageViewBackFromAutoCreateCropCycle.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -96,10 +100,6 @@ class AutoCreateCropCycleFragment : Fragment() {
        // setUpBinding()
 
        // scheduleNotification(2)
-
-
-
-
 
 
         // Adapter to attach Spinner with data
@@ -121,23 +121,21 @@ class AutoCreateCropCycleFragment : Fragment() {
             }
         }
 
-        binding.imageViewSelectFarm.setOnClickListener {
-            binding.imageViewSelectFarm
-                .animate()
-                .rotation(180f)
-                .setDuration(200)
-                .withEndAction {
-                    binding.imageViewSelectFarm
-                        .animate()
-                        .rotation(0f)
-                        .setDuration(200)
-                        .start()
-                }
-                .start()
-
-
-            displaySnackBar("No Farm Found, Please enter.")
-        }
+//        binding.imageViewSelectFarm.setOnClickListener {
+//            binding.imageViewSelectFarm
+//                .animate()
+//                .rotation(180f)
+//                .setDuration(200)
+//                .withEndAction {
+//                    binding.imageViewSelectFarm
+//                        .animate()
+//                        .rotation(0f)
+//                        .setDuration(200)
+//                        .start()
+//                }
+//                .start()
+//            displaySnackBar("No Farm Found, Please enter.")
+//        }
 
         // Setting up Img and PopUpMenu
         binding.imageView21.setOnClickListener {
@@ -155,13 +153,13 @@ class AutoCreateCropCycleFragment : Fragment() {
                     }
 
                     popUpMenu.setOnMenuItemClickListener { menuItem ->
+
                         val selectedCrop = menuItem.title.toString()
-                        Timber.i("Selected Crop from ImageView: $selectedCrop")
+                        Timber.i("Selected Crop from dropdown imgView: $selectedCrop")
                         displaySnackBar(selectedCrop)
                         // Optionally, you can also update the Spinner's selection to match the selected item
                         binding.spinnerCrops.setSelection(cropList.indexOf(selectedCrop))
                         true
-
                     }
                     popUpMenu.show()
 
@@ -173,11 +171,6 @@ class AutoCreateCropCycleFragment : Fragment() {
                         .start()
                 }
                 .start()
-
-
-
-
-
         }
 
         // Fetch first GAPs which are linked to Creation of crop cycles with exact date and time
@@ -217,7 +210,7 @@ class AutoCreateCropCycleFragment : Fragment() {
 
                                 createCropCycle(
                                     selectedCrop,
-                                    binding.inputFarmBlockID.text.toString(),
+                                    binding.inputFarmBlockID.selectedItem.toString(),
                                     cropCycleStartDay,
                                     gapForSelectedCrop.gap
                                 )
@@ -387,7 +380,7 @@ class AutoCreateCropCycleFragment : Fragment() {
                         //displayServiceCycleTasks()
                         binding.stepLinearLayout.removeAllViews()
                         val stepTextView = TextView(requireContext())
-                        stepTextView.text = "$cropCycleStartDay | ${binding.inputFarmBlockID.text}"
+                        stepTextView.text = "$cropCycleStartDay | ${binding.inputFarmBlockID.selectedItem.toString()}"
 
                     } else {
                         return
@@ -448,7 +441,7 @@ class AutoCreateCropCycleFragment : Fragment() {
     private fun generateCropCycle() {
         val selectedCycleType = binding.spinnerCycleType.selectedItem.toString()
         val startDayForCropCycle = binding.inputCropCycleStartDay.text.toString()
-        val farmOrBlockId = binding.inputFarmBlockID.text.toString()
+        val farmOrBlockId = binding.inputFarmBlockID.selectedItem.toString()
 
         if (selectedCycleType.isNotEmpty() && startDayForCropCycle.isNotEmpty() && farmOrBlockId.isNotEmpty()) {
             // Parse start date
@@ -544,4 +537,92 @@ class AutoCreateCropCycleFragment : Fragment() {
             else -> ""
         }
     }
+
+    private fun fetchAvailableFarms() {
+        farmCycleViewModel.allFarmFields.observe(viewLifecycleOwner) { farmField->
+            if (!farmField.isNullOrEmpty()) {
+                farmFieldsList.clear()
+                farmFieldsList.addAll(farmField)
+
+                val farmNames = farmFieldsList.map {
+                    it.farmName
+                }
+
+                val adapter = ArrayAdapter<String>(this@AutoCreateCropCycleFragment.requireContext(),
+                    android.R.layout.simple_spinner_item,farmNames)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                binding.inputFarmBlockID.adapter = adapter
+
+
+                binding.inputFarmBlockID.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                        selectedfarm = parent.getItemAtPosition(position).toString()
+                        Timber.i("Selected Farm name: $selectedfarm")
+                        displaySnackBar(selectedfarm)
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        Timber.tag("AutoCreateCropCycle").d("No Farm FOUND")
+                    }
+                }
+
+                /**
+                 * Setting up img and pop up menu
+                 */
+                binding.imageViewSelectFarm.setOnClickListener {
+                    binding.imageViewSelectFarm
+                        .animate()
+                        .rotation(180f)
+                        .setDuration(200)
+                        .withEndAction {
+
+                            val popUpMenu = androidx.appcompat.widget.PopupMenu(requireContext(), it)
+
+                            farmNames.forEach { string ->
+                                popUpMenu.menu.add(string)
+                            }
+
+                            popUpMenu.setOnMenuItemClickListener { menuItem ->
+                                val farmblocks = menuItem.title.toString()
+                                Timber.i("Selected farm from dropdown imgView: $farmblocks")
+                                displaySnackBar(farmblocks)
+
+                                // Optionally, you can also update the EditTextInputLy selection to match the selected item
+
+                                binding.inputFarmBlockID.setSelection(farmNames.indexOf(farmblocks))
+
+                                val farmIndex = farmNames.indexOf(farmblocks)
+                                if (farmIndex >= 0) {
+                                    binding.inputFarmBlockID.setSelection(farmIndex)
+                                } else {
+                                    binding.inputFarmBlockID.setSelection(0)
+                                }
+
+                                true
+
+                            }
+                            popUpMenu.show()
+
+                            // After the PopupMenu is shown, reset the ImageView's rotation back to the initial position
+                            binding.imageViewSelectFarm
+                                .animate()
+                                .rotation(0f)
+                                .setDuration(200)
+                                .start()
+                        }
+                        .start()
+                }
+
+
+            } else {
+                Timber.e("No farm blocks available for selection.")
+            }
+        }
+    }
+
+
+
 }
+
+
+
