@@ -1,14 +1,16 @@
 package com.steve_md.smartmkulima.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /**
  * Add new farm details
  */
 @Entity(tableName = "farm_blocks")
+@Parcelize
 data class NewFarmField(
-
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     var farmName: String,
@@ -20,4 +22,4 @@ data class NewFarmField(
     val season: String,
     val year: String,
     val countyLocationOfTheFarm: String
-)
+): Parcelable

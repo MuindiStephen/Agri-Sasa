@@ -21,7 +21,7 @@ class FarmFieldsAdapter(
             return oldItem == newItem
         }
         override fun areContentsTheSame(oldItem: NewFarmField, newItem: NewFarmField): Boolean {
-            return oldItem.farmName == newItem.farmName
+            return oldItem.id == newItem.id
         }
     }
 
@@ -51,10 +51,13 @@ class FarmFieldsAdapter(
         val farmField = getItem(position)
         holder.bind(farmField)
 
-        holder.itemView.setOnClickListener {
 
-            // click to invoke this mtd
-            onClickListener.onClick(farmField)
+        /**
+         *
+         * Click to invoke this mtd
+         */
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(newFarmField = farmField)
         }
     }
 

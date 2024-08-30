@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -19,6 +20,8 @@ import com.steve_md.smartmkulima.databinding.FragmentAddNewFarmFieldBinding
 import com.steve_md.smartmkulima.databinding.FragmentAddedNewFarmFieldsBinding
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
+import com.steve_md.smartmkulima.utils.hideKeyboard
+import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -50,19 +53,23 @@ class AddedNewFarmFieldsFragment : Fragment() {
         setUpBinding()
 
         setUpFarmFieldsRecyclerView()
+
         fetchAllFarmFields()
     }
 
     private fun setUpFarmFieldsRecyclerView() {
+
         binding.createdFarmFieldsRecView.layoutManager = LinearLayoutManager(requireContext())
 
         farmFieldsAdapter = FarmFieldsAdapter(FarmFieldsAdapter.OnClickListener { newFarmField ->
             Timber.i("==Clicked on farm field==: ${newFarmField.farmName}")
-
-            // navigate to farm monitoring
+            // navigate to farm monitoring screen
+            // plus actions
+            val actions = AddedNewFarmFieldsFragmentDirections.actionAddedNewFarmFieldsFragmentToMonitorFarmConditionFragment(
+                newFarmField
+            )
             findNavController().navigate(
-                R.id.monitorFarmConditionFragment,
-                bundleOf(Pair("farmfield",newFarmField))
+                actions
             )
         })
 
@@ -77,10 +84,9 @@ class AddedNewFarmFieldsFragment : Fragment() {
                 farmFieldsAdapter.submitList(farmFieldsList)
                 binding.textViewNoFarmsAvailable.isVisible = false
 
-                binding.createdFarmFieldsRecView.adapter = farmFieldsAdapter
-
                 // set the counted number of items in the rec view
                 binding.textViewFarmFieldInitialLr.text = farmFieldsList.size.toString()
+
             } else {
                 binding.textViewNoFarmsAvailable.isVisible = true
             }
@@ -88,6 +94,37 @@ class AddedNewFarmFieldsFragment : Fragment() {
     }
 
     private fun setUpBinding() {
+
+        binding.searchForFarm.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                hideKeyboard()
+
+                val searchText = binding.searchViewFarmField.editText?.text.toString().trim()
+
+                if (searchText.isEmpty()) {
+                    toast("Enter some text in order to search")
+                    false
+                }
+                searchingAFarm(searchText)
+                true
+            } else {
+                false
+            }
+
+        }
+
+        binding.searchViewFarmField.setEndIconOnClickListener {
+            hideKeyboard()
+
+            if (binding.searchViewFarmField.editText?.text.isNullOrEmpty()) {
+                return@setEndIconOnClickListener
+            }
+
+            binding.searchViewFarmField.editText?.setText("")
+            fetchAllFarmFields()
+        }
+
         binding.apply {
             buttonAddNewFarmField.setOnClickListener {
                 findNavController().navigate(R.id.addNewFarmFieldFragment)
@@ -104,7 +141,6 @@ class AddedNewFarmFieldsFragment : Fragment() {
                         val first = fragmentManager.getBackStackEntryAt(0)
                         fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     }
-
                     findNavController().navigateUp()
                 }
             }
@@ -113,14 +149,20 @@ class AddedNewFarmFieldsFragment : Fragment() {
 
     }
 
+    /**
+     * Search for a farm field
+     */
+    private fun searchingAFarm(searchText: String) {
+        val filteredList = farmFieldsList.filter { it.farmName.equals(searchText, ignoreCase = true) }
+        farmFieldsAdapter.submitList(filteredList.toMutableList())
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         if (onBackPressedCallback != null) {
             onBackPressedCallback!!.isEnabled = false
             onBackPressedCallback!!.remove()
-        } else{
-            onBackPressedCallback?.isEnabled ?: true
-            onBackPressedCallback?.remove()
         }
     }
 

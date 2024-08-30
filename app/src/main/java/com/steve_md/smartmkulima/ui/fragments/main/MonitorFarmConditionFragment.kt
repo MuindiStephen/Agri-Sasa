@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -44,6 +45,10 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap
     private var LOCATIONPERMISSIONREQUESTCODE = 1
     private lateinit var locationProvider: LocationProvider
+
+
+    private val args: MonitorFarmConditionFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,8 +76,11 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        val farmField = args.newfarmfield
+
         val whichFarm =  view.findViewById<Button>(R.id.textView104)
-        whichFarm.text = arguments?.getString("farmfield")
+
+        whichFarm.text = farmField.farmName
         
         locationProvider = LocationProvider(this.requireContext())
 

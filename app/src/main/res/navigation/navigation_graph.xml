@@ -305,7 +305,11 @@
         android:id="@+id/monitorFarmConditionFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.MonitorFarmConditionFragment"
         android:label="fragment_monitor_farm_condition"
-        tools:layout="@layout/fragment_monitor_farm_condition" />
+        tools:layout="@layout/fragment_monitor_farm_condition" >
+        <argument
+            android:name="newfarmfield"
+            app:argType="com.steve_md.smartmkulima.model.NewFarmField" />
+    </fragment>
     <fragment
         android:id="@+id/locateAgriTechCompaniesFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.LocateAgriTechCompaniesFragment"
