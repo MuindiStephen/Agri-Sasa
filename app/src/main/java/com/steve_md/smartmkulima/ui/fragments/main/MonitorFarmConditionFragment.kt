@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -33,6 +34,7 @@ import com.steve_md.smartmkulima.utils.isInternetAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import ir.mahozad.android.PieChart
 import ir.mahozad.android.unit.Dimension
+import kotlinx.coroutines.flow.combine
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -48,7 +50,11 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_monitor_farm_condition, container, false)
+        val view = inflater.inflate(
+            R.layout.fragment_monitor_farm_condition,
+            container,
+            false
+        )
 
         val backIcon = view.findViewById<ImageView>(R.id.imageView11)
         backIcon.setOnClickListener { findNavController().navigateUp() }
@@ -65,6 +71,9 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        val whichFarm =  view.findViewById<Button>(R.id.textView104)
+        whichFarm.text = arguments?.getString("farmfield")
+        
         locationProvider = LocationProvider(this.requireContext())
 
         // Request user's location

@@ -219,7 +219,7 @@
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
         android:layout_marginStart="40dp"
-        app:layout_constraintEnd_toStartOf="@id/cardViewTest"
+        app:layout_constraintEnd_toStartOf="@id/cardViewMapFarmAndCreate"
         app:layout_constraintBottom_toBottomOf="@+id/cardViewReachMarket"
         app:layout_constraintStart_toEndOf="@+id/cardViewReachMarket"
         app:layout_constraintTop_toTopOf="@+id/cardViewReachMarket">
@@ -241,13 +241,13 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewTest"
+        android:id="@+id/cardViewMapFarmAndCreate"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:backgroundTint="@color/main"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="20dp"
         android:layout_marginStart="@dimen/_40dp"
@@ -265,7 +265,7 @@
                 android:id="@+id/imageViewPr"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_prediction"
+                android:src="@drawable/baseline_satellite_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -296,4 +296,14 @@
         app:layout_constraintStart_toStartOf="@+id/linearLytNewFarmTech"
         app:layout_constraintTop_toBottomOf="@+id/linearLytNewFarmTech" />
 
+    <TextView
+        android:id="@+id/textViewMapFarmNCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Farm Creation \n and Mapping"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewMapFarmAndCreate"
+        app:layout_constraintStart_toStartOf="@+id/cardViewMapFarmAndCreate"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewMapFarmAndCreate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

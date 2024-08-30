@@ -9,6 +9,7 @@ import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
+import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -84,6 +85,17 @@ class MainViewModel @Inject constructor(
                     else -> {}
                 }
             }
+        }
+    }
+
+
+    // All farm fields
+    val allFarmFields: LiveData<List<NewFarmField>> = repository.getAllFarmFields()
+
+    // Adding a new farm field / farm
+    fun addFarmField(farmField: NewFarmField) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.insertFarmField(farmField)
         }
     }
 }

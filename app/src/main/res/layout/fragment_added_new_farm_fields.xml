@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.main.AddedNewFarmFieldsFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchViewFarmField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/white"
+        app:endIconDrawable="@drawable/baseline_close_24"
+        app:endIconMode="custom"
+        app:endIconTint="#aaaaaa"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_for_farm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:hint="@string/search_for_farm"
+            android:inputType="text"
+            android:fontFamily="@font/montserrat_medium"
+            android:imeOptions="actionSearch"
+            android:textColorHint="@color/main" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonAddNewFarmField"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/add_new_farm"
+        android:textAllCaps="false"
+        android:textColor="@color/main"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/rounded_corner"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        app:layout_constraintEnd_toEndOf="@+id/searchViewFarmField"
+        app:layout_constraintStart_toStartOf="@+id/searchViewFarmField"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewFarmField" />
+
+    <TextView
+        android:id="@+id/textView107"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="@string/farms_available"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintStart_toStartOf="@+id/buttonAddNewFarmField"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddNewFarmField" />
+
+    <TextView
+        android:id="@+id/textViewFarmFieldInitialLr"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/circle_custom"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal|center_vertical"
+        android:letterSpacing="0.03"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/_0"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/whitish"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/textView107"
+        app:layout_constraintStart_toEndOf="@id/textView107"
+        app:layout_constraintTop_toTopOf="@id/textView107" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/createdFarmFieldsRecView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/farm_field_row_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView107" />
+
+    <TextView
+        android:id="@+id/textViewNoFarmsAvailable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Farms Available"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="@dimen/_16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchViewFarmField" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

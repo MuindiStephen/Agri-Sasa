@@ -372,6 +372,9 @@
         <action
             android:id="@+id/action_newFarmingTechnologyFragment_to_autoCreateCropCycleFragment"
             app:destination="@id/autoCreateCropCycleFragment" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_addedNewFarmFieldsFragment"
+            app:destination="@id/addedNewFarmFieldsFragment" />
     </fragment>
     <fragment
         android:id="@+id/didYouKnow"
@@ -549,6 +552,51 @@
         <argument
             android:name="agrodealer"
             app:argType="com.steve_md.smartmkulima.model.AgroDealer" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewFarmFieldFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.AddNewFarmFieldFragment"
+        android:label="fragment_add_new_farm_field"
+        tools:layout="@layout/fragment_add_new_farm_field" >
+        <action
+            android:id="@+id/action_addNewFarmFieldFragment_to_mappingFarmLocationWithPinsFragment"
+            app:destination="@id/mappingFarmLocationWithPinsFragment" />
+        <action
+            android:id="@+id/action_addNewFarmFieldFragment_to_addedNewFarmFieldsFragment"
+            app:destination="@id/addedNewFarmFieldsFragment" />
+        <action
+            android:id="@+id/action_addNewFarmFieldFragment_to_manualWalkingFarmMappingFragment"
+            app:destination="@id/manualWalkingFarmMappingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mappingFarmLocationWithPinsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.MappingFarmLocationWithPinsFragment"
+        android:label="fragment_mapping_farm_location_wih_pins"
+        tools:layout="@layout/fragment_mapping_farm_location_wih_pins" >
+        <action
+            android:id="@+id/action_mappingFarmLocationWithPinsFragment_to_addNewFarmFieldFragment"
+            app:destination="@id/addNewFarmFieldFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addedNewFarmFieldsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.AddedNewFarmFieldsFragment"
+        android:label="fragment_added_new_farm_fields"
+        tools:layout="@layout/fragment_added_new_farm_fields" >
+        <action
+            android:id="@+id/action_addedNewFarmFieldsFragment_to_addNewFarmFieldFragment"
+            app:destination="@id/addNewFarmFieldFragment" />
+        <action
+            android:id="@+id/action_addedNewFarmFieldsFragment_to_monitorFarmConditionFragment"
+            app:destination="@id/monitorFarmConditionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manualWalkingFarmMappingFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.ManualWalkingFarmMappingFragment"
+        android:label="fragment_manual_walking_farm_mapping"
+        tools:layout="@layout/fragment_manual_walking_farm_mapping" >
+        <action
+            android:id="@+id/action_manualWalkingFarmMappingFragment_to_addNewFarmFieldFragment"
+            app:destination="@id/addNewFarmFieldFragment" />
     </fragment>
 
 </navigation>

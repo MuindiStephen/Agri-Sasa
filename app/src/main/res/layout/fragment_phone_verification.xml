@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pinView" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textViewFarmFieldInitialLr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -120,7 +120,7 @@
         android:text="Resend code:"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/textViewFarmFieldInitialLr"
         app:layout_constraintTop_toBottomOf="@+id/pinView" />
 
     <TextView
@@ -150,7 +150,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFarmFieldInitialLr"
         app:layout_constraintVertical_bias="0.849" />
 
     <TextView

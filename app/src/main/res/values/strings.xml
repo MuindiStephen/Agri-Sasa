@@ -31,6 +31,10 @@
     <string name="proceed">Proceed</string>
     <string name="timeout">Timeout</string>
     <string name="we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_crop_yields">We use Linear Regression Machine Learning Algorithm to predict your farm crop yields.</string>
+    <string name="add_new_farm">Add New Farm</string>
+    <string name="_0">0</string>
+    <string name="farms_available">Farms available</string>
+    <string name="search_for_farm">Search for farm</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>
@@ -147,4 +151,18 @@
         </item> <!-- 2.5L of Bud Booster and 68% Nitric acid for pH correction and N supplementation -->
     </integer-array>
 
+    <string-array name="year_of_farm_mapping">
+        <item>2023/2024</item>
+        <item>2024/2025</item>
+    </string-array>
+
+    <string-array name="season_of_farm_mapping">
+        <item>Rainy</item>
+        <item>Dry</item>
+    </string-array>
+
+    <string-array name="farm_ownership_type">
+        <item>Owned</item>
+        <item>Rented</item>
+    </string-array>
 </resources>

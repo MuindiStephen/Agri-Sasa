@@ -22,7 +22,7 @@ interface LocalFarmCycleDao {
     suspend fun getFarmCycleBYName(cropName: String): LocalFarmCycle?
 
     @Query("SELECT * FROM localcycle")
-     fun getAllFarmCycle(): LiveData<List<LocalFarmCycle>>
+    fun getAllFarmCycle(): LiveData<List<LocalFarmCycle>>
 
     @Query("UPDATE localcycle SET status = :status")
     suspend fun updateTaskStatus(status: String)

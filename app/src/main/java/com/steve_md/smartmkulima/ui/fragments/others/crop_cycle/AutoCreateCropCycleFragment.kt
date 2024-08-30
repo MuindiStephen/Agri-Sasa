@@ -285,6 +285,7 @@ class AutoCreateCropCycleFragment : Fragment() {
             try {
                 farmCycleViewModel.addCropCycle(localFarmCycle)
                 Log.d("AutoCreateCropCycleFragment","Added crop cycle: $localFarmCycle")
+
                 requireActivity().runOnUiThread {
                     displaySnackBar("Crop cycle for $selectedCrop created successfully!")
                 }

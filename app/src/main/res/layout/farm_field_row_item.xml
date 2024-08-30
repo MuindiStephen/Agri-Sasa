@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_gray">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card11"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        app:cardCornerRadius="@dimen/_10dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/bg_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/textViewFarmFieldInitialLr"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/circle_custom"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="3sp"
+                android:text="RF"
+                android:backgroundTint="@color/main"
+                android:textColor="@color/whitish"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView109"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="Rice Farm"
+                android:textSize="@dimen/_12sp_text_size"
+                app:layout_constraintStart_toEndOf="@+id/textViewFarmFieldInitialLr"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView110"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Utumishi Hse Estate"
+                android:textSize="9sp"
+                android:fontFamily="@font/montserrat_semibold"
+                app:layout_constraintStart_toStartOf="@+id/textView109"
+                app:layout_constraintTop_toBottomOf="@+id/textView109" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

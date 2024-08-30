@@ -74,6 +74,7 @@ class PredictYourCropProductionFragment : Fragment() {
     }
 
     // Dummy data for testing
+    // Assumption
     private fun predictFarmProduce(
         temperature: Double,
         rainfall: Double,
