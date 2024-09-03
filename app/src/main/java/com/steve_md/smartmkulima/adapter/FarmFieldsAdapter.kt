@@ -50,8 +50,6 @@ class FarmFieldsAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val farmField = getItem(position)
         holder.bind(farmField)
-
-
         /**
          *
          * Click to invoke this mtd

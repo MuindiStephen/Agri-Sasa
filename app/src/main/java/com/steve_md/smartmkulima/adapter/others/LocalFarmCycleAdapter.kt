@@ -10,6 +10,7 @@ import com.steve_md.smartmkulima.databinding.CropCycleTaskRowBinding
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 
 /**
+ *
  * Attach data to locally created Farm cycles to Room DB
  */
 class LocalFarmCycleAdapter(private val onClickListener: OnClickListener) :

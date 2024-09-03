@@ -47,13 +47,11 @@ import kotlin.random.Random
 /**
  *
  * Hey!
- * This code looks Junk or chunk -(::)-(::)
  *  @author MuindiStephen - Github
  *
  *  @year 2024
  *
- *  Was written in hurry to solve an issue
- *  & to implement a feature in urgency
+ *  Creation of crop cycles
  *
  */
 @AndroidEntryPoint
@@ -81,6 +79,7 @@ class CropCycleTasksListFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         binding.imageViewBackFromCropCycleLists.setOnClickListener {
+
             findNavController().navigateUp()
         }
 

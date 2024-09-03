@@ -45,9 +45,6 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
-
-
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
                 as NavHostFragment
         navController = navHostFragment.findNavController()
