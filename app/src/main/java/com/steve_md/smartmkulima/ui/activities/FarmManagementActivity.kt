@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.ui.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
@@ -83,7 +84,11 @@ class FarmManagementActivity : AppCompatActivity() {
         if (navController.currentBackStackEntry != null && !navController.popBackStack()) {
             super.onBackPressed()
         } else {
-            this.finish()
+            super.onBackPressed()
         }
+    }
+
+    private fun moveToNewFarmTechnologyFragment() {
+
     }
 }

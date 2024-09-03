@@ -171,13 +171,13 @@
         android:id="@+id/farmNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Farm"
+        android:text="/Farm"
         android:letterSpacing="0.10"
         android:fontFamily="@font/montserrat_semibold"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/_40dp"
-        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginStart="@dimen/_48dp"
         app:layout_constraintStart_toStartOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
@@ -239,4 +239,18 @@
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/alerts"
         tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:letterSpacing="0.10"
+        android:text="Block"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/farmNameTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/farmNameTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

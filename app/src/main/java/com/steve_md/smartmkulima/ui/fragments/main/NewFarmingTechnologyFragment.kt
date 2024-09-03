@@ -71,7 +71,8 @@ class NewFarmingTechnologyFragment : Fragment() {
 
     private fun navigateToFarmMngtActivity() {
         startActivity(Intent(requireContext(), FarmManagementActivity::class.java))
-        requireActivity().finish()
+//        requireActivity().finish() - no need to finish this one since we want to navigate back
+
     }
 
     private fun goToAutoGenerateCropCycle() {
