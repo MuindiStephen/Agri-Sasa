@@ -25,7 +25,7 @@ import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
     Tasks::class, LocalFarmCycle::class,
     NewFarmField::class, FarmFinanceExpenseRecords::class,
     FarmFinanceRevenueRecords::class, FarmFinancialDataSummary::class],
-    version = 6, exportSchema = false)
+    version = 7, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao

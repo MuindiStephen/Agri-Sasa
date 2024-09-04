@@ -66,6 +66,9 @@ class NewFarmingTechnologyFragment : Fragment() {
             cardViewMapFarmAndCreate.setOnClickListener {
                 findNavController().navigate(R.id.addedNewFarmFieldsFragment)
             }
+            cardViewMyFarmRecords.setOnClickListener {
+                findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
+            }
         }
     }
 

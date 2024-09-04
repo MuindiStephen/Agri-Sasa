@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textSize="12sp"
         android:fontFamily="@font/montserrat_medium"
         android:text="Now after harvesting and sales made"
         android:textColor="@color/black"
@@ -37,15 +38,16 @@
         android:id="@+id/textViewNoRevenueRecords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Revenue Records!"
         android:fontFamily="@font/montserrat_medium"
-        android:textSize="@dimen/_14sp_text_size"
+        android:text="No Revenue Records!"
         android:textColor="@color/black"
+        android:textSize="@dimen/_14sp_text_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTrackRev" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTrackRev"
+        app:layout_constraintVertical_bias="0.22" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

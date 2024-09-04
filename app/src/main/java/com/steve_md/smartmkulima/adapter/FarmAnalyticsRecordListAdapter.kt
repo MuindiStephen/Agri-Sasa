@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.steve_md.smartmkulima.databinding.ItemAnalyticsRowRecordBinding
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
  * FarmAnalyticsRecordListAdapter
  */
+
+
 class FarmAnalyticsRecordListAdapter(
     private val onClickListener: OnClickListener
 ) : ListAdapter<FarmFinancialDataSummary, FarmAnalyticsRecordListAdapter.MyViewHolder>(MyDiffUtil) {

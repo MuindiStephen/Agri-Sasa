@@ -16,6 +16,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="Tracking all your expenses of your farm input costs made easier within our platform"
         android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,14 +39,15 @@
         android:id="@+id/textViewNoExpensesRecordss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Expenses Records!"
         android:fontFamily="@font/montserrat_medium"
-        android:textSize="@dimen/_14sp_text_size"
+        android:text="No Expenses Records!"
         android:textColor="@color/black"
+        android:textSize="@dimen/_14sp_text_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTrackExp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTrackExp"
+        app:layout_constraintVertical_bias="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

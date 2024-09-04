@@ -36,6 +36,14 @@
     <string name="farms_available">Farms available</string>
     <string name="search_for_farm">Search for farm</string>
     <string name="what_would_you_like_to_record">What would you like to record?</string>
+    <string name="sales_income">SALES / INCOME</string>
+    <string name="total_sales">Total:</string>
+    <string name="kes_12_000">Kes. 12,000</string>
+    <string name="expenses_input_costs">EXPENSES / INPUT COSTS</string>
+    <string name="total_sales1">Total:</string>
+    <string name="kes_2000">Kes. 2000</string>
+    <string name="net_revenue">Net Revenue:</string>
+    <string name="kes_10_000">Kes. 10,000</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

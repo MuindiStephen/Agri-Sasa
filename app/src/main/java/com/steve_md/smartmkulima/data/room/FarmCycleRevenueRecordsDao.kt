@@ -17,6 +17,6 @@ interface FarmCycleRevenueRecordsDao {
     @Query("DELETE FROM `farm_after_harvest_records`")
     suspend fun deleteCycleRevenues()
 
-    @Query("SELECT * FROM farm_blocks")
+    @Query("SELECT * FROM farm_after_harvest_records")
     fun getAllCycleRevenues(): LiveData<List<FarmFinanceRevenueRecords>>
 }

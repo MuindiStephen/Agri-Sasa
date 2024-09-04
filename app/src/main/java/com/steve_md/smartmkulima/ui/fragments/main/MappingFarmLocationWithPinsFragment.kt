@@ -124,6 +124,7 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
             Pair("FARM_SIZE","$areaInHectares"), Pair("FARM_COORDINATES","$bdPointString")
         )
 
+        // Continue to AddNewFarmFieldFragment
         findNavController().navigate(R.id.addNewFarmFieldFragment, bundle)
 
     }

@@ -563,6 +563,7 @@ class AutoCreateCropCycleFragment : Fragment() {
 
                     override fun onNothingSelected(parent: AdapterView<*>) {
                         Timber.tag("AutoCreateCropCycle").d("No Farm FOUND")
+                        displaySnackBar("No farm found, Please create a new farm in order to continue")
                     }
                 }
 
@@ -616,6 +617,9 @@ class AutoCreateCropCycleFragment : Fragment() {
 
             } else {
                 Timber.e("No farm blocks available for selection.")
+                binding.buttonGeneratorCropCycle.isEnabled = false
+
+                displaySnackBar("No farm found, please create a new farm in order to continue.")
             }
         }
     }

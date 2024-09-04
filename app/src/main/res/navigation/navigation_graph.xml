@@ -656,7 +656,16 @@
         android:id="@+id/cropCycleFinancialRecordsAnalyticsFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleFinancialRecordsAnalyticsFragment"
         android:label="fragment_crop_cycle_financial_records_analytics"
-        tools:layout="@layout/fragment_crop_cycle_financial_records_analytics" />
+        tools:layout="@layout/fragment_crop_cycle_financial_records_analytics" >
+        <action
+            android:id="@+id/action_cropCycleFinancialRecordsAnalyticsFragment_to_viewFarmFinancialRecordsSummaryInDetailsFragment"
+            app:destination="@id/viewFarmFinancialRecordsSummaryInDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewFarmFinancialRecordsSummaryInDetailsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.ViewFarmFinancialRecordsSummaryInDetailsFragment"
+        android:label="fragment_view_farm_financial_records_summary_in_details"
+        tools:layout="@layout/fragment_view_farm_financial_records_summary_in_details" />
 
 
 </navigation>

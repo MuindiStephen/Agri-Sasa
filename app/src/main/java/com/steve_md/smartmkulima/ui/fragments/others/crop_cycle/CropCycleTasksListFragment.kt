@@ -172,6 +172,7 @@ class CropCycleTasksListFragment : Fragment() {
         }
 
         binding.textView84.isVisible = false
+
         binding.textView84.setOnClickListener {
             // binding.cropCycleRecyclerView.removeAllViews()
             filterCycles("")
