@@ -12,6 +12,7 @@ import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -128,6 +129,17 @@ class MainViewModel @Inject constructor(
     val allFarmCycleExp: LiveData<List<FarmFinanceExpenseRecords>> = repository.getAllCycleExpenses()
 
     val allFarmCycleRevenues: LiveData<List<FarmFinanceRevenueRecords>> = repository.getAllCycleRevenues()
+
+
+    // Get a list of all farm records summary
+    val allSummaryRecords : LiveData<List<FarmFinancialDataSummary>> = repository.getAllSummaryRecords()
+
+    // Adding a new farm summary record
+    fun addFarmSummaryRecords(farmFinancialDataSummary: FarmFinancialDataSummary) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.saveFarmSummaryRecord(farmFinancialDataSummary)
+        }
+    }
 
 }
 
