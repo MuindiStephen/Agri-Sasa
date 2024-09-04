@@ -379,6 +379,9 @@
         <action
             android:id="@+id/action_newFarmingTechnologyFragment_to_addedNewFarmFieldsFragment"
             app:destination="@id/addedNewFarmFieldsFragment" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_cropCycleFarmRecordsFragment"
+            app:destination="@id/cropCycleFarmRecordsFragment" />
     </fragment>
     <fragment
         android:id="@+id/didYouKnow"
@@ -612,5 +615,48 @@
             app:popUpTo="@id/manualWalkingFarmMappingFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/cropCycleAddRevenueGeneratedFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleAddRevenueGeneratedFragment"
+        android:label="fragment_crop_cycle_add_revenue_generated"
+        tools:layout="@layout/fragment_crop_cycle_add_revenue_generated" >
+        <action
+            android:id="@+id/action_cropCycleAddRevenueGeneratedFragment_to_cropCycleFarmRecordsFragment"
+            app:destination="@id/cropCycleFarmRecordsFragment"
+            app:popUpTo="@id/cropCycleAddRevenueGeneratedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/cropCycleAddNewExpensesFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleAddNewExpensesFragment"
+        android:label="fragment_crop_cycle_add_new_expenses"
+        tools:layout="@layout/fragment_crop_cycle_add_new_expenses" >
+        <action
+            android:id="@+id/action_cropCycleAddNewExpensesFragment_to_cropCycleFarmRecordsFragment"
+            app:destination="@id/cropCycleFarmRecordsFragment"
+            app:popUpTo="@id/cropCycleAddNewExpensesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/cropCycleFarmRecordsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleFarmRecordsFragment"
+        android:label="fragment_crop_cycle_farm_records"
+        tools:layout="@layout/fragment_crop_cycle_farm_records" >
+        <action
+            android:id="@+id/action_cropCycleFarmRecordsFragment_to_cropCycleAddRevenueGeneratedFragment"
+            app:destination="@id/cropCycleAddRevenueGeneratedFragment" />
+        <action
+            android:id="@+id/action_cropCycleFarmRecordsFragment_to_cropCycleAddNewExpensesFragment"
+            app:destination="@id/cropCycleAddNewExpensesFragment" />
+        <action
+            android:id="@+id/action_cropCycleFarmRecordsFragment_to_cropCycleFinancialRecordsAnalyticsFragment"
+            app:destination="@id/cropCycleFinancialRecordsAnalyticsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cropCycleFinancialRecordsAnalyticsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleFinancialRecordsAnalyticsFragment"
+        android:label="fragment_crop_cycle_financial_records_analytics"
+        tools:layout="@layout/fragment_crop_cycle_financial_records_analytics" />
+
 
 </navigation>

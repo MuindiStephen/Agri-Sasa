@@ -68,9 +68,7 @@ class AddedNewFarmFieldsFragment : Fragment() {
             val actions = AddedNewFarmFieldsFragmentDirections.actionAddedNewFarmFieldsFragmentToMonitorFarmConditionFragment(
                 newFarmField
             )
-            findNavController().navigate(
-                actions
-            )
+            findNavController().navigate(actions)
         })
 
         binding.createdFarmFieldsRecView.adapter = farmFieldsAdapter

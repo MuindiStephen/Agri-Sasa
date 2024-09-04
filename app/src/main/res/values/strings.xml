@@ -35,6 +35,7 @@
     <string name="_0">0</string>
     <string name="farms_available">Farms available</string>
     <string name="search_for_farm">Search for farm</string>
+    <string name="what_would_you_like_to_record">What would you like to record?</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

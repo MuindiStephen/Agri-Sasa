@@ -25,6 +25,7 @@ import com.google.maps.android.SphericalUtil
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 /**
  *  Map out farm boundaries
@@ -187,7 +188,6 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
 
             // Then click on the map and start mapping
 
-
             // Add Logic to handle different cases of farm mapping process and farm coordinates
             map.setOnMapClickListener { latLng ->
 
@@ -222,6 +222,7 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
 
             // Display the area
             btnSaveMappedArea.text = "Save Mapped Area: %.2f ha".format(areaInHectares)
+            Timber.tag("MapFarmWithPins").e("Save Mapped Area: %.2f ha".format(areaInHectares))
         }
     }
 

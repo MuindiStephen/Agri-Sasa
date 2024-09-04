@@ -1,0 +1,35 @@
+package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.databinding.FragmentCropCycleFinancialRecordsAnalyticsBinding
+
+
+class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
+
+    private lateinit var binding: FragmentCropCycleFinancialRecordsAnalyticsBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        binding = FragmentCropCycleFinancialRecordsAnalyticsBinding.inflate(
+            inflater, container, false
+        )
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpUi()
+    }
+
+    private fun setUpUi() {
+
+    }
+}

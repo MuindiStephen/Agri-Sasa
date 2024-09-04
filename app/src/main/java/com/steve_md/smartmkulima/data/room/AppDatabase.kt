@@ -11,6 +11,8 @@ import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.Tasks
 import com.steve_md.smartmkulima.model.Transaction
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 
 
 /**
@@ -18,7 +20,9 @@ import com.steve_md.smartmkulima.model.Transaction
  */
 @TypeConverters(Converters::class,LocalFarmCycleConverter::class)
 @Database(entities = [Transaction::class, FarmProduce::class, Cycle::class,
-    Tasks::class, LocalFarmCycle::class, NewFarmField::class], version = 6, exportSchema = false)
+    Tasks::class, LocalFarmCycle::class, NewFarmField::class,
+    FarmFinanceExpenseRecords::class, FarmFinanceRevenueRecords::class],
+    version = 6, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao
@@ -29,6 +33,10 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun localFarmCycleDao(): LocalFarmCycleDao
 
     abstract fun farmfielddao(): FarmFieldsDao
+
+    abstract fun farmCycleRevenueRecordsDao(): FarmCycleRevenueRecordsDao
+
+    abstract fun farmCycleExpensesRecordsDao(): FarmCycleExpensesRecordsDao
 
     /**
      * Implement singleton pattern in room to prevent

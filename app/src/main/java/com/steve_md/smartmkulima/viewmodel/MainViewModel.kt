@@ -10,6 +10,8 @@ import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -98,6 +100,35 @@ class MainViewModel @Inject constructor(
             repository.insertFarmField(farmField)
         }
     }
+
+    fun addFarmCycleExpense(farmFinanceExpenseRecords: FarmFinanceExpenseRecords) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.insertNewCycleExpense(farmFinanceExpenseRecords)
+        }
+    }
+
+    fun addFarmCycleRevenue(farmFinanceRevenueRecords: FarmFinanceRevenueRecords) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.insertNewCycleRevenue(farmFinanceRevenueRecords)
+        }
+    }
+
+    fun deleteFarmCycleExpense() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.deleteAllCycleExpenses()
+        }
+    }
+
+    fun deleteFarmCycleRevenue() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.deleteAllCycleRevenues()
+        }
+    }
+
+    val allFarmCycleExp: LiveData<List<FarmFinanceExpenseRecords>> = repository.getAllCycleExpenses()
+
+    val allFarmCycleRevenues: LiveData<List<FarmFinanceRevenueRecords>> = repository.getAllCycleRevenues()
+
 }
 
 // UI State
