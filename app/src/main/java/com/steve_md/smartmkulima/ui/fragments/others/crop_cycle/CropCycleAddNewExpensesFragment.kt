@@ -42,8 +42,6 @@ class CropCycleAddNewExpensesFragment : Fragment() {
 
         fetchFirstAvailableCropCycles()
         setUpVBinding()
-
-
     }
 
     private fun fetchFirstAvailableCropCycles() {
@@ -61,8 +59,6 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     binding.spinnerNameOfCycle.adapter = adapter
                     Timber.d("Crop cycles are available and in progress...Update any records")
-
-
                 } else {
                     displaySnackBar("No crop cycle found, you cannot create any records.")
                 }
@@ -71,6 +67,11 @@ class CropCycleAddNewExpensesFragment : Fragment() {
     }
 
     private fun setUpVBinding() {
+
+        binding.toolbar3Expense.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.buttonCreateCropCycleExpense.setOnClickListener {
             if (validateInputs()) {
 
@@ -89,8 +90,7 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                             displaySnackBar("Successfully Added a new expense record.")
                         }
 
-                        // TODO()
-                       //  findNavController().navigate()
+                        findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
 
 
                     } catch (e: Exception) {
@@ -98,6 +98,8 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                         Timber.tag("Add=Expenses").e(
                             "Request==Failed ==>Could not create this expense record ${e.localizedMessage}"
                         )
+
+                        findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
                     }
                 }
 

@@ -117,17 +117,39 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/buttonConfirmFinancialAnalytics"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/main1"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Confirm"
+            android:textAllCaps="false"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:textColor="@color/bg_gray"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/enterSales"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/enterSales"
+            app:layout_constraintTop_toBottomOf="@+id/enterSales" />
+
+
         <TextView
             android:id="@+id/textView127"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="List Of Financial Summary Records Available"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sp"
-            app:layout_constraintStart_toStartOf="@+id/enterSales"
-            app:layout_constraintTop_toBottomOf="@+id/enterSales" />
+            app:layout_constraintStart_toStartOf="@+id/buttonConfirmFinancialAnalytics"
+            app:layout_constraintTop_toBottomOf="@+id/buttonConfirmFinancialAnalytics" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView3"

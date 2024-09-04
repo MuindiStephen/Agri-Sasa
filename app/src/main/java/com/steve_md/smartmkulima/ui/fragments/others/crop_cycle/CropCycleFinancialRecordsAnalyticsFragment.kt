@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -20,6 +21,7 @@ import com.steve_md.smartmkulima.databinding.FragmentCropCycleFinancialRecordsAn
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 import com.steve_md.smartmkulima.ui.activities.DetailedFarmCycleActivity
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -49,7 +51,10 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
 
         setUpUi()
 
+        fetchFirstAvailableCropCycles()
+
         setUpRecyclerView()
+
 
         fetchAllFarmSummaryRecordsAvailable()
     }
@@ -60,7 +65,7 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         binding.recyclerView3.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize the adapter
-        farmAnalyticsRecordListAdapter = FarmAnalyticsRecordListAdapter(FarmAnalyticsRecordListAdapter.OnClickListener{ farmFinancialSummary ->
+        farmAnalyticsRecordListAdapter = FarmAnalyticsRecordListAdapter( FarmAnalyticsRecordListAdapter.OnClickListener { farmFinancialSummary ->
             Timber.tag("...CreatedFarmCycles....").e(farmFinancialSummary.toString())
 
             Timber.i("=====Checking=======>: ${farmFinancialSummary.nameOfCropCycle} cycle")
@@ -93,11 +98,65 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         }
     }
 
+
+    // submit this list to the spinner
+    private fun fetchFirstAvailableCropCycles() {
+
+        lifecycleScope.launch {
+            viewModel.allCycles.observe(viewLifecycleOwner) { cycles ->
+                if (cycles.isNotEmpty()) {
+
+                    val allCropCycles = cycles.map {
+                        it.cropName
+                    }
+
+                    val adapter = ArrayAdapter<String>(this@CropCycleFinancialRecordsAnalyticsFragment.requireContext(),
+                        android.R.layout.simple_spinner_item, allCropCycles)
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerNameOfCycle.adapter = adapter
+                    Timber.d("Crop cycles are available and in progress...Update any records")
+                } else {
+                    displaySnackBar("No crop cycle found, you cannot create any records.")
+                }
+            }
+        }
+    }
+
     private fun setUpUi() {
         binding.toolbarCropCycleAnalytics.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
 
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+        binding.buttonConfirmFinancialAnalytics.setOnClickListener {
+            if (validateInputs()) {
+                val summary = FarmFinancialDataSummary(
+                    nameOfCropCycle = binding.spinnerNameOfCycle.selectedItem.toString(),
+                    totalInputCosts = binding.inputTotalCosts.text.toString(),
+                    totalRevenueGenerated = binding.inputSales.text.toString()
+                )
+
+                lifecycleScope.launch {
+                    try {
+                        viewModel.addFarmSummaryRecords(summary)
+                        displaySnackBar("New Farm Record for analysis created")
+                        Timber.d("Request Succeeded")
+                    } catch (e: Exception) {
+                        displaySnackBar("Your request has failed.")
+                        Timber.d("Request Failed.")
+                    }
+                }
+            }
+        }
+    }
+
+
+    private fun validateInputs(): Boolean {
+        return binding.inputTotalCosts.text.isNullOrEmpty().not().also {
+            if (!it) binding.enterTotalCosts.error = "Invalid"
+        } && binding.inputSales.text.isNullOrEmpty().not().also {
+            if (!it) binding.enterSales.error = "Invalid"
+        }
     }
 }

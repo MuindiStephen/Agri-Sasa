@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleAddRevenueGeneratedBinding
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
@@ -43,6 +44,11 @@ class CropCycleAddRevenueGeneratedFragment : Fragment() {
     }
 
     private fun setupVBinding() {
+
+        binding.toolbar3Revenue.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.buttonCreateCropCycleTotalRevenue.setOnClickListener {
             if (validateInputs()) {
 
@@ -60,15 +66,15 @@ class CropCycleAddRevenueGeneratedFragment : Fragment() {
                             displaySnackBar("Successfully Added after harvest records.")
                         }
 
-                        // TODO()
-                        // navigate to my records screen......
-
+                        findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
 
                     } catch (e: Exception) {
                         displaySnackBar("Your request failed.")
                         Timber.tag("Add=Expenses").e(
                             "Request==Failed ==>Could not create this after harvest record ${e.localizedMessage}"
                         )
+
+                        findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
                     }
                 }
 
