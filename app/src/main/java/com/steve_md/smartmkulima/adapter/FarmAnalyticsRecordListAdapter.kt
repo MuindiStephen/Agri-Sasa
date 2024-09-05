@@ -50,8 +50,7 @@ class FarmAnalyticsRecordListAdapter( private val onClickListener: OnClickListen
         holder.bind(summary)
 
         /**
-         *
-         * Click to invoke this mtd
+         * Click to invoke this method.
          */
         holder.itemView.setOnClickListener {
             onClickListener.onClick(summary = summary)

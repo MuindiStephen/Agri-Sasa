@@ -65,14 +65,16 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         binding.recyclerView3.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize the adapter
-        farmAnalyticsRecordListAdapter = FarmAnalyticsRecordListAdapter( FarmAnalyticsRecordListAdapter.OnClickListener { farmFinancialSummary ->
+        farmAnalyticsRecordListAdapter = FarmAnalyticsRecordListAdapter(
+
+            FarmAnalyticsRecordListAdapter.OnClickListener { farmFinancialSummary ->
             Timber.tag("...CreatedFarmCycles....").e(farmFinancialSummary.toString())
 
             Timber.i("=====Checking=======>: ${farmFinancialSummary.nameOfCropCycle} cycle")
 
             findNavController().navigate(
                 R.id.viewFarmFinancialRecordsSummaryInDetailsFragment,
-                bundleOf (
+                bundleOf(
                     Pair("cropCycleName","${farmFinancialSummary.nameOfCropCycle}"),
                     Pair("totalInputs","${farmFinancialSummary.totalInputCosts}"),
                     Pair("totalSales","${farmFinancialSummary.totalRevenueGenerated}")

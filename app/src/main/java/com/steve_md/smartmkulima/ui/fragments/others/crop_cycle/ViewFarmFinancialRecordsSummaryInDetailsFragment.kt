@@ -23,7 +23,7 @@ import timber.log.Timber
 class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentViewFarmFinancialRecordsSummaryInDetailsBinding
-    var revenue: Double? = null
+    private var revenue: Double? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
