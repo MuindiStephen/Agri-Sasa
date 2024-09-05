@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ir.mahozad.android.PieChart
-        android:id="@+id/pieChart"
+        android:id="@+id/pieChartSummaryFarmRecords"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="16dp"
@@ -44,7 +44,7 @@
         android:backgroundTint="@color/bg_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pieChart">
+        app:layout_constraintTop_toBottomOf="@+id/pieChartSummaryFarmRecords">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
