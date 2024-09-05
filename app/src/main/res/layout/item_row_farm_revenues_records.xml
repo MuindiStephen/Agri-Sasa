@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Revenues After Sale: Kes 25,000"
+                android:text="Revenues After Sales: Kes 25,000"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/textView121"
                 app:layout_constraintTop_toBottomOf="@+id/textView121" />

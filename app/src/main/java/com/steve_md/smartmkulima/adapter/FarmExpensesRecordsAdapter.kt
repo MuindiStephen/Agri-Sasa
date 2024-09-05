@@ -25,10 +25,10 @@ class FarmExpensesRecordsAdapter : ListAdapter<FarmFinanceExpenseRecords,
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(farmExpenses: FarmFinanceExpenseRecords?) {
-            binding.textView118.text = farmExpenses?.nameOfCropCycle
-            binding.textView120.text = farmExpenses?.nameOfExpense
-            binding.textView121.text = farmExpenses?.whichTask
-            binding.textView122.text = farmExpenses?.dateOfThisFinancialRecord
+            binding.textView118.text = "Crop Cycle: ${farmExpenses?.nameOfCropCycle}"
+            binding.textView120.text = "Input Applied: ${farmExpenses?.nameOfExpense}"
+            binding.textView121.text = "Task: ${farmExpenses?.whichTask}"
+            binding.textView122.text = "Date: ${farmExpenses?.dateOfThisFinancialRecord}"
         }
     }
 

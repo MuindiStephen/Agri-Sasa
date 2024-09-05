@@ -79,8 +79,6 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
                 )
             )
         })
-        // Set the adapter to the RecyclerView
-        binding.recyclerView3.adapter = farmAnalyticsRecordListAdapter
     }
 
     private fun fetchAllFarmSummaryRecordsAvailable() {
@@ -131,13 +129,13 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         binding.buttonConfirmFinancialAnalytics.setOnClickListener {
+
             if (validateInputs()) {
                 val summary = FarmFinancialDataSummary(
                     nameOfCropCycle = binding.spinnerNameOfCycle.selectedItem.toString(),
                     totalInputCosts = binding.inputTotalCosts.text.toString(),
                     totalRevenueGenerated = binding.inputSales.text.toString()
                 )
-
                 lifecycleScope.launch {
                     try {
                         viewModel.addFarmSummaryRecords(summary)
@@ -151,8 +149,6 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
             }
         }
     }
-
-
     private fun validateInputs(): Boolean {
         return binding.inputTotalCosts.text.isNullOrEmpty().not().also {
             if (!it) binding.enterTotalCosts.error = "Invalid"

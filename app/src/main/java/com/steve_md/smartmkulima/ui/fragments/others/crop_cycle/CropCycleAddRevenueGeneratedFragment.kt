@@ -50,8 +50,8 @@ class CropCycleAddRevenueGeneratedFragment : Fragment() {
         }
 
         binding.buttonCreateCropCycleTotalRevenue.setOnClickListener {
-            if (validateInputs()) {
 
+            if (validateInputs()) {
                 val farmFinanceRevenueRecords = FarmFinanceRevenueRecords(
                     cropCycleName = binding.spinnerNameOfCycle.selectedItem.toString() ,
                     harvestedBags = binding.inputHarvestedBags.text.toString(),
@@ -62,6 +62,7 @@ class CropCycleAddRevenueGeneratedFragment : Fragment() {
                 lifecycleScope.launch {
                     try {
                         viewModel.addFarmCycleRevenue(farmFinanceRevenueRecords)
+                        Timber.d("Request succeeded.")
                         requireActivity().runOnUiThread {
                             displaySnackBar("Successfully Added after harvest records.")
                         }
@@ -70,6 +71,7 @@ class CropCycleAddRevenueGeneratedFragment : Fragment() {
 
                     } catch (e: Exception) {
                         displaySnackBar("Your request failed.")
+                        Timber.d("Request failed.")
                         Timber.tag("Add=Expenses").e(
                             "Request==Failed ==>Could not create this after harvest record ${e.localizedMessage}"
                         )
@@ -100,7 +102,6 @@ class CropCycleAddRevenueGeneratedFragment : Fragment() {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     binding.spinnerNameOfCycle.adapter = adapter
                     Timber.d("Crop cycles are available and in progress...Update any records")
-
 
                 } else {
                     displaySnackBar("No crop cycle found, you cannot create any records.")

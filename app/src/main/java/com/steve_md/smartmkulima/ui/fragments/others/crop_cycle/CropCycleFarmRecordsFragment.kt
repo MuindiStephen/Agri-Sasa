@@ -49,6 +49,9 @@ class CropCycleFarmRecordsFragment : Fragment() {
             binding.btnAnalytics.setOnClickListener {
                 findNavController().navigate(R.id.cropCycleFinancialRecordsAnalyticsFragment)
             }
+            binding.toolBarFarmRecords.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 

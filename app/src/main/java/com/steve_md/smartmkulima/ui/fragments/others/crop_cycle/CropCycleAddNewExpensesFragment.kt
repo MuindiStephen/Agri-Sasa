@@ -86,6 +86,7 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                 lifecycleScope.launch {
                     try {
                         viewModel.addFarmCycleExpense(farmFinanceExpenseRecords)
+                        Timber.d("Request succeeded.")
                         requireActivity().runOnUiThread {
                             displaySnackBar("Successfully Added a new expense record.")
                         }
@@ -93,8 +94,10 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                         findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
 
 
+
                     } catch (e: Exception) {
                         displaySnackBar("Your request failed.")
+                        Timber.d("Request failed.")
                         Timber.tag("Add=Expenses").e(
                             "Request==Failed ==>Could not create this expense record ${e.localizedMessage}"
                         )

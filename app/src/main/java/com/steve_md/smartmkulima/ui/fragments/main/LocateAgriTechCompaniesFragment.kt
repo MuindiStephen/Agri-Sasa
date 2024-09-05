@@ -241,7 +241,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                     userLatLng1?.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
                         ?.let { googleMap.moveCamera(it) }
 
-                    // Include the user's location in the bounds
+                    // include user's location in bounds
                     userLatLng?.let { boundsBuilder.include(it) }
 
                     /**

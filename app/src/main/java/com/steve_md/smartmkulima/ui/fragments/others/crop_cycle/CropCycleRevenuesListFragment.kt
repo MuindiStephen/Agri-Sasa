@@ -18,6 +18,7 @@ import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -53,8 +54,12 @@ class CropCycleRevenuesListFragment : Fragment() {
 
                     binding.recyclerViewRevenues.adapter = farmRevenuesRecordsAdapter
 
+                    Timber.d("Records available.")
+
                 } else {
                     binding.textViewNoRevenueRecords.isVisible = true
+
+                    Timber.d("Empty records")
                 }
             }
         }
