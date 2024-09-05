@@ -29,6 +29,7 @@ class FarmExpensesRecordsAdapter : ListAdapter<FarmFinanceExpenseRecords,
             binding.textView120.text = "Input Applied: ${farmExpenses?.nameOfExpense}"
             binding.textView121.text = "Task: ${farmExpenses?.whichTask}"
             binding.textView122.text = "Date: ${farmExpenses?.dateOfThisFinancialRecord}"
+            binding.textView123.text = "Costed: Kes.${farmExpenses?.amountSpent}"
         }
     }
 

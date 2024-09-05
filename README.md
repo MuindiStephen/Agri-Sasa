@@ -17,6 +17,7 @@
   - Track nearby AgriTech Companies
   - Predict Their farm production via an ```integrated Machine Learning Algorithm (Linear regression)```
   - Reach a ready market for their produce to maximize their profits
+  - Farm Records for tracking input costs/expenses , sales made and revenue generated from crop cycles.
 
 > Screens
 <p float="left">

@@ -96,7 +96,7 @@
                 android:textSize="12sp"
                 android:foreground="?android:selectableItemBackground"
                 android:fontFamily="@font/montserrat_semibold"
-                app:layout_constraintEnd_toEndOf="@+id/textView119"
+                app:layout_constraintEnd_toEndOf="@+id/textView124"
                 app:layout_constraintTop_toBottomOf="@+id/textView124" />
 
 

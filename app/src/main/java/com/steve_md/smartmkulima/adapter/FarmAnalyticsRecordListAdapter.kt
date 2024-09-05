@@ -16,9 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 
 
-class FarmAnalyticsRecordListAdapter(
-    private val onClickListener: OnClickListener
-) : ListAdapter<FarmFinancialDataSummary, FarmAnalyticsRecordListAdapter.MyViewHolder>(MyDiffUtil) {
+class FarmAnalyticsRecordListAdapter( private val onClickListener: OnClickListener) :
+    ListAdapter<FarmFinancialDataSummary, FarmAnalyticsRecordListAdapter.MyViewHolder>(MyDiffUtil) {
 
     object MyDiffUtil : DiffUtil.ItemCallback<FarmFinancialDataSummary>() {
         override fun areItemsTheSame(oldItem: FarmFinancialDataSummary, newItem: FarmFinancialDataSummary): Boolean {
@@ -35,8 +34,8 @@ class FarmAnalyticsRecordListAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(summary: FarmFinancialDataSummary?) {
             binding.textView109.text = summary?.nameOfCropCycle.toString()
-            binding.textView119.text = summary?.totalInputCosts.toString()
-            binding.textView124.text = summary?.totalRevenueGenerated.toString()
+            binding.textView119.text = "Expenses: Kes. ${summary?.totalInputCosts.toString()}"
+            binding.textView124.text = "Revenues: Kes. ${summary?.totalRevenueGenerated.toString()}"
         }
     }
 
