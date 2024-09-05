@@ -90,6 +90,7 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
                     binding.textViewNoFinancialRecords.isVisible = false
                     farmSummaryList.clear()
                     farmSummaryList.addAll(summary)
+                    farmAnalyticsRecordListAdapter.submitList(farmSummaryList)
                     binding.recyclerView3.adapter = farmAnalyticsRecordListAdapter
                 } else {
                     binding.textViewNoFinancialRecords.isVisible = true
