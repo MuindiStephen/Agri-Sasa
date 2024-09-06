@@ -59,7 +59,7 @@
                 android:layout_marginStart="@dimen/_8dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:text="Spinach"
-                android:textSize="@dimen/_16sp"
+                android:textSize="@dimen/_12sp_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewFarmFieldInitialLr"
                 app:layout_constraintStart_toEndOf="@+id/textViewFarmFieldInitialLr"
                 app:layout_constraintTop_toTopOf="@+id/textViewFarmFieldInitialLr" />
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16dp"
-                android:layout_marginEnd="@dimen/_32dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Expenses: Kes. 200"
                 android:textSize="10sp"
@@ -84,7 +84,8 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Revenues: Kes 1500"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/textView119"
+                android:layout_marginEnd="@dimen/_8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView119" />
 
             <TextView

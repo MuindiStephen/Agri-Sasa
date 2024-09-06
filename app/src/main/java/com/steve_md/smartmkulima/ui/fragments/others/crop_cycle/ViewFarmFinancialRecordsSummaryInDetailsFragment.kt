@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleAdapter
@@ -18,12 +19,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.mahozad.android.PieChart
 import ir.mahozad.android.unit.Dimension
 import timber.log.Timber
+import kotlin.math.exp
 
 @AndroidEntryPoint
 class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentViewFarmFinancialRecordsSummaryInDetailsBinding
     private var revenue: Double? = null
+
+    private val args: ViewFarmFinancialRecordsSummaryInDetailsFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,14 +49,19 @@ class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
 
     private fun setUpChart() {
 
-        val revenueFraction = revenue?.div((revenue!! + binding.textView129.text.toString().toDouble()))
-        val expensesFraction =  binding.textView129.text.toString().toDouble().div((revenue!! + binding.textView129.text.toString().toDouble()))
+        // Getting FarmFinancialDataSummary as an argument
+        val farmRecord = args.farmFinancialRecordSummary
+
+        val revenueFraction = revenue?.div((farmRecord.totalRevenueGenerated.toDouble() + farmRecord.totalInputCosts.toDouble() + revenue!!))
+        val expensesFraction =  farmRecord.totalInputCosts.toDouble().div((farmRecord.totalInputCosts.toDouble() + farmRecord.totalRevenueGenerated.toDouble() + revenue!!))
+        val salesFraction = farmRecord.totalRevenueGenerated.toDouble().div((farmRecord.totalInputCosts.toDouble() + farmRecord.totalRevenueGenerated.toDouble() + revenue!!))
 
         val pieChartSummaryFarmRecords = view?.findViewById<PieChart>(R.id.pieChartSummaryFarmRecords)
-        pieChartSummaryFarmRecords?.slices = listOf(
-              PieChart.Slice(revenueFraction!!.toFloat(), Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Total Expenses/Costs"),
-              PieChart.Slice(expensesFraction.toFloat(), Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Total Revenues"),
-            )
+            pieChartSummaryFarmRecords?.slices = listOf(
+                 PieChart.Slice(expensesFraction.toFloat(), Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Total Expenses/Costs"),
+                 PieChart.Slice(salesFraction.toFloat(), Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Total Sales"),
+                 PieChart.Slice(revenueFraction!!.toFloat(), Color.rgb(160, 100, 167), Color.rgb(165, 180, 185), legend = "Revenues Generated"),
+                )
 
         pieChartSummaryFarmRecords?.gradientType = PieChart.GradientType.RADIAL
         pieChartSummaryFarmRecords?.legendIconsMargin = Dimension.DP(8F)
@@ -73,23 +83,33 @@ class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setUpUi() {
 
+        // Use of bundle
+        /*
         binding.textView126.text = arguments?.getString("cropCycleName")
         binding.textView129.text = arguments?.getString("totalInputs")
         binding.textView132.text = arguments?.getString("totalSales")
 
+         */
 
-        val expenses = binding.textView129.text.toString().toDouble()
-        val sales = binding.textView132.text.toString().toDouble()
+        // Use of Navigation Arguments
+        val farmRecord = args.farmFinancialRecordSummary
+        binding.textView126.text = "${farmRecord.nameOfCropCycle} crop cycle"
+        binding.textView129.text = "Kes. ${farmRecord.totalRevenueGenerated}.00"
+        binding.textView132.text = "Kes. ${farmRecord.totalInputCosts}.00"
 
-         revenue = binding.textView132.text.toString().toDouble() - binding.textView129.text.toString().toDouble()
 
-                // if sales > expenses
-        if (binding.textView132.text.toString().toDouble() > binding.textView129.text.toString().toDouble()) {
-            binding.textView134.text = "+ Kes $revenue"
+        // val expenses = binding.textView129.text.toString().toDouble()
+        // val sales = binding.textView132.text.toString().toDouble()
+
+        revenue = farmRecord.totalRevenueGenerated.toDouble() - farmRecord.totalInputCosts.toDouble()
+
+        // if sales > expenses
+        if (farmRecord.totalRevenueGenerated.toDouble() > farmRecord.totalInputCosts.toDouble()) {
+            binding.textView134.text = "+ Kes. $revenue"+"0"
         }
         // if expenses > sales
-        else if (binding.textView132.text.toString().toDouble() < binding.textView129.text.toString().toDouble()) {
-            binding.textView134.text = "- Kes $revenue"
+        else if (farmRecord.totalRevenueGenerated.toDouble() < farmRecord.totalInputCosts.toDouble()) {
+            binding.textView134.text = "- Kes. $revenue"+"0"
         } else {
           return
         }

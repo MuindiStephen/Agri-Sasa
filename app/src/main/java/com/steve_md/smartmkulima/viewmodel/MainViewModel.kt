@@ -24,6 +24,10 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
+
+/**
+ * The viewmodel that interacts with the Ui
+ */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val farmProduceRepository: FarmProduceRepository,
@@ -114,12 +118,14 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    // deleting expenses records
     fun deleteFarmCycleExpense() = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             repository.deleteAllCycleExpenses()
         }
     }
 
+    // Deleting revenue records
     fun deleteFarmCycleRevenue() = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             repository.deleteAllCycleRevenues()
@@ -140,6 +146,14 @@ class MainViewModel @Inject constructor(
             repository.saveFarmSummaryRecord(farmFinancialDataSummary)
         }
     }
+
+    // Deleting Farm Summary Records
+    fun deleteFarmSummaryRecords() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.deleteAllSummaryRecords()
+        }
+    }
+
 
 }
 

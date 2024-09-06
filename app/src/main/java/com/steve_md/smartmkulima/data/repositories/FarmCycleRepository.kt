@@ -90,4 +90,9 @@ class FarmCycleRepository @Inject constructor(
     fun getAllSummaryRecords() : LiveData<List<FarmFinancialDataSummary>> {
         return farmSummaryRecordsDao.getAllFarmFinancialDataSummary()
     }
+
+    suspend fun deleteAllSummaryRecords() = apiRequestByResource {
+        farmSummaryRecordsDao.deleteAllSummary()
+    }
+
 }

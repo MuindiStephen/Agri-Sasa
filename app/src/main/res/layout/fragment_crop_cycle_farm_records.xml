@@ -114,5 +114,34 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
+        <Button
+            android:id="@+id/btnClearAllRecords"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            android:text="Clear Records"
+            android:textAllCaps="false"
+            android:drawableLeft="@drawable/baseline_delete_forever_24"
+            android:background="@drawable/rounded_corner"
+            android:foreground="?selectableItemBackground"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAnalytics"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnAnalytics" />
+
+        <ProgressBar
+            android:id="@+id/progressBarLoadingClearRecords"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAnalytics"
+            app:layout_constraintVertical_bias="0.014" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
