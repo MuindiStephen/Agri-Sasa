@@ -9,6 +9,10 @@ import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
+import com.steve_md.smartmkulima.model.NewFarmField
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +24,10 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
+
+/**
+ * The viewmodel that interacts with the Ui
+ */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val farmProduceRepository: FarmProduceRepository,
@@ -86,6 +94,67 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+
+    // All farm fields
+    val allFarmFields: LiveData<List<NewFarmField>> = repository.getAllFarmFields()
+
+    // Adding a new farm field / farm
+    fun addFarmField(farmField: NewFarmField) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.insertFarmField(farmField)
+        }
+    }
+
+    fun addFarmCycleExpense(farmFinanceExpenseRecords: FarmFinanceExpenseRecords) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.insertNewCycleExpense(farmFinanceExpenseRecords)
+        }
+    }
+
+    fun addFarmCycleRevenue(farmFinanceRevenueRecords: FarmFinanceRevenueRecords) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.insertNewCycleRevenue(farmFinanceRevenueRecords)
+        }
+    }
+
+    // deleting expenses records
+    fun deleteFarmCycleExpense() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.deleteAllCycleExpenses()
+        }
+    }
+
+    // Deleting revenue records
+    fun deleteFarmCycleRevenue() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.deleteAllCycleRevenues()
+        }
+    }
+
+    val allFarmCycleExp: LiveData<List<FarmFinanceExpenseRecords>> = repository.getAllCycleExpenses()
+
+    val allFarmCycleRevenues: LiveData<List<FarmFinanceRevenueRecords>> = repository.getAllCycleRevenues()
+
+
+    // Get a list of all farm records summary
+    val allSummaryRecords : LiveData<List<FarmFinancialDataSummary>> = repository.getAllSummaryRecords()
+
+    // Adding a new farm summary record
+    fun addFarmSummaryRecords(farmFinancialDataSummary: FarmFinancialDataSummary) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.saveFarmSummaryRecord(farmFinancialDataSummary)
+        }
+    }
+
+    // Deleting Farm Summary Records
+    fun deleteFarmSummaryRecords() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.deleteAllSummaryRecords()
+        }
+    }
+
+
 }
 
 // UI State

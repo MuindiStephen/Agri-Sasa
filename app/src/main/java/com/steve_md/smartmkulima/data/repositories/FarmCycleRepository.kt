@@ -2,15 +2,20 @@ package com.steve_md.smartmkulima.data.repositories
 
 import androidx.lifecycle.LiveData
 import com.steve_md.smartmkulima.data.room.AppDatabase
+import com.steve_md.smartmkulima.data.room.FarmCycleExpensesRecordsDao
+import com.steve_md.smartmkulima.data.room.FarmCycleRevenueRecordsDao
+import com.steve_md.smartmkulima.data.room.FarmFieldsDao
+import com.steve_md.smartmkulima.data.room.FarmSummaryRecordsDao
 import com.steve_md.smartmkulima.data.room.GAPDao
 import com.steve_md.smartmkulima.data.room.LocalFarmCycleDao
 import com.steve_md.smartmkulima.model.Cycle
-import com.steve_md.smartmkulima.model.GAP
 import com.steve_md.smartmkulima.model.LocalFarmCycle
+import com.steve_md.smartmkulima.model.NewFarmField
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 import com.steve_md.smartmkulima.utils.apiRequestByResource
-import com.steve_md.smartmkulima.utils.safeCall
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
@@ -24,13 +29,18 @@ class FarmCycleRepository @Inject constructor(
 
     private val localCycleDao: LocalFarmCycleDao = database.localFarmCycleDao()
 
+    private val farmFieldDao: FarmFieldsDao =  database.farmfielddao()
+
+    private val farmCycleExpensesRecordsDao: FarmCycleExpensesRecordsDao = database.farmCycleExpensesRecordsDao()
+    private val farmCycleRevenueRecordsDao: FarmCycleRevenueRecordsDao = database.farmCycleRevenueRecordsDao()
+
+    private val farmSummaryRecordsDao: FarmSummaryRecordsDao = database.farmSummaryRecordsDao()
+
     suspend fun insertCycle(cycle: LocalFarmCycle) = apiRequestByResource {
         localCycleDao.insertLocalFarmCycle(cycle)
     }
 
     val allCycles : Flow<List<Cycle>> = gapDao.getAllCycle()
-
-
 
 
     fun getAllCycles(): LiveData<List<LocalFarmCycle>> {
@@ -39,6 +49,50 @@ class FarmCycleRepository @Inject constructor(
 
     suspend fun updateTaskStatus(status: String) {
         localCycleDao.updateTaskStatus(status)
+    }
+
+    fun getAllFarmFields(): LiveData<List<NewFarmField>> {
+        return farmFieldDao.getAllFarmFields()
+    }
+
+    suspend fun insertFarmField(farmField: NewFarmField) = apiRequestByResource {
+        farmFieldDao.saveFarmField(farmField)
+    }
+
+    suspend fun insertNewCycleExpense(farmCycleExpenseRecords: FarmFinanceExpenseRecords) = apiRequestByResource {
+        farmCycleExpensesRecordsDao.saveCycleExpense(farmCycleExpenseRecords)
+    }
+
+    suspend fun insertNewCycleRevenue(farmCycleRevenueRecords: FarmFinanceRevenueRecords) = apiRequestByResource {
+        farmCycleRevenueRecordsDao.saveCycleRevenue(farmCycleRevenueRecords)
+    }
+
+    fun getAllCycleExpenses() : LiveData<List<FarmFinanceExpenseRecords>> {
+        return farmCycleExpensesRecordsDao.getAllCycleExpenses()
+    }
+
+    fun getAllCycleRevenues() : LiveData<List<FarmFinanceRevenueRecords>> {
+        return farmCycleRevenueRecordsDao.getAllCycleRevenues()
+    }
+
+    suspend fun deleteAllCycleExpenses() = apiRequestByResource {
+        farmCycleExpensesRecordsDao.deleteCycleExpenses()
+    }
+
+    suspend fun deleteAllCycleRevenues() = apiRequestByResource {
+        farmCycleRevenueRecordsDao.deleteCycleRevenues()
+    }
+
+    suspend fun saveFarmSummaryRecord(farmSumm: FarmFinancialDataSummary) =  apiRequestByResource {
+        farmSummaryRecordsDao.saveSummaryRecord(farmSumm)
+    }
+
+    fun getAllSummaryRecords() : LiveData<List<FarmFinancialDataSummary>> {
+        return farmSummaryRecordsDao.getAllFarmFinancialDataSummary()
+    }
+
+    suspend fun deleteAllSummaryRecords() = apiRequestByResource {
+        farmSummaryRecordsDao.deleteAllSummary()
     }
 
 }

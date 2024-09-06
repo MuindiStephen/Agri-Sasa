@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.main.ManualWalkingFarmMappingFragment">
+
+
+    <fragment
+        android:id="@+id/mapViewSatellite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonStartMapping"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:text="Start Mapping"
+        android:fontFamily="@font/montserrat_medium"
+        android:textAllCaps="false"
+        android:drawableLeft="@drawable/baseline_touch_app_24"
+        android:layout_marginBottom="@dimen/_32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonStopMapping"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:text="Stop Mapping"
+        android:fontFamily="@font/montserrat_medium"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:backgroundTint="@color/red"
+        android:drawableLeft="@drawable/baseline_stop_circle_24"
+        android:layout_marginBottom="@dimen/_32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSaveMappedArea"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:text="Save Mapped Area: 40ha"
+        android:fontFamily="@font/montserrat_medium"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/light_blue"
+        android:visibility="invisible"
+        android:drawableLeft="@drawable/baseline_save_24"
+        android:layout_marginBottom="@dimen/_32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonRedoMapping"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:text="Redo Mapping"
+        android:fontFamily="@font/montserrat_medium"
+        android:textAllCaps="false"
+        android:visibility="invisible"
+        android:backgroundTint="@color/light_blue"
+        android:drawableLeft="@drawable/baseline_redo_24"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_gray"
+    tools:context=".ui.fragments.main.AddNewFarmFieldFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:subtitle="Add New Farm"
+            app:subtitleTextColor="@color/whitish"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterFarmNameTl"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:textColorHint="@color/textColor"
+            android:hint="Enter your farm name"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/SilverGray"
+            app:hintTextColor="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="@id/toolbar2"
+            app:layout_constraintStart_toStartOf="@id/toolbar2"
+            app:layout_constraintTop_toBottomOf="@id/toolbar2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputFarmName"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Farm Name"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toTopOf="@+id/enterFarmNameTl"
+            app:layout_constraintStart_toStartOf="@+id/enterFarmNameTl" />
+
+        <Spinner
+            android:id="@+id/spinnerYourCropName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:entries="@array/crop_list"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enterFarmNameTl" />
+
+        <TextView
+            android:id="@+id/textView112"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crop"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginBottom="@dimen/_2dp"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerYourCropName"
+            app:layout_constraintStart_toStartOf="@+id/spinnerYourCropName" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterFarmLocationDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:textColorHint="@color/textColor"
+            android:hint="Enter your location description of your farm ie. estate."
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/SilverGray"
+            app:hintTextColor="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="@id/spinnerYourCropName"
+            app:layout_constraintStart_toStartOf="@id/spinnerYourCropName"
+            app:layout_constraintTop_toBottomOf="@id/spinnerYourCropName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputFarmLocationDescription"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView113"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Farm Location Description"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginBottom="@dimen/_2dp"
+            app:layout_constraintBottom_toTopOf="@+id/enterFarmLocationDescription"
+            app:layout_constraintStart_toStartOf="@+id/enterFarmLocationDescription" />
+
+        <TextView
+            android:id="@+id/textView114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="I want to map out my farm \nboundaries"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sp_text_size"
+            android:layout_marginStart="@dimen/_16dp"
+            app:layout_constraintStart_toStartOf="@+id/enterFarmLocationDescription"
+            app:layout_constraintTop_toBottomOf="@+id/enterFarmLocationDescription" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchAllowMapOutFarmBoundaries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16dp"
+            app:layout_constraintEnd_toEndOf="@+id/enterFarmLocationDescription"
+            app:layout_constraintTop_toTopOf="@+id/textView114" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/main"
+            android:layout_marginTop="@dimen/_24dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView114" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:visibility="gone"
+            android:src="@drawable/baseline_info_outline_24"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/textView115"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:visibility="gone"
+            android:text="Farm Coordinates\n(optional)"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="@dimen/_12sp_text_size"
+            app:layout_constraintStart_toEndOf="@+id/imageView12"
+            app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/autoFillFarmCoordinatesTl"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="150dp"
+            android:elevation="10dp"
+            android:visibility="gone"
+            android:hint="Latitudes and Longitudes(farm boundaries)"
+            android:textColorHint="@color/textColor"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconTint="@color/SilverGray"
+            app:hintTextColor="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView115">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/autoFillFarmCoordinatesEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewClickToMap"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="1dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="gone"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="@dimen/_0dp"
+            android:foreground="?android:selectableItemBackground"
+            android:backgroundTint="@color/bg_gray"
+            android:layout_marginEnd="@dimen/_16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/autoFillFarmCoordinatesTl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/autoFillFarmCoordinatesTl">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="@color/main"
+                    android:src="@drawable/ic_touch_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView116"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Map"
+                    android:fontFamily="@font/montserrat_medium"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+                    app:layout_constraintStart_toEndOf="@+id/imageView30"
+                    app:layout_constraintTop_toTopOf="@+id/imageView30" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/yourFarmSizeInHectares"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:textColorHint="@color/textColor"
+            android:hint="Farm size in ha"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/SilverGray"
+            app:hintTextColor="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/autoFillFarmCoordinatesTl">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/farmSizeInHaInput"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinnerYearOfFarming"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:entries="@array/year_of_farm_mapping"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yourFarmSizeInHectares" />
+
+        <TextView
+            android:id="@+id/textView117"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Year of farming"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerYearOfFarming"
+            app:layout_constraintStart_toStartOf="@+id/spinnerYearOfFarming" />
+
+
+        <TextView
+            android:id="@+id/textViewFSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Farm size"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toTopOf="@+id/yourFarmSizeInHectares"
+            app:layout_constraintStart_toStartOf="@+id/yourFarmSizeInHectares" />
+
+        <Spinner
+            android:id="@+id/spinnerSeason"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:entries="@array/season_of_farm_mapping"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerYearOfFarming" />
+        <TextView
+            android:id="@+id/textViewSeasonWhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Season"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerSeason"
+            app:layout_constraintStart_toStartOf="@+id/spinnerSeason" />
+        <Spinner
+            android:id="@+id/spinnerOwnershipType"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:entries="@array/farm_ownership_type"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerSeason" />
+        <TextView
+            android:id="@+id/textViewFarmOwnershipType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Farm owership type"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerOwnershipType"
+            app:layout_constraintStart_toStartOf="@+id/spinnerOwnershipType" />
+
+        <Spinner
+            android:id="@+id/spinnerCountyLocationOftheFarm"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:entries="@array/farm_ownership_type"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerOwnershipType" />
+        <TextView
+            android:id="@+id/textViewCountyLocFarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="County location of the farm"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerCountyLocationOftheFarm"
+            app:layout_constraintStart_toStartOf="@+id/spinnerCountyLocationOftheFarm" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterEstimatedFarmersPerDay"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:textColorHint="@color/textColor"
+            android:hint="Number of farmers per day"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/SilverGray"
+            app:hintTextColor="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="@id/spinnerCountyLocationOftheFarm"
+            app:layout_constraintStart_toStartOf="@id/spinnerCountyLocationOftheFarm"
+            app:layout_constraintTop_toBottomOf="@id/spinnerCountyLocationOftheFarm">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/stimatedFarmersPerDayInput"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/textViewEstFarmers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estimated Number of Farmers Per Day"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginBottom="@dimen/_2dp"
+            app:layout_constraintBottom_toTopOf="@+id/enterEstimatedFarmersPerDay"
+            app:layout_constraintStart_toStartOf="@+id/enterEstimatedFarmersPerDay" />
+
+        <Button
+            android:id="@+id/buttonClickCreateFarm"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Create Farm"
+            android:background="@drawable/rounded_corner"
+            android:textAllCaps="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginBottom="@dimen/_32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enterEstimatedFarmersPerDay" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

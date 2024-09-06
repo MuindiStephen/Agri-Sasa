@@ -3,6 +3,7 @@ package com.steve_md.smartmkulima.ui.activities
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,9 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        // Support for light mode only
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         // Retrieve the LocalFarmCycle object from the intent
         val localFarmCycle: LocalFarmCycle? = intent.getParcelableExtra("localFarmCycle")
 
@@ -54,5 +58,6 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        this.finish()
     }
 }

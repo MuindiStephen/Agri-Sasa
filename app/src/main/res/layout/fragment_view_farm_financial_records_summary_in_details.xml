@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_gray"
+    tools:context=".ui.fragments.others.crop_cycle.ViewFarmFinancialRecordsSummaryInDetailsFragment">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarSummaryInDetailsBreakDown"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:subtitleTextColor="@color/white"
+        app:subtitle="Financial Records Breakdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ir.mahozad.android.PieChart
+        android:id="@+id/pieChartSummaryFarmRecords"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarSummaryInDetailsBreakDown" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/bg_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pieChartSummaryFarmRecords">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/total_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/sales_income"
+                android:textStyle="bold"
+                android:textColor="@color/main1"
+                android:textSize="@dimen/_16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView128"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/total_sales"
+                android:textSize="@dimen/_14sp_text_size"
+                app:layout_constraintStart_toStartOf="@+id/total_sales"
+                app:layout_constraintTop_toBottomOf="@+id/total_sales" />
+
+            <TextView
+                android:id="@+id/textView129"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/kes_12_000"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_medium"
+                app:layout_constraintBottom_toBottomOf="@+id/textView128"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView128" />
+
+            <TextView
+                android:id="@+id/textView130"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/expenses_input_costs"
+                android:textColor="@color/main1"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="@dimen/_16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/total_sales"
+                app:layout_constraintTop_toBottomOf="@+id/textView128" />
+
+            <TextView
+                android:id="@+id/textView131"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/total_sales1"
+                android:textSize="@dimen/_14sp_text_size"
+                app:layout_constraintStart_toStartOf="@+id/textView130"
+                app:layout_constraintTop_toBottomOf="@+id/textView130" />
+
+            <TextView
+                android:id="@+id/textView132"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/kes_2000"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_medium"
+                app:layout_constraintBottom_toBottomOf="@+id/textView131"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView131" />
+
+            <TextView
+                android:id="@+id/textView133"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/net_revenue"
+                android:textColor="@color/main1"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="@dimen/_16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView131"
+                app:layout_constraintTop_toBottomOf="@+id/textView131" />
+
+            <TextView
+                android:id="@+id/textView134"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/kes_10_000"
+                android:textColor="@color/light_blue"
+                android:textSize="@dimen/_16sp"
+                android:fontFamily="@font/montserrat_medium"
+                app:layout_constraintBottom_toBottomOf="@+id/textView133"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView133" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView126"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="Spinach Crop Cycle"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_medium"
+        android:textStyle="bold"
+        android:textSize="@dimen/_14sp_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/pieChartSummaryFarmRecords"
+        app:layout_constraintEnd_toEndOf="@+id/pieChartSummaryFarmRecords"
+        app:layout_constraintStart_toStartOf="@+id/pieChartSummaryFarmRecords" />
+</androidx.constraintlayout.widget.ConstraintLayout>

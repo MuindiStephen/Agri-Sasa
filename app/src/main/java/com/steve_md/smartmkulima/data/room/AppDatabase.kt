@@ -8,16 +8,24 @@ import com.steve_md.smartmkulima.data.room.converters.LocalFarmCycleConverter
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
+import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.Tasks
 import com.steve_md.smartmkulima.model.Transaction
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
+import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 
 
 /**
  * Room database
  */
 @TypeConverters(Converters::class,LocalFarmCycleConverter::class)
-@Database(entities = [Transaction::class, FarmProduce::class, Cycle::class,
-    Tasks::class, LocalFarmCycle::class], version = 5, exportSchema = false)
+@Database(entities = [
+    Transaction::class, FarmProduce::class, Cycle::class,
+    Tasks::class, LocalFarmCycle::class,
+    NewFarmField::class, FarmFinanceExpenseRecords::class,
+    FarmFinanceRevenueRecords::class, FarmFinancialDataSummary::class],
+    version = 7, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao
@@ -26,6 +34,14 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun gapDao(): GAPDao
 
     abstract fun localFarmCycleDao(): LocalFarmCycleDao
+
+    abstract fun farmfielddao(): FarmFieldsDao
+
+    abstract fun farmCycleRevenueRecordsDao(): FarmCycleRevenueRecordsDao
+
+    abstract fun farmCycleExpensesRecordsDao(): FarmCycleExpensesRecordsDao
+
+    abstract fun farmSummaryRecordsDao() : FarmSummaryRecordsDao
 
     /**
      * Implement singleton pattern in room to prevent

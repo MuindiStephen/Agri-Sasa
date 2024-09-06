@@ -24,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
@@ -240,7 +241,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                     userLatLng1?.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
                         ?.let { googleMap.moveCamera(it) }
 
-                    // Include the user's location in the bounds
+                    // include user's location in bounds
                     userLatLng?.let { boundsBuilder.include(it) }
 
                     /**

@@ -339,6 +339,8 @@
             android:textSize="@dimen/_12sp_text_size"
             android:clickable="true"
             android:focusable="true"
+            android:textColor="@color/light_blue"
+            android:textStyle="bold"
             android:foreground="?attr/selectableItemBackground"
             android:fontFamily="@font/montserrat_medium"
             app:layout_constraintBottom_toTopOf="@+id/home_gap_recyclerView"

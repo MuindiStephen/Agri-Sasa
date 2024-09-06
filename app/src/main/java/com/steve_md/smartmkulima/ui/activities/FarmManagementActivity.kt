@@ -1,11 +1,13 @@
 package com.steve_md.smartmkulima.ui.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
@@ -50,6 +52,9 @@ class FarmManagementActivity : AppCompatActivity() {
         // Hide support fragment
         supportActionBar?.hide()
 
+        // Support for light mode only
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         // Attach the CustomBarLayout with Viewpager2
         val viewPager = findViewById<ViewPager2>(R.id.vp)
         viewPager.adapter = vpAdapter
@@ -79,7 +84,11 @@ class FarmManagementActivity : AppCompatActivity() {
         if (navController.currentBackStackEntry != null && !navController.popBackStack()) {
             super.onBackPressed()
         } else {
-
+            super.onBackPressed()
         }
+    }
+
+    private fun moveToNewFarmTechnologyFragment() {
+
     }
 }

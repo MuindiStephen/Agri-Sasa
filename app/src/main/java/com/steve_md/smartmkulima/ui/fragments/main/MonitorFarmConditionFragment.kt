@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -18,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -33,6 +35,7 @@ import com.steve_md.smartmkulima.utils.isInternetAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import ir.mahozad.android.PieChart
 import ir.mahozad.android.unit.Dimension
+import kotlinx.coroutines.flow.combine
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -43,12 +46,20 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     private var LOCATIONPERMISSIONREQUESTCODE = 1
     private lateinit var locationProvider: LocationProvider
 
+
+    private val args: MonitorFarmConditionFragmentArgs by navArgs()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_monitor_farm_condition, container, false)
+        val view = inflater.inflate(
+            R.layout.fragment_monitor_farm_condition,
+            container,
+            false
+        )
 
         val backIcon = view.findViewById<ImageView>(R.id.imageView11)
         backIcon.setOnClickListener { findNavController().navigateUp() }
@@ -65,6 +76,12 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        val farmField = args.newfarmfield
+
+        val whichFarm =  view.findViewById<TextView>(R.id.textView104)
+
+        whichFarm.text = farmField.farmName
+        
         locationProvider = LocationProvider(this.requireContext())
 
         // Request user's location
@@ -75,7 +92,8 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
             if (location != null) {
                 loading.isVisible = false
-                monitorFarmConditions(location.latitude, location.longitude) } else {
+                monitorFarmConditions(location.latitude, location.longitude)
+            } else {
                 // Handle case when location is null
                 loading.isVisible = false
                 Timber.e("An error occurred")

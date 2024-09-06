@@ -63,12 +63,19 @@ class NewFarmingTechnologyFragment : Fragment() {
 
                 navigateToFarmMngtActivity()
             }
+            cardViewMapFarmAndCreate.setOnClickListener {
+                findNavController().navigate(R.id.addedNewFarmFieldsFragment)
+            }
+            cardViewMyFarmRecords.setOnClickListener {
+                findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
+            }
         }
     }
 
     private fun navigateToFarmMngtActivity() {
         startActivity(Intent(requireContext(), FarmManagementActivity::class.java))
-        requireActivity().finish()
+//        requireActivity().finish() - no need to finish this one since we want to navigate back
+
     }
 
     private fun goToAutoGenerateCropCycle() {

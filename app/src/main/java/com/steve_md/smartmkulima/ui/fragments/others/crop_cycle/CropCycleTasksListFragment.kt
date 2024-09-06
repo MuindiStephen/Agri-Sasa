@@ -47,16 +47,11 @@ import kotlin.random.Random
 /**
  *
  * Hey!
- * This code looks Junk :(
  *  @author MuindiStephen - Github
  *
  *  @year 2024
  *
- *  Was written in hurry to solve an issue
- *  & to implement a feature in urge';ncy
- *
- *
- *
+ *  Creation of crop cycles
  *
  */
 @AndroidEntryPoint
@@ -84,6 +79,7 @@ class CropCycleTasksListFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         binding.imageViewBackFromCropCycleLists.setOnClickListener {
+
             findNavController().navigateUp()
         }
 
@@ -119,36 +115,18 @@ class CropCycleTasksListFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun getAllCreatedCycles() {
-        /**viewModel.allCycles.observe(viewLifecycleOwner){ it ->
-            when(it.isEmpty()) {
-                true -> {
-                    displaySnackBar("No created farm cycles available")
-                }
-                false -> {
-                    it?.let {
-                        cycleList.addAll(it)
-                        localFarmCycleAdapter.submitList(cycleList)
-                    }
-                    localFarmCycleAdapter.notifyDataSetChanged()
-                    binding.cropCycleRecyclerView.adapter = localFarmCycleAdapter
-                    binding.cropCycleRecyclerView.visibility = View.VISIBLE
-
-                    displaySnackBar("Alert! Created farm cycles")
-                }
-            }
-        }
-        */
 
         viewModel.allCycles.observe(viewLifecycleOwner) { cycles ->
             if (cycles.isNullOrEmpty()) {
-                displaySnackBar("No created farm cycles available")
+                displaySnackBar("No created Farm Cycles Available")
                 binding.imageView22.isVisible = true
                 binding.noRecordsTV.isVisible = true
             } else {
                 cycleList.clear()
                 cycleList.addAll(cycles)
                 localFarmCycleAdapter.submitList(cycleList.toList())
-
+                binding.imageView22.isVisible = false
+                binding.noRecordsTV.isVisible = false
             }
         }
     }
@@ -159,7 +137,7 @@ class CropCycleTasksListFragment : Fragment() {
 
         // Initialize the adapter
         localFarmCycleAdapter = LocalFarmCycleAdapter(LocalFarmCycleAdapter.OnClickListener{ cycle->
-            Log.e("...CreatedFarmCycles....", cycle.toString())
+            Timber.tag("...CreatedFarmCycles....").e(cycle.toString())
 
             Timber.i("=====Checking=======>: ${cycle.cropName} cycle")
 
@@ -167,22 +145,6 @@ class CropCycleTasksListFragment : Fragment() {
             val intent = Intent(requireContext(), DetailedFarmCycleActivity::class.java)
             intent.putExtra("localFarmCycle", cycle) // Pass the cycle as a parcelable
             startActivity(intent)
-
-//            val directions = CropCycleTasksListFragmentDirections
-//                .actionCropCycleTasksListFragment2ToDetailedFarmCycleFragment2(cycle)
-//            findNavController().navigate(directions)
-
-//            // Navigate to the detailed fragment using FragmentTransaction
-//            val detailedFragment = DetailedFarmCycleFragment()
-//            val args = Bundle()
-//            args.putParcelable("localFarmCycle", cycle) // Pass the cycle as a parcelable
-//            detailedFragment.arguments = args
-//
-//            // Replace the current fragment with the detailed fragment
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.fragment_crop_cycle_list_id, detailedFragment) // Use the correct container ID
-//                .addToBackStack(null) // Optional: add this transaction to the back stack
-//                .commit()
         })
 
         // Set the adapter to the RecyclerView
@@ -210,6 +172,7 @@ class CropCycleTasksListFragment : Fragment() {
         }
 
         binding.textView84.isVisible = false
+
         binding.textView84.setOnClickListener {
             // binding.cropCycleRecyclerView.removeAllViews()
             filterCycles("")
@@ -303,8 +266,6 @@ class CropCycleTasksListFragment : Fragment() {
                     PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
                 )
 
-
-
                 val notificationMessage = "Today's task for ${cropName}: ${task.taskName}"
 
                 val builder = androidx.core.app.NotificationCompat.Builder(requireContext(), "notification_id")
@@ -331,6 +292,4 @@ class CropCycleTasksListFragment : Fragment() {
     private fun getCurrentDate(): String {
         return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
     }
-
-
 }

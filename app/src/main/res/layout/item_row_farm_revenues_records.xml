@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_gray">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card11"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        app:cardCornerRadius="@dimen/_10dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/bg_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/textView118"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crop Cycle: Spinach"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/_16dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_marginTop="@dimen/_8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView120"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Harvested Bags: 60"
+                android:textSize="12sp"
+                android:fontFamily="@font/montserrat_medium"
+                app:layout_constraintStart_toStartOf="@+id/textView118"
+                app:layout_constraintTop_toBottomOf="@+id/textView118" />
+
+            <TextView
+                android:id="@+id/textView121"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Sold Bags: 30"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView120"
+                app:layout_constraintTop_toBottomOf="@+id/textView120" />
+
+            <TextView
+                android:id="@+id/textView122"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Revenues After Sales: Kes 25,000"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView121"
+                app:layout_constraintTop_toBottomOf="@+id/textView121" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
