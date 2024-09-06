@@ -1,15 +1,19 @@
 package com.steve_md.smartmkulima.model.financialdata
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /**
- * Track total input costs/ expenses and total revenue generated
- * for final records / summary to the farmer
+ * Track total input costs / expenses and total revenue generated :)
+ * For final records / summary to the farmer
  *
- * then here will have the pie-chart on click to view more
+ * Then here will have the pie-chart on click to view more
+ *
  */
 
+@Parcelize
 @Entity(tableName = "farm_summary_records")
 data class FarmFinancialDataSummary(
 
@@ -19,4 +23,4 @@ data class FarmFinancialDataSummary(
     val nameOfCropCycle: String,
     val totalInputCosts: String,
     val totalRevenueGenerated: String
-)
+) : Parcelable

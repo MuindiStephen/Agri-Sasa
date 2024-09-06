@@ -164,8 +164,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:textStyle="bold"
         android:textSize="@dimen/_14sp_text_size"
-
-        app:layout_constraintBottom_toTopOf="@+id/pieChart"
-        app:layout_constraintEnd_toEndOf="@+id/pieChart"
-        app:layout_constraintStart_toStartOf="@+id/pieChart" />
+        app:layout_constraintBottom_toTopOf="@+id/pieChartSummaryFarmRecords"
+        app:layout_constraintEnd_toEndOf="@+id/pieChartSummaryFarmRecords"
+        app:layout_constraintStart_toStartOf="@+id/pieChartSummaryFarmRecords" />
 </androidx.constraintlayout.widget.ConstraintLayout>

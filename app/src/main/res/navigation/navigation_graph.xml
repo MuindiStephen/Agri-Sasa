@@ -665,7 +665,11 @@
         android:id="@+id/viewFarmFinancialRecordsSummaryInDetailsFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.ViewFarmFinancialRecordsSummaryInDetailsFragment"
         android:label="fragment_view_farm_financial_records_summary_in_details"
-        tools:layout="@layout/fragment_view_farm_financial_records_summary_in_details" />
+        tools:layout="@layout/fragment_view_farm_financial_records_summary_in_details" >
+        <argument
+            android:name="farm_financial_record_summary"
+            app:argType="com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary" />
+    </fragment>
 
 
 </navigation>

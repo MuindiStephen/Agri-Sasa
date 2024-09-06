@@ -55,7 +55,7 @@ class FarmFieldsAdapter(
          * Click to invoke this mtd
          */
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(newFarmField = farmField)
+            onClickListener.onClick(farmField)
         }
     }
 

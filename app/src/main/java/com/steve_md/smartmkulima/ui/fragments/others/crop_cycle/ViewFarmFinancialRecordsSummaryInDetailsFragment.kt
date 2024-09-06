@@ -68,7 +68,6 @@ class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
         pieChartSummaryFarmRecords?.isLegendEnabled = true
         pieChartSummaryFarmRecords?.legendsTitleColor = Color.BLACK
         pieChartSummaryFarmRecords?.legendsColor = Color.BLACK
-
     }
 
     @SuppressLint("SetTextI18n")

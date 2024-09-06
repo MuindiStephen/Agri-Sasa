@@ -3,6 +3,8 @@ package com.steve_md.smartmkulima.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.lifecycle.viewmodel.ktx.R
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -31,12 +33,21 @@ class FarmAnalyticsRecordListAdapter( private val onClickListener: OnClickListen
     @SuppressLint("ClickableViewAccessibility")
     inner class MyViewHolder(private val binding: ItemAnalyticsRowRecordBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+            val openTV = binding.textView125
+
         @SuppressLint("SetTextI18n")
         fun bind(summary: FarmFinancialDataSummary?) {
             binding.textView109.text = summary?.nameOfCropCycle.toString()
             binding.textView119.text = "Expenses: Kes. ${summary?.totalInputCosts.toString()}"
             binding.textView124.text = "Revenues: Kes. ${summary?.totalRevenueGenerated.toString()}"
+            binding.textViewFarmFieldInitialLr.text = getInitialLetter(adapterPosition)
         }
+    }
+
+    fun getInitialLetter(position: Int): String {
+        val record = getItem(position)
+        return record.nameOfCropCycle.firstOrNull()?.toUpperCase().toString() ?: ""
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -53,8 +64,15 @@ class FarmAnalyticsRecordListAdapter( private val onClickListener: OnClickListen
          * Click to invoke this method.
          */
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(summary = summary)
+            onClickListener.onClick(summary)
         }
+
+        holder.openTV.setOnClickListener {
+            onClickListener.onClick(summary)
+        }
+//        holder.itemView.findViewById<TextView>(com.steve_md.smartmkulima.R.id.textView125).setOnClickListener {
+//
+//        }
     }
 
     class OnClickListener(val clickListener: (summary: FarmFinancialDataSummary) -> Unit) {

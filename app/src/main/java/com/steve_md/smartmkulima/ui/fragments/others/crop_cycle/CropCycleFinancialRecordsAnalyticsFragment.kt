@@ -39,7 +39,6 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentCropCycleFinancialRecordsAnalyticsBinding.inflate(
             inflater, container, false
         )
@@ -55,7 +54,6 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
 
         setUpRecyclerView()
 
-
         fetchAllFarmSummaryRecordsAvailable()
     }
 
@@ -68,10 +66,16 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         farmAnalyticsRecordListAdapter = FarmAnalyticsRecordListAdapter(
 
             FarmAnalyticsRecordListAdapter.OnClickListener { farmFinancialSummary ->
-            Timber.tag("...CreatedFarmCycles....").e(farmFinancialSummary.toString())
+            Timber.tag("...Created-Farm-Financial-Records....").e(farmFinancialSummary.toString())
 
             Timber.i("=====Checking=======>: ${farmFinancialSummary.nameOfCropCycle} cycle")
 
+              val directions =  CropCycleFinancialRecordsAnalyticsFragmentDirections
+                  .actionCropCycleFinancialRecordsAnalyticsFragmentToViewFarmFinancialRecordsSummaryInDetailsFragment(farmFinancialSummary)
+
+              findNavController().navigate(directions)
+
+            /*
             findNavController().navigate(
                 R.id.viewFarmFinancialRecordsSummaryInDetailsFragment,
                 bundleOf(
@@ -80,6 +84,8 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
                     Pair("totalSales","${farmFinancialSummary.totalRevenueGenerated}")
                 )
             )
+
+             */
         })
     }
 
@@ -133,7 +139,7 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         binding.buttonConfirmFinancialAnalytics.setOnClickListener {
 
             if (validateInputs()) {
-                val summary = FarmFinancialDataSummary(
+                val summary = FarmFinancialDataSummary (
                     nameOfCropCycle = binding.spinnerNameOfCycle.selectedItem.toString(),
                     totalInputCosts = binding.inputTotalCosts.text.toString(),
                     totalRevenueGenerated = binding.inputSales.text.toString()
@@ -141,10 +147,10 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
                 lifecycleScope.launch {
                     try {
                         viewModel.addFarmSummaryRecords(summary)
-                        displaySnackBar("New Farm Record for analysis created")
+                        displaySnackBar("New Farm Record for Analysis Created")
                         Timber.d("Request Succeeded")
                     } catch (e: Exception) {
-                        displaySnackBar("Your request has failed.")
+                        displaySnackBar("Your Request Has Failed.")
                         Timber.d("Request Failed.")
                     }
                 }
