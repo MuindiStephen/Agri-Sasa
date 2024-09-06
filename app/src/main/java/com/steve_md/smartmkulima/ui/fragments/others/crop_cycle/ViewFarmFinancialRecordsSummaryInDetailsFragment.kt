@@ -21,6 +21,11 @@ import ir.mahozad.android.unit.Dimension
 import timber.log.Timber
 import kotlin.math.exp
 
+/**
+ * ViewFarmFinancialRecordsSummary
+ *
+ * Analytics represented by a visual pie chart
+ */
 @AndroidEntryPoint
 class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
 
