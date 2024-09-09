@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="@dimen/_8dp"
+    android:layout_marginEnd="@dimen/_8dp"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="8dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="#D7CDCACA">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray">
+
+        <ImageView
+            android:id="@+id/imageViewProductFarmInputName"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="@color/bg_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewProductFarmInputName"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewProductFarmInputName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageViewProductFarmInputName"
+            app:layout_constraintVertical_bias="0.9"
+            app:strokeColor="@color/bg_gray"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/textViewDiscountPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:padding="4dp"
+                android:text="30% off"
+                android:textStyle="bold"
+                android:textColor="@color/light_blue"
+                android:textSize="8dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textViewProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_medium"
+            android:maxLines="1"
+            android:text="CAN fertilizer 90 KGs "
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageViewProductFarmInputName"
+            app:layout_constraintTop_toTopOf="@+id/imageViewProductFarmInputName"
+
+            />
+
+        <TextView
+            android:id="@+id/textViewProductPriceDiscounted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Kes. 2450"
+            android:textSize="@dimen/_14sp_text_size"
+            android:textColor="@color/main"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textViewProductName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
+
+
+        <Button
+            android:id="@+id/buttonAddToCartShopNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:clickable="true"
+            android:layout_marginStart="@dimen/_10dp"
+            android:focusable="true"
+            android:fontFamily="@font/montserrat_medium"
+            android:foreground="?android:selectableItemBackground"
+            android:text="@string/shop_now"
+            android:textAllCaps="true"
+
+            app:layout_constraintBottom_toBottomOf="@id/imageViewProductFarmInputName"
+            app:layout_constraintStart_toEndOf="@+id/imageViewProductFarmInputName" />
+
+        <TextView
+            android:id="@+id/textViewOriginalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Kes. 3500"
+            android:textSize="@dimen/_12sp_text_size"
+            android:background="@drawable/strikethrough_layerlist"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewProductPriceDiscounted"
+            app:layout_constraintStart_toEndOf="@+id/textViewProductPriceDiscounted"
+            app:layout_constraintTop_toTopOf="@+id/textViewProductPriceDiscounted" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

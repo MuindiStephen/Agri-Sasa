@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.adapter.AgroDealersOffersListAdapter
 import com.steve_md.smartmkulima.databinding.FragmentViewAgroDealerInDetailBinding
+import com.steve_md.smartmkulima.model.AgroDealerOffers
 
 /**
  * Viewing Agro-Dealer in Detail
@@ -17,6 +20,18 @@ class ViewAgroDealerInDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentViewAgroDealerInDetailBinding
     private val args: ViewAgroDealerInDetailFragmentArgs by navArgs()
+
+    private val agroDealersOffersListAdapter by lazy { AgroDealersOffersListAdapter { agrodealerOffer ->
+        onOfferClicked(agrodealerOffer)
+     }
+    }
+
+
+    // Navigate to My cart
+    private fun onOfferClicked(agrodealerOffer: AgroDealerOffers) {
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,8 +50,18 @@ class ViewAgroDealerInDetailFragment : Fragment() {
             textViewAgroDealerNameDetail.text = agrodealer.name
             textViewAgroDealerServices.text = agrodealer.servicesOffered
             textViewAgroDealerCategories.text = agrodealer.categories
-            textViewIfLeasingOptionOfferred.text = agrodealer.leasingOptionsAvailable
-            textViewLeasingDetails.text = agrodealer.leasingDetails
+        }
+
+        // AgroDealers' Offers List
+        binding.apply {
+            agrodealer.offers.let {
+                agroDealersOffersListAdapter.submitList(it)
+            }
+
+            offersListAgroDealersRV.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = agroDealersOffersListAdapter
+            }
         }
     }
 }

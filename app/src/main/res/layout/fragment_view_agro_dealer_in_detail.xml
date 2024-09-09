@@ -96,11 +96,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Hurry up now and get hot deals we are offering \nfor every Agricultural input with 30% discounted \nprice"
         android:fontFamily="@font/montserrat_medium"
+        android:text="Hurry up now and get hot deals we are offering \nfor every Agricultural input with 30% discounted \nprice"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sp_text_size"
         app:layout_constraintStart_toStartOf="@+id/textView92"
         app:layout_constraintTop_toBottomOf="@+id/textViewAgroDealerCategories" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/offersListAgroDealersRV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/item_agrodealers_deals_row"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView94" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
