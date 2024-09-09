@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.fragmentadapter.FragmentAdapter
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleFarmRecordsBinding
+import com.steve_md.smartmkulima.model.FarmEquipment
+import com.steve_md.smartmkulima.utils.Event
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -115,7 +117,7 @@ class CropCycleFarmRecordsFragment : Fragment() {
      */
     private fun setUpViewPager() {
         val fragmentsAdapter = FragmentAdapter(childFragmentManager).apply {
-            addFragment(CropCycleExpensesListFragment(), "Expenses")
+            addFragment(CropCycleExpensesListFragment (),"Expenses")
             addFragment(CropCycleRevenuesListFragment(), "Revenues")
         }
 

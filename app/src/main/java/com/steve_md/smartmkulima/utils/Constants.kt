@@ -53,11 +53,3 @@ object Constants {
     const val HOT_DEALS = "Hot deals"
 }
 
-fun String.getInitials(): String {
-    val array = this.split(" ")
-    return if (array.size == 1) {
-        array[0].substring(0, 1)
-    } else {
-        array[0].substring(0, 1) + array[1].substring(0, 1)
-    }
-}

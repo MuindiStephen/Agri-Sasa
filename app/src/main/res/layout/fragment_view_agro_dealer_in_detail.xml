@@ -31,6 +31,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Name: "
+        android:textColor="@color/black"
         android:textSize="@dimen/_14sp_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarAgroDealerInDetail" />
@@ -39,8 +40,8 @@
         android:id="@+id/textViewAgroDealerNameDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agrisasa AgroDealers Limited"
-        android:fontFamily="@font/montserrat_semibold"
+        android:text="Agrisasa Agro-Dealers Limited"
+        android:fontFamily="@font/montserrat_medium"
         android:layout_marginStart="@dimen/_8dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView88"
         app:layout_constraintStart_toEndOf="@+id/textView88"
@@ -53,6 +54,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Products:"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/textView88"
         app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
@@ -62,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8dp"
         android:text="Fertilizers, pesticides"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintBottom_toBottomOf="@+id/textView90"
         app:layout_constraintStart_toEndOf="@+id/textView90"
         app:layout_constraintTop_toTopOf="@+id/textView90" />
@@ -74,6 +76,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Categories: "
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/textView90"
         app:layout_constraintTop_toBottomOf="@+id/textView90" />
 
@@ -83,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Agriculture, Pesticides, Herbicides"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintBottom_toBottomOf="@+id/textView92"
         app:layout_constraintStart_toEndOf="@+id/textView92"
         app:layout_constraintTop_toTopOf="@+id/textView92" />
@@ -92,46 +95,12 @@
         android:id="@+id/textView94"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:text="Leasing Options: "
-        android:visibility="invisible"
+        android:layout_marginTop="32dp"
+        android:text="Hurry up now and get hot deals we are offering \nfor every Agricultural input with 30% discounted \nprice"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sp_text_size"
         app:layout_constraintStart_toStartOf="@+id/textView92"
-        app:layout_constraintTop_toBottomOf="@+id/textView92" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAgroDealerCategories" />
 
-    <TextView
-        android:id="@+id/textViewIfLeasingOptionOfferred"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="true"
-        android:visibility="invisible"
-        android:fontFamily="@font/montserrat_semibold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView94"
-        app:layout_constraintStart_toEndOf="@+id/textView94"
-        app:layout_constraintTop_toTopOf="@+id/textView94" />
-
-    <TextView
-        android:id="@+id/textView96"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Leasing Details: "
-        android:visibility="invisible"
-        android:fontFamily="@font/montserrat_semibold"
-        app:layout_constraintStart_toStartOf="@+id/textView94"
-        app:layout_constraintTop_toBottomOf="@+id/textView94" />
-
-    <TextView
-        android:id="@+id/textViewLeasingDetails"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="@dimen/_8dp"
-        android:visibility="invisible"
-        android:fontFamily="@font/montserrat_semibold"
-        android:text="6 months duration, monthly payment terms"
-        app:layout_constraintBottom_toBottomOf="@+id/textView96"
-        app:layout_constraintStart_toEndOf="@+id/textView96"
-        app:layout_constraintTop_toTopOf="@+id/textView96" />
 </androidx.constraintlayout.widget.ConstraintLayout>

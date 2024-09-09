@@ -14,6 +14,7 @@ import com.steve_md.smartmkulima.adapter.FarmExpensesRecordsAdapter
 import com.steve_md.smartmkulima.adapter.FarmFieldsAdapter
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleExpensesListBinding
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleRevenuesListBinding
+import com.steve_md.smartmkulima.model.FarmEquipment
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.viewmodel.MainViewModel

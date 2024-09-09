@@ -9,14 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.model.LatLng
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.AgroDealer
 
+/**
+ * Attach / bind data of verified agro-dealers within Agri-Sasa Platform
+ */
 class AgrodealerAdapter(
     private val agrodealers: List<AgroDealer>,
     private val userLocation: LatLng,

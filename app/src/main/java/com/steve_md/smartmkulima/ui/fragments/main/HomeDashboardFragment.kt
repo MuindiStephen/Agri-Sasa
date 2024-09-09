@@ -66,7 +66,7 @@ class HomeDashboardFragment : Fragment() {
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId!!)
 
          databaseReference.child("email")
-             .addListenerForSingleValueEvent(object : ValueEventListener{
+             .addListenerForSingleValueEvent(object : ValueEventListener {
                  override fun onDataChange(snapshot: DataSnapshot) {
                      val username = snapshot.getValue(String::class.java)
 
