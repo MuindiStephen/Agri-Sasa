@@ -1,14 +1,17 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
@@ -66,6 +69,12 @@ class PaymentFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            showBackPressedDialog()
+        }
+
 
         // Retrieve the total price from the arguments
         val totalPrice = arguments?.getInt("TOTAL_PRICE") ?: 0
@@ -200,6 +209,18 @@ class PaymentFragment : Fragment(), View.OnClickListener {
                     Timber.tag(TAG).e(httpException, t.printStackTrace().toString())
                 }
             })
+    }
+
+
+    private fun showBackPressedDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Exit Payment")
+            .setMessage("Do you want to go back? Your payment may not be completed.")
+            .setPositiveButton("Yes") { dialog, which ->
+                findNavController().popBackStack()
+            }
+            .setNegativeButton("No", null)
+            .show()
     }
 
     /*

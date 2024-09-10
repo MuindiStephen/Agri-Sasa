@@ -15,7 +15,7 @@ class MakePaymentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return FragmentMakePaymentBinding.inflate(inflater, container, false).also {
             binding = it
         }.root
@@ -26,6 +26,5 @@ class MakePaymentFragment : Fragment() {
 
 //        val appBarConfiguration = AppBarConfiguration(navController.graph)
 //        binding.payToolbar.setupWithNavController(navController, appBarConfiguration)
-
     }
 }

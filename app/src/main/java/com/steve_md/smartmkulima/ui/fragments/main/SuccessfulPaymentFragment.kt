@@ -2,10 +2,11 @@ package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.SyncStateContract.Constants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -43,6 +44,21 @@ class SuccessfulPaymentFragment : Fragment() {
         configViews()
 
         setUpAnimation()
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            showBackPressedDialog()
+        }
+    }
+
+    private fun showBackPressedDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Exit")
+            .setMessage("Do you want to go back? Your payment has been completed successfully.")
+            .setPositiveButton("Yes") { dialog, which ->
+                findNavController().navigate(R.id.homeDashboardFragment2)
+            }
+            .setNegativeButton("No", null)
+            .show()
     }
 
     private fun configViews() {
@@ -64,7 +80,7 @@ class SuccessfulPaymentFragment : Fragment() {
     private fun setUpBinding() {
        binding.buttonGoHome.setOnClickListener {
           findNavController().navigate(
-              R.id.action_successfulPaymentFragment_to_applyInsuranceFragment
+              R.id.homeDashboardFragment2
           )
        }
         binding.buttonPrintReceipt.setOnClickListener {

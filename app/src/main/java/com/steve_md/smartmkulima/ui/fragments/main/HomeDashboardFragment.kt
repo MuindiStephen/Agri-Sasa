@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -131,6 +133,28 @@ class HomeDashboardFragment : Fragment() {
         // fetch Good Agricultural practices
         getGoodAgriculturalPractices()
         setUpRecyclerView()
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            exitApp()
+        }
+    }
+
+    private fun exitApp() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Exit App")
+            .setMessage("Do you want to exit?")
+            .setPositiveButton("Yes") { dialog, which ->
+                val fragmentManager = requireActivity().supportFragmentManager
+                if (fragmentManager.backStackEntryCount > 0) {
+                    val first = fragmentManager.getBackStackEntryAt(0)
+                    fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                }
+
+                requireActivity().finishAffinity()
+
+            }
+            .setNegativeButton("No", null)
+            .show()
     }
 
 
