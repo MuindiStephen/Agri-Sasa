@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_semibold"
         android:text="100.00"
+        android:textColor="@color/light_blue"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="60sp"
         android:textStyle="bold"

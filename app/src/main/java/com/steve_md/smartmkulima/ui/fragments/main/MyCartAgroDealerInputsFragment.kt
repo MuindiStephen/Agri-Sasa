@@ -53,7 +53,6 @@ class MyCartAgroDealerInputsFragment : Fragment() {
         setUpRecyclerViewAndCart()
 
         loadCartItemsAndCalculateCheckout()
-
     }
 
 
@@ -62,7 +61,7 @@ class MyCartAgroDealerInputsFragment : Fragment() {
         cartAdapter = AgroDealsCartItemsListAdapter(AgroDealsCartItemsListAdapter.OnClickListener{ cart: FarmInputAgroDealerCartItem ->
             Timber.i("Clicked: ${cart.offerProduct.productName}")
 
-            // remove item from cart
+            // X remove item from cart
             viewModel.removeFromCart(cart.offerProduct)
             Timber.i("Item removed: ${viewModel.removeFromCart(cart.offerProduct)}")
 
@@ -70,7 +69,7 @@ class MyCartAgroDealerInputsFragment : Fragment() {
             view?.findViewById<ImageButton>(R.id.imageButtonIncrease)?.setOnClickListener {
                 viewModel.increaseQuantity(cart.offerProduct)
             }
-            //(-) decreasing quantity.
+            // (-) decreasing quantity.
             view?.findViewById<ImageButton>(R.id.imageButtonDecrease)?.setOnClickListener {
                 viewModel.decreaseQuantity(cart.offerProduct)
             }

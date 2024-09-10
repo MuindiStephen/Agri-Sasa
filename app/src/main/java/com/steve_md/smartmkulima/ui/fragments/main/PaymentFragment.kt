@@ -68,7 +68,7 @@ class PaymentFragment : Fragment(), View.OnClickListener {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         // Retrieve the total price from the arguments
-        val totalPrice = arguments?.getInt("TOTAL_PRICE") ?: 0.0
+        val totalPrice = arguments?.getInt("TOTAL_PRICE") ?: 0
 
         binding.inputAmountToPay.apply {
             setText(totalPrice.toString())
@@ -153,7 +153,15 @@ class PaymentFragment : Fragment(), View.OnClickListener {
 
                             toast("Response : ${response.body().toString()}")
 
-                            navigateToDeliveryScreen()
+                            val bundle = Bundle()
+                            bundle.putString("PHONE_NUMBER",phoneNumber)
+                            bundle.putString("AMOUNT",amount)
+
+                            findNavController().navigate(
+                                R.id.action_paymentFragment_to_successfulPaymentFragment,
+                                bundle
+                            )
+
 
                             val timestamp = System.currentTimeMillis()
                             val formattedDate = DateFormat.formatDate(timestamp)
@@ -194,9 +202,13 @@ class PaymentFragment : Fragment(), View.OnClickListener {
             })
     }
 
+    /*
     private fun navigateToDeliveryScreen() {
         findNavController().navigate(R.id.action_paymentFragment_to_successfulPaymentFragment)
+
     }
+
+     */
 
     companion object {
         val httpException: HttpException? = null

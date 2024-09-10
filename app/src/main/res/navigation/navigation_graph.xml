@@ -677,7 +677,11 @@
         android:id="@+id/myCartAgroDealerInputsFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.MyCartAgroDealerInputsFragment"
         android:label="fragment_my_cart_agro_dealer_inputs"
-        tools:layout="@layout/fragment_my_cart_agro_dealer_inputs" />
+        tools:layout="@layout/fragment_my_cart_agro_dealer_inputs" >
+        <action
+            android:id="@+id/action_myCartAgroDealerInputsFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
 
 
 </navigation>

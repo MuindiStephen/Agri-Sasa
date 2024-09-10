@@ -2,6 +2,7 @@ package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.SyncStateContract.Constants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentSuccessfulPaymentBinding
+import com.steve_md.smartmkulima.utils.DateFormat.getWhenStarts
 import com.steve_md.smartmkulima.utils.services.Config
 import com.steve_md.smartmkulima.utils.services.NumberUtil
 import com.steve_md.smartmkulima.utils.services.PrintServiceActivity
@@ -23,8 +25,6 @@ var map: HashMap<String, String> = HashMap()
 
 @AndroidEntryPoint
 class SuccessfulPaymentFragment : Fragment() {
-
-
     private lateinit var binding: FragmentSuccessfulPaymentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +39,19 @@ class SuccessfulPaymentFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         setUpBinding()
+
+        configViews()
+
         setUpAnimation()
+    }
+
+    private fun configViews() {
+
+        binding.apply {
+            textView142.text = arguments?.getString("PHONE_NUMBER")
+            textView150.text = arguments?.getString("AMOUNT")
+            textView146.text = getWhenStarts()
+        }
     }
 
     private fun setUpAnimation() {
@@ -51,7 +63,9 @@ class SuccessfulPaymentFragment : Fragment() {
     }
     private fun setUpBinding() {
        binding.buttonGoHome.setOnClickListener {
-          findNavController().navigate(R.id.action_successfulPaymentFragment_to_applyInsuranceFragment)
+          findNavController().navigate(
+              R.id.action_successfulPaymentFragment_to_applyInsuranceFragment
+          )
        }
         binding.buttonPrintReceipt.setOnClickListener {
             map["reference"] = "txnReference"
