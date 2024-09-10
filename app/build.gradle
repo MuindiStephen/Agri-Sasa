@@ -171,4 +171,7 @@ dependencies {
 
     // Pie and donut shaped-chart lib
     implementation("ir.mahozad.android:pie-chart:0.7.0")
+
+    // Daraja
+    implementation 'com.androidstudy.daraja:daraja:2.0.2'
 }

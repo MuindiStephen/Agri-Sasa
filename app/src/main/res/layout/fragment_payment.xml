@@ -7,14 +7,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.main.PaymentFragment">
 
-    <ImageView
+    <TextView
         android:id="@+id/ivMobileMoney"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/ic_saf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="MPESA KSH."
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,9 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:fontFamily="@font/nunito_sans_semibold"
+            android:fontFamily="@font/montserrat_semibold"
              android:layout_gravity="center"
-            android:text="Payments"
+            android:text="Order Payment"
             android:textColor="#F1ECE7"
             android:textSize="18sp" />
     </LinearLayout>
@@ -55,10 +58,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
-        android:hint="PhoneNo. 07XXXXXXXX"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="PhoneNo. 07 XX XXX XXX"
+        android:layout_marginTop="32dp"
         app:endIconMode="clear_text"
         app:endIconTint="@color/SilverGray"
         app:hintTextColor="@color/SilverGray"
@@ -80,6 +83,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:maxLength="10"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/textColor"
         />
     </com.google.android.material.textfield.TextInputLayout>
@@ -89,9 +94,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:elevation="10dp"
         android:hint="Amount"
         android:textColor="@color/textColor"
@@ -114,17 +119,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textColor"
-            android:inputType="text" />
+            android:fontFamily="@font/montserrat_medium"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/pay"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="140dp"
-        android:layout_marginEnd="45dp"
-        android:fontFamily="@font/montserrat"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="Pay"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"

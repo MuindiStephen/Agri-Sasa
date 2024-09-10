@@ -120,6 +120,13 @@ class MyCartAgroDealerInputsFragment : Fragment() {
 
                     binding.buttonCheckoutCartItems.isEnabled = true
 
+                    val bundle = Bundle().apply {
+                        putInt("TOTAL_PRICE", totalCheckoutPrice.toInt())
+                    }
+                    binding.buttonCheckoutCartItems.setOnClickListener {
+                        findNavController().navigate(R.id.paymentFragment,bundle)
+                    }
+
                 } else {
                     Timber.tag(this@MyCartAgroDealerInputsFragment.toString())
                         .e("No Cart Items. $cartItems")

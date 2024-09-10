@@ -48,12 +48,11 @@ import java.util.*
 @AndroidEntryPoint
 class PaymentFragment : Fragment(), View.OnClickListener {
 
-
     private var mApiClient: DarajaApiClient? = null
 
-    var mAmount: EditText? = null
-    var mPhone: EditText? = null
-    var mPay: Button? = null
+    private var mAmount: EditText? = null
+    private var mPhone: EditText? = null
+    private var mPay: Button? = null
 
     private lateinit var binding: FragmentPaymentBinding
     override fun onCreateView(
@@ -67,6 +66,14 @@ class PaymentFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+        // Retrieve the total price from the arguments
+        val totalPrice = arguments?.getInt("TOTAL_PRICE") ?: 0.0
+
+        binding.inputAmountToPay.apply {
+            setText(totalPrice.toString())
+            isEnabled = false // Disable the input to make it un-editable
+        }
 
         mAmount = view.findViewById(R.id.inputAmountToPay)
         mPhone = view.findViewById(R.id.inputPhoneNumber)
@@ -107,8 +114,8 @@ class PaymentFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v === mPay) {
 
+        if (v === mPay) {
             val phoneNumber = mPhone!!.text.toString()
             val amount = mAmount!!.text.toString()
             performSTKPush(phoneNumber, amount)
