@@ -174,7 +174,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             val currentCart = _cart.value.toMutableList()
             val existingItem = currentCart.find {
-                it.offerProduct.productName == agroDealerOffers.productName
+                it.offerProduct.id == agroDealerOffers.id
             }
             if (existingItem != null) {
                 existingItem.quantity++
@@ -190,6 +190,8 @@ class MainViewModel @Inject constructor(
         }
     }
 
+
+    // Log cart contents...
     private fun logCartContents() {
         Log.d("ProductViewModel", "Current cart contents:")
         _cart.value.forEach { item ->
@@ -202,11 +204,11 @@ class MainViewModel @Inject constructor(
         return _cart.value.sumOf { it.quantity }
     }
 
-    // Increasing Cart Quantity
+    // Increasing Cart Quantity Items
     fun increaseQuantity(offers: AgroDealerOffers) {
         viewModelScope.launch {
             val currentCart = _cart.value.toMutableList()
-            val item = currentCart.find { it.offerProduct.productName == offers.productName }
+            val item = currentCart.find { it.offerProduct.id == offers.id }
             if (item != null) {
                 item.quantity++
                 _cart.value = currentCart
@@ -218,7 +220,7 @@ class MainViewModel @Inject constructor(
     fun decreaseQuantity(offers: AgroDealerOffers) {
         viewModelScope.launch {
             val currentCart = _cart.value.toMutableList()
-            val item = currentCart.find { it.offerProduct.productName == offers.productName }
+            val item = currentCart.find { it.offerProduct.id == offers.id }
             if (item != null) {
                 if (item.quantity > 1) {
                     item.quantity--
@@ -235,7 +237,7 @@ class MainViewModel @Inject constructor(
     fun removeFromCart(offers: AgroDealerOffers) {
         viewModelScope.launch {
             val currentCart = _cart.value.toMutableList()
-            currentCart.removeAll { it.offerProduct.productImageResId == offers.productImageResId}
+            currentCart.removeAll { it.offerProduct.id == offers.id}
             _cart.value = currentCart
         }
     }
@@ -247,7 +249,7 @@ class MainViewModel @Inject constructor(
     }
 }
 
-// UI State for managing FarmProduce State...
+// UI State for managing FarmProduce State
 data class FarmProduceState(
     val isLoading: Boolean = false,
     val error: String? = null,

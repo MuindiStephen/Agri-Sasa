@@ -50,6 +50,9 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:padding="4dp"
                 android:text="30% off"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:selectableItemBackground"
                 android:textStyle="bold"
                 android:textColor="@color/light_blue"
                 android:textSize="8dp" />

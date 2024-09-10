@@ -3,31 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_gray"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.main.SuccessfulPaymentFragment">
 
    <com.airbnb.lottie.LottieAnimationView
        android:id="@+id/lottieSuccessfulPayment"
-       android:layout_width="350dp"
-       android:layout_height="350dp"
+       android:layout_width="180dp"
+       android:layout_height="180dp"
+       android:layout_marginTop="@dimen/_32dp"
        app:lottie_rawRes="@raw/ic_success"
-       app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintHorizontal_bias="0.5"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintVertical_bias="0.15"/>
+       app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView56"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Payment Successful!"
+        android:text="Payment Successful"
         android:textSize="22sp"
         android:letterSpacing="0.03"
         android:textColor="@color/textColor"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintEnd_toEndOf="@+id/lottieSuccessfulPayment"
         app:layout_constraintStart_toStartOf="@+id/lottieSuccessfulPayment"
         app:layout_constraintTop_toBottomOf="@+id/lottieSuccessfulPayment" />
@@ -37,26 +37,171 @@
         android:id="@+id/buttonPrintReceipt"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginStart="@dimen/_16dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:enabled="false"
         android:text="Print Receipt"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGoHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginEnd="@dimen/_16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView56" />
+         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonGoHome"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginStart="@dimen/_16dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/_16dp"
         android:text="Go Home"
+        android:foreground="?android:selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginBottom="@dimen/_32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginEnd="@dimen/_16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPrintReceipt" />
+/>
+    <TextView
+        android:id="@+id/textViewAccountID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank you customer,"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+ <TextView
+     android:id="@+id/textView140"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="@dimen/_2dp"
+     android:fontFamily="@font/montserrat_medium"
+     android:text="Your payment has been received and will be processed shortly."
+     android:textSize="14sp"
+     android:layout_marginStart="@dimen/_16dp"
+     android:layout_marginEnd="@dimen/_16dp"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/textViewAccountID" />
+
+ <TextView
+     android:id="@+id/textView141"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="16dp"
+     android:text="ACCOUNT ID:"
+     android:textSize="@dimen/_12sp_text_size"
+     android:fontFamily="@font/montserrat_semibold"
+     app:layout_constraintStart_toStartOf="@+id/textView140"
+     app:layout_constraintTop_toBottomOf="@+id/textView140" />
+
+ <TextView
+     android:id="@+id/textView142"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginEnd="16dp"
+     android:fontFamily="@font/montserrat_semibold"
+     android:text="+254740407070"
+     android:textSize="@dimen/_12sp_text_size"
+     app:layout_constraintBottom_toBottomOf="@+id/textView141"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintTop_toTopOf="@+id/textView141" />
+
+ <TextView
+     android:id="@+id/textView143"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:text="PAYMENT METHOD:"
+     android:textSize="@dimen/_12sp_text_size"
+     android:fontFamily="@font/montserrat_semibold"
+     app:layout_constraintStart_toStartOf="@+id/textView141"
+     app:layout_constraintTop_toBottomOf="@+id/textView141" />
+
+ <TextView
+     android:id="@+id/textView144"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:fontFamily="@font/montserrat_semibold"
+     android:text="M-PESA"
+     android:textSize="@dimen/_12sp_text_size"
+     app:layout_constraintEnd_toEndOf="@+id/textView142"
+     app:layout_constraintTop_toBottomOf="@+id/textView142" />
+
+ <TextView
+     android:id="@+id/textView145"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:fontFamily="@font/montserrat_semibold"
+     android:text="DATE:"
+     android:textSize="@dimen/_12sp_text_size"
+     app:layout_constraintStart_toStartOf="@+id/textView143"
+     app:layout_constraintTop_toBottomOf="@+id/textView143" />
+
+ <TextView
+     android:id="@+id/textView146"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:fontFamily="@font/montserrat_semibold"
+     android:text="2024-09-10"
+     android:textSize="@dimen/_12sp_text_size"
+     app:layout_constraintEnd_toEndOf="@+id/textView144"
+     app:layout_constraintTop_toBottomOf="@+id/textView144" />
+
+ <TextView
+     android:id="@+id/textView147"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:fontFamily="@font/montserrat_semibold"
+     android:text="TRANSACTION ID:"
+     android:textSize="@dimen/_12sp_text_size"
+     app:layout_constraintStart_toStartOf="@+id/textView145"
+     app:layout_constraintTop_toBottomOf="@+id/textView145" />
+
+ <TextView
+     android:id="@+id/textView148"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:fontFamily="@font/montserrat_semibold"
+     android:text="SIA90MFGKD"
+     android:textSize="@dimen/_12sp_text_size"
+     app:layout_constraintEnd_toEndOf="@+id/textView146"
+     app:layout_constraintTop_toBottomOf="@+id/textView146" />
+
+ <TextView
+     android:id="@+id/textView149"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:text="AMOUNT"
+     android:textSize="@dimen/_12sp_text_size"
+     android:fontFamily="@font/montserrat_semibold"
+     app:layout_constraintStart_toStartOf="@+id/textView147"
+     app:layout_constraintTop_toBottomOf="@+id/textView147" />
+
+ <TextView
+     android:id="@+id/textView150"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="8dp"
+     android:text="Kes. 2000"
+     android:textSize="@dimen/_12sp_text_size"
+     android:fontFamily="@font/montserrat_semibold"
+     app:layout_constraintEnd_toEndOf="@+id/textView148"
+     app:layout_constraintTop_toBottomOf="@+id/textView148" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

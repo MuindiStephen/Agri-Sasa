@@ -14,9 +14,12 @@ data class AgroDealerData(
     val longitude:Double
 )
 
-
+/**
+ * Agro-Dealer
+ */
 @Parcelize
 data class AgroDealer(
+    val id: Int,
     val name: String,
     val phone: String,
     val email: String,
@@ -30,11 +33,15 @@ data class AgroDealer(
     val offers: List<AgroDealerOffers>
 ) : Parcelable
 
+/**
+ * Agro-Dealer Offers
+ */
 @Parcelize
 data class AgroDealerOffers(
+    val id: Int,
     var productImageResId: Int,
     val productName: String,
-    val originalPrice: String,
-    val discountedPrice: String,
+    val originalPrice: Double,
+    val discountedPrice: Double,
     val discountPercentage: String,
 ) : Parcelable

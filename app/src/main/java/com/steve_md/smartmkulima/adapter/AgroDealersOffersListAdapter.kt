@@ -21,8 +21,8 @@ class AgroDealersOffersListAdapter(private val onItemClicked : (agrodealerOffers
             binding.imageViewProductFarmInputName.setImageResource(offer.productImageResId)
             binding.textViewProductName.text = offer.productName
             binding.textViewDiscountPercentage.text = offer.discountPercentage
-            binding.textViewOriginalPrice.text = offer.originalPrice
-            binding.textViewProductPriceDiscounted.text = offer.discountedPrice
+            binding.textViewOriginalPrice.text = offer.originalPrice.toString()
+            binding.textViewProductPriceDiscounted.text = offer.discountedPrice.toString()
         }
     }
 

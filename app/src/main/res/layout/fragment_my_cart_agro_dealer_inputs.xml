@@ -15,7 +15,7 @@
     android:layout_height="match_parent">
 
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarMyCart"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -132,5 +132,18 @@
         android:layout_marginBottom="@dimen/_16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView138" />
+
+    <TextView
+        android:id="@+id/noCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No carts found"
+        android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="@dimen/_14sp_text_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
