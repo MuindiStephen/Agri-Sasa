@@ -70,9 +70,6 @@ class FarmAnalyticsRecordListAdapter( private val onClickListener: OnClickListen
         holder.openTV.setOnClickListener {
             onClickListener.onClick(summary)
         }
-//        holder.itemView.findViewById<TextView>(com.steve_md.smartmkulima.R.id.textView125).setOnClickListener {
-//
-//        }
     }
 
     class OnClickListener(val clickListener: (summary: FarmFinancialDataSummary) -> Unit) {

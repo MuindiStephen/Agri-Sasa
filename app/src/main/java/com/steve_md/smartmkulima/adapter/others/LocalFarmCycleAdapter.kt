@@ -20,7 +20,6 @@ class LocalFarmCycleAdapter(private val onClickListener: OnClickListener) :
         override fun areItemsTheSame(oldItem: LocalFarmCycle, newItem: LocalFarmCycle): Boolean {
             return oldItem == newItem
         }
-
         override fun areContentsTheSame(oldItem: LocalFarmCycle, newItem: LocalFarmCycle): Boolean {
             return oldItem.cropName == newItem.cropName
         }
@@ -38,7 +37,6 @@ class LocalFarmCycleAdapter(private val onClickListener: OnClickListener) :
 
             // Attach the crop name to the item view for later use in the notification
             itemView.tag = cycle?.cropName
-
         }
     }
 

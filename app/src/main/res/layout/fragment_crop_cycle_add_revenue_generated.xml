@@ -14,7 +14,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:subtitle="Add A New After Harvest Record"
+        app:subtitle="New After Harvest Record"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:subtitleTextColor="@color/whitish"
         app:layout_constraintEnd_toEndOf="parent"

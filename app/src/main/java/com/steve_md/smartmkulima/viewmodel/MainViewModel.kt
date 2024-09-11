@@ -1,12 +1,16 @@
 package com.steve_md.smartmkulima.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
+import com.steve_md.smartmkulima.model.AgroDealer
+import com.steve_md.smartmkulima.model.AgroDealerOffers
 import com.steve_md.smartmkulima.model.Cycle
+import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
@@ -17,8 +21,13 @@ import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -154,10 +163,105 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    /**
+     * ADD TO CART - SUPPLIES / AGRO-DEALERS
+     */
+    private val _cart = MutableStateFlow<List<FarmInputAgroDealerCartItem>>(emptyList())
+    val cart: StateFlow<List<FarmInputAgroDealerCartItem>>
+        get() =_cart.asStateFlow()
 
+
+    // Adding the AgroDealer Deal to cart
+    fun addToCart(agroDealerOffers: AgroDealerOffers) {
+        viewModelScope.launch {
+            val currentCart = _cart.value.toMutableList()
+            val existingItem = currentCart.find {
+                it.offerProduct.id == agroDealerOffers.id
+            }
+            if (existingItem != null) {
+                existingItem.quantity++
+                Timber.tag("MainViewModel-CART")
+                    .d("%s%s", "Increased quantity for " + agroDealerOffers.productName + ". New quantity: ", existingItem.quantity)
+            } else {
+               currentCart.add(FarmInputAgroDealerCartItem(agroDealerOffers))
+                Timber.tag("MainViewModel-CART")
+                    .d("Added New Item To Cart: %s", agroDealerOffers.productName)
+                Timber.tag("MainViewModel-CART-value-log1").d(_cart.value.toString())
+                Timber.tag("MainViewModel-CART-value-log2").d(cart.value.toString())
+                Timber.tag("MainViewModel-CART-value-log3").d(currentCart.toString())
+
+            }
+            _cart.value = currentCart
+
+            Timber.tag("X-MainViewModel-CART-value-logA").d(_cart.value.toString())
+            Timber.tag("Y-MainViewModel-CART-value-logB").d(cart.value.toString())
+            Timber.tag("Z-MainViewModel-CART-value-logC").d(currentCart.toString())
+
+            logCartContents()
+        }
+    }
+
+
+    // Log cart contents...
+    private fun logCartContents() {
+        Timber.tag("MainViewModel-CART").d("Current cart contents:")
+        _cart.value.forEach { item ->
+            Timber.tag("MainViewModel-CART")
+                .d("%s%s", item.offerProduct.productName + " - Quantity: ", item.quantity)
+        }
+    }
+
+    // Getting Cart count
+    fun getCartItemCount(): Int {
+        return _cart.value.sumOf { it.quantity }
+    }
+
+    // Increasing Cart Quantity Items
+    fun increaseQuantity(offers: AgroDealerOffers) {
+        viewModelScope.launch {
+            val currentCart = _cart.value.toMutableList()
+            val item = currentCart.find { it.offerProduct.id == offers.id }
+            if (item != null) {
+                item.quantity++
+                _cart.value = currentCart
+            }
+        }
+    }
+
+    // Decreasing Cart Quantity Items
+    fun decreaseQuantity(offers: AgroDealerOffers) {
+        viewModelScope.launch {
+            val currentCart = _cart.value.toMutableList()
+            val item = currentCart.find { it.offerProduct.id == offers.id }
+            if (item != null) {
+                if (item.quantity > 1) {
+                    item.quantity--
+                } else {
+                    currentCart.remove(item)
+                }
+                _cart.value = currentCart
+            }
+        }
+    }
+
+
+    // Removing Cart Items
+    fun removeFromCart(offers: AgroDealerOffers) {
+        viewModelScope.launch {
+            val currentCart = _cart.value.toMutableList()
+            currentCart.removeAll { it.offerProduct.id == offers.id}
+            _cart.value = currentCart
+        }
+    }
+
+
+    // Clearing Items
+    fun clearCart() {
+        _cart.value = emptyList()
+    }
 }
 
-// UI State
+// UI State for managing FarmProduce State
 data class FarmProduceState(
     val isLoading: Boolean = false,
     val error: String? = null,

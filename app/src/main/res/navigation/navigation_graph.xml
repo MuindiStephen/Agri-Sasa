@@ -559,6 +559,9 @@
         <argument
             android:name="agrodealer"
             app:argType="com.steve_md.smartmkulima.model.AgroDealer" />
+        <action
+            android:id="@+id/action_viewAgroDealerInDetailFragment_to_myCartAgroDealerInputsFragment"
+            app:destination="@id/myCartAgroDealerInputsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewFarmFieldFragment"
@@ -669,6 +672,15 @@
         <argument
             android:name="farm_financial_record_summary"
             app:argType="com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary" />
+    </fragment>
+    <fragment
+        android:id="@+id/myCartAgroDealerInputsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.MyCartAgroDealerInputsFragment"
+        android:label="fragment_my_cart_agro_dealer_inputs"
+        tools:layout="@layout/fragment_my_cart_agro_dealer_inputs" >
+        <action
+            android:id="@+id/action_myCartAgroDealerInputsFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
 
 

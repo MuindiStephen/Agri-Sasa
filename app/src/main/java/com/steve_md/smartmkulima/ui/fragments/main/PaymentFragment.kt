@@ -1,14 +1,18 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
@@ -28,6 +32,7 @@ import com.steve_md.smartmkulima.utils.Constants.CALLBACKURL
 import com.steve_md.smartmkulima.utils.Constants.PARTYB
 import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,12 +53,13 @@ import java.util.*
 @AndroidEntryPoint
 class PaymentFragment : Fragment(), View.OnClickListener {
 
-
     private var mApiClient: DarajaApiClient? = null
 
-    var mAmount: EditText? = null
-    var mPhone: EditText? = null
-    var mPay: Button? = null
+    private var mAmount: EditText? = null
+    private var mPhone: EditText? = null
+    private var mPay: Button? = null
+
+    private val clearCartViewModel : MainViewModel by activityViewModels()
 
     private lateinit var binding: FragmentPaymentBinding
     override fun onCreateView(
@@ -67,6 +73,20 @@ class PaymentFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            showBackPressedDialog()
+        }
+
+
+        // Retrieve the total price from the arguments
+        val totalPrice = arguments?.getInt("TOTAL_PRICE") ?: 0
+
+        binding.inputAmountToPay.apply {
+            setText(totalPrice.toString())
+            isEnabled = false // Disable the input to make it un-editable
+        }
 
         mAmount = view.findViewById(R.id.inputAmountToPay)
         mPhone = view.findViewById(R.id.inputPhoneNumber)
@@ -107,8 +127,8 @@ class PaymentFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v === mPay) {
 
+        if (v === mPay) {
             val phoneNumber = mPhone!!.text.toString()
             val amount = mAmount!!.text.toString()
             performSTKPush(phoneNumber, amount)
@@ -146,7 +166,18 @@ class PaymentFragment : Fragment(), View.OnClickListener {
 
                             toast("Response : ${response.body().toString()}")
 
-                            navigateToDeliveryScreen()
+                            val bundle = Bundle()
+                            bundle.putString("PHONE_NUMBER",phoneNumber)
+                            bundle.putString("AMOUNT",amount)
+
+                            // clearTheCart
+                            clearCartViewModel.clearCart()
+
+                            findNavController().navigate(
+                                R.id.action_paymentFragment_to_successfulPaymentFragment,
+                                bundle
+                            )
+
 
                             val timestamp = System.currentTimeMillis()
                             val formattedDate = DateFormat.formatDate(timestamp)
@@ -187,9 +218,25 @@ class PaymentFragment : Fragment(), View.OnClickListener {
             })
     }
 
+
+    private fun showBackPressedDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Exit Payment")
+            .setMessage("Do you want to go back? Your payment may not be completed.")
+            .setPositiveButton("Yes") { dialog, which ->
+                findNavController().popBackStack()
+            }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
+    /*
     private fun navigateToDeliveryScreen() {
         findNavController().navigate(R.id.action_paymentFragment_to_successfulPaymentFragment)
+
     }
+
+     */
 
     companion object {
         val httpException: HttpException? = null

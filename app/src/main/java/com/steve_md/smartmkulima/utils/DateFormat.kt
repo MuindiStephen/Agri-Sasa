@@ -33,6 +33,14 @@ object DateFormat {
         return sdf.format(cal.time)
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun getCurrentDate(): String? {
+        val cal = Calendar.getInstance()
+        val sdf = SimpleDateFormat("d MMM yyyy")
+        return sdf.format(cal.time)
+    }
+
+
     fun Date.minusDays(days: Int): Date {
         val calendar = Calendar.getInstance()
         calendar.time = this
