@@ -12,6 +12,7 @@ import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
@@ -31,6 +32,7 @@ import com.steve_md.smartmkulima.utils.Constants.CALLBACKURL
 import com.steve_md.smartmkulima.utils.Constants.PARTYB
 import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,6 +58,8 @@ class PaymentFragment : Fragment(), View.OnClickListener {
     private var mAmount: EditText? = null
     private var mPhone: EditText? = null
     private var mPay: Button? = null
+
+    private val clearCartViewModel : MainViewModel by activityViewModels()
 
     private lateinit var binding: FragmentPaymentBinding
     override fun onCreateView(
@@ -165,6 +169,9 @@ class PaymentFragment : Fragment(), View.OnClickListener {
                             val bundle = Bundle()
                             bundle.putString("PHONE_NUMBER",phoneNumber)
                             bundle.putString("AMOUNT",amount)
+
+                            // clearTheCart
+                            clearCartViewModel.clearCart()
 
                             findNavController().navigate(
                                 R.id.action_paymentFragment_to_successfulPaymentFragment,

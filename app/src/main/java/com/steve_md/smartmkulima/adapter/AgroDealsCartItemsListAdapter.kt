@@ -33,7 +33,7 @@ class AgroDealsCartItemsListAdapter (private val onClickListener: OnClickListene
         @SuppressLint("SetTextI18n")
         fun bind(offerAddedToCart: FarmInputAgroDealerCartItem?) {
             binding.textViewProductName.text = offerAddedToCart?.offerProduct?.productName
-            binding.textViewProductPriceAfterDiscount.text = offerAddedToCart?.offerProduct?.discountedPrice.toString()
+            binding.textViewProductPriceAfterDiscount.text = "Kes. "+offerAddedToCart?.offerProduct?.discountedPrice.toString()
             binding.textViewDiscountPercentage.text = offerAddedToCart?.offerProduct?.discountPercentage
 
             Glide.with(binding.imageViewProductFarmInputName)

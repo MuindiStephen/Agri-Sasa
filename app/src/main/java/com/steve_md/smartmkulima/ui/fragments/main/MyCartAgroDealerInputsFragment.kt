@@ -121,9 +121,9 @@ class MyCartAgroDealerInputsFragment : Fragment() {
 
                     Log.d("RecyclerViewVisibility", "RecyclerView isVisible: ${binding.recyclerView4.isVisible}")
 
-                    binding.textViewSubTotal.text = String.format("%.2f",totalCheckoutPrice)
+                    binding.textViewSubTotal.text = "Kes. " + String.format("%.2f",totalCheckoutPrice)
                     val checkoutValueIncludingFees = totalCheckoutPrice + 200.toDouble()
-                    binding.textView139.text = String.format("%.2f",checkoutValueIncludingFees)
+                    binding.textView139.text = "Kes. " + String.format("%.2f",checkoutValueIncludingFees)
 
                     Log.d("MyCartCheckout-AgroDeals", "Cart items: ${cartItems.size}")
                     cartItems.forEach { item ->
@@ -133,7 +133,7 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                     binding.buttonCheckoutCartItems.isEnabled = true
 
                     val bundle = Bundle().apply {
-                        putInt("TOTAL_PRICE", totalCheckoutPrice.toInt())
+                        putInt("TOTAL_PRICE", checkoutValueIncludingFees.toInt())
                     }
                     binding.buttonCheckoutCartItems.setOnClickListener {
                         findNavController().navigate(R.id.paymentFragment,bundle)
