@@ -84,7 +84,6 @@ class MyCartAgroDealerInputsFragment : Fragment() {
 
         Timber.tag(this@MyCartAgroDealerInputsFragment.toString())
             .d("Adapter has %d items", cartAdapter.itemCount)
-
     }
 
 
