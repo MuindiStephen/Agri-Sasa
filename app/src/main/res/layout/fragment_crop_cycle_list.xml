@@ -185,7 +185,7 @@
         android:id="@+id/cropNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
+        android:layout_marginStart="18dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Crop"
         android:letterSpacing="0.10"

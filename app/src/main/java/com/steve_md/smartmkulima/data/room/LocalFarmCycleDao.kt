@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface LocalFarmCycleDao {
 
+    // Updating the crop cycle
     @Insert
     suspend fun insertLocalFarmCycle(localFarmCycle: LocalFarmCycle)
 
