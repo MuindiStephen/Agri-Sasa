@@ -59,22 +59,23 @@ class MyCartAgroDealerInputsFragment : Fragment() {
 
     private fun setUpRecyclerViewAndCart() {
 
-        cartAdapter = AgroDealsCartItemsListAdapter(AgroDealsCartItemsListAdapter.OnClickListener{ cart: FarmInputAgroDealerCartItem ->
-            Timber.i("Clicked: ${cart.offerProduct.productName}")
-
-            // X remove item from cart
-            viewModel.removeFromCart(cart.offerProduct)
-            Timber.i("Item removed: ${viewModel.removeFromCart(cart.offerProduct)}")
-
-            // (+) increasing quantity.
-            view?.findViewById<ImageButton>(R.id.imageButtonIncrease)?.setOnClickListener {
-                viewModel.increaseQuantity(cart.offerProduct)
-            }
-            // (-) decreasing quantity.
-            view?.findViewById<ImageButton>(R.id.imageButtonDecrease)?.setOnClickListener {
-                viewModel.decreaseQuantity(cart.offerProduct)
-            }
-        })
+        cartAdapter = AgroDealsCartItemsListAdapter(
+            AgroDealsCartItemsListAdapter.OnClickListener(
+                clickListener = { cart: FarmInputAgroDealerCartItem ->
+                    Timber.i("Clicked: ${cart.offerProduct.productName}")
+                    viewModel.removeFromCart(cart.offerProduct)
+                    Timber.i("Item removed: ${viewModel.removeFromCart(cart.offerProduct)}")
+                },
+                increaseQuantity = { cart ->
+                    viewModel.increaseQuantity(cart.offerProduct)
+                    loadCartItemsAndCalculateCheckout()
+                },
+                decreaseQuantity = { cart ->
+                    viewModel.decreaseQuantity(cart.offerProduct)
+                    loadCartItemsAndCalculateCheckout()
+                }
+            )
+        )
 
         binding.recyclerView4.apply {
             layoutManager = LinearLayoutManager(requireContext())

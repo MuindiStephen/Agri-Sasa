@@ -30,6 +30,9 @@ class AgroDealsCartItemsListAdapter (private val onClickListener: OnClickListene
         RecyclerView.ViewHolder(binding.root) {
 
             val btnRemoveItemFromCart = binding.buttonRemoveCartItem
+        val btnIncreaseQ = binding.imageButtonIncrease
+        val btnDecreaseQ = binding.imageButtonDecrease
+
         @SuppressLint("SetTextI18n")
         fun bind(offerAddedToCart: FarmInputAgroDealerCartItem?) {
             binding.textViewProductName.text = offerAddedToCart?.offerProduct?.productName
@@ -57,9 +60,25 @@ class AgroDealsCartItemsListAdapter (private val onClickListener: OnClickListene
         holder.btnRemoveItemFromCart.setOnClickListener {
             onClickListener.onClick(offerAddedToCart)
         }
+
+        holder.btnIncreaseQ.setOnClickListener {
+            onClickListener.onIncreaseQuantity(offerAddedToCart)
+        }
+
+        holder.btnDecreaseQ.setOnClickListener {
+            onClickListener.onDecreaseQuantity(offerAddedToCart)
+        }
+
+
     }
 
-    class OnClickListener(val clickListener: (cart: FarmInputAgroDealerCartItem) -> Unit) {
+    class OnClickListener(
+        val clickListener: (cart: FarmInputAgroDealerCartItem) -> Unit,
+        val increaseQuantity: (cartItem: FarmInputAgroDealerCartItem) -> Unit,
+        val decreaseQuantity: (cartItem: FarmInputAgroDealerCartItem) -> Unit
+    ) {
         fun onClick(cart: FarmInputAgroDealerCartItem) = clickListener(cart)
+        fun onIncreaseQuantity(cart: FarmInputAgroDealerCartItem) = increaseQuantity(cart)
+        fun onDecreaseQuantity(cart: FarmInputAgroDealerCartItem) = decreaseQuantity(cart)
     }
 }
