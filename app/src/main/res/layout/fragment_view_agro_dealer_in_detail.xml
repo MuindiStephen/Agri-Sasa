@@ -93,13 +93,15 @@
 
     <TextView
         android:id="@+id/textView94"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/_16dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Hurry up now and get hot deals we are offering \nfor every Agricultural input with 30% discounted \nprice"
+        android:text="Hurry up now and get hot deals we are offering for every Agricultural input with 30% discounted price"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sp_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView92"
         app:layout_constraintTop_toBottomOf="@+id/textViewAgroDealerCategories" />
 

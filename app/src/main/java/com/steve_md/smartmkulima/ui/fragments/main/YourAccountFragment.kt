@@ -12,9 +12,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentYourAccountBinding
 import com.steve_md.smartmkulima.ui.fragments.others.Settings
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-
+@AndroidEntryPoint
 class YourAccountFragment : Fragment() {
 
     private var _binding:FragmentYourAccountBinding? = null

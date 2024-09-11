@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -34,8 +35,8 @@ class MyCartAgroDealerInputsFragment : Fragment() {
 
     private lateinit var binding: FragmentMyCartAgroDealerInputsBinding
     private lateinit var cartAdapter: AgroDealsCartItemsListAdapter
-    private val viewModel: MainViewModel by viewModels()
-    private var cartListItems = mutableListOf<FarmInputAgroDealerCartItem>()
+    private val viewModel: MainViewModel by activityViewModels()
+   // private var cartListItems = mutableListOf<FarmInputAgroDealerCartItem>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,7 +76,14 @@ class MyCartAgroDealerInputsFragment : Fragment() {
             }
         })
 
-        binding.recyclerView4.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView4.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = cartAdapter
+        }
+
+        Timber.tag(this@MyCartAgroDealerInputsFragment.toString())
+            .d("Adapter has %d items", cartAdapter.itemCount)
+
     }
 
 
@@ -87,14 +95,16 @@ class MyCartAgroDealerInputsFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     private fun loadCartItemsAndCalculateCheckout() {
         lifecycleScope.launch {
             viewModel.cart.collect { cartItems ->
+
                 if (cartItems.isNotEmpty()) {
-                    cartListItems.clear()
-                    cartListItems.addAll(cartItems)
-                    cartAdapter.submitList(cartListItems)
+//                    cartListItems.clear()
+//                    cartListItems.addAll(cartItems)
+                    cartAdapter.submitList(cartItems)
+                    cartAdapter.notifyDataSetChanged()
                     binding.recyclerView4.adapter = cartAdapter
 
                     Timber.tag(this@MyCartAgroDealerInputsFragment.toString())
@@ -104,13 +114,16 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                     binding.noCart.isVisible = false
                     binding.recyclerView4.isVisible = true
 
-                    // calculating checkout price
+                    // Calculating checkout price
                     val totalCheckoutPrice = cartItems.sumOf {
                         it.offerProduct.discountedPrice * it.quantity
                     }
 
+                    Log.d("RecyclerViewVisibility", "RecyclerView isVisible: ${binding.recyclerView4.isVisible}")
+
                     binding.textViewSubTotal.text = String.format("%.2f",totalCheckoutPrice)
-                    binding.textView139.text = String.format("%.2f",totalCheckoutPrice.toInt() + 200)
+                    val checkoutValueIncludingFees = totalCheckoutPrice + 200.toDouble()
+                    binding.textView139.text = String.format("%.2f",checkoutValueIncludingFees)
 
                     Log.d("MyCartCheckout-AgroDeals", "Cart items: ${cartItems.size}")
                     cartItems.forEach { item ->

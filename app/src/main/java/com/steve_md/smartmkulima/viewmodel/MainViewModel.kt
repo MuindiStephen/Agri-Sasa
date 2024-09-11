@@ -26,6 +26,8 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -178,14 +180,23 @@ class MainViewModel @Inject constructor(
             }
             if (existingItem != null) {
                 existingItem.quantity++
-                Timber.tag("MainViewModel")
+                Timber.tag("MainViewModel-CART")
                     .d("%s%s", "Increased quantity for " + agroDealerOffers.productName + ". New quantity: ", existingItem.quantity)
             } else {
-                currentCart.add(FarmInputAgroDealerCartItem(agroDealerOffers))
-                Timber.tag("MainViewModel")
-                    .d("Added new item to cart: %s", agroDealerOffers.productName)
+               currentCart.add(FarmInputAgroDealerCartItem(agroDealerOffers))
+                Timber.tag("MainViewModel-CART")
+                    .d("Added New Item To Cart: %s", agroDealerOffers.productName)
+                Timber.tag("MainViewModel-CART-value-log1").d(_cart.value.toString())
+                Timber.tag("MainViewModel-CART-value-log2").d(cart.value.toString())
+                Timber.tag("MainViewModel-CART-value-log3").d(currentCart.toString())
+
             }
             _cart.value = currentCart
+
+            Timber.tag("X-MainViewModel-CART-value-logA").d(_cart.value.toString())
+            Timber.tag("Y-MainViewModel-CART-value-logB").d(cart.value.toString())
+            Timber.tag("Z-MainViewModel-CART-value-logC").d(currentCart.toString())
+
             logCartContents()
         }
     }
@@ -193,9 +204,10 @@ class MainViewModel @Inject constructor(
 
     // Log cart contents...
     private fun logCartContents() {
-        Log.d("ProductViewModel", "Current cart contents:")
+        Timber.tag("MainViewModel-CART").d("Current cart contents:")
         _cart.value.forEach { item ->
-            Log.d("ProductViewModel", "${item.offerProduct.productName} - Quantity: ${item.quantity}")
+            Timber.tag("MainViewModel-CART")
+                .d("%s%s", item.offerProduct.productName + " - Quantity: ", item.quantity)
         }
     }
 

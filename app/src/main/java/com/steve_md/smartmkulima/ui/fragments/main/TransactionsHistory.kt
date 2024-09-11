@@ -13,11 +13,13 @@ import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.data.room.TransactionDao
 import com.steve_md.smartmkulima.databinding.FragmentTransactionsHistoryBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
+@AndroidEntryPoint
 class TransactionsHistory : Fragment() {
 
     private lateinit var binding:FragmentTransactionsHistoryBinding

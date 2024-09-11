@@ -1,7 +1,7 @@
 package com.steve_md.smartmkulima.model
 
 /**
- * The Cart item
+ * The Cart item for Agricultural inputs
  */
 data class FarmInputAgroDealerCartItem(
     val offerProduct: AgroDealerOffers,

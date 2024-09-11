@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,15 +17,17 @@ import com.steve_md.smartmkulima.databinding.FragmentViewAgroDealerInDetailBindi
 import com.steve_md.smartmkulima.model.AgroDealerOffers
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Viewing Agro-Dealer in Detail
  */
+@AndroidEntryPoint
 class ViewAgroDealerInDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentViewAgroDealerInDetailBinding
     private val args: ViewAgroDealerInDetailFragmentArgs by navArgs()
-    private val viewModel:MainViewModel by viewModels()
+    private val viewModel:MainViewModel by activityViewModels()
 
     private val agroDealersOffersListAdapter by lazy {
         AgroDealersOffersListAdapter { agrodealerOffer ->
@@ -37,7 +40,7 @@ class ViewAgroDealerInDetailFragment : Fragment() {
     private fun onOfferClicked(agrodealerOffer: AgroDealerOffers) {
         viewModel.addToCart(agrodealerOffer)
         displaySnackBar("Item Added To Cart.")
-       // findNavController().navigate()
+        findNavController().navigate(R.id.myCartAgroDealerInputsFragment)
     }
 
     override fun onCreateView(

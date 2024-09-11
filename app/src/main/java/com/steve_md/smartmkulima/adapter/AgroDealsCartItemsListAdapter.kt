@@ -18,11 +18,11 @@ class AgroDealsCartItemsListAdapter (private val onClickListener: OnClickListene
     : ListAdapter<FarmInputAgroDealerCartItem, AgroDealsCartItemsListAdapter.MyViewHolder>(MyDiffUtil) {
     object MyDiffUtil : DiffUtil.ItemCallback<FarmInputAgroDealerCartItem>() {
         override fun areItemsTheSame(oldItem: FarmInputAgroDealerCartItem, newItem: FarmInputAgroDealerCartItem): Boolean {
-            return oldItem == newItem
+            return oldItem.offerProduct.id == newItem.offerProduct.id
         }
 
         override fun areContentsTheSame(oldItem: FarmInputAgroDealerCartItem, newItem: FarmInputAgroDealerCartItem): Boolean {
-            return oldItem.offerProduct.id == newItem.offerProduct.id
+            return oldItem == newItem
         }
 
     }

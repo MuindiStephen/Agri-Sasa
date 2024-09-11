@@ -121,22 +121,6 @@ class AutoCreateCropCycleFragment : Fragment() {
             }
         }
 
-//        binding.imageViewSelectFarm.setOnClickListener {
-//            binding.imageViewSelectFarm
-//                .animate()
-//                .rotation(180f)
-//                .setDuration(200)
-//                .withEndAction {
-//                    binding.imageViewSelectFarm
-//                        .animate()
-//                        .rotation(0f)
-//                        .setDuration(200)
-//                        .start()
-//                }
-//                .start()
-//            displaySnackBar("No Farm Found, Please enter.")
-//        }
-
         // Setting up Img and PopUpMenu
         binding.imageView21.setOnClickListener {
 

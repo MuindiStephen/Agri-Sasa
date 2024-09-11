@@ -346,17 +346,17 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             AgroDealerOffers(
              1,R.drawable.ic_easygro_calcium,
             "EasyGro Calcium fertilizer",
-            "2500",
-            "1750",
-            "30%")
+            2500.0,
+            1750.0,
+            "30% off")
         )
         add(
             AgroDealerOffers(
             2, R.drawable.nimbecidine,
             "Nimbecidine bio-insecticide",
-            "1500",
-            "1050",
-            "30%")
+            1500.0,
+            1050.0,
+            "30% off")
         )
     }
 
@@ -420,18 +420,18 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
 
         googleMap.clear()
 
-        mapView.onDestroy()
+        //mapView.onDestroy()
 
         googleMap.setOnMapClickListener(null)
         googleMap.setOnMarkerClickListener(null)
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        mapView.onDestroy()
-        googleMap.clear()
-        googleMap.setOnMarkerClickListener(null)
-        googleMap.setOnMapClickListener(null)
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        mapView.onDestroy()
+//        googleMap.clear()
+//        googleMap.setOnMarkerClickListener(null)
+//        googleMap.setOnMapClickListener(null)
+//    }
 
     override fun onLowMemory() {
         super.onLowMemory()
