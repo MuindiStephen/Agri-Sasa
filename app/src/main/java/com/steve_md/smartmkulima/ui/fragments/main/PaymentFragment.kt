@@ -47,7 +47,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Initiates Mpesa STK push for payment based on inputs
+ * Initiates MPESA STK push for payment based on inputs
  * @param phone
  * @param amount
  */
@@ -116,7 +116,11 @@ class PaymentFragment : Fragment(), View.OnClickListener {
 
     private fun observeViewModelForMpesaListeners() {
         paymentViewModel.stkPushResponse.observe(viewLifecycleOwner) { result ->
+            Timber.tag(TAG)
+                .e("(MPESA) submitted POST request to the API")
             result.onSuccess { response ->
+                Timber.tag(TAG)
+                    .e("MPESA-REQUEST-SUCCEEDED \t ${response.body.stkCallback}")
                 handleSTKPushSuccess(response)
             }.onFailure { error ->
                 displaySnackBar("Your Payment Request Failed. ${error.localizedMessage}")
@@ -129,7 +133,7 @@ class PaymentFragment : Fragment(), View.OnClickListener {
     private fun handleSTKPushSuccess(response: StkPushSuccessResponse) {
 
         Timber.tag(TAG)
-            .e("MPESA-RESPONSE==$response")
+            .e("M-PESA-RESPONSE==$response")
 
         displaySnackBar("Payment Request Successful.")
 
@@ -139,8 +143,8 @@ class PaymentFragment : Fragment(), View.OnClickListener {
                 paymentViewModel.savePaymentTransactionToDB(amount = mAmount!!.text.toString())
             }
         }
-        displaySnackBar("Saved transaction successfully.")
-        Timber.e("Post submitted to the API")
+
+        Timber.d("Transaction Saved Successfully.")
 
         // Clear the cart and navigate to success fragment
         clearCartViewModel.clearCart()

@@ -20,6 +20,7 @@ import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -46,8 +47,8 @@ class MainViewModel @Inject constructor(
     private val _produce = MutableSharedFlow<FarmProduceState>()
     val produce: SharedFlow<FarmProduceState> = _produce
 
-
     val allCycles: LiveData<List<LocalFarmCycle>> = repository.getAllCycles()
+
 
     fun addCropCycle(cycle: LocalFarmCycle) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
@@ -255,6 +256,20 @@ class MainViewModel @Inject constructor(
     // Clearing Items
     fun clearCart() {
         _cart.value = emptyList()
+    }
+
+
+
+    // Ui SwipeToRefresh
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> get() = _isRefreshing.asStateFlow()
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.emit(true)
+            delay(1000)
+            _isRefreshing.emit(false)
+        }
     }
 }
 
