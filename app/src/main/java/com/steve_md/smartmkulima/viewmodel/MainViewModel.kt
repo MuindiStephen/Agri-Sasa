@@ -63,9 +63,6 @@ class MainViewModel @Inject constructor(
         getAllFarmProduce()
     }
 
-
-
-
     private fun getAllFarmProduce() {
         viewModelScope.launch {
             _produce.emit(

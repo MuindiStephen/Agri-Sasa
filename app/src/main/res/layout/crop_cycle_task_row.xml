@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="1dp"
 
     android:layout_width="match_parent"
@@ -47,7 +48,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:padding="8dp"
+                android:paddingTop="8dp"
+                android:paddingStart="@dimen/_32dp"
+                android:paddingBottom="@dimen/_8dp"
+                android:layout_marginEnd="@dimen/_8dp"
                 android:text="Backup-Tomatoes Anna F1"
                 android:textSize="@dimen/_12sp_text_size"
                 android:textColor="@color/textColor"
@@ -87,13 +91,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4dp"
+                android:layout_marginEnd="@dimen/_12dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:padding="@dimen/_8dp"
-                android:layout_marginEnd="@dimen/_12dp"
                 android:text="View More >>"
-                android:textSize="10dp"
+                android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dateForCycle" />
+
+            <TextView
+                android:id="@+id/textViewCropCycleStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1dp"
+                android:layout_marginEnd="@dimen/_32dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:padding="@dimen/_8dp"
+                android:text="Status: In Progress"
+                android:textColor="@color/main"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/viewCycleMoreDetailsTV"
+                app:layout_constraintEnd_toStartOf="@+id/viewCycleMoreDetailsTV"
+                app:layout_constraintStart_toStartOf="@+id/cycleData"
+                app:layout_constraintTop_toTopOf="@+id/viewCycleMoreDetailsTV" />
 
             <!--            <TextView-->
 <!--                android:id="@+id/startDay"-->

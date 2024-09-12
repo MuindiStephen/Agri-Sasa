@@ -8,11 +8,11 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "localcycle")
 @Parcelize
 data class LocalFarmCycle(
-     val farmName: String,
-     @PrimaryKey val cropName: String,
-     val startDate: String,
-     val tasks: List<LocalTasks>,
-     val status: String = "Upcoming"  // Crop Cycle Statuses => In Progress, Upcoming, Overdue, Done
+    val farmName: String,
+    @PrimaryKey val cropName: String,
+    val startDate: String,
+    val tasks: List<LocalTasks>,
+    var status: String = "Upcoming"  // Crop Cycle Statuses => In Progress, Upcoming, Overdue, Done
 ) : Parcelable
 
 

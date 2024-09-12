@@ -24,13 +24,15 @@
         android:id="@+id/ShowCropName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_semibold"
+        android:padding="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_32dp"
+        android:layout_marginStart="@dimen/_16dp"
         android:text="Crop: Backup-Tomatoes Anna F1"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:padding="@dimen/_8dp"
-        android:layout_marginTop="40dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +45,7 @@
         android:fontFamily="@font/montserrat_semibold"
         android:text="Start day: 2024-04-04"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:layout_marginTop="@dimen/_4dp"
         app:layout_constraintStart_toStartOf="@+id/ShowCropName"
         app:layout_constraintTop_toBottomOf="@+id/ShowCropName" />
@@ -100,7 +102,7 @@
         android:textStyle="bold"
         android:layout_marginStart="26dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/ShowStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/textView135"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -163,5 +165,36 @@
         app:layout_constraintBottom_toBottomOf="@+id/spinnerStatusOfFarmCycle"
         app:layout_constraintEnd_toStartOf="@+id/spinnerStatusOfFarmCycle"
         app:layout_constraintTop_toTopOf="@+id/spinnerStatusOfFarmCycle" />
+
+    <TextView
+        android:id="@+id/textView135"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:padding="@dimen/_8dp"
+        android:text="Status: In Progress"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/ShowStartDate"
+        app:layout_constraintTop_toBottomOf="@+id/ShowStartDate" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonMarkAsDoneCropCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:background="@drawable/rounded_corner"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:foreground="?selectableItemBackgroundBorderless"
+        android:text="Mark Done"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView135"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        app:layout_constraintStart_toEndOf="@+id/textView135"
+        app:layout_constraintTop_toTopOf="@+id/textView135" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
