@@ -69,6 +69,7 @@ class CropCycleFarmRecordsFragment : Fragment() {
                 findNavController().navigateUp()
             }
 
+            binding.btnClearAllRecords.isVisible = false
             // Deleting All Records or Clearing the records
             binding.btnClearAllRecords.setOnClickListener {
 

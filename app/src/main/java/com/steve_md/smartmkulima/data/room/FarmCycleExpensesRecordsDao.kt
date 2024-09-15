@@ -19,4 +19,8 @@ interface FarmCycleExpensesRecordsDao {
 
     @Query("SELECT * FROM farm_expenses_records")
     fun getAllCycleExpenses(): LiveData<List<FarmFinanceExpenseRecords>>
+
+
+    @Query("SELECT amountSpent FROM farm_expenses_records WHERE nameOfCropCycle = :cropName")
+    fun getTotalExpensesForCrop(cropName: String): LiveData<Double?>
 }

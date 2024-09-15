@@ -150,7 +150,7 @@
         android:background="@drawable/rounded_corner"
         android:entries="@array/statuses"
         android:spinnerMode="dropdown"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/textView78"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView78" />
@@ -181,6 +181,7 @@
         android:id="@+id/buttonMarkAsDoneCropCycle"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
+        android:layout_marginStart="@dimen/_4dp"
         android:background="@drawable/rounded_corner"
         android:clickable="true"
         android:focusable="true"
@@ -190,11 +191,40 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="11sp"
+        android:layout_marginEnd="@dimen/_4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView135"
+        app:layout_constraintEnd_toStartOf="@+id/buttonOpenRecordsExpensesAndRevenues"
+        app:layout_constraintTop_toTopOf="@+id/textView135" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonOpenRecordsExpensesAndRevenues"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:background="@drawable/rounded_corner"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:foreground="?selectableItemBackground"
+        android:text="Analytics"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="11sp"
         android:layout_marginStart="@dimen/_16dp"
         android:layout_marginEnd="@dimen/_16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView135"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-        app:layout_constraintStart_toEndOf="@+id/textView135"
-        app:layout_constraintTop_toTopOf="@+id/textView135" />
+        app:layout_constraintBottom_toBottomOf="@+id/buttonMarkAsDoneCropCycle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonMarkAsDoneCropCycle" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

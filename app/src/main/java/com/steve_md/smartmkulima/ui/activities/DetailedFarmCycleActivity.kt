@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleTasksAdapter
@@ -26,6 +28,8 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityDetailedFarmCycleBinding
     private val tasksAdapter by lazy { LocalFarmCycleTasksAdapter() }
+    private lateinit var navController: NavController
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +37,9 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
         binding = ActivityDetailedFarmCycleBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root) // Use the binding root instead of R.layout.activity_detailed_farm_cycle
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -79,6 +86,10 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
                 // Update Room DB status - field
                 viewModel.updateTaskStatus("Done")
             }
+
+            binding.buttonOpenRecordsExpensesAndRevenues.setOnClickListener {
+                navController.navigate(R.id.action_detailedFarmCycleActivity_to_cropCycleFinancialRecordsAnalyticsFragment2)
+            }
         }
     }
 
@@ -88,7 +99,6 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-
 
         val currentDate = LocalDate.now() // Get the current date
             val startDate = LocalDate.parse(localFarmCycle.startDate,formatter) // Parse the start date
@@ -100,11 +110,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
                 currentDate.isAfter(startDate) && currentDate.isBefore(endDate) -> "In Progress"
                 else -> localFarmCycle.status
             }
-
     }
-
-
-
     override fun onBackPressed() {
         super.onBackPressed()
         this.finish()

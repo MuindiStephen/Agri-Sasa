@@ -19,4 +19,7 @@ interface FarmCycleRevenueRecordsDao {
 
     @Query("SELECT * FROM farm_after_harvest_records")
     fun getAllCycleRevenues(): LiveData<List<FarmFinanceRevenueRecords>>
+
+    @Query("SELECT revenueAfterSales FROM farm_after_harvest_records WHERE cropCycleName = :cropName")
+    fun getTotalSalesAfterHarvestRevenues(cropName: String): LiveData<Double?>
 }

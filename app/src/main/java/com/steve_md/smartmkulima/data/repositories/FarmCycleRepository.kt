@@ -95,4 +95,15 @@ class FarmCycleRepository @Inject constructor(
         farmSummaryRecordsDao.deleteAllSummary()
     }
 
+
+    // pick the total expenses for the selected crop
+    fun getTotalExpensesForCrop(cropName: String): LiveData<Double?> {
+        return farmCycleExpensesRecordsDao.getTotalExpensesForCrop(cropName)
+    }
+
+    // pick total sales made for the selected crop
+    fun getTotalSalesForCrop(cropName: String): LiveData<Double?> {
+        return farmCycleRevenueRecordsDao.getTotalSalesAfterHarvestRevenues(cropName)
+    }
+
 }
