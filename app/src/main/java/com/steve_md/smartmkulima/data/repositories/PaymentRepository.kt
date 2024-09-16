@@ -27,7 +27,7 @@ import javax.inject.Inject
 /**
  * Repository for initiating M-PESA API ( Server Requests )
  */
-class PaymentRepository @Inject constructor(
+class PaymentRepository(
     private val apiClient: DarajaApiClient,
     database: AppDatabase
 ) {
@@ -38,16 +38,16 @@ class PaymentRepository @Inject constructor(
 
 
     // Initiating Daraja API Client
-    fun initiateDarajaApiClient() : DarajaApiClient {
-
-        apiClient.setIsDebug(true)
-
-        return DarajaApiClient(
-            consumerKey = consumerKey,
-            consumerSecret = consumerSecret,
-            environment = SANDBOX_BASE_URL
-        )
-    }
+//    fun initiateDarajaApiClient() : DarajaApiClient {
+//
+//        apiClient.setIsDebug(true)
+//
+//        return DarajaApiClient(
+//            consumerKey = consumerKey,
+//            consumerSecret = consumerSecret,
+//            environment = SANDBOX_BASE_URL
+//        )
+//    }
 
 
     // Get Access Token

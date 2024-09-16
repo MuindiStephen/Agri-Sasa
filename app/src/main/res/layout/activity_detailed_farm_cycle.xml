@@ -102,7 +102,7 @@
         android:textStyle="bold"
         android:layout_marginStart="26dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView135"
+        app:layout_constraintTop_toBottomOf="@+id/textViewComments"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -177,6 +177,20 @@
         app:layout_constraintStart_toStartOf="@+id/ShowStartDate"
         app:layout_constraintTop_toBottomOf="@+id/ShowStartDate" />
 
+    <TextView
+        android:id="@+id/textViewComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:padding="@dimen/_8dp"
+        android:visibility="gone"
+        android:textStyle="italic"
+        android:text=""
+        android:textColor="@color/main1"
+        android:textSize="@dimen/_12sp_text_size"
+        app:layout_constraintStart_toStartOf="@+id/textView135"
+        app:layout_constraintTop_toBottomOf="@+id/textView135" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonMarkAsDoneCropCycle"
         android:layout_width="wrap_content"
@@ -187,7 +201,7 @@
         android:focusable="true"
         android:fontFamily="@font/montserrat_medium"
         android:foreground="?selectableItemBackgroundBorderless"
-        android:text="Mark Done"
+        android:text="Change status"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="11sp"
@@ -215,16 +229,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonMarkAsDoneCropCycle" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph3"
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/nav_host_fragment2"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:navGraph="@navigation/nav_graph3"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/recyclerView"/>-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loadingStatusUpdate"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@id/loadingStatusUpdate"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/loading_status_update" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

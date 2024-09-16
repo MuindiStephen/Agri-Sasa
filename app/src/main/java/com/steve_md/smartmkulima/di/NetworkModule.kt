@@ -1,5 +1,7 @@
 package com.steve_md.smartmkulima.di
 
+import com.androidstudy.daraja.network.ApiClient
+import com.steve_md.smartmkulima.data.remote.DarajaApiClient
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.utils.Constants
 
@@ -60,4 +62,15 @@ object NetworkModule {
     fun providesApiService(retrofit: Retrofit): FarmProduceApiService {
         return retrofit.create(FarmProduceApiService::class.java)
     }
+
+//    @Singleton
+//    @Provides
+//    fun providesDarajaApiClient(): DarajaApiClient {
+//        return DarajaApiClient(
+//            consumerKey = "NgGUJ2LGJlVvjdLu8P7yDGIs6v4RmMF1114mYRUVTVOjsCii",
+//            consumerSecret = "L5Ur0sgEuGfBAB7u8ynlH0bzerD1VABt7ABASfBAozvATLKETNHGcpTieX1vzLyv",
+//            environment = Constants.SANDBOX_BASE_URL
+//        )
+//    }
+
 }

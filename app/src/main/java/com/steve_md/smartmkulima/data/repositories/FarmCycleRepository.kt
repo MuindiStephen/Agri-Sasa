@@ -51,6 +51,10 @@ class FarmCycleRepository @Inject constructor(
         localCycleDao.updateTaskStatus(status)
     }
 
+    suspend fun updateToNewCommentsCropCycle(comments: String) {
+        localCycleDao.updateToNewComments(comments)
+    }
+
     fun getAllFarmFields(): LiveData<List<NewFarmField>> {
         return farmFieldDao.getAllFarmFields()
     }
@@ -97,12 +101,12 @@ class FarmCycleRepository @Inject constructor(
 
 
     // pick the total expenses for the selected crop
-    fun getTotalExpensesForCrop(cropName: String): LiveData<Double?> {
+    fun getTotalExpensesForCrop(cropName: String): LiveData<String?> {
         return farmCycleExpensesRecordsDao.getTotalExpensesForCrop(cropName)
     }
 
     // pick total sales made for the selected crop
-    fun getTotalSalesForCrop(cropName: String): LiveData<Double?> {
+    fun getTotalSalesForCrop(cropName: String): LiveData<String?> {
         return farmCycleRevenueRecordsDao.getTotalSalesAfterHarvestRevenues(cropName)
     }
 

@@ -59,6 +59,12 @@ fun Fragment.displaySnackBar(text: String) {
         .show()
 }
 
+fun Activity.displaySnackBar(text: String) {
+    val parentLayout: View = findViewById(android.R.id.content)
+    Snackbar.make(parentLayout, text, Snackbar.LENGTH_SHORT)
+        .show()
+}
+
 inline fun <T> safeCall(action: () -> Resource<T>): Resource<T> {
     return try {
         action()

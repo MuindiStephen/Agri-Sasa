@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
@@ -33,7 +34,6 @@ import com.steve_md.smartmkulima.utils.Constants.PARTYB
 import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
-import com.steve_md.smartmkulima.viewmodel.PaymentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,19 +47,20 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Initiates MPESA STK push for payment based on inputs
+ * Initiates Mpesa STK push for payment based on inputs
  * @param phone
  * @param amount
  */
 @AndroidEntryPoint
 class PaymentFragment : Fragment(), View.OnClickListener {
 
+    private var mApiClient: DarajaApiClient? = null
+
     private var mAmount: EditText? = null
     private var mPhone: EditText? = null
     private var mPay: Button? = null
 
     private val clearCartViewModel : MainViewModel by activityViewModels()
-    private val paymentViewModel: PaymentViewModel by activityViewModels()
 
     private lateinit var binding: FragmentPaymentBinding
     override fun onCreateView(
@@ -75,9 +76,7 @@ class PaymentFragment : Fragment(), View.OnClickListener {
         (activity as AppCompatActivity).supportActionBar?.hide()
 
 
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner
-        ) {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             showBackPressedDialog()
         }
 
@@ -94,14 +93,38 @@ class PaymentFragment : Fragment(), View.OnClickListener {
         mPhone = view.findViewById(R.id.inputPhoneNumber)
         mPay = view.findViewById(R.id.pay)
 
+        val consumerKey = "NgGUJ2LGJlVvjdLu8P7yDGIs6v4RmMF1114mYRUVTVOjsCii"
+        val consumerSecret = "L5Ur0sgEuGfBAB7u8ynlH0bzerD1VABt7ABASfBAozvATLKETNHGcpTieX1vzLyv"
 
-        paymentViewModel.initiateDarajaApiClient()
+        mApiClient = DarajaApiClient(
+            consumerKey,
+            consumerSecret,
+            SANDBOX_BASE_URL
+        )
 
+        mApiClient!!.setIsDebug(true)
         mPay!!.setOnClickListener(this)
 
-        paymentViewModel.getAccessToken()
+        getAccessToken()
+    }
 
-        observeViewModelForMpesaListeners()
+    private fun getAccessToken() {
+        mApiClient!!.setGetAccessToken(true)
+        mApiClient!!.mpesaService().getAccessToken().enqueue(object :
+            Callback<AuthorizationResponse?> {
+            override fun onResponse(
+                call: Call<AuthorizationResponse?>,
+                response: Response<AuthorizationResponse?>
+            ) {
+                if (response.isSuccessful) {
+                    mApiClient!!.setAuthToken(response.body()?.accessToken)
+                }
+            }
+
+            override fun onFailure(call: Call<AuthorizationResponse?>, t: Throwable) {
+                Timber.tag(TAG).e(t.printStackTrace().toString())
+            }
+        })
     }
 
     override fun onClick(v: View?) {
@@ -109,56 +132,92 @@ class PaymentFragment : Fragment(), View.OnClickListener {
         if (v === mPay) {
             val phoneNumber = mPhone!!.text.toString()
             val amount = mAmount!!.text.toString()
-
-            paymentViewModel.performSTKPush(phoneNumber, amount)
+            performSTKPush(phoneNumber, amount)
         }
     }
 
-    private fun observeViewModelForMpesaListeners() {
-        paymentViewModel.stkPushResponse.observe(viewLifecycleOwner) { result ->
-            Timber.tag(TAG)
-                .e("(MPESA) submitted POST request to the API")
-            result.onSuccess { response ->
-                Timber.tag(TAG)
-                    .e("MPESA-REQUEST-SUCCEEDED \t ${response.body.stkCallback}")
-                handleSTKPushSuccess(response)
-            }.onFailure { error ->
-                displaySnackBar("Your Payment Request Failed. ${error.localizedMessage}")
-                Timber.e("MPESA-REQUEST-FAILED: \t" +
-                        "CAUSE OF FAILURE" + "${error.message}")
-            }
-        }
-    }
+    private fun performSTKPush(phoneNumber: String, amount: String) {
+        val timestamp = RegEx.getTimestamp()
 
-    private fun handleSTKPushSuccess(response: StkPushSuccessResponse) {
-
-        Timber.tag(TAG)
-            .e("M-PESA-RESPONSE==$response")
-
-        displaySnackBar("Payment Request Successful.")
-
-        // Save to Room DB
-        lifecycleScope.launch {
-            withContext(Dispatchers.Main) {
-                paymentViewModel.savePaymentTransactionToDB(amount = mAmount!!.text.toString())
-            }
-        }
-
-        Timber.d("Transaction Saved Successfully.")
-
-        // Clear the cart and navigate to success fragment
-        clearCartViewModel.clearCart()
-
-        val bundle = Bundle().apply {
-            putString("PHONE_NUMBER", mPhone?.text.toString())
-            putString("AMOUNT", mAmount?.text.toString())
-        }
-
-        findNavController().navigate(
-            R.id.action_paymentFragment_to_successfulPaymentFragment, bundle
+        val stkPush = StkPushRequest(
+            businessShortCode = BUSINESS_SHORT_CODE,
+            password = RegEx.getPassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp!!)!!,
+            timestamp = timestamp,
+            transactionType = Constants.TransactionType.CustomerPayBillOnline,
+            amount = amount,
+            partyA = RegEx.sanitizePhoneNumber(phoneNumber),
+            partyB = PARTYB,
+            phoneNumber = RegEx.sanitizePhoneNumber(phoneNumber),
+            callBackURL = CALLBACKURL,
+            accountReference = "LIPA NA MPESA",
+            transactionDesc = "LIPA NA MPESA C2B"
         )
-    }
 
+        mApiClient!!.setGetAccessToken(false)
+
+        mApiClient!!.mpesaService().sendPush(stkPush)
+            .enqueue(object : Callback<StkPushSuccessResponse> {
+                @SuppressLint("SimpleDateFormat")
+                override fun onResponse(
+                    call: Call<StkPushSuccessResponse>,
+                    response: Response<StkPushSuccessResponse>
+                ) {
+                    try {
+                        if (response.isSuccessful) {
+
+                            toast("Response : ${response.body().toString()}")
+
+                            val bundle = Bundle()
+                            bundle.putString("PHONE_NUMBER",phoneNumber)
+                            bundle.putString("AMOUNT",amount)
+
+                            // clearTheCart
+                            clearCartViewModel.clearCart()
+
+                            findNavController().navigate(
+                                R.id.action_paymentFragment_to_successfulPaymentFragment,
+                                bundle
+                            )
+
+
+                            val timestamp = System.currentTimeMillis()
+                            val formattedDate = DateFormat.formatDate(timestamp)
+                            // val formattedTime = DateFormat.formatTime(timestamp)
+
+                            val yourmilliseconds = System.currentTimeMillis()
+                            val sdf = SimpleDateFormat("MMM dd,yyyy HH:mm")
+                            val resultdate = Date(yourmilliseconds)
+
+
+                            val transaction =
+                                Transaction(id = 0, amount.toDouble(), sdf.format(resultdate))
+
+                            val db = Room.databaseBuilder(
+                                requireContext(), AppDatabase::class.java, "shambaapp-db"
+                            ).build()
+
+                            val transactionDao = db.transactionDao()
+
+                            lifecycleScope.launch {
+                                withContext(Dispatchers.Main) {
+                                    transactionDao.saveTransaction(transaction)
+                                }
+                            }
+                            displaySnackBar("Saved transaction successfully.")
+                            Timber.e("Post submitted to the API")
+                        } else {
+                            Timber.e("Response %s")
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+
+                override fun onFailure(call: Call<StkPushSuccessResponse>, t: Throwable) {
+                    Timber.tag(TAG).e(httpException, t.printStackTrace().toString())
+                }
+            })
+    }
 
 
     private fun showBackPressedDialog() {
@@ -172,6 +231,13 @@ class PaymentFragment : Fragment(), View.OnClickListener {
             .show()
     }
 
+    /*
+    private fun navigateToDeliveryScreen() {
+        findNavController().navigate(R.id.action_paymentFragment_to_successfulPaymentFragment)
+
+    }
+
+     */
 
     companion object {
         val httpException: HttpException? = null

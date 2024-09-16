@@ -63,6 +63,10 @@ class MainViewModel @Inject constructor(
         repository.updateTaskStatus(status)
     }
 
+    fun updateToNewCommentsCropCycleCancelled(comments: String) = viewModelScope.launch {
+        repository.updateToNewCommentsCropCycle(comments)
+    }
+
     init {
         getAllFarmProduce()
     }
@@ -183,16 +187,16 @@ class MainViewModel @Inject constructor(
     }
 
     // LiveData for total expenses and sales
-    private val _totalExpensesForCrop = MutableLiveData<Double>()
-    val totalExpenseForCrop : LiveData<Double> get() = _totalExpensesForCrop
+    private val _totalExpensesForCrop = MutableLiveData<String>()
+    val totalExpenseForCrop : LiveData<String> get() = _totalExpensesForCrop
 
 
-    private val _totalSalesForCrop = MutableLiveData<Double>()
-    val totalSalesForCrop : LiveData<Double> get() = _totalSalesForCrop
+    private val _totalSalesForCrop = MutableLiveData<String>()
+    val totalSalesForCrop : LiveData<String> get() = _totalSalesForCrop
 
 
     // LiveData to expose calculated revenue
-    val calculatedRevenue: LiveData<Double?> = MutableLiveData()
+    val calculatedRevenue: LiveData<String?> = MutableLiveData()
 
     init {
         // Observe changes in selectedCrop and fetch data accordingly
@@ -217,7 +221,7 @@ class MainViewModel @Inject constructor(
 
         viewModelScope.launch {
             repository.getTotalSalesForCrop(cropName).observeForever { sales ->
-                _totalSalesForCrop.value = sales ?: 0.0
+                _totalSalesForCrop.value = sales ?: "0.0"
             }
         }
     }
@@ -226,7 +230,7 @@ class MainViewModel @Inject constructor(
 
         viewModelScope.launch {
             repository.getTotalExpensesForCrop(cropName).observeForever { expenses ->
-                _totalExpensesForCrop.value = expenses ?: 0.0
+                _totalExpensesForCrop.value = expenses ?: "0.0"
             }
         }
 
@@ -236,7 +240,8 @@ class MainViewModel @Inject constructor(
     private fun calculateRevenue() {
         val expenses = _totalExpensesForCrop.value ?: 0.0
         val sales = _totalSalesForCrop.value ?: 0.0
-        (calculatedRevenue as MutableLiveData).value = sales - expenses
+        (calculatedRevenue as MutableLiveData).value =
+            (sales.toString().toDouble() - expenses.toString().toDouble()).toString()
     }
 
 

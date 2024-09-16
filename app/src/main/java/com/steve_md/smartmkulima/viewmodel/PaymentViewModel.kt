@@ -12,8 +12,8 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
-@HiltViewModel
-class PaymentViewModel @Inject constructor(
+
+class PaymentViewModel (
     private val paymentRepository: PaymentRepository
 ) : ViewModel() {
 
@@ -23,7 +23,7 @@ class PaymentViewModel @Inject constructor(
     // initiate DarajaApiClient
     fun initiateDarajaApiClient() {
         viewModelScope.launch {
-            paymentRepository.initiateDarajaApiClient()
+            // paymentRepository.initiateDarajaApiClient()
         }
     }
 

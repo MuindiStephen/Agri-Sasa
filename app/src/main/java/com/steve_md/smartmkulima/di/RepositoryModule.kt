@@ -52,11 +52,13 @@ object RepositoryModule {
         return AuthRepositoryImpl()
     }
 
-    @Singleton
-    @Provides
-    fun providesPaymentRepository(
-        darajaApiClient: DarajaApiClient,
-        appDatabase: AppDatabase): PaymentRepository {
-        return PaymentRepository(darajaApiClient,appDatabase)
-    }
+//    @Singleton
+//    @Provides
+//    fun providesPaymentRepository(
+//        darajaApiClient: DarajaApiClient,
+//        appDatabase: AppDatabase): PaymentRepository {
+//        return PaymentRepository(darajaApiClient,appDatabase)
+//    }
+
+
 }

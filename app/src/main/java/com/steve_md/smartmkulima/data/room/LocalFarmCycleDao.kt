@@ -27,4 +27,7 @@ interface LocalFarmCycleDao {
 
     @Query("UPDATE localcycle SET status = :status")
     suspend fun updateTaskStatus(status: String)
+
+    @Query("UPDATE localcycle SET comments = :comments ")
+    suspend fun updateToNewComments(comments: String)
 }

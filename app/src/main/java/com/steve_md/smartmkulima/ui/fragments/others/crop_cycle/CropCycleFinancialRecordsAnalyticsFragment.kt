@@ -89,7 +89,7 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
 
         // Observe calculated revenue
         viewModel.calculatedRevenue.observe(viewLifecycleOwner, Observer { revenue ->
-            binding.inputCalculatedRevenue.setText(revenue?.toString() ?: "")
+            binding.inputCalculatedRevenue.setText(revenue?.toString() ?: "0.0")
         })
 
     }
