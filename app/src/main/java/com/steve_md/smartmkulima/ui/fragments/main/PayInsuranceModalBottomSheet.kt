@@ -56,7 +56,7 @@ class PayInsuranceModalBottomSheet : BottomSheetDialogFragment() {
             displaySnackBar("Payment Method Coming Soon...")
         }
     }
-    override fun getTheme(): Int {
-        return R.style.AppTheme
-    }
+//    override fun getTheme(): Int {
+//        return R.style.AppTheme
+//    }
 }

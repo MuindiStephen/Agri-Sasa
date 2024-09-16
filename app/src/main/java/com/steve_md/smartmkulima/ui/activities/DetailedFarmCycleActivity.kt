@@ -26,6 +26,7 @@ import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleTasksAdapter
 import com.steve_md.smartmkulima.databinding.ActivityDetailedFarmCycleBinding
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleCancelledStatusCommentsFragment
+import com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.ViewCropCycleAnalyticsBottomSheetFragment
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,6 +84,9 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
             textView135.text = "Status: ${cropCycleStatus}"
             textViewComments.text = "Comments: ${localFarmCycle.comments}"
 
+            // comments are visible only when status is cancelled.
+            textViewComments.isVisible = localFarmCycle.status == "Cancelled"
+
             // Check if localFarmCycle is not null and update the adapter with tasks
             localFarmCycle.let {
                 tasksAdapter.submitList(it.tasks)
@@ -101,8 +105,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
             }
 
             binding.buttonOpenRecordsExpensesAndRevenues.setOnClickListener {
-               // navController.navigate(R.id.action_detailedFarmCycleActivity_to_cropCycleFinancialRecordsAnalyticsFragment2)
-                displaySnackBar("Coming soon.")
+                showViewCropCycleAnalyticsBottomSheet()
             }
 
         }
@@ -116,7 +119,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
             AlertDialog.Builder(this)
                 .setTitle("Change Crop Cycle status")
-                .setMessage("Choose where to cancel or mark done the crop cycle.")
+                .setMessage("Choose whether to cancel or mark done the crop cycle.")
                 .setPositiveButton("CANCEL") { _, _ ->
 
                     localFarmCycle?.status = "Cancelled"
@@ -164,6 +167,17 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
         val modal = CropCycleCancelledStatusCommentsFragment()
         supportFragmentManager.let {
             modal.show(it, CropCycleCancelledStatusCommentsFragment.TAG)
+        }
+    }
+
+    private fun showViewCropCycleAnalyticsBottomSheet() {
+        val modal = ViewCropCycleAnalyticsBottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putString("cropCycleName", binding.ShowCropName.text.toString())
+            }
+        }
+        supportFragmentManager.let {
+            modal.show(it, ViewCropCycleAnalyticsBottomSheetFragment.TAG)
         }
     }
 

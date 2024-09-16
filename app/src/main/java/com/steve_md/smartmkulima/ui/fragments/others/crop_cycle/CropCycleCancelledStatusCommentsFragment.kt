@@ -45,7 +45,7 @@ class CropCycleCancelledStatusCommentsFragment : BottomSheetDialogFragment() {
                 )
                 displaySnackBar("Added comments.")
 
-                view.findViewById<TextView>(R.id.textViewComments).isVisible = true
+                //view.findViewById<TextView>(R.id.textViewComments).isVisible = true
 
                 dismiss()
             }
@@ -76,7 +76,7 @@ class CropCycleCancelledStatusCommentsFragment : BottomSheetDialogFragment() {
         const val TAG = "CropCycleCancelledStatusCommentsBottomSheetDialogFragment"
     }
 
-    override fun getTheme(): Int {
-        return com.steve_md.smartmkulima.R.style.AppTheme
-    }
+//    override fun getTheme(): Int {
+//        return com.steve_md.smartmkulima.R.style.AppTheme
+//    }
 }
