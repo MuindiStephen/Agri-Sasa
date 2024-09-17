@@ -15,6 +15,7 @@ import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleAddNewExpensesBinding
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
+import com.steve_md.smartmkulima.utils.DateFormat
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,7 +74,7 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                 // Update the selected date in the UI
                 expenseDay?.set(selectedYear, selectedMonth, selectedDay)
                 val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                binding.inputExpenseDate.setText(dateFormat.format(expenseDay!!.time))
+                binding.inputExpenseDate.setText(DateFormat.getWhenStarts())
             },
             year,
             month,
@@ -118,7 +119,7 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                     nameOfExpense = binding.inputExpenseName.text.toString(),
                     amountSpent = binding.inputExpenseAmount.text.toString() ,
                     whichTask = binding.inputTaskName.text.toString(),
-                    dateOfThisFinancialRecord = expenseDay.toString()
+                    dateOfThisFinancialRecord = binding.inputExpenseDate.text.toString()
                 )
 
                 lifecycleScope.launch {
