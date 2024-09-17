@@ -171,9 +171,12 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     }
 
     private fun showViewCropCycleAnalyticsBottomSheet() {
+
+        val localFarmCycle: LocalFarmCycle? = intent.getParcelableExtra("localFarmCycle")
+
         val modal = ViewCropCycleAnalyticsBottomSheetFragment().apply {
             arguments = Bundle().apply {
-                putString("cropCycleName", binding.ShowCropName.text.toString())
+                putString("cropCycleName", localFarmCycle?.cropName)
             }
         }
         supportFragmentManager.let {
@@ -193,6 +196,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
             val endDate = LocalDate.parse(localFarmCycle.tasks.last().endDate,formatter2) // up to the very last crop cycle end date
 
             return when {
+                localFarmCycle.status == "Cancelled" -> "Cancelled"
                 currentDate.isBefore(startDate) -> "Upcoming"
                 currentDate.isAfter(endDate) && localFarmCycle.status != "Done" && localFarmCycle.status != "Cancelled" -> "Overdue"
                 currentDate.isAfter(startDate) && currentDate.isBefore(endDate) -> "In Progress"

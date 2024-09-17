@@ -11,7 +11,7 @@
     <ir.mahozad.android.PieChart
         android:id="@+id/pieChartSummaryFarmRecords"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -20,17 +20,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView18"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginBottom="@dimen/_16dp"
         android:backgroundTint="@color/bg_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pieChartSummaryFarmRecords">
+        app:layout_constraintTop_toBottomOf="@+id/pieChartSummaryFarmRecords"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -43,12 +45,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16dp"
                 android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_16dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/sales_income"
                 android:textColor="@color/main1"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="@dimen/_16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,9 +69,9 @@
                 android:id="@+id/textView129"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="80dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/kes_12_000"
+                android:text="Kes."
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView128"
@@ -104,9 +106,9 @@
                 android:id="@+id/textView132"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="80dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/kes_2000"
+                android:text="Kes."
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView131"
@@ -130,14 +132,50 @@
                 android:id="@+id/textView134"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="80dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/kes_10_000"
+                android:text="Kes"
                 android:textColor="@color/light_blue"
-                android:textSize="@dimen/_16sp"
+                android:textSize="@dimen/_14sp_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/textView133"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView133" />
+
+            <TextView
+                android:id="@+id/textView151"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView129"
+                app:layout_constraintStart_toEndOf="@+id/textView129"
+                app:layout_constraintTop_toTopOf="@+id/textView129" />
+
+            <TextView
+                android:id="@+id/textView152"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView132"
+                app:layout_constraintStart_toEndOf="@+id/textView132"
+                app:layout_constraintTop_toTopOf="@+id/textView132" />
+
+            <TextView
+                android:id="@+id/textView153"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="TextView"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView134"
+                app:layout_constraintStart_toEndOf="@+id/textView134"
+                app:layout_constraintTop_toTopOf="@+id/textView134" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

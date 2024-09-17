@@ -184,6 +184,7 @@ class MainViewModel @Inject constructor(
 
     fun setSelectedCrop(cropName: String) {
         _selectedCrop.value = cropName
+        Timber.d("Selected crop: $cropName")
     }
 
     // LiveData for total expenses and sales
