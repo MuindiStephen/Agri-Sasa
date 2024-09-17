@@ -45,6 +45,7 @@
     <string name="net_revenue">Net Revenue:</string>
     <string name="kes_10_000">Kes. 10,000</string>
     <string name="shop_now">Shop Now</string>
+    <string name="loading_status_update">loading_status_update</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

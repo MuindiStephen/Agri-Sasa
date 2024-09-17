@@ -117,6 +117,38 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calculatedRevenueTl"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="10dp"
+            android:layout_marginTop="8dp"
+            android:hint="Revenue calculated"
+            android:textColorHint="@color/textColor"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/SilverGray"
+            app:hintTextColor="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enterSales">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputCalculatedRevenue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/buttonConfirmFinancialAnalytics"
             android:layout_width="match_parent"
@@ -125,18 +157,18 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/main1"
+            android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/montserrat_medium"
+            android:foreground="?attr/selectableItemBackground"
             android:text="Confirm"
             android:textAllCaps="false"
-            android:focusable="true"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
             android:textColor="@color/bg_gray"
             app:cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/enterSales"
+            app:layout_constraintEnd_toEndOf="@+id/calculatedRevenueTl"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/enterSales"
-            app:layout_constraintTop_toBottomOf="@+id/enterSales" />
+            app:layout_constraintStart_toStartOf="@+id/calculatedRevenueTl"
+            app:layout_constraintTop_toBottomOf="@+id/calculatedRevenueTl" />
 
 
         <TextView

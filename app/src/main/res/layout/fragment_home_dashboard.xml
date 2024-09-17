@@ -315,19 +315,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_gap_recyclerView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshRecView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvViewAllGAPs"
-            app:spanCount="2"
-            tools:listitem="@layout/home_gap_row" />
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_gap_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/home_gap_row" />
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
         <TextView
             android:id="@+id/tvViewAllGAPs"
@@ -343,7 +353,7 @@
             android:textStyle="bold"
             android:foreground="?attr/selectableItemBackground"
             android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toTopOf="@+id/home_gap_recyclerView"
+            app:layout_constraintBottom_toTopOf="@+id/swipeRefreshRecView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" />
 

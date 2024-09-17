@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +36,7 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
     private lateinit var binding: FragmentCropCycleFinancialRecordsAnalyticsBinding
     private lateinit var farmAnalyticsRecordListAdapter: FarmAnalyticsRecordListAdapter
     private var farmSummaryList =  mutableListOf<FarmFinancialDataSummary>()
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +58,40 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
         setUpRecyclerView()
 
         fetchAllFarmSummaryRecordsAvailable()
+
+
+        // Observe Changes in the selected crop
+        viewModel.selectedCrop.observe(viewLifecycleOwner) { cropName ->
+            cropName?.let {
+                binding.enterTotalCosts.isEnabled = true
+                binding.enterSales.isEnabled = true
+                binding.calculatedRevenueTl.isEnabled = true
+            } ?: run {
+                binding.calculatedRevenueTl.isEnabled = false
+                binding.enterTotalCosts.isEnabled = false
+                binding.calculatedRevenueTl.isEnabled = false
+            }
+        }
+
+
+        // Observe total expenses and set it in the expenses TextInputLayout
+        viewModel.totalExpenseForCrop.observe(viewLifecycleOwner) { expenses ->
+            expenses?.let {
+                binding.inputTotalCosts.setText(it.toString())
+            }
+        }
+
+        viewModel.totalSalesForCrop.observe(viewLifecycleOwner) { sales ->
+            sales?.let {
+                binding.inputSales.setText(it.toString())
+            }
+        }
+
+        // Observe calculated revenue
+        viewModel.calculatedRevenue.observe(viewLifecycleOwner, Observer { revenue ->
+            binding.inputCalculatedRevenue.setText(revenue?.toString() ?: "0.0")
+        })
+
     }
 
     private fun setUpRecyclerView() {
@@ -122,6 +159,18 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     binding.spinnerNameOfCycle.adapter = adapter
                     Timber.d("Crop cycles are available and in progress...Update any records")
+
+                    binding.spinnerNameOfCycle.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                            val selectedCropName = parent.getItemAtPosition(position) as String
+                            viewModel.setSelectedCrop(selectedCropName)  // Update ViewModel with the selected crop name
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>) {
+                            // Do nothing if nothing is selected
+                            Timber.d("No crop cycle found, nothing selected for financial analysis.")
+                        }
+                    }
                 } else {
                     displaySnackBar("No crop cycle found, you cannot create any records.")
                 }

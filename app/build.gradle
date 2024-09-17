@@ -79,6 +79,16 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation "com.google.truth:truth:$google_truth"
+    testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "com.google.truth:truth:$truth_version"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:3.11.2"
+    testImplementation "androidx.arch.core:core-testing:$arch_core_testing"
+    testImplementation "androidx.test:runner:$test_runner"
+    testImplementation "org.robolectric:robolectric:$roboelectric_version"
+    implementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_testing"
 
     // Navigation Components
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
@@ -174,4 +184,6 @@ dependencies {
 
     // Daraja
     implementation 'com.androidstudy.daraja:daraja:2.0.2'
+
+
 }

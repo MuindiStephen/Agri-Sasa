@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph3"
+    app:startDestination="@id/detailedFarmCycleActivity">
+
+    <activity
+        android:id="@+id/detailedFarmCycleActivity"
+        android:name="com.steve_md.smartmkulima.ui.activities.DetailedFarmCycleActivity"
+        android:label="activity_detailed_farm_cycle"
+        tools:layout="@layout/activity_detailed_farm_cycle">
+
+        <action
+            android:id="@+id/action_detailedFarmCycleActivity_to_cropCycleFinancialRecordsAnalyticsFragment2"
+            app:destination="@id/cropCycleFinancialRecordsAnalyticsFragment2" />
+
+    </activity>
+
+
+    <fragment
+        android:id="@+id/cropCycleFinancialRecordsAnalyticsFragment2"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleFinancialRecordsAnalyticsFragment"
+        android:label="fragment_crop_cycle_financial_records_analytics"
+        tools:layout="@layout/fragment_crop_cycle_financial_records_analytics" />
+</navigation>

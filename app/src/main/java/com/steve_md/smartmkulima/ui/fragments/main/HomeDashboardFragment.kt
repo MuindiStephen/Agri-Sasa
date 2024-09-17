@@ -12,7 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,7 +31,9 @@ import com.steve_md.smartmkulima.databinding.FragmentHomeDashboardBinding
 import com.steve_md.smartmkulima.model.GAP
 import com.steve_md.smartmkulima.utils.DateFormat.getLastLoginDayAndDate
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 import timber.log.Timber
@@ -38,6 +45,9 @@ class HomeDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeDashboardBinding
     private lateinit var databaseReference: DatabaseReference
+    private  val viewModel: MainViewModel by viewModels()
+
+    private var isRefreshing: Boolean = false
 
     private lateinit var adapter: GapAdapter
     private var gapList = ArrayList<GAP>()
@@ -46,6 +56,7 @@ class HomeDashboardFragment : Fragment() {
 
 
     private lateinit var userProfileTxt: TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,6 +148,8 @@ class HomeDashboardFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             exitApp()
         }
+
+        subScribeToViewModels()
     }
 
     private fun exitApp() {
@@ -210,6 +223,13 @@ class HomeDashboardFragment : Fragment() {
                             gapList.addAll(it)
                             adapter.submitList(gapList)
                         }
+
+                        isRefreshing = viewModel.isRefreshing.value
+
+                        if (isRefreshing) {
+                            gapList.shuffled()
+                        }
+
                         adapter.notifyDataSetChanged()
                         binding.homeGapRecyclerView.adapter = adapter
                         binding.homeGapRecyclerView.visibility = View.VISIBLE
@@ -238,6 +258,30 @@ class HomeDashboardFragment : Fragment() {
 
             tvViewAllGAPs.setOnClickListener {
                 findNavController().navigate(R.id.viewAllGAPsragment)
+            }
+
+            // Pull TO Refresh
+            binding.swipeRefreshRecView.setOnRefreshListener {
+                viewModel.refresh()
+            }
+
+        }
+
+    }
+
+    // Watch the Lifecycle - state changes via viewmodel
+    // for the refreshing state of the Ui
+    private fun subScribeToViewModels() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.isRefreshing.collect { value ->
+                    Timber.tag(this@HomeDashboardFragment.toString())
+                        .e("PULL-TO-REFRESH: \n")
+
+                    isRefreshing = value
+
+                    Timber.d("isRefreshing==${viewModel.isRefreshing.value}")
+                }
             }
         }
     }

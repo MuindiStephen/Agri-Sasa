@@ -45,14 +45,9 @@ import java.util.Locale
 import kotlin.random.Random
 
 /**
- *
- * Hey!
- *  @author MuindiStephen - Github
- *
+ * @author Stephen Muindi
  *  @year 2024
- *
- *  Creation of crop cycles
- *
+ *  List of Created crop cycles
  */
 @AndroidEntryPoint
 class CropCycleTasksListFragment : Fragment() {

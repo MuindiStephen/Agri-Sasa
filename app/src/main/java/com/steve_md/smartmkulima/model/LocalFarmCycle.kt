@@ -12,7 +12,8 @@ data class LocalFarmCycle(
     @PrimaryKey val cropName: String,
     val startDate: String,
     val tasks: List<LocalTasks>,
-    var status: String = "Upcoming"  // Crop Cycle Statuses => In Progress, Upcoming, Overdue, Done
+    var status: String = "Upcoming", // Crop Cycle Statuses => In Progress, Upcoming, Overdue, Done
+    val comments: String = "Bad weather"
 ) : Parcelable
 
 

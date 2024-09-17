@@ -1,5 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+
+    ext {
+        google_truth = "1.0.1"
+        junit_test_version = "4.13.2"
+        junit_android_test_version = "1.1.3"
+        espresso_android_test_version = "3.4.0"
+        mockwebserver_version = "4.9.1"
+        fragment_testing = "1.4.1"
+        truth_version = "1.1.2"
+        arch_core_testing = "2.1.0"
+        test_coroutine_rule = "1.0.1"
+        test_runner = "1.4.0"
+        mockk_version = "1.10.5"
+        roboelectric_version = "4.5.1"
+        mockito_version = "3.2.0"
+    }
+
     repositories {
         google()
         mavenCentral()

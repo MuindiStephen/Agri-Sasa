@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.others.crop_cycle
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,17 +15,22 @@ import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentCropCycleAddNewExpensesBinding
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
+import com.steve_md.smartmkulima.utils.DateFormat
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 @AndroidEntryPoint
 class CropCycleAddNewExpensesFragment : Fragment() {
 
     private lateinit var binding: FragmentCropCycleAddNewExpensesBinding
     private val viewModel: MainViewModel by viewModels()
+    private var expenseDay: Calendar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +46,41 @@ class CropCycleAddNewExpensesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        expenseDay = Calendar.getInstance()
+
         fetchFirstAvailableCropCycles()
         setUpVBinding()
+        setUpDatePickerUi()
+    }
+
+    private fun setUpDatePickerUi() {
+        binding.inputExpenseDate.setOnFocusChangeListener { v, hasFocus ->
+
+            if (hasFocus) {
+                showDatePickerDialog()
+            }
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = expenseDay ?: Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                // Update the selected date in the UI
+                expenseDay?.set(selectedYear, selectedMonth, selectedDay)
+                val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                binding.inputExpenseDate.setText(DateFormat.getWhenStarts())
+            },
+            year,
+            month,
+            day
+        )
+        datePickerDialog.show()
     }
 
     private fun fetchFirstAvailableCropCycles() {

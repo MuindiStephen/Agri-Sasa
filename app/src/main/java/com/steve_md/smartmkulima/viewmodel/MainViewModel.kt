@@ -1,7 +1,10 @@
 package com.steve_md.smartmkulima.viewmodel
 
 import android.util.Log
+import android.view.animation.Transformation
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -20,6 +23,7 @@ import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 import com.steve_md.smartmkulima.utils.ApiStates
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -46,8 +50,8 @@ class MainViewModel @Inject constructor(
     private val _produce = MutableSharedFlow<FarmProduceState>()
     val produce: SharedFlow<FarmProduceState> = _produce
 
-
     val allCycles: LiveData<List<LocalFarmCycle>> = repository.getAllCycles()
+
 
     fun addCropCycle(cycle: LocalFarmCycle) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
@@ -57,6 +61,10 @@ class MainViewModel @Inject constructor(
 
     fun updateTaskStatus(status: String) = viewModelScope.launch {
         repository.updateTaskStatus(status)
+    }
+
+    fun updateToNewCommentsCropCycleCancelled(comments: String) = viewModelScope.launch {
+        repository.updateToNewCommentsCropCycle(comments)
     }
 
     init {
@@ -160,6 +168,132 @@ class MainViewModel @Inject constructor(
         }
     }
 
+
+
+//    fun getCropData(cropName: String): LiveData<CropRecord?> {
+//        return repository.getCropData(cropName)
+//    }
+
+
+
+
+
+    private val _selectedCrop = MutableLiveData<String>()
+    val selectedCrop: LiveData<String> get() = _selectedCrop
+
+
+    fun setSelectedCrop(cropName: String) {
+        _selectedCrop.value = cropName
+        Timber.d("Selected crop: $cropName")
+    }
+
+    // LiveData for total expenses and sales
+    private val _totalExpensesForCrop = MutableLiveData<String>()
+    val totalExpenseForCrop : LiveData<String> get() = _totalExpensesForCrop
+
+
+    private val _totalSalesForCrop = MutableLiveData<String>()
+    val totalSalesForCrop : LiveData<String> get() = _totalSalesForCrop
+
+
+    // LiveData to expose calculated revenue
+    val calculatedRevenue: LiveData<String?> = MutableLiveData()
+
+    init {
+        // Observe changes in selectedCrop and fetch data accordingly
+        _selectedCrop.observeForever { cropName ->
+            cropName?.let {
+                fetchTotalExpensesForCrop(it)
+                fetchTotalSalesForCrop(it)
+            }
+        }
+
+        // Observe total expenses and sales to calculate revenue
+        _totalExpensesForCrop.observeForever { expenses ->
+            calculateRevenue()
+        }
+
+        _totalSalesForCrop.observeForever { sales ->
+            calculateRevenue()
+        }
+    }
+
+    private fun fetchTotalSalesForCrop(cropName: String) {
+
+        viewModelScope.launch {
+            repository.getTotalSalesForCrop(cropName).observeForever { sales ->
+                _totalSalesForCrop.value = sales ?: "0.0"
+            }
+        }
+    }
+
+    private fun fetchTotalExpensesForCrop(cropName: String) {
+
+        viewModelScope.launch {
+            repository.getTotalExpensesForCrop(cropName).observeForever { expenses ->
+                _totalExpensesForCrop.value = expenses ?: "0.0"
+            }
+        }
+
+    }
+
+
+    private fun calculateRevenue() {
+        val expenses = _totalExpensesForCrop.value ?: 0.0
+        val sales = _totalSalesForCrop.value ?: 0.0
+        (calculatedRevenue as MutableLiveData).value =
+            (sales.toString().toDouble() - expenses.toString().toDouble()).toString()
+    }
+
+
+    // Picking respective expenses records for cropCycle
+    /*
+    val totalExpenses: LiveData<Double?> = MediatorLiveData<Double?>().apply {
+        addSource(_selectedCrop) { crop ->
+            val expensesSource = repository.getTotalExpensesForCrop(crop)
+            addSource(expensesSource) { expenseValue ->
+                value = expenseValue
+            }
+        }
+    }
+    
+     */
+
+    /*
+    // picking respective revenue records for cropCycle
+    val totalSales: LiveData<Double?> = MediatorLiveData<Double?>().apply {
+        addSource(_selectedCrop) { crop ->
+            val salesSource = repository.getTotalSalesForCrop(crop)
+            addSource(salesSource) { salesValue ->
+                value = salesValue
+            }
+        }
+    }
+    
+     */
+    
+    /*
+
+    val calculatedRevenue: LiveData<Double> = MediatorLiveData<Double>().apply {
+        var expenses: Double? = null
+        var sales: Double? = null
+
+        addSource(totalExpenses) { expenseValue ->
+            expenses = expenseValue
+            value = calculateRevenue(expenses, sales)
+        }
+
+        addSource(totalSales) { salesValue ->
+            sales = salesValue
+            value = calculateRevenue(expenses, sales)
+        }
+    }
+    
+     */
+
+    
+
+
     /**
      * ADD TO CART - SUPPLIES / AGRO-DEALERS
      */
@@ -256,6 +390,21 @@ class MainViewModel @Inject constructor(
     fun clearCart() {
         _cart.value = emptyList()
     }
+
+
+
+    // Ui SwipeToRefresh
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> get() = _isRefreshing.asStateFlow()
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.emit(true)
+            delay(1000)
+            _isRefreshing.emit(false)
+        }
+    }
+
 }
 
 // UI State for managing FarmProduce State

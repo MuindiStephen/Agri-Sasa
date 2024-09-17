@@ -51,6 +51,10 @@ class FarmCycleRepository @Inject constructor(
         localCycleDao.updateTaskStatus(status)
     }
 
+    suspend fun updateToNewCommentsCropCycle(comments: String) {
+        localCycleDao.updateToNewComments(comments)
+    }
+
     fun getAllFarmFields(): LiveData<List<NewFarmField>> {
         return farmFieldDao.getAllFarmFields()
     }
@@ -93,6 +97,17 @@ class FarmCycleRepository @Inject constructor(
 
     suspend fun deleteAllSummaryRecords() = apiRequestByResource {
         farmSummaryRecordsDao.deleteAllSummary()
+    }
+
+
+    // pick the total expenses for the selected crop
+    fun getTotalExpensesForCrop(cropName: String): LiveData<String?> {
+        return farmCycleExpensesRecordsDao.getTotalExpensesForCrop(cropName)
+    }
+
+    // pick total sales made for the selected crop
+    fun getTotalSalesForCrop(cropName: String): LiveData<String?> {
+        return farmCycleRevenueRecordsDao.getTotalSalesAfterHarvestRevenues(cropName)
     }
 
 }

@@ -115,7 +115,10 @@ class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
         // if expenses > sales
         else if (farmRecord.totalRevenueGenerated.toDouble() < farmRecord.totalInputCosts.toDouble()) {
             binding.textView134.text = "- Kes. $revenue"+"0"
-        } else {
+        } else if (farmRecord.totalRevenueGenerated.toDouble() == farmRecord.totalInputCosts.toDouble()) {
+            binding.textView134.text = "Kes. 0.0"
+        }
+        else{
           return
         }
 
