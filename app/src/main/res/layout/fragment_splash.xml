@@ -13,12 +13,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="1"
-        android:src="@drawable/eclectics_svg"
+        android:src="@drawable/ic_plant_growing_svgrepo_com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView154"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="AGRI SASA"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_22sp"
+        android:fontFamily="@font/noteworthy_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splashScreenImageView" />
+
+    <TextView
+        android:id="@+id/textView155"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Eclectics International Limited 2024"
+        android:textColor="@color/bg_gray"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="@dimen/_16sp_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
