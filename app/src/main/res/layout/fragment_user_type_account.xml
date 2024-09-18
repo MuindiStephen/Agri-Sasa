@@ -94,23 +94,23 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/iv_insurer"
+                        android:id="@+id/iv_farmer"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_baseline_person_wallet"
+                        android:src="@drawable/icon_profile"
                         app:tint="@color/bg_gray" />
 
                     <TextView
-                        android:id="@+id/tv_insurer"
+                        android:id="@+id/tv_farmer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Farmer"
                         android:textColor="@color/bg_gray"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -140,23 +140,23 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/iv_others"
+                        android:id="@+id/iv_agrodealer"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="80dp"
                         android:layout_width="100dp"
                         app:tint="@color/main"
-                        android:src="@drawable/ic_baseline_person_wallet" />
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:src="@drawable/icon_profile" />
 
                     <TextView
-                        android:id="@+id/tv_others"
+                        android:id="@+id/tv_agrodealer"
                         android:fontFamily="@font/montserrat_medium"
-                        android:layout_below="@id/iv_others"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:text="Agrodealer"
+                        android:text="AgroDealer"
                         android:textAlignment="center"
                         android:textColor="@color/main"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
