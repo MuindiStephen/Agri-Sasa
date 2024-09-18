@@ -303,6 +303,7 @@ class MainViewModel @Inject constructor(
 
 
     // Adding the AgroDealer Deal to cart
+    // pass also agrodealer ID here :)
     fun addToCart(agroDealerOffers: AgroDealerOffers) {
         viewModelScope.launch {
             val currentCart = _cart.value.toMutableList()
@@ -317,10 +318,13 @@ class MainViewModel @Inject constructor(
                currentCart.add(FarmInputAgroDealerCartItem(agroDealerOffers))
                 Timber.tag("MainViewModel-CART")
                     .d("Added New Item To Cart: %s", agroDealerOffers.productName)
+
+//                Timber.tag("MainViewModel-CART")
+//                    .d("CART ASSOCIATED WITH AGRO-DEALER WITH UNIQUE ID: {}")
+
                 Timber.tag("MainViewModel-CART-value-log1").d(_cart.value.toString())
                 Timber.tag("MainViewModel-CART-value-log2").d(cart.value.toString())
                 Timber.tag("MainViewModel-CART-value-log3").d(currentCart.toString())
-
             }
             _cart.value = currentCart
 
@@ -331,7 +335,6 @@ class MainViewModel @Inject constructor(
             logCartContents()
         }
     }
-
 
     // Log cart contents...
     private fun logCartContents() {

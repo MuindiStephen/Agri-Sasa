@@ -36,8 +36,18 @@ class ViewAgroDealerInDetailFragment : Fragment() {
     }
 
 
-    // Navigate to My cart
+    // Navigate to My cart and checkout
     private fun onOfferClicked(agrodealerOffer: AgroDealerOffers) {
+
+        /**
+         * For this case we associate AgroDealer unique ID with each transaction
+         * When adding items to cart. To ensure AgroDealer's ID is passed along with the offer
+         * details when an item is added to cart
+         */
+        val agroDealerUniqueID = args.agrodealer.id
+
+
+
         viewModel.addToCart(agrodealerOffer)
         displaySnackBar("Item Added To Cart.")
         findNavController().navigate(R.id.myCartAgroDealerInputsFragment)
