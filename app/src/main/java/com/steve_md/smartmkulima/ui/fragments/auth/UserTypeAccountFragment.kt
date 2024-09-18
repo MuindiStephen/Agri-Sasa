@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentUserTypeAccountBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Select Account type could be -:
- * Either Supplier or Farmer
+ * Either Supplier/ AgroDealer or Farmer
  */
+@AndroidEntryPoint
 class UserTypeAccountFragment : Fragment() {
 
     private var _binding: FragmentUserTypeAccountBinding? = null
@@ -35,6 +37,7 @@ class UserTypeAccountFragment : Fragment() {
         binding.apply {
             toolbarUserTypeNavigationBack.setNavigationOnClickListener {
                 findNavController().navigateUp()
+                requireActivity().onBackPressed()
             }
         }
     }
