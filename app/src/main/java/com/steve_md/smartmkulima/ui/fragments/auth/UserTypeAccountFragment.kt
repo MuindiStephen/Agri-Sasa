@@ -35,10 +35,7 @@ class UserTypeAccountFragment : Fragment() {
 
     private fun setUpBinding() {
         binding.apply {
-            toolbarUserTypeNavigationBack.setNavigationOnClickListener {
-                findNavController().navigateUp()
-                requireActivity().onBackPressed()
-            }
+           
         }
     }
 
@@ -51,4 +48,5 @@ class UserTypeAccountFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }
