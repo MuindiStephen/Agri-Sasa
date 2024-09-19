@@ -17,6 +17,7 @@ import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
+import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
@@ -406,6 +407,22 @@ class MainViewModel @Inject constructor(
             delay(1000)
             _isRefreshing.emit(false)
         }
+    }
+
+
+    // Get order based on the agrodealer ID
+    fun ordersByAgroDealerID (agroDealerId: String) : LiveData<List<OrderCheckoutByFarmer>> =
+        repository.getSpecificOrdersForAgrodealerID(agroDealerId)
+
+    // Adding a new order
+    fun saveOrder(order: OrderCheckoutByFarmer) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.saveOrders(order)
+        }
+    }
+
+    fun updateOrderStatus(newStatus: String) = viewModelScope.launch {
+        repository.updateOrderStatus(newStatus)
     }
 
 }

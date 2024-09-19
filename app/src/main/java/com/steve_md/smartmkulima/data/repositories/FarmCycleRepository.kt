@@ -8,9 +8,11 @@ import com.steve_md.smartmkulima.data.room.FarmFieldsDao
 import com.steve_md.smartmkulima.data.room.FarmSummaryRecordsDao
 import com.steve_md.smartmkulima.data.room.GAPDao
 import com.steve_md.smartmkulima.data.room.LocalFarmCycleDao
+import com.steve_md.smartmkulima.data.room.OrdersDao
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
+import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
@@ -35,6 +37,9 @@ class FarmCycleRepository @Inject constructor(
     private val farmCycleRevenueRecordsDao: FarmCycleRevenueRecordsDao = database.farmCycleRevenueRecordsDao()
 
     private val farmSummaryRecordsDao: FarmSummaryRecordsDao = database.farmSummaryRecordsDao()
+
+    // orders
+    private val ordersDao : OrdersDao = database.ordersDao()
 
     suspend fun insertCycle(cycle: LocalFarmCycle) = apiRequestByResource {
         localCycleDao.insertLocalFarmCycle(cycle)
@@ -108,6 +113,19 @@ class FarmCycleRepository @Inject constructor(
     // pick total sales made for the selected crop
     fun getTotalSalesForCrop(cropName: String): LiveData<String?> {
         return farmCycleRevenueRecordsDao.getTotalSalesAfterHarvestRevenues(cropName)
+    }
+
+    // orders
+    suspend fun saveOrders(orderCheckoutByFarmer: OrderCheckoutByFarmer) =  apiRequestByResource {
+        ordersDao.saveOrder(orderCheckoutByFarmer)
+    }
+
+    fun getSpecificOrdersForAgrodealerID(agrodealerId: String): LiveData<List<OrderCheckoutByFarmer>> {
+        return ordersDao.getSpecificOrdersForAgroDealerID(agrodealerId)
+    }
+
+    suspend fun updateOrderStatus(newStatus: String) {
+        ordersDao.updateOrderStatus(newStatus)
     }
 
 }

@@ -20,6 +20,9 @@
             app:destination="@id/homeDashboardFragment2"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_userTypeAccountFragment"
+            app:destination="@id/userTypeAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/authsMainFragment"
@@ -562,6 +565,9 @@
         <action
             android:id="@+id/action_viewAgroDealerInDetailFragment_to_myCartAgroDealerInputsFragment"
             app:destination="@id/myCartAgroDealerInputsFragment" />
+        <argument
+            android:name="distance"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addNewFarmFieldFragment"
@@ -681,6 +687,45 @@
         <action
             android:id="@+id/action_myCartAgroDealerInputsFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agroDealerHomeDashboardFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.agrodealer.AgroDealerHomeDashboardFragment"
+        android:label="fragment_agro_dealer_home_dashboard"
+        tools:layout="@layout/fragment_agro_dealer_home_dashboard" >
+        <action
+            android:id="@+id/action_agroDealerHomeDashboardFragment_to_agroDealerViewOrderListItemsInDetailFragment"
+            app:destination="@id/agroDealerViewOrderListItemsInDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agroDealerLoginFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.agrodealer.AgroDealerLoginFragment"
+        android:label="fragment_agro_dealer_login"
+        tools:layout="@layout/fragment_agro_dealer_login" >
+        <action
+            android:id="@+id/action_agroDealerLoginFragment_to_agroDealerHomeDashboardFragment"
+            app:destination="@id/agroDealerHomeDashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userTypeAccountFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.UserTypeAccountFragment"
+        android:label="fragment_user_type_account"
+        tools:layout="@layout/fragment_user_type_account" >
+        <action
+            android:id="@+id/action_userTypeAccountFragment_to_signInDetailsWithEmailFragment"
+            app:destination="@id/signInDetailsWithEmailFragment" />
+        <action
+            android:id="@+id/action_userTypeAccountFragment_to_agroDealerLoginFragment"
+            app:destination="@id/agroDealerLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agroDealerViewOrderListItemsInDetailFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.agrodealer.AgroDealerViewOrderListItemsInDetailFragment"
+        android:label="fragment_agro_dealer_view_order_list_items_in_detail"
+        tools:layout="@layout/fragment_agro_dealer_view_order_list_items_in_detail" >
+        <argument
+            android:name="orderInDetailAgroDealer"
+            app:argType="com.steve_md.smartmkulima.model.OrderCheckoutByFarmer" />
     </fragment>
 
 

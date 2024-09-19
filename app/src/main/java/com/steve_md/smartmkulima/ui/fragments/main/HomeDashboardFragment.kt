@@ -33,6 +33,7 @@ import com.steve_md.smartmkulima.utils.DateFormat.getLastLoginDayAndDate
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
@@ -224,11 +225,31 @@ class HomeDashboardFragment : Fragment() {
                             adapter.submitList(gapList)
                         }
 
-                        isRefreshing = viewModel.isRefreshing.value
+                        lifecycleScope.launch {
+                            viewModel.isRefreshing.collect {
+                                isRefreshing = it
 
-                        if (isRefreshing) {
-                            gapList.shuffled()
+                                when(isRefreshing) {
+                                    true -> {
+                                        gapList.shuffled()
+                                        lifecycleScope.launch {
+                                            delay(1000L)
+                                            binding.swipeRefreshRecView.isRefreshing = false
+                                        }
+                                    }
+                                    false -> {
+                                        gapList.shuffled()
+                                        lifecycleScope.launch {
+                                            binding.swipeRefreshRecView.isRefreshing = false
+                                        }
+                                    }
+                                }
+                            }
                         }
+
+//                        if (isRefreshing) {
+//                            gapList.shuffled()
+//                        }
 
                         adapter.notifyDataSetChanged()
                         binding.homeGapRecyclerView.adapter = adapter

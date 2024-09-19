@@ -130,15 +130,14 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                 recyclerView.adapter = AgrodealerAdapter(
                     filteredAgrodealers,
                     userLatLng,
-                    AgrodealerAdapter.OnClickListener { agrodealer ->
+                    AgrodealerAdapter.OnClickListener { agrodealer, distance ->
                     Timber.i("Agrodealer: ${agrodealer.name}")
 
                         val directions = LocateAgriTechCompaniesFragmentDirections.actionLocateAgriTechCompaniesFragmentToViewAgroDealerInDetailFragment(
-                            agrodealer
+                            agrodealer, distance
                         )
 
                         findNavController().navigate(directions)
-
                 })
             }
         }
@@ -184,8 +183,6 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             promptUserForLocationPermissions()
             return
         }
-        //fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-           // location?.let {
 
         locationProvider = LocationProvider(this.requireContext())
         locationProvider.getLastKnownLocation { location ->
@@ -250,14 +247,13 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                     val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 100) // 100 is padding
                     googleMap.moveCamera(cameraUpdate)
                     googleMap.animateCamera(cameraUpdate)
-
                 }
 
                 if(agrodealers.isEmpty()) {
                     view?.findViewById<TextView>(R.id.textViewAgrodealersNotavailable)?.visibility = View.VISIBLE
                     view?.findViewById<LottieAnimationView>(R.id.LottieNoRecords)?.visibility = View.VISIBLE
                 }
-           // }
+
         }
     }
 
@@ -342,7 +338,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     private fun getOffersList() = mutableListOf<AgroDealerOffers>().apply {
         add(
             AgroDealerOffers(
-             1,R.drawable.ic_easygro_calcium,
+             1, R.drawable.ic_easygro_calcium,
             "EasyGro Calcium fertilizer",
             2500.0,
             1750.0,

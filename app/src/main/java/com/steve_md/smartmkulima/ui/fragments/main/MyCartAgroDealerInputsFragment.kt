@@ -3,26 +3,24 @@ package com.steve_md.smartmkulima.ui.fragments.main
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.AgroDealsCartItemsListAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMyCartAgroDealerInputsBinding
-import com.steve_md.smartmkulima.model.FarmEquipment
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
+import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
+import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -32,11 +30,12 @@ import timber.log.Timber
  */
 @AndroidEntryPoint
 class MyCartAgroDealerInputsFragment : Fragment() {
-
     private lateinit var binding: FragmentMyCartAgroDealerInputsBinding
     private lateinit var cartAdapter: AgroDealsCartItemsListAdapter
     private val viewModel: MainViewModel by activityViewModels()
-   // private var cartListItems = mutableListOf<FarmInputAgroDealerCartItem>()
+    private var cartListItems = mutableListOf<FarmInputAgroDealerCartItem>()
+    private var firebaseAuth: FirebaseAuth? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -90,7 +89,7 @@ class MyCartAgroDealerInputsFragment : Fragment() {
 
     private fun setUpUi() {
         
-        binding.toolbarMyCart.setNavigationOnClickListener { 
+        binding.toolbarMyCart.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
     }
@@ -101,9 +100,9 @@ class MyCartAgroDealerInputsFragment : Fragment() {
             viewModel.cart.collect { cartItems ->
 
                 if (cartItems.isNotEmpty()) {
-//                    cartListItems.clear()
-//                    cartListItems.addAll(cartItems)
-                    cartAdapter.submitList(cartItems)
+                    cartListItems.clear()
+                    cartListItems.addAll(cartItems)
+                    cartAdapter.submitList(cartListItems)
                     cartAdapter.notifyDataSetChanged()
                     binding.recyclerView4.adapter = cartAdapter
 
@@ -135,8 +134,42 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                     val bundle = Bundle().apply {
                         putInt("TOTAL_PRICE", checkoutValueIncludingFees.toInt())
                     }
+
                     binding.buttonCheckoutCartItems.setOnClickListener {
-                        findNavController().navigate(R.id.paymentFragment,bundle)
+
+                        // save this order to backend side.
+                        // farmers location
+                        // farmer email
+                        // agrodealer ID
+
+                        firebaseAuth = FirebaseAuth.getInstance()
+                        val currentUser = firebaseAuth!!.currentUser
+
+                        if (currentUser != null) {
+                            val userEmail = currentUser.email.toString()
+                            Timber.d("Logged In Farmer => $userEmail")
+                        }
+                        else {
+                            Timber.tag(YourAccountFragment.TAG).e("An error,occurred while retrieving your profile")
+                        }
+
+                        val orderCheckoutByFarmer = OrderCheckoutByFarmer(
+                            cartOrder = cartListItems,
+                            farmerLocation = arguments?.getString("distance")!!,
+                            farmEmail = currentUser?.email.toString(),
+                            agrodealerID = arguments?.getString("agrodealerID")!!,
+                            orderStatus = "Pending",
+                            totalOrderInMoney = checkoutValueIncludingFees.toString()
+                        )
+
+                        try {
+                            viewModel.saveOrder(orderCheckoutByFarmer)
+                            toast("Order placed successfully")
+                        } catch (e: Exception) {
+                            Timber.tag("Orders").e("Order Not Placed." +
+                                    "ERROR==${e.message}")
+                        }
+                        findNavController().navigate(R.id.paymentFragment, bundle)
                     }
 
                 } else {

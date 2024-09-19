@@ -30,8 +30,8 @@ class AgroDealsCartItemsListAdapter (private val onClickListener: OnClickListene
         RecyclerView.ViewHolder(binding.root) {
 
             val btnRemoveItemFromCart = binding.buttonRemoveCartItem
-        val btnIncreaseQ = binding.imageButtonIncrease
-        val btnDecreaseQ = binding.imageButtonDecrease
+            val btnIncreaseQ = binding.imageButtonIncrease
+            val btnDecreaseQ = binding.imageButtonDecrease
 
         @SuppressLint("SetTextI18n")
         fun bind(offerAddedToCart: FarmInputAgroDealerCartItem?) {
