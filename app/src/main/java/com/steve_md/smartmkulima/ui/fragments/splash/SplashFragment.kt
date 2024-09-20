@@ -50,7 +50,7 @@ class SplashFragment : Fragment() {
                     R.id.action_splashFragment_to_homeDashboardFragment2)
             } else {
                 findNavController().navigate(
-                    R.id.action_splashFragment_to_authsMainFragment)
+                    R.id.action_splashFragment_to_userTypeAccountFragment)
             }
         }
     }

@@ -54,15 +54,15 @@ class AgrodealerAdapter(
         holder.distanceTextView.text = String.format("%.2f km away", distance / 1000)
 
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(agrodealer = agrodealer)
+            onClickListener.onClick(agrodealer = agrodealer, distance = String.format("%.2f km away", distance / 1000))
         }
 
         holder.itemAG.setOnClickListener {
-            onClickListener.onClick(agrodealer = agrodealer)
+            onClickListener.onClick(agrodealer = agrodealer, distance = String.format("%.2f km away", distance / 1000))
         }
 
         holder.viewAgroDealerMoreDetailsTV.setOnClickListener {
-            onClickListener.onClick(agrodealer = agrodealer)
+            onClickListener.onClick(agrodealer = agrodealer, distance = String.format("%.2f km away", distance / 1000))
         }
 
         holder.distanceTextView.setOnClickListener {
@@ -111,7 +111,7 @@ class AgrodealerAdapter(
         return results[0]
     }
 
-    class OnClickListener(val clickListener: (agrodealer: AgroDealer) -> Unit) {
-        fun onClick(agrodealer: AgroDealer) = clickListener(agrodealer)
+    class OnClickListener(val clickListener: (agrodealer: AgroDealer,distance: String) -> Unit) {
+        fun onClick(agrodealer: AgroDealer, distance: String) = clickListener(agrodealer, distance)
     }
 }

@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.maps.model.LatLng
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.AgroDealersOffersListAdapter
 import com.steve_md.smartmkulima.databinding.FragmentViewAgroDealerInDetailBinding
@@ -27,7 +28,8 @@ class ViewAgroDealerInDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentViewAgroDealerInDetailBinding
     private val args: ViewAgroDealerInDetailFragmentArgs by navArgs()
-    private val viewModel:MainViewModel by activityViewModels()
+    private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var userLocation: LatLng
 
     private val agroDealersOffersListAdapter by lazy {
         AgroDealersOffersListAdapter { agrodealerOffer ->
@@ -36,11 +38,30 @@ class ViewAgroDealerInDetailFragment : Fragment() {
     }
 
 
-    // Navigate to My cart
+    // Navigate to My cart and checkout
     private fun onOfferClicked(agrodealerOffer: AgroDealerOffers) {
+
+        /**
+         * For this case we associate AgroDealer unique ID with each transaction
+         * When adding items to cart. To ensure AgroDealer's ID is passed along with the offer
+         * details when an item is added to cart
+         *
+         * also pass location, current user email
+         */
+
+
+
+        val agroDealerUniqueID = args.agrodealer.id
+        val farmersLocation = args.distance
+
+
         viewModel.addToCart(agrodealerOffer)
         displaySnackBar("Item Added To Cart.")
-        findNavController().navigate(R.id.myCartAgroDealerInputsFragment)
+        val bundle = Bundle().apply {
+            putString("agrodealerID", "${args.agrodealer.id}")
+            putString("distance", "${args.distance}")
+        }
+        findNavController().navigate(R.id.myCartAgroDealerInputsFragment, bundle)
     }
 
     override fun onCreateView(

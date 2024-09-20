@@ -2,6 +2,8 @@ package com.steve_md.smartmkulima.model
 
 import android.health.connect.datatypes.units.Percentage
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.parcelize.Parcelize
 
@@ -45,3 +47,20 @@ data class AgroDealerOffers(
     val discountedPrice: Double,
     val discountPercentage: String,
 ) : Parcelable
+
+
+/**
+ * Tracking orders
+ */
+@Parcelize
+@Entity(tableName = "orders")
+data class OrderCheckoutByFarmer(
+    @PrimaryKey(autoGenerate = true)
+    val orderId: Long = 0,
+    val cartOrder: List<FarmInputAgroDealerCartItem>,
+    val farmerLocation: String, // pick location away from agrodealer.
+    val farmEmail: String, // farmer contacts
+    val agrodealerID: String , // track respective agrodealer who supplied the farm agro-input
+    val orderStatus: String,
+    val totalOrderInMoney: String
+): Parcelable

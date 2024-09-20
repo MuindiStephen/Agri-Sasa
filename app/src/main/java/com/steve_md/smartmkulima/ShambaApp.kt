@@ -45,10 +45,8 @@ class ShambaApp : Application() {
     }
 
     private fun setNetworkSecurity() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val builder = StrictMode.VmPolicy.Builder()
-            StrictMode.setVmPolicy(builder.build())
-        }
+        val builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
     }
 
     private fun timber() {

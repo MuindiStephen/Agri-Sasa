@@ -1,22 +1,17 @@
 package com.steve_md.smartmkulima.viewmodel
 
-import android.util.Log
-import android.view.animation.Transformation
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
-import com.steve_md.smartmkulima.model.AgroDealer
 import com.steve_md.smartmkulima.model.AgroDealerOffers
-import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
+import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
@@ -30,8 +25,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -303,6 +296,7 @@ class MainViewModel @Inject constructor(
 
 
     // Adding the AgroDealer Deal to cart
+    // pass also agrodealer ID here :)
     fun addToCart(agroDealerOffers: AgroDealerOffers) {
         viewModelScope.launch {
             val currentCart = _cart.value.toMutableList()
@@ -317,10 +311,13 @@ class MainViewModel @Inject constructor(
                currentCart.add(FarmInputAgroDealerCartItem(agroDealerOffers))
                 Timber.tag("MainViewModel-CART")
                     .d("Added New Item To Cart: %s", agroDealerOffers.productName)
+
+//                Timber.tag("MainViewModel-CART")
+//                    .d("CART ASSOCIATED WITH AGRO-DEALER WITH UNIQUE ID: {}")
+
                 Timber.tag("MainViewModel-CART-value-log1").d(_cart.value.toString())
                 Timber.tag("MainViewModel-CART-value-log2").d(cart.value.toString())
                 Timber.tag("MainViewModel-CART-value-log3").d(currentCart.toString())
-
             }
             _cart.value = currentCart
 
@@ -331,7 +328,6 @@ class MainViewModel @Inject constructor(
             logCartContents()
         }
     }
-
 
     // Log cart contents...
     private fun logCartContents() {
@@ -403,6 +399,22 @@ class MainViewModel @Inject constructor(
             delay(1000)
             _isRefreshing.emit(false)
         }
+    }
+
+
+    // Get order based on the agrodealer ID
+    fun ordersByAgroDealerID (agroDealerId: String) : LiveData<List<OrderCheckoutByFarmer>> =
+        repository.getSpecificOrdersForAgrodealerID(agroDealerId)
+
+    // Adding a new order
+    fun saveOrder(order: OrderCheckoutByFarmer) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.saveOrders(order)
+        }
+    }
+
+    fun updateOrderStatus(newStatus: String) = viewModelScope.launch {
+        repository.updateOrderStatus(newStatus)
     }
 
 }

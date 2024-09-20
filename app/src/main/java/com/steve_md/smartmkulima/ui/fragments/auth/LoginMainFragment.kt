@@ -26,8 +26,6 @@ class LoginMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-
         binding = FragmentLoginMainBinding.inflate(layoutInflater, container, false)
 
         return binding.root
@@ -45,11 +43,15 @@ class LoginMainFragment : Fragment() {
         binding.mainAuthsToolbar.title = null
 
         binding.dontHaveAccountSignUpText.setOnClickListener {
-            findNavController().navigate(R.id.action_loginMainFragment_to_signUpDetailsMainFragment)
+            findNavController().navigate(
+                R.id.action_loginMainFragment_to_signUpDetailsMainFragment
+            )
         }
 
         binding.usePhoneEmailButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginMainFragment_to_signInDetailsWithEmailFragment)
+            findNavController().navigate(
+                R.id.action_loginMainFragment_to_signInDetailsWithEmailFragment
+            )
         }
     }
 

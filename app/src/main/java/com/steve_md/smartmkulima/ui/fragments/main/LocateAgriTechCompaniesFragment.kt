@@ -59,7 +59,6 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationProvider: LocationProvider
 
-
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val SEARCH_RADIUS_METERS = 50000 // 50 km radius
@@ -118,12 +117,10 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             return
         }
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-          //  view?.findViewById<ProgressBar>(R.id.progressBarLoadingAgroDealers)!!.visibility = View.VISIBLE
+
             location?.let {
                 val userLatLng = LatLng(it.latitude, it.longitude)
                 val filteredAgrodealers = getAgroDealersData().filter { agrovet ->
-
-                   // view?.findViewById<ProgressBar>(R.id.progressBarLoadingAgroDealers)!!.visibility = View.GONE
 
                     val agroDealerLatLng = LatLng(agrovet.latitude,agrovet.longitude)
                     calculateDistance(userLatLng, agroDealerLatLng) <= SEARCH_RADIUS_METERS
@@ -132,15 +129,14 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                 recyclerView.adapter = AgrodealerAdapter(
                     filteredAgrodealers,
                     userLatLng,
-                    AgrodealerAdapter.OnClickListener { agrodealer ->
+                    AgrodealerAdapter.OnClickListener { agrodealer, distance ->
                     Timber.i("Agrodealer: ${agrodealer.name}")
 
                         val directions = LocateAgriTechCompaniesFragmentDirections.actionLocateAgriTechCompaniesFragmentToViewAgroDealerInDetailFragment(
-                            agrodealer
+                            agrodealer, distance
                         )
 
                         findNavController().navigate(directions)
-
                 })
             }
         }
@@ -186,8 +182,6 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             promptUserForLocationPermissions()
             return
         }
-        //fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-           // location?.let {
 
         locationProvider = LocationProvider(this.requireContext())
         locationProvider.getLastKnownLocation { location ->
@@ -252,14 +246,13 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                     val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 100) // 100 is padding
                     googleMap.moveCamera(cameraUpdate)
                     googleMap.animateCamera(cameraUpdate)
-
                 }
 
                 if(agrodealers.isEmpty()) {
                     view?.findViewById<TextView>(R.id.textViewAgrodealersNotavailable)?.visibility = View.VISIBLE
                     view?.findViewById<LottieAnimationView>(R.id.LottieNoRecords)?.visibility = View.VISIBLE
                 }
-           // }
+
         }
     }
 
@@ -301,7 +294,7 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             AgroDealer(5,"MULTIDUSH AGRITECH & AGROVET SUPPLIES", "","info@multidushagritechsupplies.co.ke", 0.565100, 34.545406,"Fertilizer","Agricultural","true","2 months duration, monthly payment terms","KFA building",getOffersList()),
 
             // Near Nairobi
-            AgroDealer(6,"Farmers Solution Agrovet","254700932932", "farmerssolutionagrovet@gmail.com",-1.2860464,36.8026465,"Agrochemicals","Agricultural inputs","false","Leasing is not available","Business Center,Slip road/Kijabe",getOffersList()),
+            AgroDealer(6,"Farmers Solution Agrovet","254700932932", "farmerssolutionagrovet@gmail.com",-1.2860464,36.8026465,"Agrochemicals","Agricultural inputs","false","Leasing is not available","Business Center, Slip road/Kijabe",getOffersList()),
             AgroDealer(7,"Mifugo Agrovet centre","254701898905", "info@mifugoagrovetcentre.co.ke",-1.286548536,36.8067588,"Fertilizers, farm machinery","Agricultural","true","6 months duration, monthly payment terms","Haile Selassie Ave, next JTM building",getOffersList()),
             AgroDealer(8,"Lessos Agrovets","0712046859", "info@lessonsagrovets.com",-1.2720571,36.7961583,"Fertilizers, farm machinery","Agricultural","true","1 month duration, weekly payment terms","Kapsabet Street, Baraton Building",getOffersList()),
             AgroDealer(9,"DIHA AGRO DEALERS","254745003225", "info@dihaagridealers.com",-0.6799296,36.7066032,"Fertilizers, farm machinery","Agricultural","true","1 month duration, weekly payment terms","Mururi, Kwa John store",getOffersList()),
@@ -344,11 +337,12 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     private fun getOffersList() = mutableListOf<AgroDealerOffers>().apply {
         add(
             AgroDealerOffers(
-             1,R.drawable.ic_easygro_calcium,
+             1, R.drawable.ic_easygro_calcium,
             "EasyGro Calcium fertilizer",
             2500.0,
             1750.0,
-            "30% off")
+            "30% off"
+            )
         )
         add(
             AgroDealerOffers(
