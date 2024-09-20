@@ -15,6 +15,7 @@
     <color name="gray">#0D0D0D9A</color>
     <color name="bg_gray">#F1ECE7</color>
     <color name="light_gray">#A4A4A4</color>
+    <color name="very_light_gray">#dbd7d7</color>
     <color name="text_color">#F1ECE7</color>
     <color name="SilverGray">#535252</color>
     <color name="green">#4BB543</color>

@@ -82,7 +82,7 @@ class UserTypeAccountFragment : Fragment() {
         binding.tvFarmer.setTextColor(Color.WHITE)
 
         //deactivate acc type agrodealer
-        binding.cvAgrodealer.setCardBackgroundColor(resources.getColor(R.color.bg_gray))
+        binding.cvAgrodealer.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
         binding.cvAgrodealer.cardElevation = 2F
         binding.ivAgrodealer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
         binding.tvAgrodealer.setTextColor(resources.getColor(R.color.main))
@@ -91,7 +91,7 @@ class UserTypeAccountFragment : Fragment() {
     }
 
     private fun handleAgroDealer() {
-        //activate select farmer acc type cardview
+        //activate select agrodealer acc type cardview
         roleName = "AgroDealer"
 
         binding.cvAgrodealer.setCardBackgroundColor(resources.getColor(R.color.main))
@@ -99,8 +99,8 @@ class UserTypeAccountFragment : Fragment() {
         binding.ivAgrodealer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.bg_gray))
         binding.tvAgrodealer.setTextColor(Color.WHITE)
 
-        //deactivate acc type agrodealer
-        binding.cvFarmer.setCardBackgroundColor(resources.getColor(R.color.bg_gray))
+        //deactivate acc type farmer
+        binding.cvFarmer.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
         binding.cvFarmer.cardElevation = 2F
         binding.ivFarmer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
         binding.tvFarmer.setTextColor(resources.getColor(R.color.main))
@@ -111,5 +111,17 @@ class UserTypeAccountFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        roleName = "Farmer"
+        handleFarmer()
+    }
+
 
 }
