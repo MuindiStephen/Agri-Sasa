@@ -59,7 +59,6 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationProvider: LocationProvider
 
-
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val SEARCH_RADIUS_METERS = 50000 // 50 km radius

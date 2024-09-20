@@ -1,18 +1,12 @@
 package com.steve_md.smartmkulima.viewmodel
 
-import android.util.Log
-import android.view.animation.Transformation
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
-import com.steve_md.smartmkulima.model.AgroDealer
 import com.steve_md.smartmkulima.model.AgroDealerOffers
-import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
@@ -31,8 +25,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber

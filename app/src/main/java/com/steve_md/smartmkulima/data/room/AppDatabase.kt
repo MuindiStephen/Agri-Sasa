@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.steve_md.smartmkulima.data.room.converters.Converters
+import com.steve_md.smartmkulima.data.room.converters.FarmInputCartItemConverters
 import com.steve_md.smartmkulima.data.room.converters.LocalFarmCycleConverter
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
@@ -20,7 +21,7 @@ import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
 /**
  * Room database
  */
-@TypeConverters(Converters::class,LocalFarmCycleConverter::class)
+@TypeConverters(Converters::class,LocalFarmCycleConverter::class, FarmInputCartItemConverters::class)
 @Database(entities = [
     Transaction::class, FarmProduce::class, Cycle::class,
     Tasks::class, LocalFarmCycle::class,

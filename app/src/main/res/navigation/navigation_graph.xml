@@ -22,7 +22,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_userTypeAccountFragment"
-            app:destination="@id/userTypeAccountFragment" />
+            app:destination="@id/userTypeAccountFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/authsMainFragment"

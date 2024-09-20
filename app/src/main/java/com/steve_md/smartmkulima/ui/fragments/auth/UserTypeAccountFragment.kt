@@ -57,10 +57,12 @@ class UserTypeAccountFragment : Fragment() {
                         )
                     }
                     "AgroDealer" -> {
-
+                        findNavController().navigate(
+                            R.id.agroDealerLoginFragment
+                        )
                     }
                     else -> {
-                        Timber.e("UserAccountTypeFragment"+"Role not found")
+                        Timber.e("UserAccountTypeFragment"+" Role not found")
                         toast("Profile not set")
                         return@setOnClickListener
                     }
