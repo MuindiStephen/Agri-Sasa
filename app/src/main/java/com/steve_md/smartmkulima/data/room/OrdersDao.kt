@@ -18,6 +18,6 @@ interface OrdersDao {
     @Query("SELECT * FROM orders WHERE agrodealerID =:agrodealerID")
     fun getSpecificOrdersForAgroDealerID(agrodealerID: String): LiveData<List<OrderCheckoutByFarmer>>
 
-    @Query("UPDATE orders SET orderStatus = :newOrderStatus")
-    suspend fun updateOrderStatus(newOrderStatus: String)
+    @Query("UPDATE orders SET orderStatus = :newOrderStatus WHERE agrodealerID =:agrodealerID")
+    suspend fun updateOrderStatus(newOrderStatus: String, agrodealerID: String)
 }

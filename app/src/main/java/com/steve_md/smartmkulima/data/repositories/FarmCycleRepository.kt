@@ -124,8 +124,8 @@ class FarmCycleRepository @Inject constructor(
         return ordersDao.getSpecificOrdersForAgroDealerID(agrodealerId)
     }
 
-    suspend fun updateOrderStatus(newStatus: String) {
-        ordersDao.updateOrderStatus(newStatus)
+    suspend fun updateOrderStatus(newStatus: String, agrodealerId: String) {
+        ordersDao.updateOrderStatus(newStatus, agrodealerId)
     }
 
 }

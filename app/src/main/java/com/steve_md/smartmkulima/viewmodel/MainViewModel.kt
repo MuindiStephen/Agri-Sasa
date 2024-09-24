@@ -413,8 +413,8 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun updateOrderStatus(newStatus: String) = viewModelScope.launch {
-        repository.updateOrderStatus(newStatus)
+    fun updateOrderStatus(newStatus: String, agroDealerId: String) = viewModelScope.launch {
+        repository.updateOrderStatus(newStatus, agroDealerId)
     }
 
 }

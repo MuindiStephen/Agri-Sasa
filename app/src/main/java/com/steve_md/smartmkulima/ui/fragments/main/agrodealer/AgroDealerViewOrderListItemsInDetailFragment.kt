@@ -45,6 +45,7 @@ class AgroDealerViewOrderListItemsInDetailFragment : Fragment() {
         }
 
         val orderDetails = args.orderInDetailAgroDealer
+        val agrodealerId = args.orderInDetailAgroDealer.agrodealerID
 
         orderDetails.let {
             orderDetailsAdapter.submitList(it.cartOrder)
@@ -56,8 +57,9 @@ class AgroDealerViewOrderListItemsInDetailFragment : Fragment() {
                 adapter = orderDetailsAdapter
             }
 
+            // Update order status with respect to the agrodealer ID
             btnChangeStatusOrders.setOnClickListener {
-                viewModel.updateOrderStatus("Approved")
+                viewModel.updateOrderStatus("Approved", agrodealerId )
                 displaySnackBar("Order Approved.")
             }
         }
