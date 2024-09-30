@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentFieldAgentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FieldAgentRegisterFragment : Fragment() {
     private var _binding: FragmentFieldAgentRegisterBinding? = null
-    val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,5 +26,8 @@ class FieldAgentRegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.hide()
+
+
     }
 }

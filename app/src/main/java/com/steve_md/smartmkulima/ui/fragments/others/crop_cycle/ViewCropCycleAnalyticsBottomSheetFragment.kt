@@ -53,7 +53,6 @@ class ViewCropCycleAnalyticsBottomSheetFragment : BottomSheetDialogFragment() {
                Timber.d("Found records for $cropName")
             } ?: run {
                Timber.d("No records, no crop found in the records")
-
             }
         }
 

@@ -72,15 +72,15 @@ class UserTypeAccountFragment : Fragment() {
                     }
 
                     "FieldAgent" -> {
-
+                       // findNavController().navigate()
                     }
 
                     "Buyer" -> {
-
+                       // findNavController().navigate()
                     }
                     else -> {
-                        Timber.e("UserAccountTypeFragment"+" Role not found")
-                        toast("Profile not set")
+                        Timber.e("UserAccountTypeFragment"+"Role not found")
+                        toast("Account type not set")
                         return@setOnClickListener
                     }
                 }
@@ -213,6 +213,8 @@ class UserTypeAccountFragment : Fragment() {
         _binding = null
     }
 
+
+     // on resume to this screen just set role to farmer by default
     override fun onResume() {
         super.onResume()
         roleName = "Farmer"

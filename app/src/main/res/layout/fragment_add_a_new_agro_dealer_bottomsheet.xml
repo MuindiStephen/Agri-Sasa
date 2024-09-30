@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_gray"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.fragments.main.fieldagents.AddANewAgroDealerBottomSheetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterAgroDealerName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="45dp"
+        android:hint="AgroDealer Name"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeColor="@color/SilverGray"
+        app:boxStrokeWidthFocused="2dp"
+        android:textColorHint="@color/textColor"
+        app:endIconMode="clear_text"
+        android:textColor="@color/textColor"
+        app:endIconTint="@color/SilverGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputAgroDealerName"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_width="match_parent"
+        android:textColor="@color/textColor"
+        android:layout_height="wrap_content"
+        android:inputType="text|textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterAgroDealerEmailAddress"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="45dp"
+            android:hint="AgroDealer Email Address"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            android:textColorHint="@color/textColor"
+            app:endIconMode="clear_text"
+            android:textColor="@color/textColor"
+            app:endIconTint="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enterAgroDealerName" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputAgroDealerEmail"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:textColor="@color/textColor"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterAgroDealerPhone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="45dp"
+            android:hint="AgroDealer Phone Number"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            android:textColorHint="@color/textColor"
+            app:endIconMode="clear_text"
+            android:textColor="@color/textColor"
+            app:endIconTint="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enterAgroDealerEmailAddress" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputAgroDealerPhone"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:textColor="@color/textColor"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterAgroDealerPhysicalAddress"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="45dp"
+            android:hint="AgroDealer Physical Address"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            android:textColorHint="@color/textColor"
+            app:endIconMode="clear_text"
+            android:textColor="@color/textColor"
+            app:endIconTint="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enterAgroDealerPhone" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputAgroDealerPhysicalAddress"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:textColor="@color/textColor"
+                android:layout_height="wrap_content"
+                android:inputType="text|number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/enterAgroDealerExactLocation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="45dp"
+            android:hint="AgroDealer Location"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/SilverGray"
+            app:boxStrokeWidthFocused="2dp"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            app:endIconTint="@color/SilverGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enterAgroDealerPhysicalAddress" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputAgroDealerLocation"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_width="match_parent"
+                android:textColor="@color/textColor"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_location_on_"
+                android:inputType="text|number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/signInWithEmailButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="@dimen/_32dp"
+            android:backgroundTint="@color/main1"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="ADD AGRODEALER"
+            android:textColor="@color/bg_gray"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/enterAgroDealerExactLocation"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/enterAgroDealerExactLocation"
+            app:layout_constraintTop_toBottomOf="@+id/enterAgroDealerExactLocation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,25 +1,21 @@
 package com.steve_md.smartmkulima.ui.fragments.main.agrodealer
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.AgrodealerOrdersAdapter
-import com.steve_md.smartmkulima.adapter.FarmExpensesRecordsAdapter
-import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleAdapter
 import com.steve_md.smartmkulima.databinding.FragmentAgroDealerHomeDashboardBinding
 import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
-import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
-import com.steve_md.smartmkulima.ui.activities.DetailedFarmCycleActivity
+import com.steve_md.smartmkulima.utils.DateFormat.getCurrentDate
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -57,6 +53,8 @@ class AgroDealerHomeDashboardFragment : Fragment() {
             in 12..15 -> "Good Afternoon"
             else -> "Good Evening"
         }
+
+        binding.textViewLastLoggedInTimeDate.text = getCurrentDate()
 
         // fetch Orders for Respective Agro-Dealer ID...
         arguments?.getString("agrodealerID")
