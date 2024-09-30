@@ -44,7 +44,6 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     private val tasksAdapter by lazy { LocalFarmCycleTasksAdapter() }
   //  private lateinit var navController: NavController
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,7 +129,6 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
                     if (localFarmCycle != null) {
                         viewModel.updateTaskStatus("Cancelled", localFarmCycle.cropName)
                     }
-
 
                     showLoadingState()
 

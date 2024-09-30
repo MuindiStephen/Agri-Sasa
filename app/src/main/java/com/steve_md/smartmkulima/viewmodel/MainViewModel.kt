@@ -46,16 +46,25 @@ class MainViewModel @Inject constructor(
     val allCycles: LiveData<List<LocalFarmCycle>> = repository.getAllCycles()
 
 
+    /**
+     * Add a new crop cycle
+     */
     fun addCropCycle(cycle: LocalFarmCycle) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             repository.insertCycle(cycle)
         }
     }
 
+    /**
+     *  Updates Crop Cycle status with respect to the crop cycle name
+     */
     fun updateTaskStatus(status: String, cropName: String) = viewModelScope.launch {
         repository.updateTaskStatus(status, cropName)
     }
 
+    /**
+     *  Adds comments to the Cancelled Crop Cycle status with respect to the crop cycle name
+     */
     fun updateToNewCommentsCropCycleCancelled(comments: String, cropName: String) = viewModelScope.launch {
         repository.updateToNewCommentsCropCycle(comments, cropName)
     }
@@ -64,6 +73,9 @@ class MainViewModel @Inject constructor(
         getAllFarmProduce()
     }
 
+    /**
+     * fetches all available farm produce
+     */
     private fun getAllFarmProduce() {
         viewModelScope.launch {
             _produce.emit(
@@ -113,12 +125,18 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Add Farm Cycle Expense
+     */
     fun addFarmCycleExpense(farmFinanceExpenseRecords: FarmFinanceExpenseRecords) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             repository.insertNewCycleExpense(farmFinanceExpenseRecords)
         }
     }
 
+    /**
+     * Add Farm Cycle Revenue
+     */
     fun addFarmCycleRevenue(farmFinanceRevenueRecords: FarmFinanceRevenueRecords) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             repository.insertNewCycleRevenue(farmFinanceRevenueRecords)
@@ -168,9 +186,11 @@ class MainViewModel @Inject constructor(
 //    }
 
 
-
-
-
+    /**
+     * Farm expenses and revenues only for
+     * the selected crop
+     * - Auto-Calculate
+     */
     private val _selectedCrop = MutableLiveData<String>()
     val selectedCrop: LiveData<String> get() = _selectedCrop
 
@@ -413,6 +433,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    // update order status
     fun updateOrderStatus(newStatus: String, agroDealerId: String) = viewModelScope.launch {
         repository.updateOrderStatus(newStatus, agroDealerId)
     }

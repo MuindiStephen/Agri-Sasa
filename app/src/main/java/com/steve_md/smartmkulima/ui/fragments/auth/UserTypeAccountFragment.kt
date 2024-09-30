@@ -49,6 +49,14 @@ class UserTypeAccountFragment : Fragment() {
                 handleFarmer()
             }
 
+            cvBuyers.setOnClickListener {
+                handleBuyers()
+            }
+
+            cvFieldagents.setOnClickListener {
+                handleFieldAgents()
+            }
+
             btnContinue.setOnClickListener {
                 when (roleName) {
                     "Farmer" -> {
@@ -56,10 +64,19 @@ class UserTypeAccountFragment : Fragment() {
                             R.id.signInDetailsWithEmailFragment
                         )
                     }
+
                     "AgroDealer" -> {
                         findNavController().navigate(
                             R.id.agroDealerLoginFragment
                         )
+                    }
+
+                    "FieldAgent" -> {
+
+                    }
+
+                    "Buyer" -> {
+
                     }
                     else -> {
                         Timber.e("UserAccountTypeFragment"+" Role not found")
@@ -70,6 +87,61 @@ class UserTypeAccountFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun handleFieldAgents() {
+        roleName = "FieldAgent"
+
+        binding.cvFieldagents.setCardBackgroundColor(resources.getColor(R.color.main))
+        binding.cvFieldagents.cardElevation = 4F
+        binding.ivFieldagent.setColorFilter(ContextCompat.getColor(requireContext(),R.color.bg_gray))
+        binding.tvFieldagent.setTextColor(Color.WHITE)
+
+        //deactivate acc type agrodealer
+        binding.cvAgrodealer.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvAgrodealer.cardElevation = 2F
+        binding.ivAgrodealer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvAgrodealer.setTextColor(resources.getColor(R.color.main))
+
+        // Deactivate Farmer
+        binding.cvFarmer.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvFarmer.cardElevation = 2F
+        binding.ivFarmer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvFarmer.setTextColor(resources.getColor(R.color.main))
+
+        // Deactivate buyer
+        binding.cvBuyers.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvBuyers.cardElevation = 2F
+        binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvBuyer.setTextColor(resources.getColor(R.color.main))
+    }
+
+    private fun handleBuyers() {
+        roleName = "Buyer"
+
+        binding.cvBuyers.setCardBackgroundColor(resources.getColor(R.color.main))
+        binding.cvBuyers.cardElevation = 4F
+        binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.bg_gray))
+        binding.tvBuyer.setTextColor(Color.WHITE)
+
+        // Deactivate acc type agro-dealer
+        binding.cvAgrodealer.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvAgrodealer.cardElevation = 2F
+        binding.ivAgrodealer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvAgrodealer.setTextColor(resources.getColor(R.color.main))
+
+        // Deactivate Farmer
+        binding.cvFarmer.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvFarmer.cardElevation = 2F
+        binding.ivFarmer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvFarmer.setTextColor(resources.getColor(R.color.main))
+
+        // Deactivate Field-agent
+        binding.cvFieldagents.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvFieldagents.cardElevation = 2F
+        binding.ivFieldagent.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvFieldagent.setTextColor(resources.getColor(R.color.main))
+
     }
 
     private fun handleFarmer() {
@@ -88,6 +160,18 @@ class UserTypeAccountFragment : Fragment() {
         binding.tvAgrodealer.setTextColor(resources.getColor(R.color.main))
 //        binding.tvAgrodealer.setTextColor(Color.parseColor("#ffe5b48d"));
 
+        // Deactivate Field-agent
+        binding.cvFieldagents.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvFieldagents.cardElevation = 2F
+        binding.ivFieldagent.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvFieldagent.setTextColor(resources.getColor(R.color.main))
+
+        // Deactivate buyer
+        binding.cvBuyers.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvBuyers.cardElevation = 2F
+        binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvBuyer.setTextColor(resources.getColor(R.color.main))
+
     }
 
     private fun handleAgroDealer() {
@@ -105,6 +189,18 @@ class UserTypeAccountFragment : Fragment() {
         binding.ivFarmer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
         binding.tvFarmer.setTextColor(resources.getColor(R.color.main))
 //        binding.tvAgrodealer.setTextColor(Color.parseColor("#ffe5b48d"));
+
+        // Deactivate Field-agent
+        binding.cvFieldagents.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvFieldagents.cardElevation = 2F
+        binding.ivFieldagent.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvFieldagent.setTextColor(resources.getColor(R.color.main))
+
+        // Deactivate buyer
+        binding.cvBuyers.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvBuyers.cardElevation = 2F
+        binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvBuyer.setTextColor(resources.getColor(R.color.main))
     }
 
     override fun onDestroy() {
@@ -122,6 +218,4 @@ class UserTypeAccountFragment : Fragment() {
         roleName = "Farmer"
         handleFarmer()
     }
-
-
 }
