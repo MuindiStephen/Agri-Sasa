@@ -127,7 +127,10 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
                     localFarmCycle?.let { updateCropCycleStatus(it) }
 
                     // Update Room DB status - field
-                    viewModel.updateTaskStatus("Cancelled")
+                    if (localFarmCycle != null) {
+                        viewModel.updateTaskStatus("Cancelled", localFarmCycle.cropName)
+                    }
+
 
                     showLoadingState()
 
@@ -142,7 +145,9 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
                     localFarmCycle?.let { updateCropCycleStatus(it) }
 
                     // Update Room DB status - field
-                    viewModel.updateTaskStatus("Done")
+                    if (localFarmCycle != null) {
+                        viewModel.updateTaskStatus("Done", localFarmCycle.cropName)
+                    }
 
                     binding.textViewComments.isVisible = false
 

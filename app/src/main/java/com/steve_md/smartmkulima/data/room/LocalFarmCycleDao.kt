@@ -25,9 +25,9 @@ interface LocalFarmCycleDao {
     @Query("SELECT * FROM localcycle")
     fun getAllFarmCycle(): LiveData<List<LocalFarmCycle>>
 
-    @Query("UPDATE localcycle SET status = :status")
-    suspend fun updateTaskStatus(status: String)
+    @Query("UPDATE localcycle SET status = :status WHERE cropName =:cropName")
+    suspend fun updateTaskStatus(status: String, cropName: String)
 
-    @Query("UPDATE localcycle SET comments = :comments ")
-    suspend fun updateToNewComments(comments: String)
+    @Query("UPDATE localcycle SET comments = :comments WHERE cropName =:cropName")
+    suspend fun updateToNewComments(comments: String, cropName: String)
 }

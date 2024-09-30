@@ -52,12 +52,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun updateTaskStatus(status: String) = viewModelScope.launch {
-        repository.updateTaskStatus(status)
+    fun updateTaskStatus(status: String, cropName: String) = viewModelScope.launch {
+        repository.updateTaskStatus(status, cropName)
     }
 
-    fun updateToNewCommentsCropCycleCancelled(comments: String) = viewModelScope.launch {
-        repository.updateToNewCommentsCropCycle(comments)
+    fun updateToNewCommentsCropCycleCancelled(comments: String, cropName: String) = viewModelScope.launch {
+        repository.updateToNewCommentsCropCycle(comments, cropName)
     }
 
     init {

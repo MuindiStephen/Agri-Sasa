@@ -52,12 +52,12 @@ class FarmCycleRepository @Inject constructor(
         return localCycleDao.getAllFarmCycle()
     }
 
-    suspend fun updateTaskStatus(status: String) {
-        localCycleDao.updateTaskStatus(status)
+    suspend fun updateTaskStatus(status: String, cropName: String) {
+        localCycleDao.updateTaskStatus(status, cropName)
     }
 
-    suspend fun updateToNewCommentsCropCycle(comments: String) {
-        localCycleDao.updateToNewComments(comments)
+    suspend fun updateToNewCommentsCropCycle(comments: String, cropName: String) {
+        localCycleDao.updateToNewComments(comments, cropName)
     }
 
     fun getAllFarmFields(): LiveData<List<NewFarmField>> {
