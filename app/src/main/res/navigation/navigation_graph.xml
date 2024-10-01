@@ -724,7 +724,12 @@
             app:destination="@id/agroDealerLoginFragment" />
         <action
             android:id="@+id/action_userTypeAccountFragment_to_fieldAgentRegisterFragment2"
-            app:destination="@id/fieldAgentRegisterFragment" />
+            app:destination="@id/fieldAgentRegisterFragment"
+            app:popUpTo="@id/userTypeAccountFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_userTypeAccountFragment_to_marketProduce"
+            app:destination="@id/marketProduce" />
     </fragment>
     <fragment
         android:id="@+id/agroDealerViewOrderListItemsInDetailFragment"

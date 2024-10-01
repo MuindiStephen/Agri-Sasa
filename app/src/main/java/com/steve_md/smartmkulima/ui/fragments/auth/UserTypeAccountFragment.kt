@@ -72,11 +72,11 @@ class UserTypeAccountFragment : Fragment() {
                     }
 
                     "FieldAgent" -> {
-                       // findNavController().navigate()
+                       findNavController().navigate(R.id.fieldAgentRegisterFragment)
                     }
 
                     "Buyer" -> {
-                       // findNavController().navigate()
+                        findNavController().navigate(R.id.marketProduce)
                     }
                     else -> {
                         Timber.e("UserAccountTypeFragment"+"Role not found")
