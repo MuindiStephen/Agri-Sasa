@@ -153,8 +153,6 @@ class CropCycleAddNewExpensesFragment : Fragment() {
             if (!it) binding.enterExpenseName.error = "Invalid"
         } && binding.inputExpenseAmount.text.isNullOrEmpty().not().also {
             if (!it) binding.enterAmountSpent.error = "Invalid"
-        } && binding.inputTaskName.text.isNullOrEmpty().not().also {
-            if (!it) binding.enterTaskName.error = "Invalid"
         } && binding.inputExpenseDate.text.isNullOrEmpty().not().also {
             if (!it) binding.enterDate.error = "Invalid"
         }
