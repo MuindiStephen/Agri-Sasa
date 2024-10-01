@@ -177,4 +177,24 @@
         <item>Owned</item>
         <item>Rented</item>
     </string-array>
+
+    <string-array name="sample_crop_cycle_tasks">
+        <item>Seedling Acquisition</item>
+        <item>Potting</item>
+        <item>Media Washing and Treatment</item>
+        <item>Preparation of grow trays</item>
+        <item>Seed sowing</item>
+        <item>Watering and feeding</item>
+        <item>Hardening</item>
+        <item>Cleaning and fumigation</item>
+        <item>Transplanting</item>
+        <item>Feeding</item>
+        <item>Gaping</item>
+        <item>Drenching</item>
+        <item>Spraying</item>
+        <item>Pruning</item>
+        <item>Weeding</item>
+        <item>Uprooting</item>
+        <item>Harvesting</item>
+    </string-array>
 </resources>

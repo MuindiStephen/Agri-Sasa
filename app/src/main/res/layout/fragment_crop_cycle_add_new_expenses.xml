@@ -110,37 +110,25 @@
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/enterTaskName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <Spinner
+        android:id="@+id/spinnerentertaskname"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:elevation="10dp"
-        android:layout_marginTop="@dimen/_16dp"
-        android:hint="Enter the task"
-        android:textColorHint="@color/textColor"
-        app:boxCornerRadiusBottomEnd="10dp"
-        app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp"
-        app:boxStrokeColor="@color/SilverGray"
-        app:boxStrokeWidthFocused="2dp"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/SilverGray"
-        app:hintTextColor="@color/SilverGray"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:background="@drawable/rounded_corner"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/enterAmountSpent">
+        app:layout_constraintTop_toBottomOf="@id/enterAmountSpent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputTaskName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/enterDate"
@@ -164,7 +152,7 @@
         app:hintTextColor="@color/SilverGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/enterTaskName">
+        app:layout_constraintTop_toBottomOf="@id/spinnerentertaskname">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputExpenseDate"
@@ -195,5 +183,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/enterDate"
         app:layout_constraintTop_toBottomOf="@+id/enterDate" />
+
+    <TextView
+        android:id="@+id/textView173"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="Task"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerentertaskname"
+        app:layout_constraintStart_toStartOf="@+id/spinnerentertaskname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
