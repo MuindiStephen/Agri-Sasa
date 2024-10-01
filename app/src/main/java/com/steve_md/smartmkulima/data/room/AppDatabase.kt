@@ -52,6 +52,8 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun fieldAgentAgrodealerDao(): FieldAgentAddAgrodealerDao
 
+    abstract fun fieldAgentEarningsDao(): FieldAgentEarningsDao
+
     /**
      * Implement singleton pattern in room to prevent
      * multiple instances of room database opening at the sametime

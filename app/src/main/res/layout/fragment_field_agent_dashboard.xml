@@ -46,14 +46,14 @@
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="@dimen/_16dp"
         app:cardBackgroundColor="@color/gray"
         app:cardCornerRadius="@dimen/_8dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWhatTODO">
+        app:layout_constraintTop_toBottomOf="@+id/textViewEarnings">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -66,14 +66,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/rounded_corner"
+                android:clickable="true"
                 android:drawableLeft="@drawable/ic_view"
+                android:focusable="true"
                 android:fontFamily="@font/montserrat_medium"
+                android:foreground="?android:selectableItemBackground"
                 android:text="View\n AgroDealers"
                 android:textAllCaps="false"
                 android:textSize="12sp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -84,14 +84,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_8dp"
                 android:background="@drawable/rounded_corner"
+                android:clickable="true"
                 android:drawableLeft="@drawable/baseline_add_24"
+                android:focusable="true"
                 android:fontFamily="@font/montserrat_medium"
+                android:foreground="?android:selectableItemBackground"
                 android:text="Add \nAgroDealer"
                 android:textAllCaps="false"
                 android:textSize="12sp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -181,4 +181,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/includeToolBar"
         app:layout_constraintVertical_bias="0.598" />
+
+    <TextView
+        android:id="@+id/textViewEarnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Current Earnings: 0 points worth KSH. 0"
+        android:textSize="@dimen/_14sp_text_size"
+        android:textColor="@color/fireBrickRed"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewWhatTODO"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWhatTODO" />
 </androidx.constraintlayout.widget.ConstraintLayout>

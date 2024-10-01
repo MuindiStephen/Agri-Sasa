@@ -20,8 +20,10 @@ import com.steve_md.smartmkulima.adapter.FieldAgentAddedAgroDealersAdapter
 import com.steve_md.smartmkulima.databinding.FragmentFieldAgentDashboardBinding
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentAddAgroDealerData
+import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentEarnings
 import com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.ViewCropCycleAnalyticsBottomSheetFragment
 import com.steve_md.smartmkulima.utils.DateFormat
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
@@ -40,6 +42,8 @@ class FieldAgentDashboardFragment : Fragment() {
         FieldAgentAddedAgroDealersAdapter()
     }
     private var fieldAgentAgroDealers =  mutableListOf<FieldAgentAddAgroDealerData>()
+
+    private var fieldAgentEarnings: FieldAgentEarnings? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -94,7 +98,12 @@ class FieldAgentDashboardFragment : Fragment() {
     }
 
     private fun setUpUi() {
+
+        subscribeToFieldAgentEarningVMObservables()
+
         binding.apply {
+
+            textViewEarnings.text = ""
 
             button4.setOnClickListener {
                 showAddANewAgroDealerBottomSheetFragment()
@@ -107,6 +116,7 @@ class FieldAgentDashboardFragment : Fragment() {
                     progressBar7.isVisible = false
                 }
             }
+
         }
 
         binding.inputSearchAgrodealer.setOnEditorActionListener { _, actionId, _ ->
@@ -138,6 +148,14 @@ class FieldAgentDashboardFragment : Fragment() {
         }
     }
 
+    private fun subscribeToFieldAgentEarningVMObservables() {
+        viewModel.allFieldAgentEarnings.observe(viewLifecycleOwner) {
+            it?.let {
+                binding.textViewEarnings.text = "Current Earnings: ${it.points} points worth KSH. ${it.earnings}"
+            }
+        }
+    }
+
     private fun showAddANewAgroDealerBottomSheetFragment() {
         val modal = AddANewAgroDealerBottomSheetFragment()
         modal.show(parentFragmentManager, TAG)
@@ -146,6 +164,11 @@ class FieldAgentDashboardFragment : Fragment() {
     private fun searchingAgroDealer(searchText: String) {
         val filteredList = fieldAgentAgroDealers.filter { it.name.equals(searchText, ignoreCase = true) }
         fieldAgentAddedAgroDealersAdapter.submitList(filteredList.toMutableList())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        displaySnackBar("Yaaay! Onboard more Agro-Dealers to increase your earnings")
     }
 
     companion object {
