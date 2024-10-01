@@ -60,7 +60,7 @@ data class OrderCheckoutByFarmer(
     val cartOrder: List<FarmInputAgroDealerCartItem>,
     val farmerLocation: String, // pick location away from agrodealer.
     val farmEmail: String, // farmer contacts
-    val agrodealerID: String , // track respective agrodealer who supplied the farm agro-input
+    val agrodealerID: String, // track respective agrodealer who supplied the farm agro-input
     val orderStatus: String,
     val totalOrderInMoney: String
 ): Parcelable

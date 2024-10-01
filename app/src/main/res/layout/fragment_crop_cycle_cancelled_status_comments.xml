@@ -25,7 +25,7 @@
         android:padding="4dp"
         android:fontFamily="@font/montserrat_medium"
         android:textSize="14sp"
-        android:text="Since Crop Cyle has been cancelled, add some comments for cancelling the crop cycle."
+        android:text="Since you want to cancel this Crop Cyle, add some comments / reason for cancelling the crop cycle."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lottieCancelled" />
@@ -76,7 +76,7 @@
         android:backgroundTint="@color/main1"
         android:fontFamily="@font/montserrat_medium"
         android:foreground="?android:selectableItemBackground"
-        android:text="Submit comment"
+        android:text="Submit to Cancel"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/enterCommentsForCancellingCropCycle"

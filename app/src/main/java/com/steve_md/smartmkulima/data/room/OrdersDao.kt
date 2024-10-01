@@ -20,4 +20,7 @@ interface OrdersDao {
 
     @Query("UPDATE orders SET orderStatus = :newOrderStatus WHERE agrodealerID =:agrodealerID")
     suspend fun updateOrderStatus(newOrderStatus: String, agrodealerID: String)
+
+    @Query("SELECT * FROM orders")
+    fun fetchAllOrdersToTheFarmer(): LiveData<List<OrderCheckoutByFarmer>>
 }

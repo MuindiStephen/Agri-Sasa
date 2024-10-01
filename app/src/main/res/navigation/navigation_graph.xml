@@ -387,6 +387,9 @@
         <action
             android:id="@+id/action_newFarmingTechnologyFragment_to_cropCycleFarmRecordsFragment"
             app:destination="@id/cropCycleFarmRecordsFragment" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_viewAllOrdersMadeToAgroDealerAsAFarmerFragment"
+            app:destination="@id/viewAllOrdersMadeToAgroDealerAsAFarmerFragment" />
     </fragment>
     <fragment
         android:id="@+id/didYouKnow"
@@ -719,6 +722,14 @@
         <action
             android:id="@+id/action_userTypeAccountFragment_to_agroDealerLoginFragment"
             app:destination="@id/agroDealerLoginFragment" />
+        <action
+            android:id="@+id/action_userTypeAccountFragment_to_fieldAgentRegisterFragment2"
+            app:destination="@id/fieldAgentRegisterFragment"
+            app:popUpTo="@id/userTypeAccountFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_userTypeAccountFragment_to_marketProduce"
+            app:destination="@id/marketProduce" />
     </fragment>
     <fragment
         android:id="@+id/agroDealerViewOrderListItemsInDetailFragment"
@@ -729,6 +740,40 @@
             android:name="orderInDetailAgroDealer"
             app:argType="com.steve_md.smartmkulima.model.OrderCheckoutByFarmer" />
     </fragment>
+    <fragment
+        android:id="@+id/viewAllOrdersMadeToAgroDealerAsAFarmerFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.ViewAllOrdersMadeToAgroDealerAsAFarmerFragment"
+        android:label="fragment_view_all_orders_made_to_agro_dealer_as_a_farmer"
+        tools:layout="@layout/fragment_view_all_orders_made_to_agro_dealer_as_a_farmer" />
+    <fragment
+        android:id="@+id/fieldAgentRegisterFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.fieldagents.FieldAgentRegisterFragment"
+        android:label="fragment_field_agent_register"
+        tools:layout="@layout/fragment_field_agent_register" >
+        <action
+            android:id="@+id/action_fieldAgentRegisterFragment_to_fieldAgentLoginFragment"
+            app:destination="@id/fieldAgentLoginFragment"
+            app:popUpTo="@id/fieldAgentRegisterFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fieldAgentLoginFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.fieldagents.FieldAgentLoginFragment"
+        android:label="fragment_field_agent_login"
+        tools:layout="@layout/fragment_field_agent_login" >
+        <action
+            android:id="@+id/action_fieldAgentLoginFragment_to_fieldAgentRegisterFragment"
+            app:destination="@id/fieldAgentRegisterFragment"
+            app:popUpTo="@id/fieldAgentLoginFragment" />
+        <action
+            android:id="@+id/action_fieldAgentLoginFragment_to_fieldAgentDashboardFragment"
+            app:destination="@id/fieldAgentDashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fieldAgentDashboardFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.fieldagents.FieldAgentDashboardFragment"
+        android:label="fragment_field_agent_dashboard"
+        tools:layout="@layout/fragment_field_agent_dashboard" />
 
 
 </navigation>

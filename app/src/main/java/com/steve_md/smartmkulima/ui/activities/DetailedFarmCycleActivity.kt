@@ -44,7 +44,6 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     private val tasksAdapter by lazy { LocalFarmCycleTasksAdapter() }
     //  private lateinit var navController: NavController
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,7 +130,6 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
                         viewModel.updateTaskStatus("Cancelled", localFarmCycle.cropName)
                     }
 
-
                     showLoadingState()
 
                     binding.textViewComments.isVisible = true
@@ -174,7 +172,11 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
         val modal = CropCycleCancelledStatusCommentsFragment().apply {
             arguments = Bundle().apply {
+<<<<<<< HEAD
                 putString("cropCycleName", localFarmCycle?.cropName)
+=======
+                putString("cropCycleName", localFarmCycle?.cropName )
+>>>>>>> feature/field-agents
             }
         }
         supportFragmentManager.let {

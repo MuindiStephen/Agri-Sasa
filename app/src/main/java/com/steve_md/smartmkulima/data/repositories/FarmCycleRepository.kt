@@ -6,6 +6,8 @@ import com.steve_md.smartmkulima.data.room.FarmCycleExpensesRecordsDao
 import com.steve_md.smartmkulima.data.room.FarmCycleRevenueRecordsDao
 import com.steve_md.smartmkulima.data.room.FarmFieldsDao
 import com.steve_md.smartmkulima.data.room.FarmSummaryRecordsDao
+import com.steve_md.smartmkulima.data.room.FieldAgentAddAgrodealerDao
+import com.steve_md.smartmkulima.data.room.FieldAgentEarningsDao
 import com.steve_md.smartmkulima.data.room.GAPDao
 import com.steve_md.smartmkulima.data.room.LocalFarmCycleDao
 import com.steve_md.smartmkulima.data.room.OrdersDao
@@ -13,6 +15,8 @@ import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
+import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentAddAgroDealerData
+import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentEarnings
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
@@ -40,6 +44,10 @@ class FarmCycleRepository @Inject constructor(
 
     // orders
     private val ordersDao : OrdersDao = database.ordersDao()
+
+    private val fieldAgentAddAgrodealerDao: FieldAgentAddAgrodealerDao = database.fieldAgentAgrodealerDao()
+
+    private val fieldAgentEarningsDao: FieldAgentEarningsDao = database.fieldAgentEarningsDao()
 
     suspend fun insertCycle(cycle: LocalFarmCycle) = apiRequestByResource {
         localCycleDao.insertLocalFarmCycle(cycle)
@@ -124,8 +132,32 @@ class FarmCycleRepository @Inject constructor(
         return ordersDao.getSpecificOrdersForAgroDealerID(agrodealerId)
     }
 
+    fun getAllOrdersToTheFarmer(): LiveData<List<OrderCheckoutByFarmer>> {
+        return ordersDao.fetchAllOrdersToTheFarmer()
+    }
+
     suspend fun updateOrderStatus(newStatus: String, agrodealerId: String) {
         ordersDao.updateOrderStatus(newStatus, agrodealerId)
     }
 
+    suspend fun fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData: FieldAgentAddAgroDealerData) =  apiRequestByResource {
+        fieldAgentAddAgrodealerDao.fieldAgentAddANewAgrodealer(fieldAgentAddAgroDealerData)
+    }
+
+    fun getAllFieldAgentAddedAgroDealers(): LiveData<List<FieldAgentAddAgroDealerData>> {
+        return fieldAgentAddAgrodealerDao.getAllFieldAgentAddedAgrodealers()
+    }
+
+    // Field agent earnings METHODS
+    suspend fun saveEarnings(fieldAgentEarnings: FieldAgentEarnings) =  apiRequestByResource {
+        fieldAgentEarningsDao.saveFieldAgentEarnings(fieldAgentEarnings)
+    }
+
+    suspend fun updateFieldAgentEarnings(newPoints: Int, earnings: Double) {
+        fieldAgentEarningsDao.updateFieldAgentEarnings(newPoints, earnings)
+    }
+
+    fun getAllFieldAgentEarnings(): LiveData<FieldAgentEarnings> {
+        return fieldAgentEarningsDao.fetchAllFieldAgentEarnings()
+    }
 }

@@ -41,10 +41,16 @@ class CropCycleCancelledStatusCommentsFragment : BottomSheetDialogFragment() {
         // update or add comments why cancel crop cycle
         binding.btnSubmitCommentsForCropCycleCancelling.setOnClickListener {
 
+
             if (validateInputs()) {
                 if (cropName != null) {
                     viewModel.updateToNewCommentsCropCycleCancelled(
+<<<<<<< HEAD
                         binding.inputCommentsForCancelCropCycle.text.toString(), cropName
+=======
+                        binding.inputCommentsForCancelCropCycle.text.toString(),
+                        cropName
+>>>>>>> feature/field-agents
                     )
                 }
                 displaySnackBar("Added comments.")

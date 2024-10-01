@@ -90,7 +90,7 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                 if (cycles.isNotEmpty()) {
 
                     val allCropCycles = cycles.map {
-                        it.cropName
+                        "${it.cropName} - ${it.farmName} - ${it.startDate}"
                     }
 
                     val adapter = ArrayAdapter<String>(this@CropCycleAddNewExpensesFragment.requireContext(),
@@ -118,7 +118,7 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                     nameOfCropCycle = binding.spinnerNameOfCycle.selectedItem.toString() ,
                     nameOfExpense = binding.inputExpenseName.text.toString(),
                     amountSpent = binding.inputExpenseAmount.text.toString() ,
-                    whichTask = binding.inputTaskName.text.toString(),
+                    whichTask = binding.spinnerentertaskname.selectedItem.toString(),
                     dateOfThisFinancialRecord = binding.inputExpenseDate.text.toString()
                 )
 
@@ -129,15 +129,11 @@ class CropCycleAddNewExpensesFragment : Fragment() {
                         requireActivity().runOnUiThread {
                             displaySnackBar("Successfully Added a new expense record.")
                         }
-
                         findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
-
-
-
                     } catch (e: Exception) {
                         displaySnackBar("Your request failed.")
                         Timber.d("Request failed.")
-                        Timber.tag("Add=Expenses").e(
+                        Timber.tag("Add==Expenses==").e(
                             "Request==Failed ==>Could not create this expense record ${e.localizedMessage}"
                         )
 
@@ -157,8 +153,6 @@ class CropCycleAddNewExpensesFragment : Fragment() {
             if (!it) binding.enterExpenseName.error = "Invalid"
         } && binding.inputExpenseAmount.text.isNullOrEmpty().not().also {
             if (!it) binding.enterAmountSpent.error = "Invalid"
-        } && binding.inputTaskName.text.isNullOrEmpty().not().also {
-            if (!it) binding.enterTaskName.error = "Invalid"
         } && binding.inputExpenseDate.text.isNullOrEmpty().not().also {
             if (!it) binding.enterDate.error = "Invalid"
         }

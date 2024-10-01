@@ -12,6 +12,8 @@ import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
+import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentAddAgroDealerData
+import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentEarnings
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
@@ -46,24 +48,37 @@ class MainViewModel @Inject constructor(
     val allCycles: LiveData<List<LocalFarmCycle>> = repository.getAllCycles()
 
 
+    /**
+     * Add a new crop cycle
+     */
     fun addCropCycle(cycle: LocalFarmCycle) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             repository.insertCycle(cycle)
         }
     }
 
+    /**
+     *  Updates Crop Cycle status with respect to the crop cycle name
+     */
     fun updateTaskStatus(status: String, cropName: String) = viewModelScope.launch {
         repository.updateTaskStatus(status, cropName)
     }
 
-    fun updateToNewCommentsCropCycleCancelled(comments: String, cropName: String) = viewModelScope.launch {
-        repository.updateToNewCommentsCropCycle(comments, cropName)
-    }
+    /**
+     *  Adds comments to the Cancelled Crop Cycle status with respect to the crop cycle name
+     */
+    fun updateToNewCommentsCropCycleCancelled(comments: String, cropName: String) =
+        viewModelScope.launch {
+            repository.updateToNewCommentsCropCycle(comments, cropName)
+        }
 
     init {
         getAllFarmProduce()
     }
 
+    /**
+     * fetches all available farm produce
+     */
     private fun getAllFarmProduce() {
         viewModelScope.launch {
             _produce.emit(
@@ -86,6 +101,7 @@ class MainViewModel @Inject constructor(
 
                         Timber.e("Get all Farm Produce: ${result.error?.message ?: "Unknown Error Occurred"}")
                     }
+
                     is ApiStates.Success -> {
                         _produce.emit(
                             FarmProduceState(
@@ -96,6 +112,7 @@ class MainViewModel @Inject constructor(
 
                         Timber.e("Get All Farm Produce: ${result.data}")
                     }
+
                     else -> {}
                 }
             }
@@ -113,17 +130,25 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun addFarmCycleExpense(farmFinanceExpenseRecords: FarmFinanceExpenseRecords) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
-            repository.insertNewCycleExpense(farmFinanceExpenseRecords)
+    /**
+     * Add Farm Cycle Expense
+     */
+    fun addFarmCycleExpense(farmFinanceExpenseRecords: FarmFinanceExpenseRecords) =
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.insertNewCycleExpense(farmFinanceExpenseRecords)
+            }
         }
-    }
 
-    fun addFarmCycleRevenue(farmFinanceRevenueRecords: FarmFinanceRevenueRecords) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
-            repository.insertNewCycleRevenue(farmFinanceRevenueRecords)
+    /**
+     * Add Farm Cycle Revenue
+     */
+    fun addFarmCycleRevenue(farmFinanceRevenueRecords: FarmFinanceRevenueRecords) =
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.insertNewCycleRevenue(farmFinanceRevenueRecords)
+            }
         }
-    }
 
     // deleting expenses records
     fun deleteFarmCycleExpense() = viewModelScope.launch {
@@ -139,20 +164,24 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    val allFarmCycleExp: LiveData<List<FarmFinanceExpenseRecords>> = repository.getAllCycleExpenses()
+    val allFarmCycleExp: LiveData<List<FarmFinanceExpenseRecords>> =
+        repository.getAllCycleExpenses()
 
-    val allFarmCycleRevenues: LiveData<List<FarmFinanceRevenueRecords>> = repository.getAllCycleRevenues()
+    val allFarmCycleRevenues: LiveData<List<FarmFinanceRevenueRecords>> =
+        repository.getAllCycleRevenues()
 
 
     // Get a list of all farm records summary
-    val allSummaryRecords : LiveData<List<FarmFinancialDataSummary>> = repository.getAllSummaryRecords()
+    val allSummaryRecords: LiveData<List<FarmFinancialDataSummary>> =
+        repository.getAllSummaryRecords()
 
     // Adding a new farm summary record
-    fun addFarmSummaryRecords(farmFinancialDataSummary: FarmFinancialDataSummary) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
-            repository.saveFarmSummaryRecord(farmFinancialDataSummary)
+    fun addFarmSummaryRecords(farmFinancialDataSummary: FarmFinancialDataSummary) =
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.saveFarmSummaryRecord(farmFinancialDataSummary)
+            }
         }
-    }
 
     // Deleting Farm Summary Records
     fun deleteFarmSummaryRecords() = viewModelScope.launch {
@@ -162,15 +191,16 @@ class MainViewModel @Inject constructor(
     }
 
 
-
 //    fun getCropData(cropName: String): LiveData<CropRecord?> {
 //        return repository.getCropData(cropName)
 //    }
 
 
-
-
-
+    /**
+     * Farm expenses and revenues only for
+     * the selected crop
+     * - Auto-Calculate
+     */
     private val _selectedCrop = MutableLiveData<String>()
     val selectedCrop: LiveData<String> get() = _selectedCrop
 
@@ -182,11 +212,11 @@ class MainViewModel @Inject constructor(
 
     // LiveData for total expenses and sales
     private val _totalExpensesForCrop = MutableLiveData<String>()
-    val totalExpenseForCrop : LiveData<String> get() = _totalExpensesForCrop
+    val totalExpenseForCrop: LiveData<String> get() = _totalExpensesForCrop
 
 
     private val _totalSalesForCrop = MutableLiveData<String>()
-    val totalSalesForCrop : LiveData<String> get() = _totalSalesForCrop
+    val totalSalesForCrop: LiveData<String> get() = _totalSalesForCrop
 
 
     // LiveData to expose calculated revenue
@@ -264,7 +294,7 @@ class MainViewModel @Inject constructor(
     }
     
      */
-    
+
     /*
 
     val calculatedRevenue: LiveData<Double> = MediatorLiveData<Double>().apply {
@@ -284,15 +314,13 @@ class MainViewModel @Inject constructor(
     
      */
 
-    
-
 
     /**
      * ADD TO CART - SUPPLIES / AGRO-DEALERS
      */
     private val _cart = MutableStateFlow<List<FarmInputAgroDealerCartItem>>(emptyList())
     val cart: StateFlow<List<FarmInputAgroDealerCartItem>>
-        get() =_cart.asStateFlow()
+        get() = _cart.asStateFlow()
 
 
     // Adding the AgroDealer Deal to cart
@@ -306,9 +334,13 @@ class MainViewModel @Inject constructor(
             if (existingItem != null) {
                 existingItem.quantity++
                 Timber.tag("MainViewModel-CART")
-                    .d("%s%s", "Increased quantity for " + agroDealerOffers.productName + ". New quantity: ", existingItem.quantity)
+                    .d(
+                        "%s%s",
+                        "Increased quantity for " + agroDealerOffers.productName + ". New quantity: ",
+                        existingItem.quantity
+                    )
             } else {
-               currentCart.add(FarmInputAgroDealerCartItem(agroDealerOffers))
+                currentCart.add(FarmInputAgroDealerCartItem(agroDealerOffers))
                 Timber.tag("MainViewModel-CART")
                     .d("Added New Item To Cart: %s", agroDealerOffers.productName)
 
@@ -376,7 +408,7 @@ class MainViewModel @Inject constructor(
     fun removeFromCart(offers: AgroDealerOffers) {
         viewModelScope.launch {
             val currentCart = _cart.value.toMutableList()
-            currentCart.removeAll { it.offerProduct.id == offers.id}
+            currentCart.removeAll { it.offerProduct.id == offers.id }
             _cart.value = currentCart
         }
     }
@@ -386,7 +418,6 @@ class MainViewModel @Inject constructor(
     fun clearCart() {
         _cart.value = emptyList()
     }
-
 
 
     // Ui SwipeToRefresh
@@ -403,8 +434,11 @@ class MainViewModel @Inject constructor(
 
 
     // Get order based on the agrodealer ID
-    fun ordersByAgroDealerID (agroDealerId: String) : LiveData<List<OrderCheckoutByFarmer>> =
+    fun ordersByAgroDealerID(agroDealerId: String): LiveData<List<OrderCheckoutByFarmer>> =
         repository.getSpecificOrdersForAgrodealerID(agroDealerId)
+
+    val allOrdersMadeToTheFarmer: LiveData<List<OrderCheckoutByFarmer>> =
+        repository.getAllOrdersToTheFarmer()
 
     // Adding a new order
     fun saveOrder(order: OrderCheckoutByFarmer) = viewModelScope.launch {
@@ -413,9 +447,37 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    // update order status
     fun updateOrderStatus(newStatus: String, agroDealerId: String) = viewModelScope.launch {
         repository.updateOrderStatus(newStatus, agroDealerId)
     }
+
+    fun fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData: FieldAgentAddAgroDealerData) =
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
+            }
+        }
+
+    // All farm fields
+    val allFieldAgentAddedAgroDealers: LiveData<List<FieldAgentAddAgroDealerData>> =
+        repository.getAllFieldAgentAddedAgroDealers()
+
+
+    // FIELD AGENT EARNINGS
+    fun updateFieldAgentEarnings(newPoints: Int, newEarnings: Double) = viewModelScope.launch {
+        repository.updateFieldAgentEarnings(newPoints, newEarnings)
+    }
+
+    fun saveFieldAgentEarnings(fieldAgentEarnings: FieldAgentEarnings) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.saveEarnings(fieldAgentEarnings)
+        }
+    }
+
+    val allFieldAgentEarnings: LiveData<FieldAgentEarnings> =
+        repository.getAllFieldAgentEarnings()
+
 
 }
 

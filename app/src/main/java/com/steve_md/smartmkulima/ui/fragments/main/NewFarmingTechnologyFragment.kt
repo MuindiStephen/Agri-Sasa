@@ -69,6 +69,10 @@ class NewFarmingTechnologyFragment : Fragment() {
             cardViewMyFarmRecords.setOnClickListener {
                 findNavController().navigate(R.id.cropCycleFarmRecordsFragment)
             }
+
+            cardViewTrackMyOrderToAgrodealers.setOnClickListener {
+                findNavController().navigate(R.id.viewAllOrdersMadeToAgroDealerAsAFarmerFragment)
+            }
         }
     }
 
