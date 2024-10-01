@@ -13,6 +13,7 @@ import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
 import com.steve_md.smartmkulima.model.Tasks
 import com.steve_md.smartmkulima.model.Transaction
+import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentAddAgroDealerData
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
@@ -27,8 +28,9 @@ import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
     Tasks::class, LocalFarmCycle::class,
     NewFarmField::class, FarmFinanceExpenseRecords::class,
     FarmFinanceRevenueRecords::class, FarmFinancialDataSummary::class,
-                     OrderCheckoutByFarmer::class],
-    version = 9, exportSchema = false)
+                     OrderCheckoutByFarmer::class,
+                     FieldAgentAddAgroDealerData::class],
+    version = 10, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao
@@ -47,6 +49,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun farmSummaryRecordsDao() : FarmSummaryRecordsDao
 
     abstract fun ordersDao() : OrdersDao
+
+    abstract fun fieldAgentAgrodealerDao(): FieldAgentAddAgrodealerDao
 
     /**
      * Implement singleton pattern in room to prevent

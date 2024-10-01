@@ -167,7 +167,14 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     }
 
     private fun showCropCycleCancelledAddCommentsBottomSheetDialog() {
-        val modal = CropCycleCancelledStatusCommentsFragment()
+
+        val localFarmCycle: LocalFarmCycle? = intent.getParcelableExtra("localFarmCycle")
+
+        val modal = CropCycleCancelledStatusCommentsFragment().apply {
+            arguments = Bundle().apply {
+                putString("cropCycleName", localFarmCycle?.cropName )
+            }
+        }
         supportFragmentManager.let {
             modal.show(it, CropCycleCancelledStatusCommentsFragment.TAG)
         }

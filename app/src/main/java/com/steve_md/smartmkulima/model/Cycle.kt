@@ -8,7 +8,6 @@ import kotlinx.parcelize.Parcelize
 /**
  * This data model class accommodates both crop cycle and service cycle
  */
-
 @Entity(tableName = "cycle")
 @Parcelize
 data class Cycle(

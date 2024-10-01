@@ -36,13 +36,19 @@ class CropCycleCancelledStatusCommentsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val cropName = arguments?.getString("cropCycleName")
+
         // update or add comments why cancel crop cycle
         binding.btnSubmitCommentsForCropCycleCancelling.setOnClickListener {
 
+
             if (validateInputs()) {
-                viewModel.updateToNewCommentsCropCycleCancelled(
-                    binding.inputCommentsForCancelCropCycle.text.toString()
-                )
+                if (cropName != null) {
+                    viewModel.updateToNewCommentsCropCycleCancelled(
+                        binding.inputCommentsForCancelCropCycle.text.toString(),
+                        cropName
+                    )
+                }
                 displaySnackBar("Added comments.")
 
                 //view.findViewById<TextView>(R.id.textViewComments).isVisible = true

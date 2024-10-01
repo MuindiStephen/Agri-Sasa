@@ -12,6 +12,7 @@ import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
 import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
+import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentAddAgroDealerData
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
@@ -426,6 +427,8 @@ class MainViewModel @Inject constructor(
     fun ordersByAgroDealerID (agroDealerId: String) : LiveData<List<OrderCheckoutByFarmer>> =
         repository.getSpecificOrdersForAgrodealerID(agroDealerId)
 
+    val allOrdersMadeToTheFarmer : LiveData<List<OrderCheckoutByFarmer>>  = repository.getAllOrdersToTheFarmer()
+
     // Adding a new order
     fun saveOrder(order: OrderCheckoutByFarmer) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
@@ -437,6 +440,17 @@ class MainViewModel @Inject constructor(
     fun updateOrderStatus(newStatus: String, agroDealerId: String) = viewModelScope.launch {
         repository.updateOrderStatus(newStatus, agroDealerId)
     }
+
+    fun fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData: FieldAgentAddAgroDealerData) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            repository.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
+        }
+    }
+
+    // All farm fields
+    val allFieldAgentAddedAgroDealers: LiveData<List<FieldAgentAddAgroDealerData>> = repository.getAllFieldAgentAddedAgroDealers()
+
+
 
 }
 

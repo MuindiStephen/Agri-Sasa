@@ -179,7 +179,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/signInWithEmailButton"
+            android:id="@+id/addAgroDealerByFieldAgentBtn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="45dp"
