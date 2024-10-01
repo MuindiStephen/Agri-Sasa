@@ -73,7 +73,8 @@ class DetailedFarmCycleFragment : Fragment() {
             Timber.tag(this@DetailedFarmCycleFragment.toString()).i("Viewing ${localFarmCycle?.cropName} cycle")
             displaySnackBar("Viewing ${localFarmCycle?.cropName} cycle")
 
-            tasksAdapter.submitList(localFarmCycle!!.tasks)
+            localFarmCycle?.let { tasksAdapter.submitList(it.tasks) }
+
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = tasksAdapter

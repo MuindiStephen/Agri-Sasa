@@ -125,11 +125,6 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
                     localFarmCycle?.let { updateCropCycleStatus(it) }
 
-                    // Update Room DB status - field
-                    if (localFarmCycle != null) {
-                        viewModel.updateTaskStatus("Cancelled", localFarmCycle.cropName)
-                    }
-
                     showLoadingState()
 
                     binding.textViewComments.isVisible = true
@@ -172,11 +167,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
         val modal = CropCycleCancelledStatusCommentsFragment().apply {
             arguments = Bundle().apply {
-<<<<<<< HEAD
                 putString("cropCycleName", localFarmCycle?.cropName)
-=======
-                putString("cropCycleName", localFarmCycle?.cropName )
->>>>>>> feature/field-agents
             }
         }
         supportFragmentManager.let {
@@ -211,7 +202,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
             val endDate = LocalDate.parse(localFarmCycle.tasks.last().endDate,formatter2) // up to the very last crop cycle end date
 
             return when {
-                localFarmCycle.status == "Cancelled" -> "Cancelled"
+                currentDate.isBefore(startDate) && localFarmCycle.status =="Cancelled" -> "Cancelled"
                 currentDate.isBefore(startDate) -> "Upcoming"
                 currentDate.isAfter(endDate) && localFarmCycle.status != "Done" && localFarmCycle.status != "Cancelled" -> "Overdue"
                 currentDate.isAfter(startDate) && currentDate.isBefore(endDate) -> "In Progress"
@@ -223,5 +214,10 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         this.finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 }

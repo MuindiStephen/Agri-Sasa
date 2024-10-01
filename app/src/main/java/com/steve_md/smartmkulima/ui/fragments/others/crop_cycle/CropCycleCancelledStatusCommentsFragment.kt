@@ -43,19 +43,18 @@ class CropCycleCancelledStatusCommentsFragment : BottomSheetDialogFragment() {
 
 
             if (validateInputs()) {
+
+
                 if (cropName != null) {
+
                     viewModel.updateToNewCommentsCropCycleCancelled(
-<<<<<<< HEAD
-                        binding.inputCommentsForCancelCropCycle.text.toString(), cropName
-=======
                         binding.inputCommentsForCancelCropCycle.text.toString(),
                         cropName
->>>>>>> feature/field-agents
                     )
-                }
-                displaySnackBar("Added comments.")
 
-                //view.findViewById<TextView>(R.id.textViewComments).isVisible = true
+                    viewModel.updateTaskStatus("Cancelled", cropName)
+                }
+                displaySnackBar("Cancelled crop cycle and added comments.")
 
                 dismiss()
             }
