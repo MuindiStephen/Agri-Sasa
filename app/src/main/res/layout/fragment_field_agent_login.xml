@@ -138,16 +138,33 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="45dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/main1"
         android:fontFamily="@font/montserrat_semibold"
         android:text="SIGN IN"
         android:textColor="@color/bg_gray"
         app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dont_have_account"
         app:layout_constraintEnd_toEndOf="@+id/enterPassword"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/enterPassword"
         app:layout_constraintTop_toBottomOf="@+id/enterPassword" />
+
+    <TextView
+        android:id="@+id/tv_dont_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Don't have an account? Sign Up"
+        android:textSize="@dimen/_14sp_text_size"
+        android:fontFamily="@font/montserrat_medium"
+        android:foreground="?android:selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

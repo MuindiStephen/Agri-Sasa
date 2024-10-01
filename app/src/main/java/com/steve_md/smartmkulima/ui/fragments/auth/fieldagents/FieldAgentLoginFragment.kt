@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentFieldAgentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,5 +26,13 @@ class FieldAgentLoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.tvDontHaveAccount.setOnClickListener {
+            findNavController().navigate(R.id.fieldAgentRegisterFragment)
+        }
+
+        binding.signInFieldAgentButton.setOnClickListener {
+            findNavController().navigate(R.id.fieldAgentDashboardFragment)
+        }
     }
 }

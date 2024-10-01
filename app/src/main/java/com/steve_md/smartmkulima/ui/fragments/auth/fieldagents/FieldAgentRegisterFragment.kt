@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentFieldAgentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,9 @@ class FieldAgentRegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        binding.tvHaveAccount.setOnClickListener {
+            findNavController().navigate(R.id.fieldAgentLoginFragment)
+        }
 
     }
 }
