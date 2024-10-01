@@ -58,7 +58,7 @@ class DetailedFarmCycleFragment : Fragment() {
         }
 
         val setStatus =  binding.spinnerStatusOfFarmCycle.selectedItem.toString()
-        viewModel.updateTaskStatus(setStatus)
+        localFarmCycle?.let { viewModel.updateTaskStatus(setStatus, it.cropName) }
         binding.textView86.text = setStatus
 
        // val cycle = args.cycle

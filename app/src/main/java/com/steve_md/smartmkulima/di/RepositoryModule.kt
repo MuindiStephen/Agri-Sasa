@@ -1,7 +1,5 @@
 package com.steve_md.smartmkulima.di
 
-import PaymentRepository
-import com.steve_md.smartmkulima.data.remote.DarajaApiClient
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.repositories.AuthRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
@@ -52,13 +50,6 @@ object RepositoryModule {
         return AuthRepositoryImpl()
     }
 
-//    @Singleton
-//    @Provides
-//    fun providesPaymentRepository(
-//        darajaApiClient: DarajaApiClient,
-//        appDatabase: AppDatabase): PaymentRepository {
-//        return PaymentRepository(darajaApiClient,appDatabase)
-//    }
 
 
 }

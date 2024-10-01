@@ -42,7 +42,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityDetailedFarmCycleBinding
     private val tasksAdapter by lazy { LocalFarmCycleTasksAdapter() }
-  //  private lateinit var navController: NavController
+    //  private lateinit var navController: NavController
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -101,7 +101,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
             // Marking the Crop Cycle As DONE
             binding.buttonMarkAsDoneCropCycle.setOnClickListener {
                 showChangeCropCycleStatusDialog()
-               // textViewComments.isVisible = false
+                // textViewComments.isVisible = false
             }
 
             binding.buttonOpenRecordsExpensesAndRevenues.setOnClickListener {
@@ -169,11 +169,19 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     }
 
     private fun showCropCycleCancelledAddCommentsBottomSheetDialog() {
-        val modal = CropCycleCancelledStatusCommentsFragment()
+
+        val localFarmCycle: LocalFarmCycle? = intent.getParcelableExtra("localFarmCycle")
+
+        val modal = CropCycleCancelledStatusCommentsFragment().apply {
+            arguments = Bundle().apply {
+                putString("cropCycleName", localFarmCycle?.cropName)
+            }
+        }
         supportFragmentManager.let {
-            modal.show(it, CropCycleCancelledStatusCommentsFragment.TAG)
+                modal.show(it, CropCycleCancelledStatusCommentsFragment.TAG)
         }
     }
+
 
     private fun showViewCropCycleAnalyticsBottomSheet() {
 

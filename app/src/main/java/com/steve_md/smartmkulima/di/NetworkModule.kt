@@ -63,14 +63,5 @@ object NetworkModule {
         return retrofit.create(FarmProduceApiService::class.java)
     }
 
-//    @Singleton
-//    @Provides
-//    fun providesDarajaApiClient(): DarajaApiClient {
-//        return DarajaApiClient(
-//            consumerKey = "NgGUJ2LGJlVvjdLu8P7yDGIs6v4RmMF1114mYRUVTVOjsCii",
-//            consumerSecret = "L5Ur0sgEuGfBAB7u8ynlH0bzerD1VABt7ABASfBAozvATLKETNHGcpTieX1vzLyv",
-//            environment = Constants.SANDBOX_BASE_URL
-//        )
-//    }
 
 }
