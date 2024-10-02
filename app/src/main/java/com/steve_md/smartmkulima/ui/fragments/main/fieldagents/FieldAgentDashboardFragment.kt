@@ -24,6 +24,7 @@ import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentEarnings
 import com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.ViewCropCycleAnalyticsBottomSheetFragment
 import com.steve_md.smartmkulima.utils.DateFormat
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.formatNameFromEmail
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
@@ -68,6 +69,9 @@ class FieldAgentDashboardFragment : Fragment() {
             in 12..15 -> "Good Afternoon"
             else -> "Good Evening"
         }
+
+        binding.includeToolBar.userNameTextView.text = arguments?.getString("fieldAgentEmail")
+            ?.let { formatNameFromEmail(it) }
 
         binding.textViewLastLoggedInTimeDate.text = DateFormat.getCurrentDate()
 

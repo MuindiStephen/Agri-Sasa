@@ -218,6 +218,5 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
     }
 }

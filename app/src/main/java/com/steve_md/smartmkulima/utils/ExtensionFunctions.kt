@@ -172,6 +172,17 @@ fun Fragment.isInternetAvailable(context: Context): Boolean {
     }
 }
 
+fun formatNameFromEmail(email: String): String {
+    // Extract the part before the "@" symbol
+    val namePart = email.substringBefore("@")
+
+    // Split the name part by common delimiters (., _, or numbers)
+    val splitName = namePart.split(".", "_", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+
+    // Capitalize each part of the name and join them with a space
+    return splitName.joinToString(" ") { part -> part.capitalize() }
+}
+
 
 
 

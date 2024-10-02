@@ -6,6 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.data.room.FarmProduceDao
+import com.steve_md.smartmkulima.data.room.FieldAgentUserDao
 import com.steve_md.smartmkulima.data.room.GAPDao
 import dagger.Module
 import dagger.Provides
@@ -46,5 +47,11 @@ object DatabaseModule {
     @Singleton
     fun providesCycleDao(appDatabase: AppDatabase): GAPDao {
         return appDatabase.gapDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesFieldAgentDao(appDatabase: AppDatabase): FieldAgentUserDao {
+        return appDatabase.fieldAgentUserDao()
     }
 }

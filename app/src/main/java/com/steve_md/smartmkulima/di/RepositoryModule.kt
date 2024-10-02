@@ -1,9 +1,11 @@
 package com.steve_md.smartmkulima.di
 
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
+import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 import com.steve_md.smartmkulima.data.repositories.AuthRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
+import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
 import com.steve_md.smartmkulima.data.repositories.impl.AuthRepositoryImpl
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import dagger.Module
@@ -50,6 +52,12 @@ object RepositoryModule {
         return AuthRepositoryImpl()
     }
 
-
-
+    @Singleton
+    @Provides
+    fun providesFieldAgentRepository(
+        retrofitApiService: RetrofitApiService,
+        appDatabase: AppDatabase
+    ): FieldAgentsRepository {
+        return FieldAgentsRepository(retrofitApiService, appDatabase)
+    }
 }

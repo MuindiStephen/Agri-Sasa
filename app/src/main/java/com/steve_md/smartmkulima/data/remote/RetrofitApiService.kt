@@ -1,12 +1,20 @@
 package com.steve_md.smartmkulima.data.remote
 
+import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.requests.*
+import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterRequest
 import com.steve_md.smartmkulima.model.responses.*
+import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentLoginResponse
+import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
 import com.steve_md.smartmkulima.utils.Constants.LOGIN_END_POINT
 import com.steve_md.smartmkulima.utils.Constants.REGISTER_END_POINT
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitApiService {
@@ -70,4 +78,31 @@ interface RetrofitApiService {
     // To get the user from the database
      @GET("/signup/usersByEmail/")
      suspend fun getUser(): UserResponseItem
+
+
+    /**
+     * FIELD AGENTS AUTHENTICATION
+     */
+        @POST("resource/registerfieldagent")
+        suspend fun registerAFieldAgent(
+           @Body fieldAgentRegisterRequest: FieldAgentRegisterRequest
+        ): FieldAgentRegisterResponse
+
+       @GET("resource/registerfieldagent")
+       suspend fun loginFieldAgent() : FieldAgentLoginResponse
+
+
+    // Sample Deleting of a farmer
+    /**
+    @HTTP(
+    method = "DELETE",
+    path = "/v1/delete/",
+    hasBody = true
+    )
+    suspend fun deleteAgroDealer(
+        @Body requestBody: RequestBody,
+        @Path("id") id: Int
+    ): ResponseBody
+    */
+
 }

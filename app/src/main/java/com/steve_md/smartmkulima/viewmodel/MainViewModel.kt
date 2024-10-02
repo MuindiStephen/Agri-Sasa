@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
+import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
 import com.steve_md.smartmkulima.model.AgroDealerOffers
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.FarmProduce
@@ -17,7 +18,12 @@ import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentEarnings
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
+import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterRequest
+import com.steve_md.smartmkulima.model.responses.fieldagent.Data
+import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentLoginResponse
+import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
 import com.steve_md.smartmkulima.utils.ApiStates
+import com.steve_md.smartmkulima.utils.ResourceNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -26,7 +32,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -39,7 +47,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val farmProduceRepository: FarmProduceRepository,
-    private val repository: FarmCycleRepository
+    private val repository: FarmCycleRepository,
+    private val fieldAgentsRepository: FieldAgentsRepository
 ) : ViewModel() {
 
     private val _produce = MutableSharedFlow<FarmProduceState>()
@@ -479,6 +488,36 @@ class MainViewModel @Inject constructor(
         repository.getAllFieldAgentEarnings()
 
 
+    // Field Agents account register and log in by finding if exists in backend
+    private var _fieldAgentRegisterState = MutableStateFlow<ResourceNetwork<FieldAgentRegisterResponse>?>(null)
+    val fieldAgentRegisterState: StateFlow<ResourceNetwork<FieldAgentRegisterResponse>?> get() = _fieldAgentRegisterState.asStateFlow()
+
+
+    private var _userInfoUiState = MutableStateFlow<UserInfoUiState>(UserInfoUiState.Loading)
+    val userInfoUiState: StateFlow<UserInfoUiState> get() = _userInfoUiState
+
+
+    fun registerFieldAgent(email: String, password: String) = viewModelScope.launch {
+        _fieldAgentRegisterState.value = fieldAgentsRepository.registerFieldAgent(fieldAgentRegisterRequest = FieldAgentRegisterRequest(email = email, password = password))
+    }
+
+
+    /**
+     * Only initialize this function inside field agents feature.
+     */
+    fun loadFieldAgentAndLoginFieldAgent() {
+
+        viewModelScope.launch {
+
+            _userInfoUiState.value = UserInfoUiState.Loading
+
+            fieldAgentsRepository.getAllFieldAgentsByLogin().catch {
+                _userInfoUiState.value = UserInfoUiState.ShowError(it.message ?: "An Unexpected error occurred.")
+            }.collect {
+                _userInfoUiState.value = UserInfoUiState.ShowSuccess(it.data!!)
+            }
+        }
+    }
 }
 
 // UI State for managing FarmProduce State
@@ -487,3 +526,11 @@ data class FarmProduceState(
     val error: String? = null,
     val farmProduce: List<FarmProduce> = emptyList()
 )
+
+// Manages FieldAgent
+sealed class UserInfoUiState {
+    data object Loading: UserInfoUiState()
+    data object Initial : UserInfoUiState()
+    data class ShowSuccess(val listOfAgents: List<Data>) : UserInfoUiState()
+    data class ShowError(val message: String) : UserInfoUiState()
+}

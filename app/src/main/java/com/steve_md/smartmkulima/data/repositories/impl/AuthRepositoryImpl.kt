@@ -4,15 +4,22 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 import com.steve_md.smartmkulima.data.repositories.AuthRepository
+import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.model.User
+import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterRequest
+import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
 import com.steve_md.smartmkulima.utils.Resource
+import com.steve_md.smartmkulima.utils.ResourceNetwork
+import com.steve_md.smartmkulima.utils.apiRequestByResource
 import com.steve_md.smartmkulima.utils.safeCall
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AuthRepositoryImpl : AuthRepository{
+class AuthRepositoryImpl : AuthRepository {
 
     private  val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("users")
     private  val firebaseAuth: FirebaseAuth =  FirebaseAuth.getInstance()
@@ -42,4 +49,8 @@ class AuthRepositoryImpl : AuthRepository{
             }
         }
     }
+
+
+
+
 }
