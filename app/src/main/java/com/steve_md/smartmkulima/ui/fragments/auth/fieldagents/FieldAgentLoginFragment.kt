@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -17,6 +20,7 @@ import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import com.steve_md.smartmkulima.viewmodel.UserInfoUiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -26,6 +30,7 @@ class FieldAgentLoginFragment : Fragment() {
     private var _binding: FragmentFieldAgentLoginBinding? = null
     val binding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
+    private var onBackPressedCallback: OnBackPressedCallback? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +43,28 @@ class FieldAgentLoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initBinding()
+        (activity as AppCompatActivity).supportActionBar?.hide()
 
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (requireFragmentManager().backStackEntryCount == 0) {
+                    requireActivity().finishAffinity()
+                } else if (!findNavController().popBackStack()) {
+                    requireActivity().finish()
+                } else {
+                    val fragmentManager = requireActivity().supportFragmentManager
+                    if (fragmentManager.backStackEntryCount > 0) {
+                        val first = fragmentManager.getBackStackEntryAt(0)
+                        fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    } else {
+                        findNavController().popBackStack()
+                    }
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback!!)
+
+        initBinding()
 
         binding.signInFieldAgentButton.setOnClickListener {
             if (validatedInputs()) {
@@ -56,11 +81,13 @@ class FieldAgentLoginFragment : Fragment() {
                when(state) {
                    UserInfoUiState.Initial -> {
                        Timber.d("Initiating Request")
-                       binding.progressBar9.isVisible = true
+                       binding.progressBar9.isVisible = false
                    }
                    UserInfoUiState.Loading -> {
                        Timber.d("Loading and sending request")
                        binding.progressBar9.isVisible = true
+                       delay(1000L)
+                       binding.progressBar9.isVisible = false
                    }
                    is UserInfoUiState.ShowError -> {
                        Timber.d("No Account found.")
@@ -98,6 +125,11 @@ class FieldAgentLoginFragment : Fragment() {
     }
 
     private fun initBinding() {
+
+        binding.mainAuthsToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.tvDontHaveAccount.setOnClickListener {
             findNavController().navigate(R.id.fieldAgentRegisterFragment)
         }
@@ -109,6 +141,11 @@ class FieldAgentLoginFragment : Fragment() {
         } && binding.inputEmail.text.isNullOrEmpty().not().also {
             if (!it) binding.enterEmail.error = "**required empty"
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.progressBar9.isVisible = false
     }
 
 }

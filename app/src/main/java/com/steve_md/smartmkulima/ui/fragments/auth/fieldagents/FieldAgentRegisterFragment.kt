@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,6 +28,8 @@ class FieldAgentRegisterFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    private var onBackPressedCallback: OnBackPressedCallback? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +41,27 @@ class FieldAgentRegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (requireFragmentManager().backStackEntryCount == 0) {
+                    requireActivity().finishAffinity()
+                } else if (!findNavController().popBackStack()) {
+                    requireActivity().finish()
+                } else {
+                    val fragmentManager = requireActivity().supportFragmentManager
+                    if (fragmentManager.backStackEntryCount > 0) {
+                        val first = fragmentManager.getBackStackEntryAt(0)
+                        fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    } else {
+                        findNavController().popBackStack()
+                    }
+                }
+            }
+        }
 
         initBinding()
 
@@ -78,6 +102,9 @@ class FieldAgentRegisterFragment : Fragment() {
     private fun initBinding() {
         binding.tvHaveAccount.setOnClickListener {
             findNavController().navigate(R.id.fieldAgentLoginFragment)
+        }
+        binding.mainAuthsToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
     }
 

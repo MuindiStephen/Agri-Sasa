@@ -773,7 +773,11 @@
         android:id="@+id/fieldAgentDashboardFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.fieldagents.FieldAgentDashboardFragment"
         android:label="fragment_field_agent_dashboard"
-        tools:layout="@layout/fragment_field_agent_dashboard" />
+        tools:layout="@layout/fragment_field_agent_dashboard" >
+        <action
+            android:id="@+id/action_fieldAgentDashboardFragment_to_fieldAgentLoginFragment"
+            app:destination="@id/fieldAgentLoginFragment" />
+    </fragment>
 
 
 </navigation>

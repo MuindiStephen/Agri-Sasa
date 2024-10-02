@@ -32,8 +32,8 @@ class FieldAgentAddedAgroDealersAdapter : ListAdapter<FieldAgentAddAgroDealerDat
         fun bind(fieldAgentAddAgroDealerData: FieldAgentAddAgroDealerData?) {
             binding.textView163.text = fieldAgentAddAgroDealerData?.name.toString()
             binding.textView165.text = "Phone: "+fieldAgentAddAgroDealerData?.phone.toString()
-            binding.textView166.text = "Email: "+fieldAgentAddAgroDealerData?.phone.toString()
-            binding.textView167.text = "Physical Address: "+fieldAgentAddAgroDealerData?.phone.toString()
+            binding.textView166.text = "Email: "+fieldAgentAddAgroDealerData?.email.toString()
+            binding.textView167.text = "Physical Address: "+fieldAgentAddAgroDealerData?.physicalLocationAddress.toString()
         }
     }
 

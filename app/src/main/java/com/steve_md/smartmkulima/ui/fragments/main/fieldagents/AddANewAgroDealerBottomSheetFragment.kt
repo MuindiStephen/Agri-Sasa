@@ -108,7 +108,9 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
                 val newEarnings = calculateEarnings(newPoints)
 
                 // Update earnings and points in room db
-                viewModel.updateFieldAgentEarnings(newPoints, newEarnings)
+                viewModel.saveFieldAgentEarnings(fieldAgentEarnings = FieldAgentEarnings(
+                    1, newPoints, newEarnings
+                ))
 
                 toast("Farmer added! You've earned 10 points. Yaaay!")
             }

@@ -9,9 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.steve_md.smartmkulima.R
@@ -39,6 +43,8 @@ class FieldAgentDashboardFragment : Fragment() {
     private lateinit var binding: FragmentFieldAgentDashboardBinding
     private lateinit var userProfileTxt: TextView
     private val viewModel: MainViewModel by viewModels()
+    private var onBackPressedCallback: OnBackPressedCallback? = null
+
     private val fieldAgentAddedAgroDealersAdapter by lazy {
         FieldAgentAddedAgroDealersAdapter()
     }
@@ -58,6 +64,19 @@ class FieldAgentDashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (requireFragmentManager().backStackEntryCount == 0) {
+                    requireActivity().finishAffinity()
+                } else {
+                    exitDialog()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback!!)
+
 
         userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
 
@@ -81,6 +100,9 @@ class FieldAgentDashboardFragment : Fragment() {
 
         fetchAllFieldAgentCreatedAgroDealers()
     }
+
+
+
     private fun fetchAllFieldAgentCreatedAgroDealers() {
         viewModel.allFieldAgentAddedAgroDealers.observe(viewLifecycleOwner) { agrodealers->
             if (!agrodealers.isNullOrEmpty()) {
@@ -107,7 +129,6 @@ class FieldAgentDashboardFragment : Fragment() {
 
         binding.apply {
 
-            textViewEarnings.text = ""
 
             button4.setOnClickListener {
                 showAddANewAgroDealerBottomSheetFragment()
@@ -169,6 +190,34 @@ class FieldAgentDashboardFragment : Fragment() {
         val filteredList = fieldAgentAgroDealers.filter { it.name.equals(searchText, ignoreCase = true) }
         fieldAgentAddedAgroDealersAdapter.submitList(filteredList.toMutableList())
     }
+
+    private fun exitDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle("Confirm Exit!")
+            .setMessage("Are you sure you want to exit?")
+            .setPositiveButton("Yes") { _, which ->
+                clearBackStack()
+                findNavController().navigate(
+                    R.id.fieldAgentLoginFragment
+                )
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                dialog.dismiss()
+            }
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setCancelable(false)
+        builder.show()
+    }
+
+
+    private fun clearBackStack() {
+        val fragmentManager = requireActivity().supportFragmentManager
+        if (fragmentManager.backStackEntryCount > 0) {
+            val first = fragmentManager.getBackStackEntryAt(0)
+            fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()
