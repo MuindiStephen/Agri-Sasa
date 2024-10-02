@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="@dimen/_8dp"
-        android:text="Welcome back, wghat would you like to do today?"
+        android:text="Welcome back, what would you like to do today?"
         android:textSize="@dimen/_12sp_text_size"
         android:fontFamily="@font/montserrat_medium"
         app:layout_constraintTop_toBottomOf="@id/textViewLastLoggedInTimeDate"
@@ -158,15 +158,17 @@
         android:id="@+id/noRecordsAgrodealers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No records"
-        android:visibility="gone"
         android:fontFamily="@font/montserrat_medium"
+        android:text="No records"
         android:textColor="@color/main"
         android:textSize="@dimen/_12sp_text_size"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84" />
 
     <ProgressBar
         android:id="@+id/progressBar7"

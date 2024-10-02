@@ -73,7 +73,7 @@ class FieldAgentDashboardFragment : Fragment() {
         binding.includeToolBar.userNameTextView.text = arguments?.getString("fieldAgentEmail")
             ?.let { formatNameFromEmail(it) }
 
-        binding.textViewLastLoggedInTimeDate.text = DateFormat.getCurrentDate()
+        binding.textViewLastLoggedInTimeDate.text = "Last seen: "+DateFormat.getCurrentDate()
 
         setUpUi()
 
@@ -178,4 +178,5 @@ class FieldAgentDashboardFragment : Fragment() {
     companion object {
         const val TAG = "AddANewAgroDealerBottomSheetFragment"
     }
+
 }

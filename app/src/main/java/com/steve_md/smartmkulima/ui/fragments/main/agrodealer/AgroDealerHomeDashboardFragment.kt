@@ -54,7 +54,7 @@ class AgroDealerHomeDashboardFragment : Fragment() {
             else -> "Good Evening"
         }
 
-        binding.textViewLastLoggedInTimeDate.text = getCurrentDate()
+        binding.textViewLastLoggedInTimeDate.text = "Last seen: " + getCurrentDate()
 
         // fetch Orders for Respective Agro-Dealer ID...
         arguments?.getString("agrodealerID")
