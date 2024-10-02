@@ -139,11 +139,8 @@ class AddedNewFarmFieldsFragment : Fragment() {
                         val first = fragmentManager.getBackStackEntryAt(0)
                         fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
-                        findNavController().clearBackStack(R.id.addedNewFarmFieldsFragment)
-                        findNavController().clearBackStack(R.id.addNewFarmFieldFragment)
                     } else {
-                        findNavController().clearBackStack(R.id.addNewFarmFieldFragment)
-                        findNavController().clearBackStack(R.id.addedNewFarmFieldsFragment)
+                       findNavController().popBackStack()
                     }
                 }
             }

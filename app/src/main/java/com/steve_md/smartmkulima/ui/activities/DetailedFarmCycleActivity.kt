@@ -194,7 +194,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateCropCycleStatus(localFarmCycle: LocalFarmCycle): String {
 
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern("d-M-yyyy")
         val formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
         val currentDate = LocalDate.now() // Get the current date

@@ -65,7 +65,6 @@ class FieldAgentDashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (requireFragmentManager().backStackEntryCount == 0) {
@@ -76,7 +75,6 @@ class FieldAgentDashboardFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback!!)
-
 
         userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
 
@@ -180,7 +178,6 @@ class FieldAgentDashboardFragment : Fragment() {
             }
         }
     }
-
     private fun showAddANewAgroDealerBottomSheetFragment() {
         val modal = AddANewAgroDealerBottomSheetFragment()
         modal.show(parentFragmentManager, TAG)
@@ -208,8 +205,6 @@ class FieldAgentDashboardFragment : Fragment() {
             .setCancelable(false)
         builder.show()
     }
-
-
     private fun clearBackStack() {
         val fragmentManager = requireActivity().supportFragmentManager
         if (fragmentManager.backStackEntryCount > 0) {
@@ -217,15 +212,11 @@ class FieldAgentDashboardFragment : Fragment() {
             fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         }
     }
-
-
     override fun onResume() {
         super.onResume()
         displaySnackBar("Yaaay! Onboard more Agro-Dealers to increase your earnings")
     }
-
     companion object {
         const val TAG = "AddANewAgroDealerBottomSheetFragment"
     }
-
 }

@@ -34,7 +34,7 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentAddANewAgroDealerBottomsheetBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val viewModel: MainViewModel by viewModels()
-    private var fieldAgentEarnings: FieldAgentEarnings? = null
+    private var fieldAgentEarning: FieldAgentEarnings? = null
     private val agentId: Long = 1 // By Default say agent ID is 1
     private val pointsPerFarmer = 10
     private val pointsToKSHRate = 200.0
@@ -65,6 +65,7 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
 
+
         binding.addAgroDealerByFieldAgentBtn.setOnClickListener {
             if (inputsAreValidated()) {
 
@@ -79,11 +80,27 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
                 try {
                     viewModel.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
 
+                    viewModel.allFieldAgentEarnings.observe(viewLifecycleOwner) {
+                        if (it.earnings == 200.0 && it.points == 10) {
 
-                    // Implement Earn points feature here
-                    // Update points and current earning for the field agent
+                            val newPoints = it.points + pointsPerFarmer
 
-                    updateFieldAgentEarnings()
+                            val newEarnings = calculateEarnings(newPoints)
+
+                            viewModel.updateFieldAgentEarnings(
+                                newPoints, newEarnings
+                            )
+                        } else {
+                            viewModel.saveFieldAgentEarnings(
+                                FieldAgentEarnings(
+                                    1, 10, 200.0
+                                )
+                            )
+                        }
+                    }
+
+
+
 
 
                     requireActivity().runOnUiThread {
@@ -99,18 +116,20 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
             }
 
         }
+
+         updateFieldAgentEarnings()
     }
 
     private fun updateFieldAgentEarnings() {
         lifecycleScope.launch {
-            fieldAgentEarnings?.let {
+            fieldAgentEarning?.let {
                 val newPoints = it.points + pointsPerFarmer
                 val newEarnings = calculateEarnings(newPoints)
 
                 // Update earnings and points in room db
-                viewModel.saveFieldAgentEarnings(fieldAgentEarnings = FieldAgentEarnings(
-                    1, newPoints, newEarnings
-                ))
+                viewModel.updateFieldAgentEarnings(
+                    newPoints, newEarnings
+                )
 
                 toast("Farmer added! You've earned 10 points. Yaaay!")
             }

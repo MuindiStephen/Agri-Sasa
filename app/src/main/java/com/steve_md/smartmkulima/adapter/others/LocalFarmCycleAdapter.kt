@@ -50,7 +50,7 @@ class LocalFarmCycleAdapter(private val onClickListener: OnClickListener) :
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateCropCycleStatus(localFarmCycle: LocalFarmCycle): String {
 
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern("d-M-yyyy") // Updated to allow single-digit day/month
         val formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
 
@@ -73,6 +73,7 @@ class LocalFarmCycleAdapter(private val onClickListener: OnClickListener) :
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val cycle = getItem(position)
         holder.bind(cycle)

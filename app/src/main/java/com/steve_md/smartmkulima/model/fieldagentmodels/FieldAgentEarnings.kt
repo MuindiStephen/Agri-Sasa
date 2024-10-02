@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.model.fieldagentmodels
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
