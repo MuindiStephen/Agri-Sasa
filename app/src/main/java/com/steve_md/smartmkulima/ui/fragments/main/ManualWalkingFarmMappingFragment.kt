@@ -83,6 +83,9 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
                 buttonStopMapping.visibility = View.GONE
                 buttonRedoMapping.visibility = View.VISIBLE
                 buttonSaveMappedArea.visibility = View.VISIBLE
+
+                // Draw the polygon to show the area the farmer has walked around
+                createPolygon()
             }
 
             buttonRedoMapping.setOnClickListener {
@@ -94,8 +97,12 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             }
 
             buttonSaveMappedArea.setOnClickListener {
-                saveMapppedArea()
+
+                // create polygon and calculate the area in the ploygon
                 createPolygon()
+
+                // then navigate
+                saveMapppedArea()
             }
         }
     }
@@ -148,6 +155,21 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
 
         locationProvider = LocationProvider(this.requireContext())
 
+        // Zoom to current location
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            location?.let {
+                val currentLatLng = LatLng(location.latitude, location.longitude)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 18f)) // Zoom to current location
+            }
+        }
+
+        // Initialize PolylineOptions to track the walking path
+        val polylineOptions = PolylineOptions()
+            .color(0xFF0000FF.toInt()) // Blue color for the path
+            .width(5f)
+
+
+
         if (isMappingActive) {
 
             if (ActivityCompat.checkSelfPermission(
@@ -168,14 +190,18 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             }
 
 
-            // GPS to record user movement , track and provide location updates
+            // GPS to record user movement , track and provide location updates.
+            // Start plotting immediately.
             fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
                 override fun onLocationResult(locationResult: LocationResult) {
                     super.onLocationResult(locationResult)
                     for (location in locationResult.locations) {
                         val latLng = LatLng(location.latitude, location.longitude)
                         pathPoints.add(latLng)
-                        googleMap.addPolyline(PolylineOptions().addAll(pathPoints))
+
+                        polylineOptions.add(latLng)
+                        googleMap.clear()
+                        googleMap.addPolyline(polylineOptions)
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
                     }
                 }
@@ -228,6 +254,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             binding.buttonSaveMappedArea.text = "Save Mapped Area: %.2f ha".format(areaInHectares)
 
         } else {
+            binding.buttonSaveMappedArea.text = "Mapped Area: 0.0 ha"
             // Show a message if the user hasn't marked enough points to create a polygon
             AlertDialog.Builder(requireContext())
                 .setTitle("Insufficient Path Points")

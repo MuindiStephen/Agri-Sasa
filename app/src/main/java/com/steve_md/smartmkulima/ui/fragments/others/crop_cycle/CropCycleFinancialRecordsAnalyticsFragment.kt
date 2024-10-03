@@ -151,7 +151,7 @@ class CropCycleFinancialRecordsAnalyticsFragment : Fragment() {
                 if (cycles.isNotEmpty()) {
 
                     val allCropCycles = cycles.map {
-                        it.cropName
+                        "${it.cropName} - ${it.farmName} - ${it.startDate}"
                     }
 
                     val adapter = ArrayAdapter<String>(this@CropCycleFinancialRecordsAnalyticsFragment.requireContext(),

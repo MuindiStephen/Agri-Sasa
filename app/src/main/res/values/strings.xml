@@ -178,6 +178,22 @@
         <item>Rented</item>
     </string-array>
 
+    <string-array name="counties">
+        <item>Mombasa</item>
+        <item>Nairobi</item>
+        <item>Kisii</item>
+        <item>Kiambu</item>
+        <item>Machakos</item>
+        <item>Makueni</item>
+        <item>Bomet</item>
+        <item>Kitui</item>
+        <item>Nyeri</item>
+        <item>Nakuru</item>
+        <item>Nyandarua</item>
+        <item>Bungoma</item>
+        <item>Uasin Gishu</item>
+    </string-array>
+
     <string-array name="sample_crop_cycle_tasks">
         <item>Seedling Acquisition</item>
         <item>Potting</item>
