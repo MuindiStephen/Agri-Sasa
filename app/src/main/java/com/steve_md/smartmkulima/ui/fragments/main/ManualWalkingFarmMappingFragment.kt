@@ -210,7 +210,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         googleMap.clear()
     }
 
-
     private fun createPolygon() {
         if (pathPoints.size >= 3) {
             farmPolygon = googleMap.addPolygon(
@@ -238,7 +237,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         }
     }
 
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -257,6 +255,4 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             }
         }
     }
-
-
 }

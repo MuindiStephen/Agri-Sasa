@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
@@ -21,7 +23,7 @@ class YourAccountFragment : Fragment() {
     private var _binding:FragmentYourAccountBinding? = null
     private val binding get() = _binding!!
 
-    var firebaseAuth: FirebaseAuth? = null
+    private var firebaseAuth: FirebaseAuth? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,10 +57,10 @@ class YourAccountFragment : Fragment() {
                 // startActivity(Intent(requireActivity().applicationContext, Settings::class.java))
                 // requireActivity().finish()
             }
+
+            // Signout and pop the
             signOutUser.setOnClickListener {
-                firebaseAuth!!.signOut()
-                findNavController().clearBackStack(R.id.yourAccountFragment)
-                findNavController().navigate(R.id.action_yourAccountFragment_to_loginMainFragment)
+                logoutDialog()
             }
             share.setOnClickListener {
                 val intent = Intent()
@@ -78,6 +80,34 @@ class YourAccountFragment : Fragment() {
             }
         }
     }
+
+    private fun logoutDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Exit App")
+            .setMessage("Do you want to exit?")
+            .setPositiveButton("Yes") { dialog, which ->
+
+                if (firebaseAuth?.uid != null) {
+                    firebaseAuth!!.signOut()
+                    Timber.d("Session Ended. for ${firebaseAuth!!.currentUser?.email}" +
+                            "\n Logout Successful")
+                } else {
+                    Timber.d("NO session found." +
+                            "You have been logged out successfully.")
+                }
+
+                val fragmentManager = requireActivity().supportFragmentManager
+                if (fragmentManager.backStackEntryCount > 0) {
+                    val first = fragmentManager.getBackStackEntryAt(0)
+                    fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                }
+
+                requireActivity().finishAffinity()
+            }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
     companion object {
         const val TAG = "YourAccountProfileFragment"
     }

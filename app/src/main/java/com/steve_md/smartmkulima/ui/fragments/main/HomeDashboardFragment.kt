@@ -105,30 +105,53 @@ class HomeDashboardFragment : Fragment() {
         }
 
         binding.includeToolBar.menuIcon.setOnClickListener {
-            AlertDialog.Builder(
-                requireActivity()
-            ).setTitle("Logout")
-                .setMessage("Are you sure you want to logout?")
-                .setPositiveButton("Yes") { dialog, which ->
-                    performLogout()
-                }
-                .setNegativeButton("No") { dialog, which ->
-                    dialog.dismiss()
-                }
-                .create()
-                .show()
+            exitApp()
         }
+//        binding.menuIconHomeDashboard.setOnClickListener {
+//            exitApp()
+//        }
+
         return binding.root
     }
 
-    private fun performLogout() {
+    /*private fun performLogout() {
+
+        AlertDialog.Builder(requireContext())
+            .setTitle("Logout")
+            .setMessage("Do you wish to logount?")
+            .setPositiveButton("Yes") { dialog, which ->
+                val fragmentManager = requireActivity().supportFragmentManager
+                if (fragmentManager.backStackEntryCount > 0) {
+                    val first = fragmentManager.getBackStackEntryAt(0)
+                    fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                }
+
+                requireActivity().finishAffinity()
+
+            }
+            .setNegativeButton("No", null)
+            .show()
+
+
+
+
         firebaseAuth?.signOut()
         displaySnackBar("Logged out successfully")
         findNavController().navigate(R.id.action_homeDashboardFragment2_to_signInDetailsWithEmailFragment)
     }
 
+     */
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.includeToolBar.menuIcon.setOnClickListener {
+            exitApp()
+        }
+
+        binding.includeToolBar.notificationIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_homeDashboardFragment2_to_notificationsFragment)
+        }
 
         userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
 
@@ -158,6 +181,15 @@ class HomeDashboardFragment : Fragment() {
             .setTitle("Exit App")
             .setMessage("Do you want to exit?")
             .setPositiveButton("Yes") { dialog, which ->
+
+                if (firebaseAuth?.uid != null) {
+                    firebaseAuth?.signOut()
+                    Timber.d("LOGOUT==LOGGED out USER successfully" +
+                            "\n SESSION CLOSED.")
+                } else {
+                    Timber.d("LOGOUT==NO USER ID, SESSION UNKNOWN")
+                }
+
                 val fragmentManager = requireActivity().supportFragmentManager
                 if (fragmentManager.backStackEntryCount > 0) {
                     val first = fragmentManager.getBackStackEntryAt(0)
@@ -165,7 +197,6 @@ class HomeDashboardFragment : Fragment() {
                 }
 
                 requireActivity().finishAffinity()
-
             }
             .setNegativeButton("No", null)
             .show()

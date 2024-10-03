@@ -47,8 +47,6 @@ class SignInDetailsWithEmailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     private fun authenticate() {

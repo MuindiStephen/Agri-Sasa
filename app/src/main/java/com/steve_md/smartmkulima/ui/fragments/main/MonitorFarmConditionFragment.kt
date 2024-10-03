@@ -47,7 +47,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     private lateinit var locationProvider: LocationProvider
 
 
-    private val args: MonitorFarmConditionFragmentArgs by navArgs()
+   // private val args: MonitorFarmConditionFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -76,11 +76,11 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        val farmField = args.newfarmfield
+       // val farmField = args.newfarmfield
 
         val whichFarm =  view.findViewById<TextView>(R.id.textView104)
 
-        whichFarm.text = farmField.farmName
+      //  whichFarm.text = farmField.farmName
         
         locationProvider = LocationProvider(this.requireContext())
 
