@@ -31,6 +31,10 @@ import timber.log.Timber
  *  Map out farm boundaries
  *  There is automated mapping by placing pins on the map
  *  and manual mapping by walking on the farm for it to detect farm boundaries
+ *
+ *  App tracks the user's movement and places a path of pins automatically as they walk around their farm,
+ *  forming a boundary once the mapping is stopped.
+ *  This is achieved by continuously recording GPS points (LatLng) while the user is walking.
  */
 @AndroidEntryPoint
 class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
@@ -126,6 +130,7 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
 
         // Continue to AddNewFarmFieldFragment
         findNavController().navigate(R.id.addNewFarmFieldFragment, bundle)
+        findNavController().popBackStack()
 
     }
 
@@ -208,7 +213,7 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
     private fun updateFarmPolygon() {
         farmPolygon?.remove()
 
-        if (boundaryPoints.size > 2) {
+        if (boundaryPoints.size >= 3) {
             val polygonOptions = PolygonOptions()
                 .addAll(boundaryPoints)
                 .strokeWidth(2f)
@@ -224,6 +229,13 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
             // Display the area
             btnSaveMappedArea.text = "Save Mapped Area: %.2f ha".format(areaInHectares)
             Timber.tag("MapFarmWithPins").e("Save Mapped Area: %.2f ha".format(areaInHectares))
+        } else {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Insufficient Path Points")
+                .setMessage("Please mark at least three points to create a farm boundary.")
+                .setPositiveButton("OK", null)
+                .show()
+            btnSaveMappedArea.text = "Mapped Area: 0.0 ha"
         }
     }
 
