@@ -67,6 +67,10 @@ class AddNewFarmFieldFragment : Fragment() {
 
     private fun setUpBinding() {
 
+        binding.toolbar2.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.switchAllowMapOutFarmBoundaries.setOnCheckedChangeListener { _, isChecked ->
             saveSwitchState(isChecked)
             handleSwitchState(isChecked)
