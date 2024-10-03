@@ -21,7 +21,7 @@ class YourAccountFragment : Fragment() {
     private var _binding:FragmentYourAccountBinding? = null
     private val binding get() = _binding!!
 
-    var firebaseAuth: FirebaseAuth? = null
+    private var firebaseAuth: FirebaseAuth? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,9 +55,11 @@ class YourAccountFragment : Fragment() {
                 // startActivity(Intent(requireActivity().applicationContext, Settings::class.java))
                 // requireActivity().finish()
             }
+
+            // Signout and pop the
             signOutUser.setOnClickListener {
                 firebaseAuth!!.signOut()
-                findNavController().clearBackStack(R.id.yourAccountFragment)
+                findNavController().popBackStack()
                 findNavController().navigate(R.id.action_yourAccountFragment_to_loginMainFragment)
             }
             share.setOnClickListener {

@@ -25,7 +25,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+        <ImageView
+            android:id="@+id/menuIconHomeDashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="@dimen/_4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            android:foreground="?android:selectableItemBackground"
+            app:layout_constraintBottom_toTopOf="@+id/textViewLastLoggedInTimeDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/includeToolBar"
+            app:srcCompat="@drawable/ic_hamburger_menu" />
+
+        <TextView
         android:id="@+id/textView10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -308,10 +323,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
-            android:text="@string/last_login_apr_10_2024"
-            android:textSize="12sp"
-            android:textColor="@color/main"
             android:fontFamily="@font/montserrat_medium"
+            android:text="@string/last_login_apr_10_2024"
+            android:textColor="@color/main"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
 
