@@ -1,12 +1,15 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -47,11 +50,31 @@ class MarketProduce : Fragment() {
     }
 
     private fun setUpBinding() {
+
+
+        // Filters Search results as you type in the Edit Text
+        binding.inputSearchFarmProduce.addTextChangedListener( object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterResults(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                
+            }
+        })
+
+
         binding.apply {
             imageView4.setOnClickListener {
                 findNavController().navigateUp()
             }
         }
+
+
 
         binding.inputSearchFarmProduce.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -79,6 +102,15 @@ class MarketProduce : Fragment() {
             }
             binding.searchFarmProducts.editText?.setText("")
             fetchAllFarmProduce()
+        }
+    }
+
+    private fun filterResults(query: String) {
+
+        if (query.isEmpty()) {
+            toast("Enter some text in order to search")
+        } else {
+           searchingFarmProduce(query)
         }
     }
 

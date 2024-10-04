@@ -34,11 +34,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.toList
 
 
 /**
@@ -515,6 +519,46 @@ class MainViewModel @Inject constructor(
                 _userInfoUiState.value = UserInfoUiState.ShowError(it.message ?: "An Unexpected error occurred.")
             }.collect {
                 _userInfoUiState.value = UserInfoUiState.ShowSuccess(it.data!!)
+            }
+        }
+    }
+
+    /// QUEUES ALGORITHM
+    private val _maxInWindow = MutableStateFlow<List<Int>>(emptyList())
+    val maxInWindow = _maxInWindow.asStateFlow()
+
+    // Sample data stream
+    private val dataStream: Flow<Int> = flow {
+        val sampleData = listOf(1, 3, 5, 7, 9, 2, 8, 10, 4)
+        for (data in sampleData) {
+            emit(data)
+            delay(1000) // Simulate real-time data
+        }
+    }
+
+    fun processSlidingWindow(windowSize: Int) = viewModelScope.launch {
+        slidingWindowFlow(dataStream, windowSize).collect { result ->
+            _maxInWindow.value = result
+        }
+    }
+
+    private fun slidingWindowFlow(dataStream: Flow<Int>, windowSize: Int): Flow<List<Int>> = flow {
+        val deque = ArrayDeque<Int>()
+        val dataList = dataStream.toList()
+
+        for (i in dataList.indices) {
+            if (deque.isNotEmpty() && deque.first() < i - windowSize + 1) {
+                deque.removeFirst()
+            }
+
+            while (deque.isNotEmpty() && dataList[deque.last()] < dataList[i]) {
+                deque.removeLast()
+            }
+
+            deque.addLast(i)
+
+            if (i >= windowSize - 1) {
+                emit(dataList.subList(i - windowSize + 1, i + 1)) // Emit the sliding window
             }
         }
     }
