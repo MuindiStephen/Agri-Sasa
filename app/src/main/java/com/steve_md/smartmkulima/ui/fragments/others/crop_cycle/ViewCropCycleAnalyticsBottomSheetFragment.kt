@@ -43,9 +43,11 @@ class ViewCropCycleAnalyticsBottomSheetFragment : BottomSheetDialogFragment() {
         Timber.d("onCreate - Fragment: ${arguments?.getString("cropCycleName")}")
 
         val cropName = arguments?.getString("cropCycleName")
+        val farmName = arguments?.getString("farmBlockNameORID")
+        val startDate = arguments?.getString("startDateOfCropCycle")
 
-        if (cropName != null) {
-            viewModel.setSelectedCrop(cropName)
+        if (cropName != null && farmName !=null && startDate !=null) {
+            viewModel.setSelectedCrop("$cropName - $farmName - $startDate")
         }
 
         viewModel.selectedCrop.observe(viewLifecycleOwner) { cropName ->
