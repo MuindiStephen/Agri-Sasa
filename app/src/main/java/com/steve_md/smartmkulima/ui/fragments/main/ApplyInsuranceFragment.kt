@@ -58,7 +58,12 @@ class ApplyInsuranceFragment : Fragment() {
             val transactionList = withContext(Dispatchers.IO) {
                 transactionDao.getAllTransactions()
             }
-            transactionAdapter.submitList(transactionList)
+
+            // Get the last (5) transactions made.
+            val recentTransactions = transactionList.takeLast(5)
+
+            transactionAdapter.submitList(recentTransactions)
+
             binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
             displaySnackBar("View transactions history")
 

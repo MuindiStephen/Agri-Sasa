@@ -44,7 +44,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     private lateinit var locationProvider: LocationProvider
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    // List of pins to be placed to create a polygon
+    // List of Pins to be Placed to Create a Polygon
     private val pathPoints = mutableListOf<LatLng>()
     private var isMappingActive: Boolean = false
     private var farmPolygon: Polygon? = null
@@ -130,6 +130,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         setCriteria()
 
         // Get current location of the user.
+        // as it zooms
         /**
          * If permissions have been already granted
          */
@@ -252,6 +253,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             .setPositiveButton("I understand", null)
             .show()
     }
+
+
 
     private fun resetMapping() {
         farmPolygon?.remove()
