@@ -2,15 +2,16 @@ package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.location.Criteria
 import android.os.Bundle
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -123,8 +124,10 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
 
     override fun onMapReady(googleMap: GoogleMap) {
         this.googleMap = googleMap
+
         this.googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
 
+        setCriteria()
 
         // Get current location of the user.
         /**
@@ -155,6 +158,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
 
         locationProvider = LocationProvider(this.requireContext())
 
+
         // Zoom to current location
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
@@ -167,7 +171,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         val polylineOptions = PolylineOptions()
             .color(0xFF0000FF.toInt()) // Blue color for the path
             .width(5f)
-
 
 
         if (isMappingActive) {
@@ -183,6 +186,9 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
                 return
             }
 
+            /**
+             * Real time tracking
+             */
             val locationRequest = LocationRequest.create().apply {
                 interval = 5000
                 fastestInterval = 2000
@@ -200,7 +206,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
                         pathPoints.add(latLng)
 
                         polylineOptions.add(latLng)
-                        googleMap.clear()
+//                        googleMap.clear()
                         googleMap.addPolyline(polylineOptions)
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
                     }
@@ -211,6 +217,23 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         } else {
             showMappingNotYetStartedDialog()
         }
+    }
+
+    /**
+     * Set map location criteria to follow while setting up
+     * location updates
+     */
+    private fun setCriteria() {
+        // Location criteria
+        val locationCriteria : Criteria = Criteria()
+        locationCriteria.setAccuracy(Criteria.ACCURACY_FINE)
+        locationCriteria.setPowerRequirement(Criteria.POWER_HIGH)
+        locationCriteria.setAltitudeRequired(false)
+        locationCriteria.setSpeedRequired(false)
+        locationCriteria.setCostAllowed(true)
+        locationCriteria.setBearingRequired(false)
+        locationCriteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH)
+        locationCriteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH)
     }
 
     private fun showMappingNotYetStartedDialog() {
@@ -237,7 +260,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     }
 
     private fun createPolygon() {
-        if (pathPoints.size >= 3) {
+        if (pathPoints.size >= 2) {
             farmPolygon = googleMap.addPolygon(
                 PolygonOptions()
                     .addAll(pathPoints)
@@ -282,4 +305,11 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             }
         }
     }
+
+    /**
+     * Lifecycle callbacks.
+     */
+    // onStop() -> remove location updates
+    // onResume() -> map not null, map.clear(), initiate new location updates
+    //onPause() -> remove location updates
 }
