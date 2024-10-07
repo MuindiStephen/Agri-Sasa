@@ -76,7 +76,7 @@ class UserTypeAccountFragment : Fragment() {
                     }
 
                     "Buyer" -> {
-                        findNavController().navigate(R.id.marketProduce)
+                        findNavController().navigate(R.id.buyerSignUpFragment)
                     }
                     else -> {
                         Timber.e("UserAccountTypeFragment"+"Role not found")

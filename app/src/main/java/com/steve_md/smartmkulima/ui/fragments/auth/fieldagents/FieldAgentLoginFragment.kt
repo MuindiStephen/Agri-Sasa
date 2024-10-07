@@ -36,7 +36,9 @@ class FieldAgentLoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFieldAgentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentFieldAgentLoginBinding.inflate(
+            inflater, container, false
+        )
         return binding.root
     }
 

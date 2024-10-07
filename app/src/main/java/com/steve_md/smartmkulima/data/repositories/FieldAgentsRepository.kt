@@ -20,7 +20,7 @@ class FieldAgentsRepository @Inject constructor(
     suspend fun getAllFieldAgentsByLogin() = networkBoundResource (
 
         query = {
-                fieldAgentDao.getAllFieldAgents()
+            fieldAgentDao.getAllFieldAgents()
         },
         fetch = {
             // delay(2000)

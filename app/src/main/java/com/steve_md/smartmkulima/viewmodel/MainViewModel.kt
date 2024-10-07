@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
@@ -18,7 +19,9 @@ import com.steve_md.smartmkulima.model.fieldagentmodels.FieldAgentEarnings
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceExpenseRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinanceRevenueRecords
 import com.steve_md.smartmkulima.model.financialdata.FarmFinancialDataSummary
+import com.steve_md.smartmkulima.model.requests.buyers.BuyerRegisterRequest
 import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterRequest
+import com.steve_md.smartmkulima.model.responses.buyer.BuyerRegisterResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.Data
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentLoginResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
@@ -52,7 +55,8 @@ import kotlinx.coroutines.flow.toList
 class MainViewModel @Inject constructor(
     private val farmProduceRepository: FarmProduceRepository,
     private val repository: FarmCycleRepository,
-    private val fieldAgentsRepository: FieldAgentsRepository
+    private val fieldAgentsRepository: FieldAgentsRepository,
+    private val buyerRepository: BuyerRepository
 ) : ViewModel() {
 
     private val _produce = MutableSharedFlow<FarmProduceState>()
@@ -501,6 +505,8 @@ class MainViewModel @Inject constructor(
     val userInfoUiState: StateFlow<UserInfoUiState> get() = _userInfoUiState
 
 
+
+    // field agents register function
     fun registerFieldAgent(email: String, password: String) = viewModelScope.launch {
         _fieldAgentRegisterState.value = fieldAgentsRepository.registerFieldAgent(fieldAgentRegisterRequest = FieldAgentRegisterRequest(email = email, password = password))
     }
@@ -519,6 +525,37 @@ class MainViewModel @Inject constructor(
                 _userInfoUiState.value = UserInfoUiState.ShowError(it.message ?: "An Unexpected error occurred.")
             }.collect {
                 _userInfoUiState.value = UserInfoUiState.ShowSuccess(it.data!!)
+            }
+        }
+    }
+
+    // Buyers account register and log in by finding if exists in backend
+    private var _buyerRegisterState = MutableStateFlow<ResourceNetwork<BuyerRegisterResponse>?>(null)
+    val buyerRegisterState: StateFlow<ResourceNetwork<BuyerRegisterResponse>?> get() = _buyerRegisterState.asStateFlow()
+
+
+    private var _buyerInfoUiState = MutableStateFlow<BuyerInfoUiState>(BuyerInfoUiState.Loading)
+    val buyerInfoUiState: StateFlow<BuyerInfoUiState> get() = _buyerInfoUiState
+
+    // Buyers register function
+    fun registerBuyer(email: String, password: String) = viewModelScope.launch {
+        _buyerRegisterState.value = buyerRepository.registerBuyer(BuyerRegisterRequest(email = email, password = password))
+    }
+
+
+    /**
+     * Only initialize this function inside buyers feature.
+     */
+    fun loadBuyersAndRegisterBuyers() {
+
+        viewModelScope.launch {
+
+            _buyerInfoUiState.value = BuyerInfoUiState.Loading
+
+            buyerRepository.getAllBuyersByLogin().catch {
+                _buyerInfoUiState.value = BuyerInfoUiState.ShowError(it.message ?: "An Unexpected error occurred.")
+            }.collect {
+                _buyerInfoUiState.value = BuyerInfoUiState.ShowSuccess(it.data!!)
             }
         }
     }
@@ -577,4 +614,11 @@ sealed class UserInfoUiState {
     data object Initial : UserInfoUiState()
     data class ShowSuccess(val listOfAgents: List<Data>) : UserInfoUiState()
     data class ShowError(val message: String) : UserInfoUiState()
+}
+
+sealed class BuyerInfoUiState {
+    data object Loading: BuyerInfoUiState()
+    data object Initial : BuyerInfoUiState()
+    data class ShowSuccess(val listsOfBuyers: List<com.steve_md.smartmkulima.model.responses.buyer.Data>) : BuyerInfoUiState()
+    data class ShowError(val message: String) : BuyerInfoUiState()
 }

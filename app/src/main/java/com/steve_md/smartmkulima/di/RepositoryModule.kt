@@ -3,6 +3,7 @@ package com.steve_md.smartmkulima.di
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 import com.steve_md.smartmkulima.data.repositories.AuthRepository
+import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
@@ -59,5 +60,14 @@ object RepositoryModule {
         appDatabase: AppDatabase
     ): FieldAgentsRepository {
         return FieldAgentsRepository(retrofitApiService, appDatabase)
+    }
+
+    @Singleton
+    @Provides
+    fun providesBuyerRepository(
+        retrofitApiService: RetrofitApiService,
+        appDatabase: AppDatabase
+    ): BuyerRepository {
+        return BuyerRepository(retrofitApiService, appDatabase)
     }
 }

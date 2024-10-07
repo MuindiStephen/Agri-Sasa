@@ -1,14 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.auth.buyer.BuyerSignUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainAuthsToolbar"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="60dp"
+        android:background="@color/bg_gray"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        android:backgroundTint="@color/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="38.75dp"
+        android:layout_height="50.45dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAuthsToolbar" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:text="SiGN UP AS A BUYER WITH AGRISASA"
+        android:textColor="@color/main_black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:text="Hurry up! Get affordable rates for fresh farm produce directly from the farmers."
+        android:textSize="13sp"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="45dp"
+        android:hint="Email"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeColor="@color/SilverGray"
+        app:boxStrokeWidthFocused="2dp"
+        android:textColorHint="@color/textColor"
+        app:endIconMode="clear_text"
+        android:textColor="@color/textColor"
+        app:endIconTint="@color/SilverGray"
+        app:layout_constraintEnd_toEndOf="@id/textView2"
+        app:layout_constraintStart_toStartOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@id/textView2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmail"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_width="match_parent"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enterPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="45dp"
+        android:hint="Password"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeColor="@color/SilverGray"
+        app:boxStrokeWidthFocused="2dp"
+        android:textColorHint="@color/textColor"
+        app:endIconMode="clear_text"
+        android:textColor="@color/textColor"
+        app:endIconTint="@color/SilverGray"
+        app:layout_constraintEnd_toEndOf="@id/enterEmail"
+        app:layout_constraintStart_toStartOf="@id/enterEmail"
+        app:layout_constraintTop_toBottomOf="@id/enterEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPassword"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_width="match_parent"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/signUpFieldAgentButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/main1"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="SIGN UP"
+        android:textColor="@color/bg_gray"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/enterPassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/enterPassword"
+        app:layout_constraintTop_toBottomOf="@+id/enterPassword" />
+
+    <TextView
+        android:id="@+id/tv_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Already have an account? Sign In"
+        android:textSize="@dimen/_14sp_text_size"
+        android:fontFamily="@font/montserrat_medium"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

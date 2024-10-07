@@ -62,6 +62,7 @@ class FieldAgentRegisterFragment : Fragment() {
                 }
             }
         }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback!!)
 
         initBinding()
 

@@ -2,8 +2,11 @@ package com.steve_md.smartmkulima.data.remote
 
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.requests.*
+import com.steve_md.smartmkulima.model.requests.buyers.BuyerRegisterRequest
 import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterRequest
 import com.steve_md.smartmkulima.model.responses.*
+import com.steve_md.smartmkulima.model.responses.buyer.BuyerLoginResponse
+import com.steve_md.smartmkulima.model.responses.buyer.BuyerRegisterResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentLoginResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
 import com.steve_md.smartmkulima.utils.Constants.LOGIN_END_POINT
@@ -90,6 +93,14 @@ interface RetrofitApiService {
 
        @GET("resource/registerfieldagent")
        suspend fun loginFieldAgent() : FieldAgentLoginResponse
+
+    @POST("resource/buyers")
+    suspend fun registerBuyer(
+        @Body buyerRegisterRequest: BuyerRegisterRequest
+    ): BuyerRegisterResponse
+
+    @GET("resource/buyers")
+    suspend fun loginBuyer() : BuyerLoginResponse
 
 
     // Sample Deleting of a farmer
