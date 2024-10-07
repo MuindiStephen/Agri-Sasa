@@ -105,7 +105,7 @@
         android:id="@+id/textView172"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No farm produce found."
+        android:text="No results found."
         android:visibility="gone"
         android:fontFamily="@font/montserrat_semibold"
         android:textSize="@dimen/_14sp_text_size"

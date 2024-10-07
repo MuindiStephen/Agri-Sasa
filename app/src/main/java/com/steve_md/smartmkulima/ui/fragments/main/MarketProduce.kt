@@ -53,13 +53,20 @@ class MarketProduce : Fragment() {
 
 
         // Filters Search results as you type in the Edit Text
-        binding.inputSearchFarmProduce.addTextChangedListener( object : TextWatcher{
+        binding.inputSearchFarmProduce.addTextChangedListener( object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                filterResults(s.toString())
+
+                if (s.isNullOrEmpty()) {
+                    binding.textView172.isVisible = false
+                    farmProduceAdapter.submitList(farmProduceList)
+                    binding.farmProduceRecyclerView.isVisible = true // when no search rlts
+                } else {
+                    searchingFarmProduce(s.toString())
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -73,7 +80,6 @@ class MarketProduce : Fragment() {
                 findNavController().navigateUp()
             }
         }
-
 
 
         binding.inputSearchFarmProduce.setOnEditorActionListener { _, actionId, _ ->
@@ -105,18 +111,14 @@ class MarketProduce : Fragment() {
         }
     }
 
-    private fun filterResults(query: String) {
-
-        if (query.isEmpty()) {
-            toast("Enter some text in order to search")
-        } else {
-           searchingFarmProduce(query)
-        }
-    }
 
     private fun searchingFarmProduce(searchText: String) {
-        val filteredList = farmProduceList.filter { it.productTitle.equals(searchText, ignoreCase = true) }
+        val filteredList = farmProduceList.filter {
+            it.productTitle.contains(searchText, ignoreCase = true)
+        }
         farmProduceAdapter.submitList(filteredList.toMutableList())
+
+        binding.textView172.isVisible = filteredList.isEmpty()
     }
 
     private fun fetchAllFarmProduce() {
@@ -127,7 +129,6 @@ class MarketProduce : Fragment() {
         lifecycleScope.launch {
             mainViewModel.produce.collect { farmProduceState ->
                 Timber.e("Farm Produce State: $farmProduceState")
-
 
                 if (farmProduceState.isLoading) {
                    displaySnackBar("Loading Farm Produce...")
@@ -155,5 +156,4 @@ class MarketProduce : Fragment() {
             }
         }
     }
-
 }
