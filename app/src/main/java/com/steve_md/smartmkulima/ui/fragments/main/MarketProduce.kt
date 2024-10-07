@@ -1,12 +1,15 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -47,11 +50,37 @@ class MarketProduce : Fragment() {
     }
 
     private fun setUpBinding() {
+
+
+        // Filters Search results as you type in the Edit Text
+        binding.inputSearchFarmProduce.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                if (s.isNullOrEmpty()) {
+                    binding.textView172.isVisible = false
+                    farmProduceAdapter.submitList(farmProduceList)
+                    binding.farmProduceRecyclerView.isVisible = true // when no search rlts
+                } else {
+                    searchingFarmProduce(s.toString())
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                
+            }
+        })
+
+
         binding.apply {
             imageView4.setOnClickListener {
                 findNavController().navigateUp()
             }
         }
+
 
         binding.inputSearchFarmProduce.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -82,9 +111,14 @@ class MarketProduce : Fragment() {
         }
     }
 
+
     private fun searchingFarmProduce(searchText: String) {
-        val filteredList = farmProduceList.filter { it.productTitle.equals(searchText, ignoreCase = true) }
+        val filteredList = farmProduceList.filter {
+            it.productTitle.contains(searchText, ignoreCase = true)
+        }
         farmProduceAdapter.submitList(filteredList.toMutableList())
+
+        binding.textView172.isVisible = filteredList.isEmpty()
     }
 
     private fun fetchAllFarmProduce() {
@@ -95,7 +129,6 @@ class MarketProduce : Fragment() {
         lifecycleScope.launch {
             mainViewModel.produce.collect { farmProduceState ->
                 Timber.e("Farm Produce State: $farmProduceState")
-
 
                 if (farmProduceState.isLoading) {
                    displaySnackBar("Loading Farm Produce...")
@@ -123,5 +156,4 @@ class MarketProduce : Fragment() {
             }
         }
     }
-
 }

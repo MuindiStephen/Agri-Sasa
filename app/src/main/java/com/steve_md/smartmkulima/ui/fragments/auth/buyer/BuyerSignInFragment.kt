@@ -1,7 +1,6 @@
-package com.steve_md.smartmkulima.ui.fragments.auth.fieldagents
+package com.steve_md.smartmkulima.ui.fragments.auth.buyer
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,21 +13,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
-import com.steve_md.smartmkulima.databinding.FragmentFieldAgentLoginBinding
+import com.steve_md.smartmkulima.databinding.FragmentBuyerSignInBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
+import com.steve_md.smartmkulima.viewmodel.BuyerInfoUiState
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
-import com.steve_md.smartmkulima.viewmodel.UserInfoUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
-class FieldAgentLoginFragment : Fragment() {
+class BuyerSignInFragment : Fragment() {
 
-    private var _binding: FragmentFieldAgentLoginBinding? = null
-    val binding get() = _binding!!
+    private lateinit var binding: FragmentBuyerSignInBinding
     private val viewModel: MainViewModel by viewModels()
     private var onBackPressedCallback: OnBackPressedCallback? = null
 
@@ -36,7 +34,7 @@ class FieldAgentLoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFieldAgentLoginBinding.inflate(
+        binding = FragmentBuyerSignInBinding.inflate(
             inflater, container, false
         )
         return binding.root
@@ -64,78 +62,78 @@ class FieldAgentLoginFragment : Fragment() {
                 }
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback!!)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, onBackPressedCallback!!
+        )
 
         initBinding()
 
         binding.signInFieldAgentButton.setOnClickListener {
             if (validatedInputs()) {
-                viewModel.loadFieldAgentAndLoginFieldAgent()
+                viewModel.loadBuyersAndRegisterBuyers()
             }
         }
 
-        subscribeToFieldAgentsLoadAndLoginObservables()
-    }
-
-    private fun subscribeToFieldAgentsLoadAndLoginObservables() {
-       lifecycleScope.launch {
-           viewModel.userInfoUiState.collect { state ->
-               when(state) {
-                   UserInfoUiState.Initial -> {
-                       Timber.d("Initiating Request")
-                       binding.progressBar9.isVisible = false
-                   }
-                   UserInfoUiState.Loading -> {
-                       Timber.d("Loading and sending request")
-                       binding.progressBar9.isVisible = true
-                       delay(1000L)
-                       binding.progressBar9.isVisible = false
-                   }
-                   is UserInfoUiState.ShowError -> {
-                       Timber.d("No Account found.")
-                       displaySnackBar("Could not log you in. ")
-                       binding.progressBar9.isVisible = false
-                   }
-                   is UserInfoUiState.ShowSuccess -> {
-                       Timber.d("Loaded field agents successfully")
-                       binding.progressBar9.isVisible = false
-
-                       val lookupEmail = binding.inputEmail.text.toString()
-                       val lookupPassword = binding.inputPassword.text.toString()
-
-                       val fieldAgentsList = state.listOfAgents
-
-                       val lookUpEmailAndPasswordFieldAgent = fieldAgentsList.find {
-                           it.email == lookupEmail && it.password == lookupPassword
-                       }
-
-                       if (lookUpEmailAndPasswordFieldAgent != null) {
-                           toast("Login Successful")
-                           val bundle = Bundle().apply {
-                               putString("fieldAgentEmail", lookupEmail )
-                           }
-                           findNavController().navigate(R.id.fieldAgentDashboardFragment, bundle)
-                       } else {
-                           displaySnackBar("Could not log you in. ")
-                           Timber.d("Could not login account. ")
-                       }
-
-                   }
-               }
-           }
-       }
+        subscribeToBuyersLoadAndLoginObservables()
     }
 
     private fun initBinding() {
-
         binding.mainAuthsToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
 
         binding.tvDontHaveAccount.setOnClickListener {
-            findNavController().navigate(R.id.fieldAgentRegisterFragment)
+            findNavController().navigate(R.id.buyerSignUpFragment)
         }
     }
+
+    private fun subscribeToBuyersLoadAndLoginObservables() {
+        lifecycleScope.launch {
+            viewModel.buyerInfoUiState.collect { state ->
+                when(state) {
+                    BuyerInfoUiState.Initial -> {
+                        Timber.d("Initiating Request")
+                        binding.progressBar9.isVisible = false
+                    }
+                    BuyerInfoUiState.Loading -> {
+                        Timber.d("Loading and sending request")
+                        binding.progressBar9.isVisible = true
+                        delay(1000L)
+                        binding.progressBar9.isVisible = false
+                    }
+                    is BuyerInfoUiState.ShowError -> {
+                        Timber.d("No Account found.")
+                        displaySnackBar("Could not log you in. ")
+                        binding.progressBar9.isVisible = false
+                    }
+                    is BuyerInfoUiState.ShowSuccess -> {
+                        Timber.d("Loaded field agents successfully")
+                        binding.progressBar9.isVisible = false
+
+                        val lookupEmail = binding.inputEmail.text.toString()
+                        val lookupPassword = binding.inputPassword.text.toString()
+
+                        val buyerList = state.listsOfBuyers
+
+                        val lookUpEmailAndPasswordFieldAgent = buyerList.find {
+                            it.email == lookupEmail && it.password == lookupPassword
+                        }
+
+                        if (lookUpEmailAndPasswordFieldAgent != null) {
+                            toast("Login Success")
+                            findNavController().navigate(R.id.marketProduce)
+                        } else {
+                            displaySnackBar("Could not log you in. ")
+                            Timber.d("Could not login account. ")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 
     private fun validatedInputs(): Boolean {
         return binding.inputPassword.text.isNullOrEmpty().not().also {
@@ -149,5 +147,4 @@ class FieldAgentLoginFragment : Fragment() {
         super.onResume()
         binding.progressBar9.isVisible = false
     }
-
 }

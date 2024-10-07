@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.steve_md.smartmkulima.data.room.AppDatabase
+import com.steve_md.smartmkulima.data.room.BuyersDao
 import com.steve_md.smartmkulima.data.room.FarmProduceDao
 import com.steve_md.smartmkulima.data.room.FieldAgentUserDao
 import com.steve_md.smartmkulima.data.room.GAPDao
@@ -53,5 +54,11 @@ object DatabaseModule {
     @Provides
     fun providesFieldAgentDao(appDatabase: AppDatabase): FieldAgentUserDao {
         return appDatabase.fieldAgentUserDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesBuyerDao(appDatabase: AppDatabase): BuyersDao {
+        return appDatabase.buyerDao()
     }
 }

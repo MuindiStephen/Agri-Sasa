@@ -10,5 +10,7 @@ data class FarmProduce(
     @PrimaryKey(autoGenerate = true) val id:Int,
     @ColumnInfo(name = "image") val productImageUrl:String,
     @ColumnInfo(name = "title") val productTitle:String,
-    @ColumnInfo(name = "price") val productPrice:String
+    @ColumnInfo(name = "price") val productPrice:String,
+    @ColumnInfo(name = "byfarmerContact") val farmerContact: String,
+    @ColumnInfo(name = "byFarmerLocation") val farmerLocation: String
 )

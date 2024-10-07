@@ -728,8 +728,8 @@
             app:popUpTo="@id/userTypeAccountFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_userTypeAccountFragment_to_marketProduce"
-            app:destination="@id/marketProduce" />
+            android:id="@+id/action_userTypeAccountFragment_to_buyerSignUpFragment"
+            app:destination="@id/buyerSignUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/agroDealerViewOrderListItemsInDetailFragment"
@@ -777,6 +777,27 @@
         <action
             android:id="@+id/action_fieldAgentDashboardFragment_to_fieldAgentLoginFragment"
             app:destination="@id/fieldAgentLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyerSignUpFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.buyer.BuyerSignUpFragment"
+        android:label="fragment_buyer_sign_up"
+        tools:layout="@layout/fragment_buyer_sign_up" >
+        <action
+            android:id="@+id/action_buyerSignUpFragment_to_buyerSignInFragment"
+            app:destination="@id/buyerSignInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyerSignInFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.auth.buyer.BuyerSignInFragment"
+        android:label="fragment_buyer_sign_in"
+        tools:layout="@layout/fragment_buyer_sign_in" >
+        <action
+            android:id="@+id/action_buyerSignInFragment_to_buyerSignUpFragment"
+            app:destination="@id/buyerSignUpFragment" />
+        <action
+            android:id="@+id/action_buyerSignInFragment_to_marketProduce"
+            app:destination="@id/marketProduce" />
     </fragment>
 
 

@@ -33,6 +33,9 @@ class FarmProduceAdapter : ListAdapter<FarmProduce, FarmProduceAdapter.MyViewHol
                 .load(product?.productImageUrl)
                 .centerCrop()
                 .into(binding.productImageBox)
+
+            binding.farmerLocationFromTheBuyer.text = product?.farmerLocation
+            binding.byFarmerContacts.text = "Farmer:"+product?.farmerContact
         }
     }
 

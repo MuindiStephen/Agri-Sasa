@@ -183,6 +183,8 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
         val modal = ViewCropCycleAnalyticsBottomSheetFragment().apply {
             arguments = Bundle().apply {
                 putString("cropCycleName", localFarmCycle?.cropName)
+                putString("farmBlockNameORID", localFarmCycle?.farmName)
+                putString("startDateOfCropCycle", localFarmCycle?.startDate)
             }
         }
         supportFragmentManager.let {
