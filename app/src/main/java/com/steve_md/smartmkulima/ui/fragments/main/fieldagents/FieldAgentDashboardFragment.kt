@@ -3,6 +3,8 @@ package com.steve_md.smartmkulima.ui.fragments.main.fieldagents
 import android.graphics.drawable.GradientDrawable.Orientation
 import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -150,6 +152,28 @@ class FieldAgentDashboardFragment : Fragment() {
 
         }
 
+
+        binding.inputSearchAgrodealer.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                if (s.isNullOrEmpty()) {
+                    binding.noRecordsAgrodealers.isVisible = false
+                    fieldAgentAddedAgroDealersAdapter.submitList(fieldAgentAgroDealers)
+                    binding.recyclerViewAddedAgrodealers.isVisible = true // when no search rlts
+                } else {
+                    searchingAgroDealer(s.toString())
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+
         binding.inputSearchAgrodealer.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
@@ -216,8 +240,12 @@ class FieldAgentDashboardFragment : Fragment() {
 
 
     private fun searchingAgroDealer(searchText: String) {
-        val filteredList = fieldAgentAgroDealers.filter { it.name.equals(searchText, ignoreCase = true) }
+        val filteredList = fieldAgentAgroDealers.filter {
+            it.name.contains(searchText, ignoreCase = true)
+        }
         fieldAgentAddedAgroDealersAdapter.submitList(filteredList.toMutableList())
+
+        binding.noRecordsAgrodealers.isVisible = filteredList.isEmpty()
     }
 
     private fun exitDialog() {
@@ -246,6 +274,9 @@ class FieldAgentDashboardFragment : Fragment() {
     }
     override fun onResume() {
         super.onResume()
+
+        viewModel.getAgentPoints("${arguments?.getString("fieldAgentEmail")}")
+
         displaySnackBar("Yaaay! Onboard more Agro-Dealers to increase your earnings")
     }
     companion object {
