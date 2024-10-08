@@ -184,7 +184,7 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
                 )
             }
 
-            userLocationLatLng?.let { CameraUpdateFactory.newLatLngZoom(it,15f) }
+            userLocationLatLng?.let { CameraUpdateFactory.newLatLngZoom(it,18f) }
                 ?.let { map.moveCamera(it) }
 
             // Then click on the map and start mapping

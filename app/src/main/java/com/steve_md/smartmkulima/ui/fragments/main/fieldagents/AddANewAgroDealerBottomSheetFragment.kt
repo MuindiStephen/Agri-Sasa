@@ -69,16 +69,22 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
         binding.addAgroDealerByFieldAgentBtn.setOnClickListener {
             if (inputsAreValidated()) {
 
-                val fieldAgentAddAgroDealerData = FieldAgentAddAgroDealerData(
-                    name = binding.inputAgroDealerName.text.toString(),
-                    email = binding.inputAgroDealerEmail.text.toString(),
-                    phone = binding.inputAgroDealerPhone.text.toString(),
-                    location = binding.inputAgroDealerLocation.text.toString(),
-                    physicalLocationAddress = binding.inputAgroDealerPhysicalAddress.text.toString()
-                )
+                val fieldAgentAddAgroDealerData = arguments?.getString("agentEmail")?.let { it1 ->
+                    FieldAgentAddAgroDealerData(
+                        name = binding.inputAgroDealerName.text.toString(),
+                        email = binding.inputAgroDealerEmail.text.toString(),
+                        phone = binding.inputAgroDealerPhone.text.toString(),
+                        location = binding.inputAgroDealerLocation.text.toString(),
+                        physicalLocationAddress = binding.inputAgroDealerPhysicalAddress.text.toString(),
+                        offers = binding.spinnerSelectOfferCategories.selectedItem.toString(),
+                        agentId = it1
+                    )
+                }
 
                 try {
-                    viewModel.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
+                    if (fieldAgentAddAgroDealerData != null) {
+                        viewModel.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
+                    }
 
                     viewModel.allFieldAgentEarnings.observe(viewLifecycleOwner) {
                         if (it.earnings == 200.0 && it.points == 10) {
@@ -93,7 +99,7 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
                         } else {
                             viewModel.saveFieldAgentEarnings(
                                 FieldAgentEarnings(
-                                    1, 10, 200.0
+                                    1, arguments?.getString("fieldAgentEmail")!!, 10,200.0
                                 )
                             )
                         }

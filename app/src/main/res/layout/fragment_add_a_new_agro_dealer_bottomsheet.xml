@@ -178,12 +178,25 @@
                 android:inputType="text|number" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Spinner
+            android:id="@+id/spinnerSelectOfferCategories"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:entries="@array/offers_categories_agrodealers"
+            android:layout_marginStart="@dimen/_45dp"
+            android:layout_marginEnd="@dimen/_45dp"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintEnd_toEndOf="@+id/enterAgroDealerExactLocation"
+            app:layout_constraintStart_toStartOf="@+id/enterAgroDealerExactLocation"
+            app:layout_constraintTop_toBottomOf="@id/enterAgroDealerExactLocation" />
+
         <Button
             android:id="@+id/addAgroDealerByFieldAgentBtn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="45dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="45dp"
             android:layout_marginBottom="@dimen/_32dp"
             android:backgroundTint="@color/main1"
@@ -195,6 +208,6 @@
             app:layout_constraintEnd_toEndOf="@+id/enterAgroDealerExactLocation"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/enterAgroDealerExactLocation"
-            app:layout_constraintTop_toBottomOf="@+id/enterAgroDealerExactLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerSelectOfferCategories" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

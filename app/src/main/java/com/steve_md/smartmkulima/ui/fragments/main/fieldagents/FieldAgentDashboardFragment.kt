@@ -179,7 +179,12 @@ class FieldAgentDashboardFragment : Fragment() {
         }
     }
     private fun showAddANewAgroDealerBottomSheetFragment() {
-        val modal = AddANewAgroDealerBottomSheetFragment()
+        // pass here field agent ID here as an arg who registered / added this new farmer
+        val modal = AddANewAgroDealerBottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putString("agentEmail", arguments?.getString("fieldAgentEmail"))
+            }
+        }
         modal.show(parentFragmentManager, TAG)
     }
 
