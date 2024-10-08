@@ -35,6 +35,7 @@ import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.Calendar
 
 @AndroidEntryPoint
@@ -129,9 +130,12 @@ class FieldAgentDashboardFragment : Fragment() {
 
         binding.apply {
 
+            val agentEmail = arguments?.getString("fieldAgentEmail")
 
             button4.setOnClickListener {
-                showAddANewAgroDealerBottomSheetFragment()
+                if (agentEmail != null) {
+                    showAddANewAgroDealerBottomSheetFragment(agentEmail)
+                }
             }
 
             button3.setOnClickListener {
@@ -182,15 +186,34 @@ class FieldAgentDashboardFragment : Fragment() {
             }
         }
     }
-    private fun showAddANewAgroDealerBottomSheetFragment() {
+    private fun showAddANewAgroDealerBottomSheetFragment(fieldAgentEmail: String) {
         // pass here field agent ID here as an arg who registered / added this new farmer
+
+//        val bottomSheet = AddANewAgroDealerBottomSheetFragment.newInstance(agentEmail)
+//        bottomSheet.show(parentFragmentManager, bottomSheet.tag)
+
         val modal = AddANewAgroDealerBottomSheetFragment().apply {
             arguments = Bundle().apply {
-                putString("agentEmail", arguments?.getString("fieldAgentEmail"))
+                putString("fieldAgentEmail", fieldAgentEmail)
             }
         }
-        modal.show(parentFragmentManager, TAG)
+        // modal.show(parentFragmentManager, TAG)
+        parentFragmentManager.let {
+            modal.show(it, AddANewAgroDealerBottomSheetFragment.TAG)
+        }
+
+        Timber.tag("ShowAddAgrodealerBottomSheet").d("Passed arg is: ${arguments?.getString("fieldAgentEmail")}")
+
+//        val fragment = AddANewAgroDealerBottomSheetFragment()
+//        val bundle = Bundle().apply {
+//            putString("agentEmail","${arguments?.getString("fieldAgentEmail")}")
+//        }
+//        fragment.arguments = bundle
+//        fragment.show(parentFragmentManager, fragment.tag)
+
     }
+
+
 
     private fun searchingAgroDealer(searchText: String) {
         val filteredList = fieldAgentAgroDealers.filter { it.name.equals(searchText, ignoreCase = true) }
@@ -227,5 +250,18 @@ class FieldAgentDashboardFragment : Fragment() {
     }
     companion object {
         const val TAG = "AddANewAgroDealerBottomSheetFragment"
+
+
+            private const val ARG_AGENT_EMAIL = "agentEmail"
+
+            // Create new instance of BottomSheet with argument
+            fun newInstance(agentEmail: String): AddANewAgroDealerBottomSheetFragment {
+                val fragment = AddANewAgroDealerBottomSheetFragment()
+                val args = Bundle().apply {
+                    putString(ARG_AGENT_EMAIL, agentEmail)
+                }
+                fragment.arguments = args
+                return fragment
+            }
     }
 }

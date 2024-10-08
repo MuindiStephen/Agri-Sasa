@@ -48,6 +48,8 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Timber.tag("-on View Created - ShowAddAgrodealerBottomSheet 2").d("Received arg is: ${arguments?.getString("fieldAgentEmail")}")
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         binding.inputAgroDealerLocation.setOnFocusChangeListener { _, hasFocus ->
@@ -61,24 +63,21 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
         binding.addAgroDealerByFieldAgentBtn.setOnClickListener {
-            if (inputsAreValidated()) {
 
-                val fieldAgentAddAgroDealerData = arguments?.getString("agentEmail")?.let { it1 ->
-                    FieldAgentAddAgroDealerData(
+            if (inputsAreValidated()) {
+                val fieldAgentAddAgroDealerData = FieldAgentAddAgroDealerData(
                         name = binding.inputAgroDealerName.text.toString(),
                         email = binding.inputAgroDealerEmail.text.toString(),
                         phone = binding.inputAgroDealerPhone.text.toString(),
                         location = binding.inputAgroDealerLocation.text.toString(),
                         physicalLocationAddress = binding.inputAgroDealerPhysicalAddress.text.toString(),
                         offers = binding.spinnerSelectOfferCategories.selectedItem.toString(),
-                        agentId = it1
+                        agentId = "${arguments?.getString("fieldAgentEmail")}"
                     )
-                }
+
 
                 try {
-                    if (fieldAgentAddAgroDealerData != null) {
-                        viewModel.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
-                    }
+                    viewModel.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
 
                     requireActivity().runOnUiThread {
                         displaySnackBar("A new Agro-dealer was added.")
@@ -143,5 +142,8 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+        const val TAG = "AddNewAgroDealerBottomSheeet"
     }
+
+
 }
