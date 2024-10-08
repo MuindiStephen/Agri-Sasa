@@ -14,6 +14,6 @@ data class FieldAgentEarnings(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val fieldAgentID: String,
-    val points: Int = 0,
-    val earnings: Double = 0.0
+    var points: Int = 0,
+    var earnings: Double = 0.0
 )

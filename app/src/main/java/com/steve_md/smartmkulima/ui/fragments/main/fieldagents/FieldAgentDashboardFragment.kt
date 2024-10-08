@@ -97,6 +97,10 @@ class FieldAgentDashboardFragment : Fragment() {
         setUpRecyclerView()
 
         fetchAllFieldAgentCreatedAgroDealers()
+
+        viewModel.getAgentPoints("${arguments?.getString("fieldAgentEmail")}")
+
+        subscribeToFieldAgentEarningVMObservables()
     }
 
 
@@ -123,8 +127,6 @@ class FieldAgentDashboardFragment : Fragment() {
 
     private fun setUpUi() {
 
-        subscribeToFieldAgentEarningVMObservables()
-
         binding.apply {
 
 
@@ -137,6 +139,8 @@ class FieldAgentDashboardFragment : Fragment() {
                     progressBar7.isVisible = true
                     delay(500L)
                     progressBar7.isVisible = false
+                    // Load agent points initially
+                    viewModel.getAgentPoints("${arguments?.getString("fieldAgentEmail")}")
                 }
             }
 
@@ -172,7 +176,7 @@ class FieldAgentDashboardFragment : Fragment() {
     }
 
     private fun subscribeToFieldAgentEarningVMObservables() {
-        viewModel.allFieldAgentEarnings.observe(viewLifecycleOwner) {
+        viewModel.agentPoints.observe(viewLifecycleOwner) {
             it?.let {
                 binding.textViewEarnings.text = "Current Earnings: ${it.points} points worth KSH. ${it.earnings}"
             }

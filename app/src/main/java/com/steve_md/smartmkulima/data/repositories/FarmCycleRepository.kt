@@ -141,23 +141,34 @@ class FarmCycleRepository @Inject constructor(
     }
 
     suspend fun fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData: FieldAgentAddAgroDealerData) =  apiRequestByResource {
+
+        // Inserting AgroDealer Into db
         fieldAgentAddAgrodealerDao.fieldAgentAddANewAgrodealer(fieldAgentAddAgroDealerData)
+
+        // Update field agent points
+        val agentPoints = fieldAgentEarningsDao.getPointsByAgentId(fieldAgentAddAgroDealerData.agentId)
+        if (agentPoints != null) {
+            agentPoints.points += 10
+            agentPoints.earnings += 200.0
+            fieldAgentEarningsDao.saveOrUpdatePoints(agentPoints)
+        } else {
+            // First time this agent registers/ adds a new farmer
+            val newAgentPoints = FieldAgentEarnings(
+                fieldAgentID = fieldAgentAddAgroDealerData.agentId,
+                points = 10,
+                earnings = 200.0
+            )
+
+            fieldAgentEarningsDao.saveOrUpdatePoints(newAgentPoints)
+        }
+    }
+
+
+    suspend fun getAgentPoints(agentId: String): FieldAgentEarnings? {
+        return fieldAgentEarningsDao.getPointsByAgentId(agentId)
     }
 
     fun getAllFieldAgentAddedAgroDealers(): LiveData<List<FieldAgentAddAgroDealerData>> {
         return fieldAgentAddAgrodealerDao.getAllFieldAgentAddedAgrodealers()
-    }
-
-    // Field agent earnings METHODS
-    suspend fun saveEarnings(fieldAgentEarnings: FieldAgentEarnings) =  apiRequestByResource {
-        fieldAgentEarningsDao.saveFieldAgentEarnings(fieldAgentEarnings)
-    }
-
-    suspend fun updateFieldAgentEarnings(newPoints: Int, earnings: Double) {
-        fieldAgentEarningsDao.updateFieldAgentEarnings(newPoints, earnings)
-    }
-
-    fun getAllFieldAgentEarnings(): LiveData<FieldAgentEarnings> {
-        return fieldAgentEarningsDao.fetchAllFieldAgentEarnings()
     }
 }

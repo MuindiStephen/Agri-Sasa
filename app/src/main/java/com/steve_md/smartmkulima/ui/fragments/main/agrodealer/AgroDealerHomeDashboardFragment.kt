@@ -101,7 +101,7 @@ class AgroDealerHomeDashboardFragment : Fragment() {
         binding.recyclerView5.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize the adapter
-        agrodealerOrdersAdapter = AgrodealerOrdersAdapter(AgrodealerOrdersAdapter.OnClickListener{ order ->
+        agrodealerOrdersAdapter = AgrodealerOrdersAdapter( AgrodealerOrdersAdapter.OnClickListener { order ->
             Timber.tag("...CreatedFarmCycles....").e(order.toString())
 
             Timber.i("=====Checking==ORDER WITH ID=====>: ${order.orderId} ")
