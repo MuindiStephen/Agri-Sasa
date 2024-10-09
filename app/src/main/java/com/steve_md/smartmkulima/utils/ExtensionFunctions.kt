@@ -2,16 +2,19 @@ package com.steve_md.smartmkulima.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.view.updateMargins
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -21,6 +24,8 @@ import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
+import android.net.Uri
+
 
 
 fun Fragment.toast(text:String) {
@@ -182,6 +187,27 @@ fun formatNameFromEmail(email: String): String {
     // Capitalize each part of the name and join them with a space
     return splitName.joinToString(" ") { part -> part.capitalize() }
 }
+
+
+// IMPLEMENTING OVERLAY OVER OTHER APPS - WINDOWs on top of other apps.
+/**
+fun checkOverlayPermission(context: Context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (!Settings.canDrawOverlays(context)) {
+            // Permission is not granted, request it
+            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$context"))
+            startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION)
+        } else {
+            // Permission is granted, you can show the overlay
+            showOverlay()
+        }
+    } else {
+        // For devices below API 23, permission is granted by default
+        showOverlay()
+    }
+}
+ */
+
 
 
 
