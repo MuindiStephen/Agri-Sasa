@@ -127,7 +127,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
 
         this.googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
 
-        setCriteria()
+        // setCriteria()
 
         // Get current location of the user.
         // as it zooms
@@ -224,6 +224,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
      * Set map location criteria to follow while setting up
      * location updates
      */
+
+    /*
     private fun setCriteria() {
         // Location criteria
         val locationCriteria : Criteria = Criteria()
@@ -236,6 +238,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         locationCriteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH)
         locationCriteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH)
     }
+
+     */
 
     private fun showMappingNotYetStartedDialog() {
         AlertDialog.Builder(requireContext())
@@ -263,7 +267,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     }
 
     private fun createPolygon() {
-        if (pathPoints.size >= 2) {
+        if (pathPoints.size > 0) {
             farmPolygon = googleMap.addPolygon(
                 PolygonOptions()
                     .addAll(pathPoints)
