@@ -51,6 +51,7 @@ class MarketProduce : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         (activity as AppCompatActivity).supportActionBar?.hide()
         subScribeToFarmProduceObserver()
         setUpBinding()
@@ -59,7 +60,7 @@ class MarketProduce : Fragment() {
 
         farmProduceAdapter =
             FarmProduceAdapter(FarmProduceAdapter.OnClickListener { farmProduce ->
-                Timber.i("Farm Produce :Product: ${farmProduce.productTitle}")
+                Timber.i("Farm Produce ::Product:: ${farmProduce.productTitle}")
 
                 val bundle = Bundle().apply {
                     putString("productImage", farmProduce.productImageUrl)
@@ -69,11 +70,6 @@ class MarketProduce : Fragment() {
                 findNavController().navigate(R.id.marketProduceInDetailsFragment, bundle)
             })
     }
-
-
-
-
-
     private fun setUpBinding() {
 
         // Filters Search results as you type in the Edit Text
@@ -179,9 +175,4 @@ class MarketProduce : Fragment() {
             }
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
 }
