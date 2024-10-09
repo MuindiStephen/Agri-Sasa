@@ -6,6 +6,8 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
+    
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -63,6 +65,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        
+        <service
+            android:name="com.steve_md.smartmkulima.utils.OverlayService"
+            />
     </application>
 
 </manifest>

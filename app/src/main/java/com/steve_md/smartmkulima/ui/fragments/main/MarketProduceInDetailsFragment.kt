@@ -1,60 +1,98 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.databinding.FragmentMarketProduceInDetailsBinding
+import com.steve_md.smartmkulima.utils.OverlayService
+import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.hideSupportActionBar
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MarketProduceInDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class MarketProduceInDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentMarketProduceInDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_market_produce_in_details, container, false)
+    ): View {
+        binding = FragmentMarketProduceInDetailsBinding.inflate(
+            inflater, container, false
+        )
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MarketProduceInDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MarketProduceInDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    @SuppressLint("SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        hideSupportActionBar()
+
+        Glide.with(binding.imageView32)
+            .load(arguments?.getString("productImage"))
+            .centerCrop()
+            .into(binding.imageView32)
+        binding.textView175.text = arguments?.getString("productTitle")
+        binding.textView176.text = ""+arguments?.getString("productDescription")
+
+        binding.addToCart.setOnClickListener {
+            // check permission for overlay over other apps.
+            checkOverlayPermission()
+        }
+    }
+
+    private fun checkOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(requireContext())) {
+                // Permission is not granted, request it
+                val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${requireContext().packageName}"))
+
+                startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION)
+            } else {
+                // Permission is granted, show the overlay
+                showOverLay()
+            }
+        } else {
+            // For devices below API 23, permission is granted by default
+            showOverLay()
+        }
+    }
+
+    private fun showOverLay() {
+        val intent = Intent(requireContext(), OverlayService::class.java)
+        requireContext().startService(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_OVERLAY_PERMISSION) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.canDrawOverlays(requireContext())) {
+                    // Permission is granted
+                    showOverLay()
+
+                    displaySnackBar("Permitted to overlay over other apps")
+                } else {
+                    displaySnackBar("No permission to overlay over other apps")
                 }
             }
+        }
+    }
+
+
+
+    companion object {
+        const val REQUEST_CODE_OVERLAY_PERMISSION = 1
     }
 }

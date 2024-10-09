@@ -1,6 +1,10 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -14,9 +18,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.steve_md.smartmkulima.R
+import com.steve_md.smartmkulima.adapter.FarmEquipmentAdapter
 import com.steve_md.smartmkulima.adapter.FarmProduceAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMarketProduceBinding
 import com.steve_md.smartmkulima.model.FarmProduce
+import com.steve_md.smartmkulima.utils.OverlayService
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast
@@ -31,7 +38,7 @@ class MarketProduce : Fragment() {
 
     private lateinit var binding: FragmentMarketProduceBinding
     private val mainViewModel by viewModels<MainViewModel>()
-    private val farmProduceAdapter by lazy { FarmProduceAdapter() }
+    private lateinit var farmProduceAdapter: FarmProduceAdapter
     private val farmProduceList = mutableListOf<FarmProduce>()
 
 
@@ -47,17 +54,34 @@ class MarketProduce : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
         subScribeToFarmProduceObserver()
         setUpBinding()
+
+
+
+        farmProduceAdapter =
+            FarmProduceAdapter(FarmProduceAdapter.OnClickListener { farmProduce ->
+                Timber.i("Farm Produce :Product: ${farmProduce.productTitle}")
+
+                val bundle = Bundle().apply {
+                    putString("productImage", farmProduce.productImageUrl)
+                    putString("productTitle", farmProduce.productTitle)
+                    putString("productDescription", farmProduce.productPrice)
+                }
+                findNavController().navigate(R.id.marketProduceInDetailsFragment, bundle)
+            })
     }
+
+
+
+
 
     private fun setUpBinding() {
 
-
         // Filters Search results as you type in the Edit Text
         binding.inputSearchFarmProduce.addTextChangedListener( object : TextWatcher {
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                 if (s.isNullOrEmpty()) {
@@ -68,7 +92,6 @@ class MarketProduce : Fragment() {
                     searchingFarmProduce(s.toString())
                 }
             }
-
             override fun afterTextChanged(s: Editable?) {
                 
             }
@@ -156,4 +179,9 @@ class MarketProduce : Fragment() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 }

@@ -47,6 +47,7 @@
     <string name="shop_now">Shop Now</string>
     <string name="loading_status_update">loading_status_update</string>
     <string name="location">location</string>
+    <string name="farmproducedetails">farmProduceDetails</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

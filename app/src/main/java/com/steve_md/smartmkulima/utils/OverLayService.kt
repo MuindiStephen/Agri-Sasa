@@ -35,7 +35,7 @@ class OverlayService : Service() {
         )
 
         // Specify the overlay position on the screen
-        params.gravity = Gravity.TOP or Gravity.START
+        params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
         params.x = 0
         params.y = 100
 

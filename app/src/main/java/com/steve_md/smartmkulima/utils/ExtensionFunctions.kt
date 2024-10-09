@@ -189,25 +189,6 @@ fun formatNameFromEmail(email: String): String {
 }
 
 
-// IMPLEMENTING OVERLAY OVER OTHER APPS - WINDOWs on top of other apps.
-/**
-fun checkOverlayPermission(context: Context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        if (!Settings.canDrawOverlays(context)) {
-            // Permission is not granted, request it
-            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$context"))
-            startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION)
-        } else {
-            // Permission is granted, you can show the overlay
-            showOverlay()
-        }
-    } else {
-        // For devices below API 23, permission is granted by default
-        showOverlay()
-    }
-}
- */
-
 
 
 
