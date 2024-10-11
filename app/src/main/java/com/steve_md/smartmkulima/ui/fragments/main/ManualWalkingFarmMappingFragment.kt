@@ -3,7 +3,6 @@ package com.steve_md.smartmkulima.ui.fragments.main
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
@@ -26,10 +25,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polygon
 import com.google.android.gms.maps.model.PolygonOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.SphericalUtil
+import com.google.maps.android.SphericalUtil.computeOffsetOrigin
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentManualWalkingFarmMappingBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -115,6 +116,15 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         }
     }
 
+
+    /*
+    private fun getPolygonCorners(startLatLng: LatLng, endLng: LatLng) {
+        val corners = arrayOfNulls<LatLng>(4)
+        corners[0] = computeOffsetOrigin(endLng, 12.0, 16.0) // test dummy values
+    }
+     */
+
+
     private fun saveMapppedArea() {
 
         val calculatedFarmSize = SphericalUtil.computeArea(pathPoints) // area in Metres squared
@@ -173,7 +183,12 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 18f)) // Zoom to current location
+                googleMap.moveCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        currentLatLng,
+                        18f
+                    )
+                ) // Zoom to current location
             }
         }
 
@@ -183,7 +198,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
             .width(5f)
 
 
-        if (isMappingActive) {
+        if (!isMappingActive) {
 
             if (ActivityCompat.checkSelfPermission(
                     requireContext(),
@@ -193,44 +208,65 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                return
-            }
-
-            /**
-             * Real time tracking
-             */
-            val locationRequest = LocationRequest.create().apply {
-                interval = 5000
-                fastestInterval = 2000
-                priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            }
+                requestLocationPermission()
+            } else {
 
 
-            /**
-             * Geographic Information Systems.
-             */
-
-            // GPS to record user movement , track and provide location updates.
-            // Start plotting immediately.
-            fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
-                override fun onLocationResult(locationResult: LocationResult) {
-                    super.onLocationResult(locationResult)
-                    for (location in locationResult.locations) {
-                        val latLng = LatLng(location.latitude, location.longitude)
-                        pathPoints.add(latLng)
-
-                        polylineOptions.add(latLng)
-                        googleMap.addPolyline(polylineOptions)
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
-                    }
+                /**
+                 * Real time tracking
+                 */
+                val locationRequest = LocationRequest.create().apply {
+                    interval = 5000
+                    fastestInterval = 2000
+                    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                 }
-            }, Looper.getMainLooper())
 
 
-        } else {
-            showMappingNotYetStartedDialog()
+                /**
+                 * Geographic Information Systems.
+                 */
+
+                // GPS to record user movement , track and provide location updates.
+                // Start plotting immediately.
+                fusedLocationClient.requestLocationUpdates(
+                    locationRequest,
+                    object : LocationCallback() {
+                        override fun onLocationResult(locationResult: LocationResult) {
+                            super.onLocationResult(locationResult)
+                            for (location in locationResult.locations) {
+                                val latLng = LatLng(location.latitude, location.longitude)
+                                pathPoints.add(latLng)
+
+                                googleMap.addMarker(MarkerOptions().position(latLng))
+
+                                polylineOptions.add(latLng)
+                                googleMap.addPolyline(polylineOptions)
+
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
+
+                                updatePolygonArea()
+                            }
+                        }
+                    },
+                    Looper.getMainLooper()
+                )
+            }
+            } else {
+                showMappingNotYetStartedDialog()
+            }
+        }
+
+
+    private fun updatePolygonArea() {
+        if (pathPoints.size > 2) {
+            val areaInSquareMeters = SphericalUtil.computeArea(pathPoints)
+            val areaInHectares = areaInSquareMeters / 10000
+
+            // Display the area in real time
+            binding.buttonSaveMappedArea.text = "Area: %.2f ha".format(areaInHectares)
         }
     }
+
 
     /**
      * Set map location criteria to follow while setting up
@@ -294,6 +330,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 5000L, // Time in milliseconds between location updates
@@ -350,7 +387,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         if (requestCode == LOCATION_PERMISSION_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 getMyCurrentLocationANDStartManualMapping()
-
                 // permissions granted proceed with location updates.
                 setupLocationManager()
             } else {

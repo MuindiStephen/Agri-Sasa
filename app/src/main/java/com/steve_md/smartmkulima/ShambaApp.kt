@@ -1,16 +1,13 @@
 package com.steve_md.smartmkulima
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.FirebaseDatabase
-import com.steve_md.smartmkulima.utils.SnackbarHelper
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import java.util.concurrent.ExecutorService
@@ -28,7 +25,7 @@ class ShambaApp : Application() {
     override fun onCreate() {
         super.onCreate()
         timber()
-        setNetworkSecurity()
+       // setNetworkSecurity()
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         val sharedPreferences: SharedPreferences =
             getSharedPreferences("ui_mode", Context.MODE_PRIVATE)
@@ -95,6 +92,7 @@ class ShambaApp : Application() {
     private fun setNetworkSecurity() {
         val builder = StrictMode.VmPolicy.Builder()
         StrictMode.setVmPolicy(builder
+            .detectAll()
             .detectLeakedSqlLiteObjects()
             .detectLeakedClosableObjects()
             .penaltyLog()
