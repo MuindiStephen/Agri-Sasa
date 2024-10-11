@@ -30,7 +30,7 @@ class LocationProvider(private val context:Context) {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // promptUserRequestingPermissions()
+            promptUserRequestingPermissions()
             return
         }
 

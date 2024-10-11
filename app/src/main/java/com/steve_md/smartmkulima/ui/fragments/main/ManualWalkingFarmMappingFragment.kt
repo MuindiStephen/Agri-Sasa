@@ -1,8 +1,11 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
-import android.location.Criteria
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
@@ -29,19 +32,18 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.SphericalUtil
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentManualWalkingFarmMappingBinding
-import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 /**
  * Aspect of Manual Mapping by walking in the farm
  */
 @AndroidEntryPoint
-class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
+class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
+
     private lateinit var binding: FragmentManualWalkingFarmMappingBinding
 
-
     private lateinit var googleMap: GoogleMap
-    private lateinit var locationProvider: LocationProvider
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     // List of Pins to be Placed to Create a Polygon
@@ -49,9 +51,12 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     private var isMappingActive: Boolean = false
     private var farmPolygon: Polygon? = null
 
+    private lateinit var locationManager: LocationManager
+    private lateinit var locationListener: LocationListener
+
 
     companion object {
-        private const val LOCATION_PERMISSION_CODE: Int = 1
+        private const val LOCATION_PERMISSION_CODE: Int = 1000
     }
 
     override fun onCreateView(
@@ -70,6 +75,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         mapFragment.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+         //set up location manager
 
         binding.apply {
             buttonStartMapping.setOnClickListener {
@@ -155,9 +162,11 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         )
     }
 
+    /**
+     * Zoom and give the user's
+     * current location on the Map.
+     */
     private fun getMyCurrentLocationANDStartManualMapping() {
-
-        locationProvider = LocationProvider(this.requireContext())
 
 
         // Zoom to current location
@@ -197,6 +206,10 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             }
 
 
+            /**
+             * Geographic Information Systems.
+             */
+
             // GPS to record user movement , track and provide location updates.
             // Start plotting immediately.
             fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
@@ -207,7 +220,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
                         pathPoints.add(latLng)
 
                         polylineOptions.add(latLng)
-//                        googleMap.clear()
                         googleMap.addPolyline(polylineOptions)
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
                     }
@@ -259,6 +271,44 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     }
 
 
+    private fun setupLocationManager() {
+
+        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE)
+                as LocationManager
+
+        locationListener = LocationListener { location ->
+            // Handle new location
+            val latitude = location.latitude
+            val longitude = location.longitude
+
+            // Update your UI or send location data to a server
+            Timber.d("Current Location: $latitude || $longitude")
+        }
+
+        // Check for the appropriate location provider and request updates
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                5000L, // Time in milliseconds between location updates
+                10f,   // Distance in meters between location updates
+                locationListener
+            )
+
+            // permissions granted proceed with location updates.
+            setupLocationManager()
+
+        } else {
+            requestLocationPermission()
+            setupLocationManager()
+        }
+    }
 
     private fun resetMapping() {
         farmPolygon?.remove()
@@ -282,15 +332,12 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
 
             // Display the area
             binding.buttonSaveMappedArea.text = "Save Mapped Area: %.2f ha".format(areaInHectares)
+            Timber.d("Mapped $areaInHectares ha")
 
-        } else {
+        }
+        else {
             binding.buttonSaveMappedArea.text = "Mapped Area: 0.0 ha"
-            // Show a message if the user hasn't marked enough points to create a polygon
-            AlertDialog.Builder(requireContext())
-                .setTitle("Insufficient Path Points")
-                .setMessage("Please mark at least three points to create a farm boundary.")
-                .setPositiveButton("OK", null)
-                .show()
+            Timber.d("Mapped 0.0ha")
         }
     }
 
@@ -303,6 +350,9 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         if (requestCode == LOCATION_PERMISSION_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 getMyCurrentLocationANDStartManualMapping()
+
+                // permissions granted proceed with location updates.
+                setupLocationManager()
             } else {
                 AlertDialog.Builder(requireContext())
                     .setTitle("Permission Denied")
@@ -312,6 +362,14 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        if (::locationManager.isInitialized) {
+            locationManager.removeUpdates(locationListener)
+        }
+    }
+
 
     /**
      * Lifecycle callbacks.

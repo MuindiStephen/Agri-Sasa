@@ -185,5 +185,8 @@ dependencies {
     // Daraja
     implementation 'com.androidstudy.daraja:daraja:2.0.2'
 
+    // In App Updates
+    implementation("com.google.android.play:app-update-ktx:2.1.0")
+
 
 }
