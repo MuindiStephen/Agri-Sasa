@@ -1,10 +1,6 @@
-package com.steve_md.smartmkulima.ui.fragments.main
+package com.steve_md.smartmkulima.ui.fragments.main.buyer
 
-import android.content.Intent
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -19,11 +15,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.steve_md.smartmkulima.R
-import com.steve_md.smartmkulima.adapter.FarmEquipmentAdapter
 import com.steve_md.smartmkulima.adapter.FarmProduceAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMarketProduceBinding
 import com.steve_md.smartmkulima.model.FarmProduce
-import com.steve_md.smartmkulima.utils.OverlayService
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideKeyboard
 import com.steve_md.smartmkulima.utils.toast

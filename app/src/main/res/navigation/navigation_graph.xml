@@ -271,7 +271,7 @@
     </dialog>
     <fragment
         android:id="@+id/marketProduce"
-        android:name="com.steve_md.smartmkulima.ui.fragments.main.MarketProduce"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.buyer.MarketProduce"
         android:label="fragment_market_produce"
         tools:layout="@layout/fragment_market_produce" >
         <action
@@ -805,7 +805,7 @@
     </fragment>
     <fragment
         android:id="@+id/marketProduceInDetailsFragment"
-        android:name="com.steve_md.smartmkulima.ui.fragments.main.MarketProduceInDetailsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.buyer.MarketProduceInDetailsFragment"
         android:label="fragment_market_produce_in_details"
         tools:layout="@layout/fragment_market_produce_in_details" />
 

@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
-    tools:context=".ui.fragments.main.MarketProduceInDetailsFragment">
+    tools:context=".ui.fragments.main.buyer.MarketProduceInDetailsFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="16dp"
         android:background="@color/bg_gray"
         android:backgroundTint="@color/bg_gray"
         android:clickable="true"
@@ -82,6 +82,9 @@
         android:layout_marginBottom="@dimen/_32dp"
         android:textColor="@color/bg_gray"
         app:cornerRadius="10dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?android:selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

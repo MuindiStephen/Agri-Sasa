@@ -1,4 +1,4 @@
-package com.steve_md.smartmkulima.ui.fragments.main
+package com.steve_md.smartmkulima.ui.fragments.main.buyer
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentMarketProduceInDetailsBinding
 import com.steve_md.smartmkulima.utils.OverlayService
 import com.steve_md.smartmkulima.utils.displaySnackBar
@@ -20,9 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MarketProduceInDetailsFragment : Fragment() {
-
     private lateinit var binding: FragmentMarketProduceInDetailsBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
