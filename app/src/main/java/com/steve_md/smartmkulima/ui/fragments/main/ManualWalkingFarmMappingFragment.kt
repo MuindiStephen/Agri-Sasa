@@ -180,7 +180,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         val bundle = bundleOf(
             Pair("FARM_SIZE","$areaInHectares"), Pair("FARM_COORDINATES","$bdPointString")
         )
-
         findNavController().navigate(R.id.addNewFarmFieldFragment, bundle)
     }
 
@@ -368,8 +367,10 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
             val areaInHectares = areaInSquareMeters / 10000
 
             // Display the area in real time
-            binding.buttonSaveMappedArea.text = "Area: %.7f ha".format(areaInHectares)
+            binding.buttonSaveMappedArea.text = "Area Mapped: ${areaInSquareMeters} ha"
+                // "Area: %.7f ha".format(areaInHectares)
                // "Area Mapped: ${areaInSquareMeters} ha"
+            Timber.d("Updated Polygon => Mappped Area: ${areaInHectares} hectares")
 
         }
     }
@@ -476,7 +477,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
             val areaInHectares = areaInSquareMeters / 10000
 
             // Display the area
-           // binding.buttonSaveMappedArea.text = "Save Mapped Area: %.2f ha".format(areaInHectares)
+            binding.buttonSaveMappedArea.text =  "Save Mapped Area: $areaInSquareMeters"
+                //"Save Mapped Area: %.7f ha".format(areaInHectares)
             Timber.d("Mapped $areaInHectares ha")
 
         }

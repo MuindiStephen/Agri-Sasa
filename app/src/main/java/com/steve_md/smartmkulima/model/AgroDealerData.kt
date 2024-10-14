@@ -50,7 +50,7 @@ data class AgroDealerOffers(
 
 
 /**
- * Tracking orders
+ * Tracking orders - farmers
  */
 @Parcelize
 @Entity(tableName = "orders")
@@ -64,3 +64,5 @@ data class OrderCheckoutByFarmer(
     val orderStatus: String,
     val totalOrderInMoney: String
 ): Parcelable
+
+

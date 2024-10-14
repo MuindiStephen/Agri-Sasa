@@ -10,16 +10,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentMarketProduceInDetailsBinding
+import com.steve_md.smartmkulima.model.BuyerCart
 import com.steve_md.smartmkulima.utils.OverlayService
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.hideSupportActionBar
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MarketProduceInDetailsFragment : Fragment() {
     private lateinit var binding: FragmentMarketProduceInDetailsBinding
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,53 +49,25 @@ class MarketProduceInDetailsFragment : Fragment() {
         binding.textView175.text = arguments?.getString("productTitle")
         binding.textView176.text = ""+arguments?.getString("productDescription")
 
+
+        val productItem = arguments?.getString("productImage")?.let {
+            BuyerCart(
+                productImage = it,
+                productTitle = arguments?.getString("productTitle")!!,
+                productPrice = arguments?.getString("productDescription")!!
+            )
+        }
+
         binding.addToCart.setOnClickListener {
-            // check permission for overlay over other apps.
-            checkOverlayPermission()
-        }
-    }
 
-    private fun checkOverlayPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(requireContext())) {
-                // Permission is not granted, request it
-                val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${requireContext().packageName}"))
-
-                startActivityForResult(intent, REQUEST_CODE_OVERLAY_PERMISSION)
-            } else {
-                // Permission is granted, show the overlay
-                showOverLay()
+            if (productItem != null) {
+                viewModel.insertItemToCartLine(productItem)
             }
-        } else {
-            // For devices below API 23, permission is granted by default
-            showOverLay()
+
+            displaySnackBar("Added Item to Cart")
+
+            // Navigate To my cart buyer
+            findNavController().navigate(R.id.myCartBuyerFragment)
         }
-    }
-
-    private fun showOverLay() {
-        val intent = Intent(requireContext(), OverlayService::class.java)
-        requireContext().startService(intent)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_OVERLAY_PERMISSION) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (Settings.canDrawOverlays(requireContext())) {
-                    // Permission is granted
-                    showOverLay()
-
-                    displaySnackBar("Permitted to overlay over other apps")
-                } else {
-                    displaySnackBar("No permission to overlay over other apps")
-                }
-            }
-        }
-    }
-
-
-
-    companion object {
-        const val REQUEST_CODE_OVERLAY_PERMISSION = 1
     }
 }

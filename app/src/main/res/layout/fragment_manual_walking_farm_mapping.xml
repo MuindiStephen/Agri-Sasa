@@ -56,7 +56,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="@dimen/_32dp"
         android:layout_marginEnd="@dimen/_16dp"
-        android:text="Save Mapped Area: 40ha"
+        android:text="Save Mapped Area."
         android:fontFamily="@font/montserrat_medium"
         android:textAllCaps="false"
         android:backgroundTint="@color/light_blue"

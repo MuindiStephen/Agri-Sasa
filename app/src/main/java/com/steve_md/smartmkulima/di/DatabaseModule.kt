@@ -9,6 +9,7 @@ import com.steve_md.smartmkulima.data.room.BuyersDao
 import com.steve_md.smartmkulima.data.room.FarmProduceDao
 import com.steve_md.smartmkulima.data.room.FieldAgentUserDao
 import com.steve_md.smartmkulima.data.room.GAPDao
+import com.steve_md.smartmkulima.model.BuyerCartDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,5 +61,11 @@ object DatabaseModule {
     @Provides
     fun providesBuyerDao(appDatabase: AppDatabase): BuyersDao {
         return appDatabase.buyerDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesBuyerCartDao(appDatabase: AppDatabase): BuyerCartDao {
+        return appDatabase.buyerCartDao()
     }
 }

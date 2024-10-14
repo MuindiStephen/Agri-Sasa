@@ -140,7 +140,7 @@ class AddedNewFarmFieldsFragment : Fragment() {
                         fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
                     } else {
-                       findNavController().popBackStack()
+                       findNavController().popBackStack(R.id.addedNewFarmFieldsFragment, true)
                     }
                 }
             }

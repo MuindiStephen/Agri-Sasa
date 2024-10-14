@@ -9,6 +9,7 @@ import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
 import com.steve_md.smartmkulima.model.AgroDealerOffers
+import com.steve_md.smartmkulima.model.BuyerCart
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
@@ -25,6 +26,7 @@ import com.steve_md.smartmkulima.model.responses.buyer.BuyerRegisterResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.Data
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentLoginResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
+import com.steve_md.smartmkulima.model.toCartEntity
 import com.steve_md.smartmkulima.utils.ApiStates
 import com.steve_md.smartmkulima.utils.ResourceNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -597,6 +599,22 @@ class MainViewModel @Inject constructor(
                 emit(dataList.subList(i - windowSize + 1, i + 1)) // Emit the sliding window
             }
         }
+    }
+
+
+    ///////// BUYERS CART ///////////
+    val cartLineItems = buyerRepository.getCartLineItems()
+
+    fun insertItemToCartLine(productItem :BuyerCart) = viewModelScope.launch {
+        buyerRepository.insertProductToCartLineItem(productItem)
+    }
+
+    fun deleteAllItemsFromCartLine() = viewModelScope.launch {
+        buyerRepository.deleteAllCartItems()
+    }
+
+    fun removeOnlyOneItemFromCartLine(cartEntity: BuyerCart) = viewModelScope.launch {
+        buyerRepository.deleteAnItemFromCartLine(cartEntity)
     }
 }
 

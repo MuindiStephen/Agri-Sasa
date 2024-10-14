@@ -66,6 +66,12 @@ class MarketProduce : Fragment() {
     }
     private fun setUpBinding() {
 
+        binding.imageView33.setOnClickListener {
+            findNavController().navigate(
+                R.id.myCartBuyerFragment
+            )
+        }
+
         // Filters Search results as you type in the Edit Text
         binding.inputSearchFarmProduce.addTextChangedListener( object : TextWatcher {
 
@@ -91,6 +97,11 @@ class MarketProduce : Fragment() {
         binding.apply {
             imageView4.setOnClickListener {
                 findNavController().navigateUp()
+            }
+
+            imageView33.setOnClickListener {
+
+                // navigate to cart.
             }
         }
 
