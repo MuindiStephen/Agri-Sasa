@@ -368,8 +368,9 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
             val areaInHectares = areaInSquareMeters / 10000
 
             // Display the area in real time
-            binding.buttonSaveMappedArea.text = "Area Mapped: ${areaInSquareMeters} ha"
-                //"Area: %.2f ha".format(areaInHectares)
+            binding.buttonSaveMappedArea.text = "Area: %.7f ha".format(areaInHectares)
+               // "Area Mapped: ${areaInSquareMeters} ha"
+
         }
     }
 
