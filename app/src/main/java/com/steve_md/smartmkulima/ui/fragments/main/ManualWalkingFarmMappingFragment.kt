@@ -198,7 +198,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
             .width(5f)
 
 
-        if (!isMappingActive) {
+        if (isMappingActive) {
 
             if (ActivityCompat.checkSelfPermission(
                     requireContext(),

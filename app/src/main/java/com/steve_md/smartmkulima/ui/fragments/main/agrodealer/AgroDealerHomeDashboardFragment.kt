@@ -30,6 +30,7 @@ class AgroDealerHomeDashboardFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var agrodealerOrdersAdapter : AgrodealerOrdersAdapter
     private var ordersList =  mutableListOf<OrderCheckoutByFarmer>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
