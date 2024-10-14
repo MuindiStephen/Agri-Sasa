@@ -34,10 +34,6 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentAddANewAgroDealerBottomsheetBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val viewModel: MainViewModel by viewModels()
-    private var fieldAgentEarning: FieldAgentEarnings? = null
-    private val agentId: Long = 1 // By Default say agent ID is 1
-    private val pointsPerFarmer = 10
-    private val pointsToKSHRate = 200.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +48,8 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Timber.tag("-on View Created - ShowAddAgrodealerBottomSheet 2").d("Received arg is: ${arguments?.getString("fieldAgentEmail")}")
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         binding.inputAgroDealerLocation.setOnFocusChangeListener { _, hasFocus ->
@@ -64,44 +62,22 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
             }
         }
 
-
-
         binding.addAgroDealerByFieldAgentBtn.setOnClickListener {
-            if (inputsAreValidated()) {
 
+            if (inputsAreValidated()) {
                 val fieldAgentAddAgroDealerData = FieldAgentAddAgroDealerData(
-                    name = binding.inputAgroDealerName.text.toString(),
-                    email = binding.inputAgroDealerEmail.text.toString(),
-                    phone = binding.inputAgroDealerPhone.text.toString(),
-                    location = binding.inputAgroDealerLocation.text.toString(),
-                    physicalLocationAddress = binding.inputAgroDealerPhysicalAddress.text.toString()
-                )
+                        name = binding.inputAgroDealerName.text.toString(),
+                        email = binding.inputAgroDealerEmail.text.toString(),
+                        phone = binding.inputAgroDealerPhone.text.toString(),
+                        location = binding.inputAgroDealerLocation.text.toString(),
+                        physicalLocationAddress = binding.inputAgroDealerPhysicalAddress.text.toString(),
+                        offers = binding.spinnerSelectOfferCategories.selectedItem.toString(),
+                        agentId = "${arguments?.getString("fieldAgentEmail")}"
+                    )
+
 
                 try {
                     viewModel.fieldAgentAddANewAgroDealer(fieldAgentAddAgroDealerData)
-
-                    viewModel.allFieldAgentEarnings.observe(viewLifecycleOwner) {
-                        if (it.earnings == 200.0 && it.points == 10) {
-
-                            val newPoints = it.points + pointsPerFarmer
-
-                            val newEarnings = calculateEarnings(newPoints)
-
-                            viewModel.updateFieldAgentEarnings(
-                                newPoints, newEarnings
-                            )
-                        } else {
-                            viewModel.saveFieldAgentEarnings(
-                                FieldAgentEarnings(
-                                    1, 10, 200.0
-                                )
-                            )
-                        }
-                    }
-
-
-
-
 
                     requireActivity().runOnUiThread {
                         displaySnackBar("A new Agro-dealer was added.")
@@ -117,28 +93,6 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
 
         }
 
-         updateFieldAgentEarnings()
-    }
-
-    private fun updateFieldAgentEarnings() {
-        lifecycleScope.launch {
-            fieldAgentEarning?.let {
-                val newPoints = it.points + pointsPerFarmer
-                val newEarnings = calculateEarnings(newPoints)
-
-                // Update earnings and points in room db
-                viewModel.updateFieldAgentEarnings(
-                    newPoints, newEarnings
-                )
-
-                toast("Farmer added! You've earned 10 points. Yaaay!")
-            }
-        }
-    }
-
-
-    private fun calculateEarnings(points: Int): Double {
-        return points * (pointsToKSHRate / pointsPerFarmer)
     }
 
     private fun getCurrentLocation(onLocationReceived: (Location) -> Unit) {
@@ -186,8 +140,10 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-
     companion object {
         const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+        const val TAG = "AddNewAgroDealerBottomSheeet"
     }
+
+
 }

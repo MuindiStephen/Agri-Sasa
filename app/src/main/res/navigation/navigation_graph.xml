@@ -271,9 +271,13 @@
     </dialog>
     <fragment
         android:id="@+id/marketProduce"
-        android:name="com.steve_md.smartmkulima.ui.fragments.main.MarketProduce"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.buyer.MarketProduce"
         android:label="fragment_market_produce"
-        tools:layout="@layout/fragment_market_produce" />
+        tools:layout="@layout/fragment_market_produce" >
+        <action
+            android:id="@+id/action_marketProduce_to_marketProduceInDetailsFragment"
+            app:destination="@id/marketProduceInDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.PaymentFragment"
@@ -799,6 +803,11 @@
             android:id="@+id/action_buyerSignInFragment_to_marketProduce"
             app:destination="@id/marketProduce" />
     </fragment>
+    <fragment
+        android:id="@+id/marketProduceInDetailsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.buyer.MarketProduceInDetailsFragment"
+        android:label="fragment_market_produce_in_details"
+        tools:layout="@layout/fragment_market_produce_in_details" />
 
 
 </navigation>

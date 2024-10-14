@@ -125,8 +125,6 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
 
         // Continue to AddNewFarmFieldFragment
         findNavController().navigate(R.id.addNewFarmFieldFragment, bundle)
-        findNavController().popBackStack()
-
     }
 
     private fun showMappingInProgressDialog() {
@@ -184,7 +182,7 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
                 )
             }
 
-            userLocationLatLng?.let { CameraUpdateFactory.newLatLngZoom(it,15f) }
+            userLocationLatLng?.let { CameraUpdateFactory.newLatLngZoom(it,18f) }
                 ?.let { map.moveCamera(it) }
 
             // Then click on the map and start mapping
@@ -208,7 +206,7 @@ class MappingFarmLocationWithPinsFragment : Fragment() ,OnMapReadyCallback {
     private fun updateFarmPolygon() {
         farmPolygon?.remove()
 
-        if (boundaryPoints.size >= 3) {
+        if (boundaryPoints.size > 0) {
             val polygonOptions = PolygonOptions()
                 .addAll(boundaryPoints)
                 .strokeWidth(2f)

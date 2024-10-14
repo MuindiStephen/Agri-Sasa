@@ -47,6 +47,7 @@
     <string name="shop_now">Shop Now</string>
     <string name="loading_status_update">loading_status_update</string>
     <string name="location">location</string>
+    <string name="farmproducedetails">farmProduceDetails</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>
@@ -192,6 +193,16 @@
         <item>Nyandarua</item>
         <item>Bungoma</item>
         <item>Uasin Gishu</item>
+    </string-array>
+
+    <string-array name="offers_categories_agrodealers">
+        <item>Fertilizers</item>
+        <item>Agrochemicals</item>
+        <item>Farm machinery</item>
+        <item>Land leasing</item>
+        <item>Agricultural loans</item>
+        <item>Farm inputs</item>
+        <item>Veterinary services</item>
     </string-array>
 
     <string-array name="sample_crop_cycle_tasks">

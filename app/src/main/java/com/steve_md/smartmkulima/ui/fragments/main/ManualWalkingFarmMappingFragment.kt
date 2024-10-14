@@ -1,8 +1,10 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
-import android.location.Criteria
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
@@ -23,25 +25,26 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polygon
 import com.google.android.gms.maps.model.PolygonOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.SphericalUtil
+import com.google.maps.android.SphericalUtil.computeOffsetOrigin
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentManualWalkingFarmMappingBinding
-import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 /**
  * Aspect of Manual Mapping by walking in the farm
  */
 @AndroidEntryPoint
-class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
+class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
+
     private lateinit var binding: FragmentManualWalkingFarmMappingBinding
 
-
     private lateinit var googleMap: GoogleMap
-    private lateinit var locationProvider: LocationProvider
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     // List of Pins to be Placed to Create a Polygon
@@ -49,9 +52,12 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     private var isMappingActive: Boolean = false
     private var farmPolygon: Polygon? = null
 
+    private lateinit var locationManager: LocationManager
+    private lateinit var locationListener: LocationListener
+
 
     companion object {
-        private const val LOCATION_PERMISSION_CODE: Int = 1
+        private const val LOCATION_PERMISSION_CODE: Int = 1000
     }
 
     override fun onCreateView(
@@ -70,6 +76,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         mapFragment.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+         //set up location manager
 
         binding.apply {
             buttonStartMapping.setOnClickListener {
@@ -108,6 +116,15 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         }
     }
 
+
+    /*
+    private fun getPolygonCorners(startLatLng: LatLng, endLng: LatLng) {
+        val corners = arrayOfNulls<LatLng>(4)
+        corners[0] = computeOffsetOrigin(endLng, 12.0, 16.0) // test dummy values
+    }
+     */
+
+
     private fun saveMapppedArea() {
 
         val calculatedFarmSize = SphericalUtil.computeArea(pathPoints) // area in Metres squared
@@ -127,7 +144,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
 
         this.googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
 
-        setCriteria()
+        // setCriteria()
 
         // Get current location of the user.
         // as it zooms
@@ -155,16 +172,23 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         )
     }
 
+    /**
+     * Zoom and give the user's
+     * current location on the Map.
+     */
     private fun getMyCurrentLocationANDStartManualMapping() {
-
-        locationProvider = LocationProvider(this.requireContext())
 
 
         // Zoom to current location
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 18f)) // Zoom to current location
+                googleMap.moveCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        currentLatLng,
+                        18f
+                    )
+                ) // Zoom to current location
             }
         }
 
@@ -184,46 +208,72 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                return
-            }
-
-            /**
-             * Real time tracking
-             */
-            val locationRequest = LocationRequest.create().apply {
-                interval = 5000
-                fastestInterval = 2000
-                priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            }
+                requestLocationPermission()
+            } else {
 
 
-            // GPS to record user movement , track and provide location updates.
-            // Start plotting immediately.
-            fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
-                override fun onLocationResult(locationResult: LocationResult) {
-                    super.onLocationResult(locationResult)
-                    for (location in locationResult.locations) {
-                        val latLng = LatLng(location.latitude, location.longitude)
-                        pathPoints.add(latLng)
-
-                        polylineOptions.add(latLng)
-//                        googleMap.clear()
-                        googleMap.addPolyline(polylineOptions)
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
-                    }
+                /**
+                 * Real time tracking
+                 */
+                val locationRequest = LocationRequest.create().apply {
+                    interval = 5000
+                    fastestInterval = 2000
+                    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                 }
-            }, Looper.getMainLooper())
 
 
-        } else {
-            showMappingNotYetStartedDialog()
+                /**
+                 * Geographic Information Systems.
+                 */
+
+                // GPS to record user movement , track and provide location updates.
+                // Start plotting immediately.
+                fusedLocationClient.requestLocationUpdates(
+                    locationRequest,
+                    object : LocationCallback() {
+                        override fun onLocationResult(locationResult: LocationResult) {
+                            super.onLocationResult(locationResult)
+                            for (location in locationResult.locations) {
+                                val latLng = LatLng(location.latitude, location.longitude)
+                                pathPoints.add(latLng)
+
+                                googleMap.addMarker(MarkerOptions().position(latLng))
+
+                                polylineOptions.add(latLng)
+                                googleMap.addPolyline(polylineOptions)
+
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
+
+                                updatePolygonArea()
+                            }
+                        }
+                    },
+                    Looper.getMainLooper()
+                )
+            }
+            } else {
+                showMappingNotYetStartedDialog()
+            }
+        }
+
+
+    private fun updatePolygonArea() {
+        if (pathPoints.size > 2) {
+            val areaInSquareMeters = SphericalUtil.computeArea(pathPoints)
+            val areaInHectares = areaInSquareMeters / 10000
+
+            // Display the area in real time
+            binding.buttonSaveMappedArea.text = "Area: %.2f ha".format(areaInHectares)
         }
     }
+
 
     /**
      * Set map location criteria to follow while setting up
      * location updates
      */
+
+    /*
     private fun setCriteria() {
         // Location criteria
         val locationCriteria : Criteria = Criteria()
@@ -236,6 +286,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         locationCriteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH)
         locationCriteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH)
     }
+
+     */
 
     private fun showMappingNotYetStartedDialog() {
         AlertDialog.Builder(requireContext())
@@ -255,6 +307,45 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     }
 
 
+    private fun setupLocationManager() {
+
+        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE)
+                as LocationManager
+
+        locationListener = LocationListener { location ->
+            // Handle new location
+            val latitude = location.latitude
+            val longitude = location.longitude
+
+            // Update your UI or send location data to a server
+            Timber.d("Current Location: $latitude || $longitude")
+        }
+
+        // Check for the appropriate location provider and request updates
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+
+            locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                5000L, // Time in milliseconds between location updates
+                10f,   // Distance in meters between location updates
+                locationListener
+            )
+
+            // permissions granted proceed with location updates.
+            setupLocationManager()
+
+        } else {
+            requestLocationPermission()
+            setupLocationManager()
+        }
+    }
 
     private fun resetMapping() {
         farmPolygon?.remove()
@@ -263,7 +354,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
     }
 
     private fun createPolygon() {
-        if (pathPoints.size >= 2) {
+        if (pathPoints.size > 0) {
             farmPolygon = googleMap.addPolygon(
                 PolygonOptions()
                     .addAll(pathPoints)
@@ -278,15 +369,12 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
 
             // Display the area
             binding.buttonSaveMappedArea.text = "Save Mapped Area: %.2f ha".format(areaInHectares)
+            Timber.d("Mapped $areaInHectares ha")
 
-        } else {
+        }
+        else {
             binding.buttonSaveMappedArea.text = "Mapped Area: 0.0 ha"
-            // Show a message if the user hasn't marked enough points to create a polygon
-            AlertDialog.Builder(requireContext())
-                .setTitle("Insufficient Path Points")
-                .setMessage("Please mark at least three points to create a farm boundary.")
-                .setPositiveButton("OK", null)
-                .show()
+            Timber.d("Mapped 0.0ha")
         }
     }
 
@@ -299,6 +387,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
         if (requestCode == LOCATION_PERMISSION_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 getMyCurrentLocationANDStartManualMapping()
+                // permissions granted proceed with location updates.
+                setupLocationManager()
             } else {
                 AlertDialog.Builder(requireContext())
                     .setTitle("Permission Denied")
@@ -308,6 +398,14 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback{
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        if (::locationManager.isInitialized) {
+            locationManager.removeUpdates(locationListener)
+        }
+    }
+
 
     /**
      * Lifecycle callbacks.

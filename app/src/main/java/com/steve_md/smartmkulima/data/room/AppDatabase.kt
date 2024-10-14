@@ -33,7 +33,7 @@ import com.steve_md.smartmkulima.model.responses.fieldagent.Data
     OrderCheckoutByFarmer::class,
     FieldAgentAddAgroDealerData::class,
     Data::class,  FieldAgentEarnings::class, com.steve_md.smartmkulima.model.responses.buyer.Data::class],
-    version = 12,exportSchema = false)
+    version = 13,exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao

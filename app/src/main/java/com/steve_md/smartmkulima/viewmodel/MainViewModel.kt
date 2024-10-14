@@ -482,18 +482,17 @@ class MainViewModel @Inject constructor(
 
 
     // FIELD AGENT EARNINGS
-    fun updateFieldAgentEarnings(newPoints: Int, newEarnings: Double) = viewModelScope.launch {
-        repository.updateFieldAgentEarnings(newPoints, newEarnings)
-    }
+    private val _agentPoints = MutableLiveData<FieldAgentEarnings>()
+    val agentPoints: LiveData<FieldAgentEarnings> get() = _agentPoints
 
-    fun saveFieldAgentEarnings(fieldAgentEarnings: FieldAgentEarnings) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
-            repository.saveEarnings(fieldAgentEarnings)
+    fun getAgentPoints(agentId: String) {
+        viewModelScope.launch {
+            val points = repository.getAgentPoints(agentId)
+            points?.let {
+                _agentPoints.postValue(it)
+            }
         }
     }
-
-    val allFieldAgentEarnings: LiveData<FieldAgentEarnings> =
-        repository.getAllFieldAgentEarnings()
 
 
     // Field Agents account register and log in by finding if exists in backend

@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.steve_md.smartmkulima.databinding.ProductsRowBinding
+import com.steve_md.smartmkulima.model.AgroDealer
 import com.steve_md.smartmkulima.model.FarmProduce
 
 
-class FarmProduceAdapter : ListAdapter<FarmProduce, FarmProduceAdapter.MyViewHolder>(MyDiffUtil) {
+class FarmProduceAdapter(
+    private val onClickListener: OnClickListener
+) : ListAdapter<FarmProduce, FarmProduceAdapter.MyViewHolder>(MyDiffUtil) {
     object MyDiffUtil : DiffUtil.ItemCallback<FarmProduce>() {
         override fun areItemsTheSame(oldItem: FarmProduce, newItem: FarmProduce): Boolean {
             return oldItem == newItem
@@ -47,5 +50,13 @@ class FarmProduceAdapter : ListAdapter<FarmProduce, FarmProduceAdapter.MyViewHol
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val product = getItem(position)
         holder.bind(product)
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(farmProduce = product)
+        }
+    }
+
+    class OnClickListener(val clickListener: (farmProduce: FarmProduce) -> Unit) {
+        fun onClick(farmProduce: FarmProduce) = clickListener(farmProduce)
     }
 }

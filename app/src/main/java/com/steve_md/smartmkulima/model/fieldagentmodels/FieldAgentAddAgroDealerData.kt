@@ -14,5 +14,7 @@ data class FieldAgentAddAgroDealerData(
     val email: String,
     val phone: String,
     val location: String,
-    val physicalLocationAddress: String
+    val physicalLocationAddress: String,
+    val agentId: String,   // field agent who registered this farmer
+    val offers: String  // offer categories ie. select where applicable
 )
