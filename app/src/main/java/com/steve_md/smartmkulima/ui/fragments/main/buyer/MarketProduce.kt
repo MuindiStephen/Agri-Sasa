@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.FarmProduceAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMarketProduceBinding
@@ -176,5 +177,10 @@ class MarketProduce : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.farmProduceRecyclerView.isVisible = true
     }
 }
