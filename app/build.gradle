@@ -56,9 +56,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'com.google.firebase:firebase-auth-ktx:23.0.0'
     implementation 'com.google.firebase:firebase-database-ktx:21.0.0'
-    implementation 'com.google.firebase:firebase-storage-ktx:21.0.0'
-    implementation 'com.google.firebase:firebase-firestore-ktx:25.0.0'
-    implementation 'androidx.activity:activity:1.8.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:21.0.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:25.1.0'
+    implementation 'androidx.activity:activity-ktx:1.9.2'
     def timber_version = "5.0.1"
     def room_version = "2.6.1"
 
@@ -91,25 +91,25 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragment_testing"
 
     // Navigation Components
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.2")
 
 
     // Alternatively - just LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
 
     // Alternatively - just ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
 
     // Dagger - Hilt
-    implementation 'com.google.dagger:hilt-android:2.50'
+    implementation 'com.google.dagger:hilt-android:2.51.1'
     kapt 'com.google.dagger:hilt-compiler:2.50'
 
     // Timber for Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
     // Circular ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -191,6 +191,4 @@ dependencies {
     // Google Firebase Analytics
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation("com.google.firebase:firebase-analytics")
-
-
 }
