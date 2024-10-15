@@ -130,5 +130,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView40"
         app:layout_constraintTop_toTopOf="@+id/textView40"
-        app:tint="@color/light_blue" />
+        app:tint="@color/light_blue"
+        android:contentDescription="@string/addtocart" />
 </androidx.constraintlayout.widget.ConstraintLayout>
