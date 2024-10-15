@@ -52,6 +52,7 @@ import kotlinx.coroutines.flow.toList
 
 /**
  * The viewmodel that interacts with the Ui
+ * Holds The Business Logic
  */
 @HiltViewModel
 class MainViewModel @Inject constructor(
@@ -287,53 +288,6 @@ class MainViewModel @Inject constructor(
             (sales.toString().toDouble() - expenses.toString().toDouble()).toString()
     }
 
-
-    // Picking respective expenses records for cropCycle
-    /*
-    val totalExpenses: LiveData<Double?> = MediatorLiveData<Double?>().apply {
-        addSource(_selectedCrop) { crop ->
-            val expensesSource = repository.getTotalExpensesForCrop(crop)
-            addSource(expensesSource) { expenseValue ->
-                value = expenseValue
-            }
-        }
-    }
-    
-     */
-
-    /*
-    // picking respective revenue records for cropCycle
-    val totalSales: LiveData<Double?> = MediatorLiveData<Double?>().apply {
-        addSource(_selectedCrop) { crop ->
-            val salesSource = repository.getTotalSalesForCrop(crop)
-            addSource(salesSource) { salesValue ->
-                value = salesValue
-            }
-        }
-    }
-    
-     */
-
-    /*
-
-    val calculatedRevenue: LiveData<Double> = MediatorLiveData<Double>().apply {
-        var expenses: Double? = null
-        var sales: Double? = null
-
-        addSource(totalExpenses) { expenseValue ->
-            expenses = expenseValue
-            value = calculateRevenue(expenses, sales)
-        }
-
-        addSource(totalSales) { salesValue ->
-            sales = salesValue
-            value = calculateRevenue(expenses, sales)
-        }
-    }
-    
-     */
-
-
     /**
      * ADD TO CART - SUPPLIES / AGRO-DEALERS
      */
@@ -560,47 +514,6 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
-    /// QUEUES ALGORITHM
-    private val _maxInWindow = MutableStateFlow<List<Int>>(emptyList())
-    val maxInWindow = _maxInWindow.asStateFlow()
-
-    // Sample data stream
-    private val dataStream: Flow<Int> = flow {
-        val sampleData = listOf(1, 3, 5, 7, 9, 2, 8, 10, 4)
-        for (data in sampleData) {
-            emit(data)
-            delay(1000) // Simulate real-time data
-        }
-    }
-
-    fun processSlidingWindow(windowSize: Int) = viewModelScope.launch {
-        slidingWindowFlow(dataStream, windowSize).collect { result ->
-            _maxInWindow.value = result
-        }
-    }
-
-    private fun slidingWindowFlow(dataStream: Flow<Int>, windowSize: Int): Flow<List<Int>> = flow {
-        val deque = ArrayDeque<Int>()
-        val dataList = dataStream.toList()
-
-        for (i in dataList.indices) {
-            if (deque.isNotEmpty() && deque.first() < i - windowSize + 1) {
-                deque.removeFirst()
-            }
-
-            while (deque.isNotEmpty() && dataList[deque.last()] < dataList[i]) {
-                deque.removeLast()
-            }
-
-            deque.addLast(i)
-
-            if (i >= windowSize - 1) {
-                emit(dataList.subList(i - windowSize + 1, i + 1)) // Emit the sliding window
-            }
-        }
-    }
-
 
     ///////// BUYERS CART ///////////
     val cartLineItems = buyerRepository.getCartLineItems()

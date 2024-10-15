@@ -22,6 +22,10 @@ import com.steve_md.smartmkulima.utils.hideSupportActionBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+
+/**
+ * Market produce click to view in details as a buyer
+ */
 @AndroidEntryPoint
 class MarketProduceInDetailsFragment : Fragment() {
     private lateinit var binding: FragmentMarketProduceInDetailsBinding

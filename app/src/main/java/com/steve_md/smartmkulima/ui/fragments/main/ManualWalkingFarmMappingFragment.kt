@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationListener
@@ -162,14 +163,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
     }
 
 
-    /*
-    private fun getPolygonCorners(startLatLng: LatLng, endLng: LatLng) {
-        val corners = arrayOfNulls<LatLng>(4)
-        corners[0] = computeOffsetOrigin(endLng, 12.0, 16.0) // test dummy values
-    }
-     */
-
-
     private fun saveMapppedArea() {
 
         val calculatedFarmSize = SphericalUtil.computeArea(pathPoints) // area in Metres squared
@@ -277,90 +270,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         }
     }
 
-
-
-    /*
-    private fun getMyCurrentLocationANDStartManualMapping() {
-
-
-        // Zoom to current location
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            location?.let {
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                googleMap.moveCamera(
-                    CameraUpdateFactory.newLatLngZoom(
-                        currentLatLng,
-                        18f
-                    )
-                ) // Zoom to current location
-            }
-        }
-
-        // Initialize PolylineOptions to track the walking path
-        val polylineOptions = PolylineOptions()
-            .color(0xFF0000FF.toInt()) // Blue color for the path
-            .width(5f)
-
-
-        if (isMappingActive) {
-
-            if (ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                requestLocationPermission()
-            } else {
-
-
-                /**
-                 * Real time tracking
-                 */
-                val locationRequest = LocationRequest.create().apply {
-                    interval = 5000
-                    fastestInterval = 2000
-                    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                }
-
-
-                /**
-                 * Geographic Information Systems.
-                 */
-
-                // GPS to record user movement , track and provide location updates.
-                // Start plotting immediately.
-                fusedLocationClient.requestLocationUpdates(
-                    locationRequest,
-                    object : LocationCallback() {
-                        override fun onLocationResult(locationResult: LocationResult) {
-                            super.onLocationResult(locationResult)
-                            for (location in locationResult.locations) {
-                                val latLng = LatLng(location.latitude, location.longitude)
-                                pathPoints.add(latLng)
-
-                                googleMap.addMarker(MarkerOptions().position(latLng))
-
-                                polylineOptions.add(latLng)
-                                googleMap.addPolyline(polylineOptions)
-
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
-
-                                updatePolygonArea()
-                            }
-                        }
-                    },
-                    Looper.getMainLooper()
-                )
-            }
-            } else {
-                showMappingNotYetStartedDialog()
-            }
-        }
-*/
-
     private fun updatePolygonArea() {
         if (pathPoints.size > 2) {
             val areaInSquareMeters = SphericalUtil.computeArea(pathPoints)
@@ -462,6 +371,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         googleMap.clear()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun createPolygon() {
         if (pathPoints.size > 0) {
             farmPolygon = googleMap.addPolygon(

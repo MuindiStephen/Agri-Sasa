@@ -22,7 +22,9 @@ import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
+/**
+ * Buyer - track all current order
+ */
 @AndroidEntryPoint
 class CurrentOrderBuyerFragment : Fragment() {
 

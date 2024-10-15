@@ -27,7 +27,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
+/**
+ * Market produce - Buyers access
+ */
 @AndroidEntryPoint
 class MarketProduce : Fragment() {
 
