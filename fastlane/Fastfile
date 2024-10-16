@@ -26,7 +26,7 @@ platform :android do
    
    
     # Determine which version code is higher
-    highest_build_number = [internal_build_number, production_build_number].max
+    highest_build_number = [internal_build_number].max
 
     # Increment the version code
     new_build_number = highest_build_number + 1
