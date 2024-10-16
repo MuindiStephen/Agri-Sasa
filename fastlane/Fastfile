@@ -22,10 +22,10 @@ platform :android do
   desc "Deploy a new version to the Google Play"
   lane :bundle do
     # Fetch version codes from all tracks
-    alpha_build_number = google_play_track_version_codes(track: "alpha")[0] || 0
+   # alpha_build_number = google_play_track_version_codes(track: "alpha")[0] || 0
     internal_build_number = google_play_track_version_codes(track: "internal")[0] || 0
     beta_build_number = google_play_track_version_codes(track: "beta")[0] || 0
-    production_build_number = google_play_track_version_codes(track: "production")[0] || 0
+   # production_build_number = google_play_track_version_codes(track: "production")[0] || 0
    
     # Determine which version code is higher
     highest_build_number = [internal_build_number, production_build_number].max
@@ -50,10 +50,10 @@ platform :android do
   desc "Deploy a new version to the Google Play"
   lane :deploy do
     # Fetch version codes from all tracks
-    alpha_build_number = google_play_track_version_codes(track: "alpha")[0] || 0
+   # alpha_build_number = google_play_track_version_codes(track: "alpha")[0] || 0
     internal_build_number = google_play_track_version_codes(track: "internal")[0] || 0
     beta_build_number = google_play_track_version_codes(track: "beta")[0] || 0
-    production_build_number = google_play_track_version_codes(track: "production")[0] || 0
+   # production_build_number = google_play_track_version_codes(track: "production")[0] || 0
    
     # Determine which version code is higher
     highest_build_number = [internal_build_number, production_build_number].max
