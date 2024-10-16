@@ -4,7 +4,7 @@ variables:
   COMMON_SCRIPT: |
     bundle config set --local path 'vendor/bundle'
     bundle update
-    echo -e "\norg.gradle.logging.level=quiet" >> gradle.properties
+    # echo -e "\norg.gradle.logging.level=quiet" >> gradle.properties
     vault kv get -field jks secret/agrisasa | base64 -d >> agrisasa.jks
     cp agrisasa.jks app/
     vault kv get -field store secret/agrisasa | base64 -d >> keystore.properties
