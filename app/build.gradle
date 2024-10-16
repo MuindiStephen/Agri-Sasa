@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:21.0.0'
     implementation 'com.google.firebase:firebase-storage-ktx:21.0.1'
     implementation 'com.google.firebase:firebase-firestore-ktx:25.1.0'
-    implementation 'androidx.activity:activity-ktx:1.9.2'
+    implementation 'androidx.activity:activity:1.9.2'
     def timber_version = "5.0.1"
     def room_version = "2.6.1"
 
@@ -103,7 +103,7 @@ dependencies {
 
     // Dagger - Hilt
     implementation 'com.google.dagger:hilt-android:2.51.1'
-    kapt 'com.google.dagger:hilt-compiler:2.50'
+    kapt 'com.google.dagger:hilt-compiler:2.51.1'
 
     // Timber for Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
@@ -191,4 +191,8 @@ dependencies {
     // Google Firebase Analytics
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation("com.google.firebase:firebase-analytics")
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
 }
