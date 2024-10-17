@@ -48,6 +48,8 @@ bundle-internal:
     - android
   needs: ["prepare"]
   script:
+    - chmod +x ./gradlew
+    - ./gradlew dependencies
     - bundle exec fastlane bundle
   artifacts:
     paths:

@@ -4,30 +4,34 @@ default_platform(:android)
 
 platform :android do
 
-dotenv_path = File.expand_path('../keystore.properties', __dir__)
-Dotenv.load(dotenv_path)
+  # Load environment variables from keystore.properties
+  dotenv_path = File.expand_path('../keystore.properties', __dir__)
+  Dotenv.load(dotenv_path)
 
-# Access the properties using ENV variables
-keystore_file = ENV['storeFile'] #TODO: JKS file should only be in one position.
-keystore_password = ENV['storePassword']
-key_alias = ENV['keyAlias']
-key_password = ENV['keyPassword']
+  # Access the properties using ENV variables
+  keystore_file = ENV['storeFile'] # TODO: JKS file should only be in one position.
+  keystore_password = ENV['storePassword']
+  key_alias = ENV['keyAlias']
+  key_password = ENV['keyPassword']
 
   desc "Runs all unit tests for the release build type"
   lane :test do
     gradle(task: "testReleaseUnitTest")
-    end
+  end
 
   desc "Deploy a new version to the Google Play"
   lane :bundle do
-  # Increment the version code
-    previous_build_number = google_play_track_version_codes(track: "internal")[0]
-    new_build_number = previous_build_number + 1
-    increment_version_code(
-    gradle_file_path: "app/build.gradle.kts",
-    version_code: new_build_number
-    )
+    # Fetch version codes from all tracks
+    internal_build_number = google_play_track_version_codes(track: "internal")[0] || 0
+   
+   
+    # Determine which version code is higher
+    highest_build_number = [internal_build_number].max
 
+    # Increment the version code
+    new_build_number = highest_build_number + 1
+    increment_version_code(version_code: new_build_number)
+   
     # Build the app bundle
     gradle(
       task: "bundleRelease",
@@ -36,44 +40,49 @@ key_password = ENV['keyPassword']
         "android.injected.signing.store.password" => keystore_password,
         "android.injected.signing.key.alias" => key_alias,
         "android.injected.signing.key.password" => key_password,
-        "archivePath" => "app/build/outputs/bundle/release/"
+        #"archivePath" => "app/release/"
       }
     )
- end
+  end
 
-    desc "Deploy a new version to the Google Play"
-    lane :deploy do
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    # Fetch version codes from all tracks
+  
+    internal_build_number = google_play_track_version_codes(track: "internal")[0] || 0
+   
+    # Determine which version code is higher
+    highest_build_number = [internal_build_number].max
 
-#     get version code to use in version name
-        previous_build_number = google_play_track_version_codes(track: "internal")[0]
-        new_build_number = previous_build_number + 1
-        version_code_to_name = new_build_number.to_s
-        version_name_compound = "Demo 1.0." + version_code_to_name
+    # Increment the version code
+    new_build_number = highest_build_number + 1
+
+    # Create version name
+    version_code_to_name = new_build_number.to_s
+    version_name_compound = "Demo 1.0." + version_code_to_name
 
     # Upload the app bundle using fastlane supply
-        supply(
-            rollout: "1",
-            version_name: version_name_compound,
-            track: "internal",
-            skip_upload_apk: true,
-            skip_upload_metadata: true,
-            skip_upload_images: true,
-            skip_upload_changelogs: true,
-            skip_upload_screenshots: true,
-            aab: "app/build/outputs/bundle/release/app-release.aab"
+    supply(
+      rollout: "1",
+      version_name: version_name_compound,
+      track: "internal",
+      skip_upload_apk: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_changelogs: true,
+      skip_upload_screenshots: true,
+      aab: "app/build/outputs/bundle/release/app-release.aab"
+    )
+  end
 
-          )
-       end
-
-       desc "Promote to closed testing track"
-       lane :promote do
-       # Upload the app bundle using fastlane supply
-           supply(
-              rollout: "1",
-              track: "internal",
-              track_promote_to: "alpha"
-             )
-          end
+  desc "Promote to closed testing track"
+  lane :promote do
+    # Promote the build to the alpha track
+    supply(
+      rollout: "1",
+      track: "internal",
+      track_promote_to: "alpha"
+    )
+  end
 
 end
-
