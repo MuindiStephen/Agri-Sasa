@@ -384,7 +384,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="  Track Orders\n     Made To\n   Agrodealers"
+        android:text="     Track \nDeliveries"
         android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/cardViewTrackMyOrderToAgrodealers"
         app:layout_constraintStart_toStartOf="@+id/cardViewTrackMyOrderToAgrodealers"

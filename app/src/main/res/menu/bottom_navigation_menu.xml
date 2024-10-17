@@ -20,5 +20,5 @@
     <item
         android:id="@+id/yourAccountFragment"
         android:title="@string/account"
-        android:icon="@drawable/ic_chat_1"/>
+        android:icon="@drawable/baseline_person_outline_24"/>
 </menu>

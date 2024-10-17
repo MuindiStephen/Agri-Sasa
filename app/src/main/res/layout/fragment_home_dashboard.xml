@@ -312,7 +312,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
             android:text="TextView"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/includeToolBar"
             app:layout_constraintEnd_toEndOf="@+id/includeToolBar"
             app:layout_constraintTop_toTopOf="@+id/includeToolBar"

@@ -42,7 +42,6 @@ class BuyerCartAdapter (
             binding.textViewProductName.text = cartLineItem?.productTitle
             binding.textViewProductPriceAfterDiscount.text = ""+cartLineItem?.productPrice
 
-
         }
 
 
