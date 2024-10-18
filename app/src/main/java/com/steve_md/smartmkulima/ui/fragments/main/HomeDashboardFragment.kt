@@ -56,7 +56,7 @@ class HomeDashboardFragment : Fragment() {
     private var firebaseAuth: FirebaseAuth? = null
 
 
-    private lateinit var userProfileTxt: TextView
+   // private lateinit var userProfileTxt: TextView
 
 
     override fun onCreateView(
@@ -89,7 +89,7 @@ class HomeDashboardFragment : Fragment() {
                              val pascalCaseUsername = username.substring(0, 1)
                                  .uppercase(Locale.getDefault()) + username.substring(1)
                                  .lowercase(Locale.getDefault())
-                             binding.includeToolBar.userNameTextView.text = username
+                             binding.includeToolBar.welcomeText.text = "Welcome back, " + username
                          }
                          Timber.tag("$this@HomeDashboardFragment").d("$username is loggedIn" )
                      }
@@ -100,16 +100,14 @@ class HomeDashboardFragment : Fragment() {
                  }
              })
 
-        binding.includeToolBar.notificationIcon.setOnClickListener {
+        binding.includeToolBar.imageView34.setOnClickListener {
             findNavController().navigate(R.id.action_homeDashboardFragment2_to_notificationsFragment)
         }
 
-        binding.includeToolBar.menuIcon.setOnClickListener {
-            exitApp()
-        }
-//        binding.menuIconHomeDashboard.setOnClickListener {
+//        binding.includeToolBar.menuIcon.setOnClickListener {
 //            exitApp()
 //        }
+
 
         return binding.root
     }
@@ -145,24 +143,28 @@ class HomeDashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.includeToolBar.menuIcon.setOnClickListener {
-            exitApp()
-        }
+//        binding.includeToolBar.menuIcon.setOnClickListener {
+//            exitApp()
+//        }
 
-        binding.includeToolBar.notificationIcon.setOnClickListener {
+        binding.includeToolBar.imageView34.setOnClickListener {
             findNavController().navigate(R.id.action_homeDashboardFragment2_to_notificationsFragment)
         }
 
-        userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
+       // userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
 
-        val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
-        val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+      //  val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
+      //  val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
-        greetingDateTime.text = when (currentTime) {
+       /* greetingDateTime.text = when (currentTime) {
             in 0..11 -> "Good Morning"
             in 12..15 -> "Good Afternoon"
             else -> "Good Evening"
         }
+
+        */
+
+
         setUpBinding()
 
         // fetch Good Agricultural practices
