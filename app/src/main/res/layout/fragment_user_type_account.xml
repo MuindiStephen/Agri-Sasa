@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.auth.UserTypeAccountFragment"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -30,7 +29,7 @@
         android:layout_width="match_parent">
 
         <TextView
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:id="@+id/tv_act_menu"
             android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
@@ -38,11 +37,11 @@
             android:layout_width="wrap_content"
             android:text="Choose your account"
             android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textColor="@color/main"
+            android:textSize="24sp" />
 
         <TextView
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:id="@+id/tv_acct_words"
             android:layout_below="@id/tv_act_menu"
             android:layout_centerHorizontal="true"
@@ -51,7 +50,7 @@
             android:text="Select the type of account you wish"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <View
             android:background="#40ffffff"
@@ -101,10 +100,10 @@
                     <ImageView
                         android:id="@+id/iv_farmer"
                         android:layout_width="100dp"
-                        android:layout_height="80dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/icon_profile"
+                        android:src="@drawable/farmer"
                         app:tint="@color/bg_gray" />
 
                     <TextView
@@ -112,10 +111,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/nunito_sans"
                         android:text="Farmer"
+                        android:layout_marginTop="@dimen/_16dp"
                         android:textColor="@color/bg_gray"
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -150,21 +150,22 @@
                     <ImageView
                         android:id="@+id/iv_agrodealer"
                         android:layout_gravity="center_horizontal"
-                        android:layout_height="80dp"
+                        android:layout_height="40dp"
                         android:layout_width="100dp"
                         app:tint="@color/main"
                         android:layout_marginTop="@dimen/_10dp"
-                        android:src="@drawable/icon_profile" />
+                        android:src="@drawable/office_building" />
 
                     <TextView
                         android:id="@+id/tv_agrodealer"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/nunito_sans"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:text="AgroDealer"
+                        android:layout_marginTop="@dimen/_16dp"
                         android:textAlignment="center"
                         android:textColor="@color/main"
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -210,10 +211,10 @@
                     <ImageView
                         android:id="@+id/iv_fieldagent"
                         android:layout_width="100dp"
-                        android:layout_height="80dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/icon_profile"
+                        android:src="@drawable/businessman"
                         app:tint="@color/main" />
 
                     <TextView
@@ -221,10 +222,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/nunito_sans"
                         android:text="Field Agent"
+                        android:layout_marginTop="@dimen/_16dp"
                         android:textColor="@color/main"
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -259,21 +261,22 @@
                     <ImageView
                         android:id="@+id/iv_buyer"
                         android:layout_gravity="center_horizontal"
-                        android:layout_height="80dp"
+                        android:layout_height="40dp"
                         android:layout_width="100dp"
                         app:tint="@color/main"
                         android:layout_marginTop="@dimen/_10dp"
-                        android:src="@drawable/icon_profile" />
+                        android:src="@drawable/customer" />
 
                     <TextView
                         android:id="@+id/tv_buyer"
-                        android:fontFamily="@font/montserrat_medium"
+                        android:fontFamily="@font/nunito_sans"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:text="Buyer"
+                        android:layout_marginTop="@dimen/_16dp"
                         android:textAlignment="center"
                         android:textColor="@color/main"
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -300,6 +303,7 @@
             android:drawablePadding="10dp"
             android:textAllCaps="false"
             android:text="Continue"
+            android:visibility="invisible"
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/white"
             />

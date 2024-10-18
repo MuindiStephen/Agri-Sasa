@@ -36,11 +36,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans_bold"
         android:gravity="center"
         android:text="LOG IN TO AGRISASA"
-        android:textColor="@color/main_black"
-        android:textSize="30sp"
+        android:textColor="@color/main"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@id/imageView2" />
@@ -52,10 +52,10 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans"
         android:gravity="center"
         android:text="Create a profile, explore recommended farm tips, market your produce and more."
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.5"
@@ -88,7 +88,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputLoginEmail"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/nunito_sans"
             android:layout_width="match_parent"
             android:textColor="@color/textColor"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             android:inputType="textPassword"
             android:textColor="@color/textColor"
             android:id="@+id/inputLoginPassword"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/nunito_sans"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -139,7 +139,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="45dp"
         android:backgroundTint="@color/main1"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/nunito_sans_bold"
         android:text="SIGN IN"
         android:textColor="@color/bg_gray"
         app:cornerRadius="10dp"
@@ -154,10 +154,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="Forgot password?"
         android:textColor="@color/textColor"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/enterLoginPassword"
         app:layout_constraintTop_toBottomOf="@+id/enterLoginPassword" />
 
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
-            android:fontFamily="@font/montserrat_semibold"
+            android:fontFamily="@font/nunito_sans_semibold"
             android:text="Sign in with "
             android:textColor="@color/main_black"
             android:textSize="12sp" />
@@ -184,7 +184,7 @@
             android:id="@+id/signInWithPhoneInsteadText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_semibold"
+            android:fontFamily="@font/nunito_sans_semibold"
             android:text="Phone number "
             android:textColor="@color/main1"
             android:textSize="12sp" />
@@ -194,7 +194,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/montserrat_semibold"
+            android:fontFamily="@font/nunito_sans_semibold"
             android:text="instead"
             android:textColor="@color/main_black" />
 
@@ -232,7 +232,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans"
         android:text="Don't have account? Sign up"
         android:textSize="12sp"
         android:textColor="@color/black"
@@ -245,7 +245,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="Use fingerprint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
