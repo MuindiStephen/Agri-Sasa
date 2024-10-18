@@ -49,6 +49,7 @@
     <string name="location">location</string>
     <string name="farmproducedetails">farmProduceDetails</string>
     <string name="addtocart">addtocart</string>
+    <string name="image_gap">image-gap</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>
