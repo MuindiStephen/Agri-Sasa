@@ -39,8 +39,7 @@ class FarmAnalyticsRecordListAdapter( private val onClickListener: OnClickListen
         @SuppressLint("SetTextI18n")
         fun bind(summary: FarmFinancialDataSummary?) {
             binding.textView109.text = summary?.nameOfCropCycle.toString()
-            binding.textView119.text = "Expenses: Kes. ${summary?.totalInputCosts.toString()}"
-            binding.textView124.text = "Sales: Kes. ${summary?.totalRevenueGenerated.toString()}"
+            binding.textView119.text = "Total revenues: Kes. ${summary?.totalRevenueGenerated.toString()}"
             binding.textViewFarmFieldInitialLr.text = getInitialLetter(adapterPosition)
         }
     }
