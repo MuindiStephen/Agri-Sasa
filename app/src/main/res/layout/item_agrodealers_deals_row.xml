@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_gray">
+        android:background="@color/color_shade_gray">
 
         <ImageView
             android:id="@+id/imageViewProductFarmInputName"
@@ -47,7 +47,7 @@
                 android:id="@+id/textViewDiscountPercentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:padding="4dp"
                 android:text="30% off"
                 android:clickable="true"
@@ -65,7 +65,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:maxLines="1"
             android:text="CAN fertilizer 90 KGs "
             android:textSize="14sp"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:text="Kes. 2450"
             android:textSize="@dimen/_14sp_text_size"
             android:textColor="@color/main"
@@ -97,7 +97,7 @@
             android:clickable="true"
             android:layout_marginStart="@dimen/_10dp"
             android:focusable="true"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:foreground="?android:selectableItemBackground"
             android:text="@string/shop_now"
             android:textAllCaps="true"
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:text="Kes. 3500"
             android:textSize="@dimen/_12sp_text_size"
             android:background="@drawable/strikethrough_layerlist"

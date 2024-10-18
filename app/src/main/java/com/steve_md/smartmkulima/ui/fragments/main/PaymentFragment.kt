@@ -17,6 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.data.remote.DarajaApiClient
 import com.steve_md.smartmkulima.data.room.AppDatabase
@@ -52,7 +53,7 @@ import java.util.*
  * @param amount
  */
 @AndroidEntryPoint
-class PaymentFragment : Fragment(), View.OnClickListener {
+class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
 
     private var mApiClient: DarajaApiClient? = null
 
@@ -179,10 +180,8 @@ class PaymentFragment : Fragment(), View.OnClickListener {
                                 bundle
                             )
 
-
                             val timestamp = System.currentTimeMillis()
                             val formattedDate = DateFormat.formatDate(timestamp)
-                            // val formattedTime = DateFormat.formatTime(timestamp)
 
                             val yourmilliseconds = System.currentTimeMillis()
                             val sdf = SimpleDateFormat("MMM dd,yyyy HH:mm")
@@ -230,14 +229,6 @@ class PaymentFragment : Fragment(), View.OnClickListener {
             .setNegativeButton("No", null)
             .show()
     }
-
-    /*
-    private fun navigateToDeliveryScreen() {
-        findNavController().navigate(R.id.action_paymentFragment_to_successfulPaymentFragment)
-
-    }
-
-     */
 
     companion object {
         val httpException: HttpException? = null

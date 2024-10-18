@@ -71,21 +71,7 @@ class ApplyInsuranceFragment : Fragment() {
                 displaySnackBar("No new transactions")
             }
         }
-        /** NB: Not working correctly
-        transactionDao.getAllTransactions().observe(this) { transactions ->
-            if (transactions.isEmpty()) {
-               displaySnackBar("No new transactions")
-            }
-            else {
-               activity?.runOnUiThread {
-                   transactionAdapter.submitList(transactions)
-                   transactionAdapter.notifyDataSetChanged()
-                   binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
-                   displaySnackBar("Transactions History updated")
-               }
-            }
-        }
-        */
+
     }
 
     private fun setUpBinding() {

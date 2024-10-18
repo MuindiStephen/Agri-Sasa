@@ -50,6 +50,8 @@
     <string name="farmproducedetails">farmProduceDetails</string>
     <string name="addtocart">addtocart</string>
     <string name="image_gap">image-gap</string>
+    <string name="remove_from_cart">remove_from_cart</string>
+    <string name="addfarmfield">addfarmfield</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

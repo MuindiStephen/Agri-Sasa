@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.main.NewFarmingTechnologyFragment">
 
 
@@ -27,17 +26,6 @@
             android:layout_marginStart="32dp"
             android:src="@drawable/ic_arrow_back"
             android:contentDescription="backarrow" />
-
-        <TextView
-            android:id="@+id/textView65"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:layout_gravity="center_vertical"
-            android:layout_marginStart="12dp"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="New Technology in Farming" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -77,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="     Farm\nMonitoring"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="@+id/cardViewGPS"
         app:layout_constraintStart_toStartOf="@+id/cardViewGPS"
         app:layout_constraintTop_toBottomOf="@+id/cardViewGPS" />
@@ -118,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="     Locate \nAgro-Dealers"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="@+id/cardViewTrackAgriTechCompany"
         app:layout_constraintStart_toStartOf="@+id/cardViewTrackAgriTechCompany"
         app:layout_constraintTop_toBottomOf="@+id/cardViewTrackAgriTechCompany" />
@@ -160,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="Predict Crop \n      Yield"
         app:layout_constraintEnd_toEndOf="@+id/cardViewPredictFarmProduce"
         app:layout_constraintStart_toStartOf="@+id/cardViewPredictFarmProduce"
@@ -204,7 +192,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Reach Market"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="@+id/cardViewReachMarket"
         app:layout_constraintStart_toStartOf="@+id/cardViewReachMarket"
         app:layout_constraintTop_toBottomOf="@+id/cardViewReachMarket" />
@@ -280,7 +268,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="        Farm \nManagement"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="@+id/cardViewCropCycle"
         app:layout_constraintStart_toStartOf="@+id/cardViewCropCycle"
         app:layout_constraintTop_toBottomOf="@+id/cardViewCropCycle" />
@@ -291,8 +279,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textSize="@dimen/_14sp_text_size"
         android:text="Get access to farm technology list below."
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/nunito_sans_semibold"
         app:layout_constraintStart_toStartOf="@+id/linearLytNewFarmTech"
         app:layout_constraintTop_toBottomOf="@+id/linearLytNewFarmTech" />
 
@@ -301,7 +290,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="Farm Creation \n and Mapping"
         app:layout_constraintEnd_toEndOf="@+id/cardViewMapFarmAndCreate"
         app:layout_constraintStart_toStartOf="@+id/cardViewMapFarmAndCreate"
@@ -344,7 +333,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="  Farm\nRecords"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="@+id/cardViewMyFarmRecords"
         app:layout_constraintStart_toStartOf="@+id/cardViewMyFarmRecords"
         app:layout_constraintTop_toBottomOf="@+id/cardViewMyFarmRecords" />
@@ -385,7 +374,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="     Track \nDeliveries"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="@+id/cardViewTrackMyOrderToAgrodealers"
         app:layout_constraintStart_toStartOf="@+id/cardViewTrackMyOrderToAgrodealers"
         app:layout_constraintTop_toBottomOf="@+id/cardViewTrackMyOrderToAgrodealers" />

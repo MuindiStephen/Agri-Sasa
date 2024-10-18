@@ -26,6 +26,7 @@
         android:text="QB34356JIKBH"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintStart_toStartOf="@+id/tvDate"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +38,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="14-07-2023 10.00am"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/tvReceipt" />
 
@@ -47,7 +49,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="2,000/-"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kes"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans"
         android:textColor="@color/main"
         app:layout_constraintEnd_toEndOf="@+id/tvAmount"
         app:layout_constraintTop_toBottomOf="@+id/tvAmount" />

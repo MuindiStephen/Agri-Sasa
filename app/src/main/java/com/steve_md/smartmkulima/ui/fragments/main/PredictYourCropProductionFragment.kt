@@ -38,7 +38,7 @@ class PredictYourCropProductionFragment : Fragment() {
             binding.inputHumidity.setText("67.7")
         }
 
-        binding.buttonGetIotSensorData.setOnClickListener {
+        binding.buttonGetIoTData.setOnClickListener {
             binding.inputSoilQualityPh.setText("5")
             binding.inputNBKLevel.setText("30.5")
         }

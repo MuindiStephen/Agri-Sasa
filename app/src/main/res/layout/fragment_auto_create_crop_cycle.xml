@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.others.crop_cycle.AutoCreateCropCycleFragment">
 
 
@@ -116,7 +115,7 @@
                     android:id="@+id/inputCropCycleStartDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
+                    android:fontFamily="@font/nunito_sans"
                     android:inputType="date"
                     android:textColor="@color/textColor" />
 
@@ -160,7 +159,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/main1"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/nunito_sans_semibold"
                 android:text="Confirm"
                 android:textAllCaps="false"
                 android:focusable="true"
