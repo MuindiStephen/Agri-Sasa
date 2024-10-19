@@ -38,7 +38,7 @@
         android:id="@+id/textView170"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Placed orders"
         android:fontFamily="@font/nunito_sans"
         android:textSize="@dimen/_12sp_text_size"
