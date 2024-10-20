@@ -29,7 +29,8 @@ class ViewAllOrdersMadeToAgroDealerAsAFarmerFragment : Fragment() {
     private var ordersList =  mutableListOf<OrderCheckoutByFarmer>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentViewAllOrdersMadeToAgroDealerAsAFarmerBinding.inflate(
@@ -76,5 +77,4 @@ class ViewAllOrdersMadeToAgroDealerAsAFarmerFragment : Fragment() {
         binding.orderAvailable.layoutManager = LinearLayoutManager(requireContext())
         binding.orderAvailable.adapter = farmersOrderToAgrodealersListAdapter
     }
-
 }

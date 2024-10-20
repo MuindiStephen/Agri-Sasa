@@ -20,7 +20,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class YourAccountFragment : Fragment() {
 
-    private var _binding:FragmentYourAccountBinding? = null
+    private var _binding: FragmentYourAccountBinding? = null
     private val binding get() = _binding!!
 
     private var firebaseAuth: FirebaseAuth? = null
