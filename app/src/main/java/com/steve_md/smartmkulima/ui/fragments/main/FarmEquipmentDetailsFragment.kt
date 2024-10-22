@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FarmEquipmentDetailsFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding:FragmentFarmEquipmentDetailsBinding
+    private lateinit var binding: FragmentFarmEquipmentDetailsBinding
     private val args: FarmEquipmentDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -40,9 +40,9 @@ class FarmEquipmentDetailsFragment : BottomSheetDialogFragment() {
             Glide.with(requireContext())
                 .load(equipment.imageUrl)
                 .into(imageView18)
-            equipmentImageText.text = "Equipment Name"+equipment.name
-            equipmentYear.text = "Year of manufacture:"+equipment.year
-            costEquipmentHire.text = "Equipment Price"+equipment.priceHire
+            equipmentImageText.text = "Equipment name: "+equipment.name
+            equipmentYear.text = "Year of manufacture: "+equipment.year
+            costEquipmentHire.text = "Equipment price: "+equipment.priceHire
         }
 
         setUpBinding()

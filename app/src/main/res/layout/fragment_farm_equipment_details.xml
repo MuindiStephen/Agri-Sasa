@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Name: Tractor"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:fontFamily="@font/nunito_sans_bold"
         app:layout_constraintStart_toStartOf="@+id/cardView17"
         app:layout_constraintTop_toBottomOf="@+id/cardView17" />

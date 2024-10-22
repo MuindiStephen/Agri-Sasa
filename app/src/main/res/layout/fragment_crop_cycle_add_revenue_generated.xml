@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.others.crop_cycle.CropCycleAddRevenueGeneratedFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -30,8 +29,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="@dimen/_16dp"
         android:background="@drawable/rounded_corner"
-        android:fontFamily="@font/montserrat_medium"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/nunito_sans"        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar3Revenue" />
 
@@ -41,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name of crop cycle"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:layout_marginBottom="@dimen/_2dp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerNameOfCycle"
         app:layout_constraintStart_toStartOf="@+id/spinnerNameOfCycle" />
@@ -74,8 +72,7 @@
             android:id="@+id/inputHarvestedBags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:inputType="number" />
+            android:fontFamily="@font/nunito_sans"            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -106,8 +103,7 @@
             android:id="@+id/inputSoldBags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:inputType="number" />
+            android:fontFamily="@font/nunito_sans"            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -138,8 +134,7 @@
             android:id="@+id/inputTotalRevenueAfterSales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:inputType="number" />
+            android:fontFamily="@font/nunito_sans"            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -150,13 +145,12 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/main1"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Confirm"
+        android:fontFamily="@font/nunito_sans"        android:text="Confirm"
         android:textAllCaps="false"
         android:focusable="true"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:textColor="@color/bg_gray"
+        android:textColor="@color/white"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/enterRevenueAfterSales"
         app:layout_constraintHorizontal_bias="0.5"

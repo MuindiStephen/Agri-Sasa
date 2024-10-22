@@ -200,7 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16dp"
             android:layout_marginEnd="@dimen/_16dp"
-            android:background="@color/bg_gray"
+            android:background="@color/color_shade_gray"
             android:layout_marginTop="@dimen/_32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

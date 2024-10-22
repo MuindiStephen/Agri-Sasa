@@ -40,11 +40,12 @@
             android:id="@+id/imageViewProfile"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="@dimen/_140dp"
+            android:layout_marginStart="@dimen/_100dp"
             android:paddingStart="@dimen/_2dp"
             android:paddingTop="@dimen/_4dp"
             android:paddingEnd="@dimen/_2dp"
             android:paddingBottom="@dimen/_4dp"
+            android:layout_marginEnd="@dimen/_8dp"
             android:src="@drawable/ic_profile" />
     </LinearLayout>
 

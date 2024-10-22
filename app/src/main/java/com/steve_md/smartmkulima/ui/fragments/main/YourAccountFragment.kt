@@ -51,7 +51,7 @@ class YourAccountFragment : Fragment() {
 
     private fun setAppPFSVersionName() {
         try {
-            binding.textViewPFSAppVersion.text = getAppVersionName(requireContext())
+            binding.textViewPFSAppVersion.text = "(PFS) Version: "+getAppVersionName(requireContext())
         }catch (e : Throwable){
             Timber.i("PFS Version",e.message ?: "Version Error")
         }

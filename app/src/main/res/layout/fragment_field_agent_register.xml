@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.auth.fieldagents.FieldAgentRegisterFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -30,7 +29,8 @@
         android:src="@drawable/group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainAuthsToolbar" />
+        app:layout_constraintTop_toBottomOf="@id/mainAuthsToolbar"
+        android:contentDescription="logo" />
 
     <TextView
         android:id="@+id/textView6"
@@ -39,11 +39,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:gravity="center"
-        android:text="SiGN UP AS A FIELD AGENT WITH AGRISASA"
+        android:text="SiGN UP AS A FIELD AGENT"
         android:textColor="@color/main_black"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@id/imageView2" />
@@ -55,7 +55,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:gravity="center"
         android:text="The journey to onboard new agrodealers starts now!"
         android:textSize="13sp"
@@ -90,7 +90,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEmail"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:layout_width="match_parent"
             android:textColor="@color/textColor"
             android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputPassword"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:layout_width="match_parent"
             android:textColor="@color/textColor"
             android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/main1"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/nunito_sans"
         android:text="SIGN UP"
         android:textColor="@color/bg_gray"
         app:cornerRadius="10dp"
@@ -155,10 +155,10 @@
         android:id="@+id/tv_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Already have an account? Sign In"
         android:textSize="@dimen/_14sp_text_size"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:selectableItemBackground"

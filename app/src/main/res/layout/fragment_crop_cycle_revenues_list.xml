@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.others.crop_cycle.CropCycleRevenuesListFragment">
 
 
@@ -14,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textSize="12sp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="Now after harvesting and sales made"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +37,7 @@
         android:id="@+id/textViewNoRevenueRecords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="No Revenue Records!"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sp_text_size"
