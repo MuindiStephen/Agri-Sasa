@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main.fieldagents
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.GradientDrawable.Orientation
 import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
@@ -65,6 +66,7 @@ class FieldAgentDashboardFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -90,7 +92,7 @@ class FieldAgentDashboardFragment : Fragment() {
             else -> "Good Evening"
         }
 
-        binding.includeToolBar.userNameTextView.text = arguments?.getString("fieldAgentEmail")
+        binding.includeToolBar.welcomeText.text = "Welcome back, "+arguments?.getString("fieldAgentEmail")
             ?.let { formatNameFromEmail(it) }
 
         binding.textViewLastLoggedInTimeDate.text = "Last seen: "+DateFormat.getCurrentDate()

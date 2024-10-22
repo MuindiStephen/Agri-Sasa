@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.adapter.others
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -31,8 +32,18 @@ class LocalFarmCycleTasksAdapter : RecyclerView.Adapter<LocalFarmCycleTasksAdapt
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+
         val task = tasks[position]
         holder.bind(task)
+
+        /**
+         * Alternating background colors
+         */
+        if (position % 2 == 0) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#F9F9F9"))
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"))
+        }
     }
 
     override fun getItemCount(): Int {

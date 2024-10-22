@@ -52,6 +52,12 @@
     <string name="image_gap">image-gap</string>
     <string name="remove_from_cart">remove_from_cart</string>
     <string name="addfarmfield">addfarmfield</string>
+    <string name="your_account">Your Account</string>
+    <string name="rf">RF</string>
+    <string name="chevron_forward">chevron_forward</string>
+    <string name="profile_details">profile_details</string>
+    <string name="profile_details_">Profile Details</string>
+    <string name="view_details_that_you_provided">View details that you provided</string>
 
     <string-array name="cycle_types">
         <item>Crop Cycle</item>

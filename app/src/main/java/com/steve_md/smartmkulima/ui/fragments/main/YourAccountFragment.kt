@@ -1,7 +1,9 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.databinding.FragmentYourAccountBinding
 import com.steve_md.smartmkulima.ui.fragments.others.Settings
+import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.getAppVersionName
+import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -30,22 +35,25 @@ class YourAccountFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentYourAccountBinding.inflate(inflater,container,false)
+        _binding = FragmentYourAccountBinding.inflate(inflater, container,false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         (activity as AppCompatActivity).supportActionBar?.hide()
+
+        setAppPFSVersionName()
 
         initBinding()
         firebaseAuth = FirebaseAuth.getInstance()
-        val currentUser = firebaseAuth!!.currentUser
+    }
 
-        if (currentUser != null) {
-            binding.tvUserName.text = currentUser.email.toString()
-        }
-        else {
-            Timber.tag(TAG).e("An error,occurred while retrieving your profile")
+    private fun setAppPFSVersionName() {
+        try {
+            binding.textViewPFSAppVersion.text = getAppVersionName(requireContext())
+        }catch (e : Throwable){
+            Timber.i("PFS Version",e.message ?: "Version Error")
         }
     }
 
@@ -53,38 +61,53 @@ class YourAccountFragment : Fragment() {
 
         binding.apply {
 
-            settings.setOnClickListener {
-                // startActivity(Intent(requireActivity().applicationContext, Settings::class.java))
-                // requireActivity().finish()
+            cardViewProfileDetails.setOnClickListener {
+                findNavController().navigate(R.id.profileDetailsAccountFragment)
             }
 
-            // Signout and pop the
-            signOutUser.setOnClickListener {
+            cardViewSettings.setOnClickListener {
+                // startActivity(Intent(requireActivity().applicationContext, Settings::class.java))
+                // requireActivity().finish()
+
+                findNavController().navigate(R.id.settingsFragment)
+            }
+
+            // SignOut and pop the
+            cardViewLogout.setOnClickListener {
                 logoutDialog()
             }
-            share.setOnClickListener {
+            cardViewShare.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_SEND
                 intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT,"AgriSasa App | Hello, I found this useful AgriTech app that offers latest Agricultural technology")
+                intent.putExtra(Intent.EXTRA_TEXT,"Agri-Sasa App | Hello, I found this useful AgriTech app that digitizes and automates farming processes")
                 startActivity(Intent.createChooser(intent,"Share via :)"))
             }
-            history.setOnClickListener {
+            cardViewHistory.setOnClickListener {
                  findNavController().navigate(R.id.action_yourAccountFragment_to_transactionsHistory2)
             }
-            getHelpAndInquiries.setOnClickListener {
-              findNavController().navigate(R.id.action_yourAccountFragment_to_helpFragment)
-            }
+
             imageViewBackFromAccount.setOnClickListener {
                 findNavController().navigateUp()
+            }
+
+            cardViewRateTheApp.setOnClickListener {
+                try {
+                    val playStoreUrl = "https://play.google.com/store/apps/details?id=com.steve_md.smartmkulima&hl=en-US"
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(playStoreUrl)))
+                    Timber.d("GOOGLE-PLAY=>Rate_App_PlayStore Request Success")
+                } catch (e: ActivityNotFoundException) {
+                    Timber.d("GOOGLE-PLAY=>Rate_App_PlayStore ERROR ${e.message}")
+                    toast("Failed to open Google Play")
+                }
             }
         }
     }
 
     private fun logoutDialog() {
         AlertDialog.Builder(requireContext())
-            .setTitle("Exit App")
-            .setMessage("Do you want to exit?")
+            .setTitle("Log Out & Exit App")
+            .setMessage("Do you want to logout & exit?")
             .setPositiveButton("Yes") { dialog, which ->
 
                 if (firebaseAuth?.uid != null) {
@@ -92,8 +115,8 @@ class YourAccountFragment : Fragment() {
                     Timber.d("Session Ended. for ${firebaseAuth!!.currentUser?.email}" +
                             "\n Logout Successful")
                 } else {
-                    Timber.d("NO session found." +
-                            "You have been logged out successfully.")
+                    Timber.d("No session found.\n" +
+                            "But user logged out successfully.")
                 }
 
                 val fragmentManager = requireActivity().supportFragmentManager

@@ -429,6 +429,12 @@
         <action
             android:id="@+id/action_yourAccountFragment_to_transactionsHistory2"
             app:destination="@id/transactionsHistory2" />
+        <action
+            android:id="@+id/action_yourAccountFragment_to_profileDetailsAccountFragment"
+            app:destination="@id/profileDetailsAccountFragment" />
+        <action
+            android:id="@+id/action_yourAccountFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpFragment"
@@ -823,6 +829,16 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.main.buyer.MyCartBuyerFragment"
         android:label="fragment_my_cart_buyer"
         tools:layout="@layout/fragment_my_cart_buyer" />
+    <fragment
+        android:id="@+id/profileDetailsAccountFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.ProfileDetailsAccountFragment"
+        android:label="fragment_profile_details_account"
+        tools:layout="@layout/fragment_profile_details_account" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 
 
 </navigation>

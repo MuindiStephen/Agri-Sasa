@@ -5,7 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_gravity="start"
-    android:background="@color/bg_gray"
+    android:background="@color/color_shade_gray"
+    android:layout_marginStart="@dimen/_8dp"
+    android:layout_marginEnd="@dimen/_8dp"
+    android:layout_marginTop="@dimen/_4dp"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -39,9 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans_bold"
         android:text="Tractor"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/cardView16"
         app:layout_constraintTop_toTopOf="@+id/cardView16" />
 
@@ -52,8 +55,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="Year 2008"
-        android:textSize="18sp"
-        android:fontFamily="@font/montserrat"
+        android:textSize="14sp"
+        android:fontFamily="@font/nunito_sans_bold"
         app:layout_constraintStart_toEndOf="@+id/cardView16"
         app:layout_constraintTop_toBottomOf="@+id/farmEquipmentName" />
 
@@ -63,9 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans_bold"
         android:text="Ksh. 1000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/cardView16"
         app:layout_constraintTop_toBottomOf="@+id/textViewYear" />
 
@@ -75,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Available"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans"
         android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView16"

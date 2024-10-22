@@ -62,13 +62,14 @@ class AddedNewFarmFieldsFragment : Fragment() {
         binding.createdFarmFieldsRecView.layoutManager = LinearLayoutManager(requireContext())
 
         farmFieldsAdapter = FarmFieldsAdapter(FarmFieldsAdapter.OnClickListener { newFarmField ->
+
             Timber.i("==Clicked on farm field==: ${newFarmField.farmName}")
             // navigate to farm monitoring screen
             // plus actions
-            val actions = AddedNewFarmFieldsFragmentDirections.actionAddedNewFarmFieldsFragmentToMonitorFarmConditionFragment(
-                newFarmField
-            )
-            findNavController().navigate(actions)
+//            val actions = AddedNewFarmFieldsFragmentDirections.actionAddedNewFarmFieldsFragmentToMonitorFarmConditionFragment(
+//                newFarmField
+//            )
+//            findNavController().navigate(actions)
         })
 
         binding.createdFarmFieldsRecView.adapter = farmFieldsAdapter
@@ -81,12 +82,14 @@ class AddedNewFarmFieldsFragment : Fragment() {
                 farmFieldsList.addAll(farmField)
                 farmFieldsAdapter.submitList(farmFieldsList)
                 binding.textViewNoFarmsAvailable.isVisible = false
+                binding.imageViewLottieNoRecords.isVisible = false
 
                 // set the counted number of items in the rec view
                 binding.textViewFarmFieldInitialLr.text = farmFieldsList.size.toString()
 
             } else {
                 binding.textViewNoFarmsAvailable.isVisible = true
+                binding.imageViewLottieNoRecords.isVisible = true
             }
         }
     }
@@ -157,7 +160,6 @@ class AddedNewFarmFieldsFragment : Fragment() {
         binding.textViewFarmFieldInitialLr.text = filteredList.size.toString()
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         if (onBackPressedCallback != null) {
@@ -165,6 +167,5 @@ class AddedNewFarmFieldsFragment : Fragment() {
             onBackPressedCallback!!.remove()
         }
     }
-
 }
 

@@ -76,6 +76,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.hireFarmEquipmentsFragment -> {
                     binding.bottomNavigationView.visibility = View.VISIBLE
                 }
+                R.id.yourAccountFragment -> {
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+                }
                 else -> {
                     binding.bottomNavigationView.visibility = View.INVISIBLE
                 }

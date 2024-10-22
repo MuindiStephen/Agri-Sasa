@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray"
     android:fillViewport="true"
     android:scrollbars="none"
     android:fitsSystemWindows="true"
@@ -41,7 +40,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/inputAgroDealerName"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:layout_width="match_parent"
         android:textColor="@color/textColor"
         android:layout_height="wrap_content"
@@ -74,8 +73,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputAgroDealerEmail"
-                android:fontFamily="@font/montserrat_medium"
-                android:layout_width="match_parent"
+                android:fontFamily="@font/nunito_sans"                android:layout_width="match_parent"
                 android:textColor="@color/textColor"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
@@ -107,8 +105,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputAgroDealerPhone"
-                android:fontFamily="@font/montserrat_medium"
-                android:layout_width="match_parent"
+                android:fontFamily="@font/nunito_sans"                android:layout_width="match_parent"
                 android:textColor="@color/textColor"
                 android:layout_height="wrap_content"
                 android:inputType="phone" />
@@ -139,8 +136,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputAgroDealerPhysicalAddress"
-                android:fontFamily="@font/montserrat_medium"
-                android:layout_width="match_parent"
+                android:fontFamily="@font/nunito_sans"                android:layout_width="match_parent"
                 android:textColor="@color/textColor"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -170,8 +166,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputAgroDealerLocation"
-                android:fontFamily="@font/montserrat_medium"
-                android:layout_width="match_parent"
+                android:fontFamily="@font/nunito_sans"                android:layout_width="match_parent"
                 android:textColor="@color/textColor"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_location_on_"
@@ -187,8 +182,7 @@
             android:layout_marginStart="@dimen/_45dp"
             android:layout_marginEnd="@dimen/_45dp"
             android:background="@drawable/rounded_corner"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintEnd_toEndOf="@+id/enterAgroDealerExactLocation"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintEnd_toEndOf="@+id/enterAgroDealerExactLocation"
             app:layout_constraintStart_toStartOf="@+id/enterAgroDealerExactLocation"
             app:layout_constraintTop_toBottomOf="@id/enterAgroDealerExactLocation" />
 
@@ -200,8 +194,7 @@
             android:layout_marginEnd="45dp"
             android:layout_marginBottom="@dimen/_32dp"
             android:backgroundTint="@color/main1"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="ADD AGRODEALER"
+            android:fontFamily="@font/nunito_sans"            android:text="ADD AGRODEALER"
             android:textColor="@color/bg_gray"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
