@@ -126,7 +126,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     private fun promptEnableLocationServices() {
         AlertDialog.Builder(requireContext())
             .setTitle("Enable Location Services")
-            .setMessage("Location services are required to find nearby agro-dealers. Please enable them.")
+            .setMessage("Location services are required to locate your farm. Please enable them.")
             .setPositiveButton("Settings") { _, _ ->
                 startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
             }
