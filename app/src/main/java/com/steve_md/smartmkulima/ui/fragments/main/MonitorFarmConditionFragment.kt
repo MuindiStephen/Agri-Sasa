@@ -2,10 +2,14 @@ package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,16 +80,23 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-       // val farmField = args.newfarmfield
 
-        val whichFarm =  view.findViewById<TextView>(R.id.textView104)
-
-      //  whichFarm.text = farmField.farmName
+        if (!isLocationEnabled()) {
+            promptEnableLocationServices()
+            return
+        }
         
         locationProvider = LocationProvider(this.requireContext())
 
         // Request user's location
         locationProvider.getLastKnownLocation { location ->
+
+            if (location == null) {
+                displaySnackBar("Unable to get current location. Please check your device settings")
+                return@getLastKnownLocation
+            } else {
+                Timber.tag("LocateMyFarm").e("Location services are enabled. Showing farm location")
+            }
 
             val loading = view.findViewById<ProgressBar>(R.id.progressBar8)
             loading.isVisible = true
@@ -102,6 +113,25 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         }
 
         setUpChart()
+    }
+
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
+
+    // Prompt user to enable location if it’s turned off
+    private fun promptEnableLocationServices() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Enable Location Services")
+            .setMessage("Location services are required to find nearby agro-dealers. Please enable them.")
+            .setPositiveButton("Settings") { _, _ ->
+                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     private fun setUpChart() {

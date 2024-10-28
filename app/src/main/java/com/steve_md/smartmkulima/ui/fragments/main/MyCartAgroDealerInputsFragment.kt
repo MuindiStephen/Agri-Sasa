@@ -18,6 +18,7 @@ import com.steve_md.smartmkulima.adapter.AgroDealsCartItemsListAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMyCartAgroDealerInputsBinding
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
+import com.steve_md.smartmkulima.ui.fragments.main.fieldagents.AddANewAgroDealerBottomSheetFragment
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -107,8 +108,10 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                     binding.recyclerView4.adapter = cartAdapter
 
                     Timber.tag(this@MyCartAgroDealerInputsFragment.toString())
-                        .e("Fetched cart items successfully. $cartItems" +
-                                "\tNumber of Cart Items Found==${cartItems.size}")
+                        .e(
+                            "Fetched cart items successfully. $cartItems" +
+                                    "\tNumber of Cart Items Found==${cartItems.size}"
+                        )
 
                     binding.noCart.isVisible = false
                     binding.recyclerView4.isVisible = true
@@ -118,15 +121,19 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                         it.offerProduct.discountedPrice * it.quantity
                     }
 
-                    Log.d("RecyclerViewVisibility", "RecyclerView isVisible: ${binding.recyclerView4.isVisible}")
+                    Timber.tag("RecyclerViewVisibility")
+                        .d("RecyclerView isVisible: " + binding.recyclerView4.isVisible)
 
-                    binding.textViewSubTotal.text = "Kes. " + String.format("%.2f",totalCheckoutPrice)
+                    binding.textViewSubTotal.text =
+                        "Kes. " + String.format("%.2f", totalCheckoutPrice)
                     val checkoutValueIncludingFees = totalCheckoutPrice + 200.toDouble()
-                    binding.textView139.text = "Kes. " + String.format("%.2f",checkoutValueIncludingFees)
+                    binding.textView139.text =
+                        "Kes. " + String.format("%.2f", checkoutValueIncludingFees)
 
                     Log.d("MyCartCheckout-AgroDeals", "Cart items: ${cartItems.size}")
                     cartItems.forEach { item ->
-                        Log.d("MyCartCheckout-AgroDeals", "${item.offerProduct.productName} - Quantity: ${item.quantity}")
+                        Timber.tag("MyCartCheckout-AgroDeals")
+                            .d(item.offerProduct.productName + " - Quantity: " + item.quantity)
                     }
 
                     binding.buttonCheckoutCartItems.isEnabled = true
@@ -148,9 +155,9 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                         if (currentUser != null) {
                             val userEmail = currentUser.email.toString()
                             Timber.d("Logged In Farmer => $userEmail")
-                        }
-                        else {
-                            Timber.tag(YourAccountFragment.TAG).e("An error,occurred while retrieving your profile")
+                        } else {
+                            Timber.tag(YourAccountFragment.TAG)
+                                .e("An error,occurred while retrieving your profile")
                         }
 
                         val orderCheckoutByFarmer = OrderCheckoutByFarmer(
@@ -166,10 +173,22 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                             viewModel.saveOrder(orderCheckoutByFarmer)
                             toast("Order placed successfully")
                         } catch (e: Exception) {
-                            Timber.tag("Orders").e("Order Not Placed." +
-                                    "ERROR==${e.message}")
+                            Timber.tag("Orders").e(
+                                "Order Not Placed." +
+                                        "ERROR==${e.message}"
+                            )
                         }
-                        findNavController().navigate(R.id.paymentFragment, bundle)
+
+                        val modal = PaymentFragment().apply {
+                            arguments = Bundle().apply {
+                                putInt("TOTAL_PRICE", checkoutValueIncludingFees.toInt())
+                            }
+                        }
+                        // modal.show(parentFragmentManager, TAG)
+                        parentFragmentManager.let {
+                            modal.show(it, TAG)
+                        }
+
                     }
 
                 } else {
@@ -181,7 +200,16 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                     binding.textView139.isVisible = false
                     binding.buttonCheckoutCartItems.isEnabled = false
                 }
+
+
             }
+
+
         }
     }
+
+    companion object {
+        const val TAG = "Payment"
+    }
 }
+
