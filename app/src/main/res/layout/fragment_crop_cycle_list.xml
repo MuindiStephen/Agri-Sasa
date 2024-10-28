@@ -173,7 +173,6 @@
         android:text="/Farm"
         android:letterSpacing="0.10"
         android:fontFamily="@font/nunito_sans"
-        android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/_40dp"
         android:layout_marginStart="@dimen/_48dp"
@@ -248,7 +247,6 @@
         android:letterSpacing="0.10"
         android:text="Block"
         android:textColor="@color/black"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/farmNameTV"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/farmNameTV" />
