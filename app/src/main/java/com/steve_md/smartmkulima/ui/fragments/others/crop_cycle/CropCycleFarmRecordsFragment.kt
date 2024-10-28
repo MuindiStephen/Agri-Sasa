@@ -56,13 +56,13 @@ class CropCycleFarmRecordsFragment : Fragment() {
 
     private fun setUpViews() {
         binding.apply {
-            binding.btnRecordFarmExpenses.setOnClickListener {
+            binding.recordFarmExpensesCardView.setOnClickListener {
                 findNavController().navigate(R.id.cropCycleAddNewExpensesFragment)
             }
-            binding.btnRecordAfterHarvest.setOnClickListener {
+            binding.recordAfterHarvestCardView.setOnClickListener {
                 findNavController().navigate(R.id.cropCycleAddRevenueGeneratedFragment)
             }
-            binding.btnAnalytics.setOnClickListener {
+            binding.cardViewAnalytics.setOnClickListener {
                 findNavController().navigate(R.id.cropCycleFinancialRecordsAnalyticsFragment)
             }
             binding.toolBarFarmRecords.setNavigationOnClickListener {

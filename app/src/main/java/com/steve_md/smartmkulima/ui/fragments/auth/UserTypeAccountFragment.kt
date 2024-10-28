@@ -57,6 +57,7 @@ class UserTypeAccountFragment : Fragment() {
                 handleFieldAgents()
             }
 
+            /*
             btnContinue.setOnClickListener {
                 when (roleName) {
                     "Farmer" -> {
@@ -85,7 +86,7 @@ class UserTypeAccountFragment : Fragment() {
                     }
                 }
 
-            }
+            }*/
         }
     }
 
@@ -114,6 +115,9 @@ class UserTypeAccountFragment : Fragment() {
         binding.cvBuyers.cardElevation = 2F
         binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
         binding.tvBuyer.setTextColor(resources.getColor(R.color.main))
+
+
+        findNavController().navigate(R.id.fieldAgentRegisterFragment)
     }
 
     private fun handleBuyers() {
@@ -141,6 +145,8 @@ class UserTypeAccountFragment : Fragment() {
         binding.cvFieldagents.cardElevation = 2F
         binding.ivFieldagent.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
         binding.tvFieldagent.setTextColor(resources.getColor(R.color.main))
+
+        findNavController().navigate(R.id.buyerSignUpFragment)
 
     }
 
@@ -172,6 +178,10 @@ class UserTypeAccountFragment : Fragment() {
         binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
         binding.tvBuyer.setTextColor(resources.getColor(R.color.main))
 
+        findNavController().navigate(
+            R.id.signInDetailsWithEmailFragment
+        )
+
     }
 
     private fun handleAgroDealer() {
@@ -201,6 +211,10 @@ class UserTypeAccountFragment : Fragment() {
         binding.cvBuyers.cardElevation = 2F
         binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
         binding.tvBuyer.setTextColor(resources.getColor(R.color.main))
+
+        findNavController().navigate(
+            R.id.agroDealerLoginFragment
+        )
     }
 
     override fun onDestroy() {
@@ -218,6 +232,35 @@ class UserTypeAccountFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         roleName = "Farmer"
-        handleFarmer()
+        handleFarmer2()
+    }
+
+    private fun handleFarmer2() {
+        //activate select farmer acc type cardview
+        roleName = "Farmer"
+
+        binding.cvFarmer.setCardBackgroundColor(resources.getColor(R.color.main))
+        binding.cvFarmer.cardElevation = 4F
+        binding.ivFarmer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.bg_gray))
+        binding.tvFarmer.setTextColor(Color.WHITE)
+
+        //deactivate acc type agrodealer
+        binding.cvAgrodealer.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvAgrodealer.cardElevation = 2F
+        binding.ivAgrodealer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvAgrodealer.setTextColor(resources.getColor(R.color.main))
+//        binding.tvAgrodealer.setTextColor(Color.parseColor("#ffe5b48d"));
+
+        // Deactivate Field-agent
+        binding.cvFieldagents.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvFieldagents.cardElevation = 2F
+        binding.ivFieldagent.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvFieldagent.setTextColor(resources.getColor(R.color.main))
+
+        // Deactivate buyer
+        binding.cvBuyers.setCardBackgroundColor(resources.getColor(R.color.very_light_gray))
+        binding.cvBuyers.cardElevation = 2F
+        binding.ivBuyer.setColorFilter(ContextCompat.getColor(requireContext(),R.color.main))
+        binding.tvBuyer.setTextColor(resources.getColor(R.color.main))
     }
 }

@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main.fieldagents
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.GradientDrawable.Orientation
 import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
@@ -44,7 +45,7 @@ import java.util.Calendar
 class FieldAgentDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentFieldAgentDashboardBinding
-    private lateinit var userProfileTxt: TextView
+  //  private lateinit var userProfileTxt: TextView
     private val viewModel: MainViewModel by viewModels()
     private var onBackPressedCallback: OnBackPressedCallback? = null
 
@@ -65,6 +66,7 @@ class FieldAgentDashboardFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -79,18 +81,18 @@ class FieldAgentDashboardFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback!!)
 
-        userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
+       // userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
 
-        val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
-        val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+//        val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
+//        val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+//
+//        greetingDateTime.text = when (currentTime) {
+//            in 0..11 -> "Good Morning"
+//            in 12..15 -> "Good Afternoon"
+//            else -> "Good Evening"
+//        }
 
-        greetingDateTime.text = when (currentTime) {
-            in 0..11 -> "Good Morning"
-            in 12..15 -> "Good Afternoon"
-            else -> "Good Evening"
-        }
-
-        binding.includeToolBar.userNameTextView.text = arguments?.getString("fieldAgentEmail")
+        binding.includeToolBar.welcomeText.text = "Welcome back, "+arguments?.getString("fieldAgentEmail")
             ?.let { formatNameFromEmail(it) }
 
         binding.textViewLastLoggedInTimeDate.text = "Last seen: "+DateFormat.getCurrentDate()

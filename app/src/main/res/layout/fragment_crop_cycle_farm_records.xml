@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     android:fitsSystemWindows="true"
     android:scrollbars="none"
     android:fillViewport="true"
@@ -37,70 +36,178 @@
         android:layout_marginStart="@dimen/_16dp"
         android:layout_marginTop="16dp"
         android:text="@string/what_would_you_like_to_record"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:textSize="@dimen/_16sp_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBarFarmRecords" />
 
-        <Button
-            android:id="@+id/btnRecordFarmExpenses"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:text="Expenses"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/recordFarmExpensesCardView"
+            android:layout_width="104dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp"
             android:clickable="true"
             android:focusable="true"
-            android:drawableLeft="@drawable/baseline_money_off_24"
-            android:background="@drawable/rounded_corner"
-            android:foreground="?selectableItemBackground"
-            android:textAllCaps="false"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintStart_toStartOf="@+id/textViewWhatToFinancialRecord"
-            app:layout_constraintTop_toBottomOf="@+id/textViewWhatToFinancialRecord" />
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintStart_toStartOf="@id/textViewWhatToFinancialRecord"
+            app:layout_constraintTop_toBottomOf="@id/textViewWhatToFinancialRecord">
 
-        <Button
-            android:id="@+id/btnRecordAfterHarvest"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/rounded_corner_2">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:tint="@color/main1"
+                    android:src="@drawable/baseline_money_off_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="Expenses"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="7sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main"
+                    android:gravity="center_horizontal|center_vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toStartOf="@+id/imageView3"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/recordAfterHarvestCardView"
+            android:layout_width="104dp"
+            android:layout_height="78dp"
+            android:layout_marginStart="8dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="@id/recordFarmExpensesCardView"
+            app:layout_constraintEnd_toStartOf="@id/cardViewAnalytics"
+            app:layout_constraintStart_toEndOf="@id/recordFarmExpensesCardView"
+            app:layout_constraintTop_toTopOf="@id/recordFarmExpensesCardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/rounded_corner_2">
+
+                <ImageView
+                    android:id="@+id/imageViewRev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:tint="@color/main1"
+                    android:src="@drawable/outline_monetization_on_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewRevenues"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="7sp"
+                    android:text="Revenues"
+                    android:textColor="@color/main"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewRev"
+                    app:layout_constraintStart_toStartOf="@+id/imageViewRev"
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewRev" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewAnalytics"
+            android:layout_width="104dp"
+            android:layout_height="78dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:text="Revenues"
-            android:textAllCaps="false"
-            android:drawableLeft="@drawable/outline_monetization_on_24"
-            android:background="@drawable/rounded_corner"
-            android:foreground="?selectableItemBackground"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toBottomOf="@+id/btnRecordFarmExpenses"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="@id/recordAfterHarvestCardView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnRecordFarmExpenses" />
-        <Button
-            android:id="@+id/btnAnalytics"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:text="Analytics"
-            android:textAllCaps="false"
-            android:layout_marginTop="@dimen/_16dp"
-            android:drawableLeft="@drawable/baseline_analytics_24"
-            android:background="@drawable/rounded_corner"
-            android:foreground="?selectableItemBackground"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintStart_toStartOf="@+id/btnRecordFarmExpenses"
-            app:layout_constraintTop_toBottomOf="@+id/btnRecordFarmExpenses" />
+            app:layout_constraintStart_toEndOf="@id/recordAfterHarvestCardView"
+            app:layout_constraintTop_toTopOf="@id/recordAfterHarvestCardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/rounded_corner_2">
+
+                <ImageView
+                    android:id="@+id/imageViewAnalytics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:tint="@color/main1"
+                    android:src="@drawable/baseline_analytics_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewChillingCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="Analytics"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="7sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main"
+                    android:gravity="center_horizontal|center_vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewAnalytics"
+                    app:layout_constraintStart_toStartOf="@+id/imageViewAnalytics"
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewAnalytics" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_gray"
-            app:tabTextColor="@color/main"
-            app:tabSelectedTextColor="@color/light_blue"
-            app:tabIndicatorColor="@color/light_blue"
-            android:layout_marginTop="@dimen/_16dp"
             android:layout_marginStart="@dimen/_16dp"
             android:layout_marginEnd="@dimen/_16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/color_shade_gray"
+            android:layout_marginTop="@dimen/_32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnAnalytics"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recordAfterHarvestCardView"
+            app:tabIndicatorColor="@color/light_blue"
+            app:tabSelectedTextColor="@color/light_blue"
+            app:tabTextColor="@color/main" />
 
 
         <androidx.viewpager.widget.ViewPager

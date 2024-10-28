@@ -2,10 +2,10 @@ package com.steve_md.smartmkulima.ui.fragments.auth
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,47 +55,64 @@ class SignInDetailsWithEmailFragment : Fragment() {
          * Check whether the Authentication is available
          * @param biometricManager is present, is enrolled
          */
-        val biometricManager = BiometricManager.from(requireContext())
-        when(biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
-            BiometricManager.BIOMETRIC_SUCCESS -> {
-                Timber.tag("Biometric").e("Authenticated using biometrics")
-                val prompt = createBiometricPrompt()
-                prompt.authenticate(createPromptInfo())
-            }
-            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
-                Timber.tag(requireActivity().toString())
-                    .e("onCreate: Biometric features are currently unavailable.")
-            }
 
-            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
-                // The user didn't enroll in biometrics that your app accepts, prompt them to enroll in it
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    val enrollIntent =
-                        Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
-                            putExtra(
-                                Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
-                                BIOMETRIC_STRONG or DEVICE_CREDENTIAL
-                            )
-                        }
-                    startActivityForResult(enrollIntent, REQUEST_CODE)
+        val sharedPreferences: SharedPreferences =
+            requireActivity().getSharedPreferences("Authentication", 0)
+        val bio = sharedPreferences.getString("TEXT", "")
+
+        if (bio.equals("1")) {
+
+            Timber.d("Fingerprint Biometrics Enabled")
+
+            val biometricManager = BiometricManager.from(requireContext())
+
+            when (biometricManager.canAuthenticate(BIOMETRIC_STRONG)) {
+                BiometricManager.BIOMETRIC_SUCCESS -> {
+                    Timber.tag("Biometric").e("Authenticated using biometrics")
+                    val prompt = createBiometricPrompt()
+                    prompt.authenticate(createPromptInfo())
+
+
+                }
+
+                BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
+                    Timber.tag(requireActivity().toString())
+                        .e("onCreate: Biometric features are currently unavailable.")
+                }
+
+                BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
+                    // The user didn't enroll in biometrics that your app accepts, prompt them to enroll in it
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        val enrollIntent =
+                            Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
+                                putExtra(
+                                    Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                                    BIOMETRIC_STRONG or DEVICE_CREDENTIAL
+                                )
+                            }
+                        startActivityForResult(enrollIntent, REQUEST_CODE)
+                    }
+                }
+
+                BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
+                    Timber.d("Biometric features hardware is missing")
+                }
+
+                BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> {
+
+                }
+
+                BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> {
+
+                }
+
+                BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> {
+
                 }
             }
-
-            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
-                Timber.d("Biometric features hardware is missing")
-            }
-
-            BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> {
-
-            }
-
-            BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> {
-
-            }
-
-            BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> {
-
-            }
+        } else {
+            Timber.d("Fingerprint Biometrics Disabled")
+            toast("Fingerprint biometrics disabled. Login to enable it to continue using it.")
         }
     }
 

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.others.crop_cycle.CropCycleExpensesListFragment">
 
 
@@ -13,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans_bold"
         android:text="Tracking all your expenses of your farm input costs made easier within our platform"
         android:textColor="@color/black"
         android:textSize="12sp"

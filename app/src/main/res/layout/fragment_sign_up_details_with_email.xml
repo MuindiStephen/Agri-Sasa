@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.auth.SignUpDetailsWithEmailFragment">
 
 
@@ -13,7 +12,6 @@
         android:layout_width="0dp"
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_height="31dp"
-        android:background="@color/bg_gray"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,11 +35,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:gravity="center"
         android:text="SIGN UP TO AGRISASA"
-        android:textColor="@color/main_black"
-        android:textSize="30sp"
+        android:textColor="@color/main"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@id/imageView2" />
@@ -54,10 +52,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
         android:textColor="@color/textColor"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans"
         android:gravity="center"
         android:text="Create a profile, explore recommended farm tips, market your produce and more."
-        android:textSize="13sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/textView6"
@@ -93,6 +91,7 @@
             android:layout_width="match_parent"
             android:textColor="@color/textColor"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -125,6 +124,7 @@
             android:textColor="@color/textColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans"
             android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -157,6 +157,7 @@
             android:textColor="@color/textColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -190,6 +191,7 @@
             android:layout_width="match_parent"
             android:textColor="@color/textColor"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -202,7 +204,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="45dp"
         android:backgroundTint="@color/main1"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/nunito_sans_semibold"
         android:text="SIGN UP"
         android:textColor="@color/bg_gray"
         app:cornerRadius="10dp"
@@ -216,7 +218,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/nunito_sans_semibold"
         android:text="Sign up with"
         android:textColor="@color/main_black"
         android:textSize="12sp"
@@ -227,7 +229,7 @@
         android:id="@+id/signUpWithPhoneInsteadText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/nunito_sans_semibold"
         android:paddingLeft="2dp"
         android:text="Phone"
         android:textColor="@color/main1"
@@ -245,7 +247,7 @@
         android:text="instead"
         android:textSize="12sp"
         android:textColor="@color/main_black"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/nunito_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/signUpWithPhoneInsteadText"
         app:layout_constraintStart_toEndOf="@+id/signUpWithPhoneInsteadText"
         app:layout_constraintTop_toTopOf="@+id/signUpWithPhoneInsteadText" />
@@ -267,7 +269,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/nunito_sans"
         android:text="Already have acount?"
         android:textSize="12sp"
         android:textColor="@color/textColor"

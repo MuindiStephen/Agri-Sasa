@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray">
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card11"
@@ -20,7 +20,7 @@
         android:layout_marginTop="4dp"
         app:cardCornerRadius="@dimen/_10dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/bg_gray"
+        android:backgroundTint="@color/color_shade_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,11 +39,11 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/circle_custom"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="0.03"
                 android:lineSpacingExtra="3sp"
-                android:text="RF"
+                android:text="@string/rf"
                 android:backgroundTint="@color/main"
                 android:textColor="@color/whitish"
                 android:textSize="16sp"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/nunito_sans_semibold"
                 android:text="Rice Farm"
                 android:textSize="@dimen/_12sp_text_size"
                 app:layout_constraintStart_toEndOf="@+id/textViewFarmFieldInitialLr"
@@ -71,7 +71,7 @@
                 android:layout_marginTop="4dp"
                 android:text="Utumishi Hse Estate"
                 android:textSize="9sp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/nunito_sans"
                 app:layout_constraintStart_toStartOf="@+id/textView109"
                 app:layout_constraintTop_toBottomOf="@+id/textView109" />
 

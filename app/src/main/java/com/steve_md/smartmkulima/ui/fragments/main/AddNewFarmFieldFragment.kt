@@ -351,7 +351,14 @@ class AddNewFarmFieldFragment : Fragment() {
             .setPositiveButton("Yes") { _, which ->
                 removeFocus()
                 clearInputFields()
-                findNavController().navigateUp()
+
+                val fragmentManager = requireActivity().supportFragmentManager
+                if (fragmentManager.backStackEntryCount > 0) {
+                    val first = fragmentManager.getBackStackEntryAt(0)
+                    fragmentManager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                }
+                findNavController().popBackStack(R.id.addNewFarmFieldFragment ,true)
+               findNavController().navigate(R.id.addedNewFarmFieldsFragment)
             }
             .setNegativeButton("No") { dialog, which ->
                 dialog.dismiss()

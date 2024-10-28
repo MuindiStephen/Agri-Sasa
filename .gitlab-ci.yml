@@ -1,0 +1,67 @@
+image: devops-registry.ekenya.co.ke/library/android-build-base:latest
+
+variables:
+  COMMON_SCRIPT: |
+    bundle config set --local path 'vendor/bundle'
+    bundle update
+    # echo -e "\norg.gradle.logging.level=quiet" >> gradle.properties
+    vault kv get -field jks secret/agrisasa | base64 -d >> agrisasa.jks
+    cp agrisasa.jks app/
+    vault kv get -field store secret/agrisasa | base64 -d >> keystore.properties
+    vault kv get -field json secret/agrisasa | base64 -d >> api-devsecops.json
+
+stages:
+  - scan
+  - prepare
+  - bundle
+  - deploy
+  - promote
+  - notify
+
+
+prepare:
+  stage: prepare
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+  tags:
+    - android
+  script:
+    - echo "$COMMON_SCRIPT" | bash
+  artifacts:
+    paths:
+      - gradle.properties
+      - gradle/wrapper/gradle-wrapper.properties
+      - agrisasa.jks
+      - app/agrisasa.jks
+      - keystore.properties
+      - api-devsecops.json
+      - Gemfile.lock
+      - vendor/bundle
+      - .bundle
+
+bundle-internal:
+  stage: bundle
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      when: always
+  tags:
+    - android
+  needs: ["prepare"]
+  script:
+    - chmod +x ./gradlew
+    - ./gradlew dependencies
+    - bundle exec fastlane bundle
+  artifacts:
+    paths:
+      - app/build/outputs/bundle/release/app-release.aab
+
+deploy-internal:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      when: always
+  tags:
+    - android
+  needs: ["prepare", "bundle-internal"]
+  script:
+    - bundle exec fastlane deploy

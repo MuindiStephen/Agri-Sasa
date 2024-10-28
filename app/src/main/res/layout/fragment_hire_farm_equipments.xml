@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.main.HireFarmEquipmentsFragment">
 
     <LinearLayout
@@ -46,10 +45,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans_bold"
         android:text="Find services available to hire"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
@@ -59,8 +57,9 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/gray"
         app:cardCornerRadius="10dp"
+        app:cardElevation="@dimen/_0dp"
+        app:cardBackgroundColor="@color/color_shade_gray"
         app:layout_constraintStart_toStartOf="@+id/textView62"
         app:layout_constraintTop_toBottomOf="@+id/textView62">
 
@@ -78,7 +77,8 @@
         android:layout_height="60dp"
         android:layout_marginStart="84dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/gray"
+        app:cardElevation="@dimen/_0dp"
+        app:cardBackgroundColor="@color/color_shade_gray"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="@id/card1"
         app:layout_constraintTop_toBottomOf="@id/textView62">
@@ -97,7 +97,8 @@
         android:layout_height="60dp"
         android:layout_marginStart="84dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/gray"
+        app:cardElevation="@dimen/_0dp"
+        app:cardBackgroundColor="@color/color_shade_gray"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="@id/card2"
         app:layout_constraintTop_toBottomOf="@id/textView62">
@@ -116,8 +117,9 @@
         android:layout_height="60dp"
         android:layout_marginStart="84dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/gray"
         app:cardCornerRadius="10dp"
+        app:cardElevation="@dimen/_0dp"
+        app:cardBackgroundColor="@color/color_shade_gray"
         app:layout_constraintStart_toStartOf="@id/card3"
         app:layout_constraintTop_toBottomOf="@id/textView62">
 
@@ -139,6 +141,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginBottom="@dimen/_32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card2"
         tools:listitem="@layout/farm_equipment_row" />

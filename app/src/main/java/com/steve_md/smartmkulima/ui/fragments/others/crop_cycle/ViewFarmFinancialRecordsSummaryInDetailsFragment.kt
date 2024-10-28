@@ -87,15 +87,6 @@ class ViewFarmFinancialRecordsSummaryInDetailsFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setUpUi() {
-
-        // Use of bundle
-        /*
-        binding.textView126.text = arguments?.getString("cropCycleName")
-        binding.textView129.text = arguments?.getString("totalInputs")
-        binding.textView132.text = arguments?.getString("totalSales")
-
-         */
-
         // Use of Navigation Arguments
         val farmRecord = args.farmFinancialRecordSummary
         binding.textView126.text = "${farmRecord.nameOfCropCycle} crop cycle"

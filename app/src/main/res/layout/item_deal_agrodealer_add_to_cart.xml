@@ -6,15 +6,15 @@
     android:layout_marginTop="8dp"
     android:layout_marginStart="@dimen/_8dp"
     android:layout_marginEnd="@dimen/_8dp"
-    app:cardElevation="2dp"
+    app:cardElevation="0dp"
     app:cardCornerRadius="8dp"
-    app:strokeWidth="1dp"
+    app:cardBackgroundColor="@color/color_shade_gray"
     app:strokeColor="#D7CDCACA">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_gray">
+       >
 
         <ImageView
             android:id="@+id/imageViewProductFarmInputName"
@@ -46,7 +46,7 @@
                 android:id="@+id/textViewDiscountPercentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:padding="4dp"
                 android:text="30% off"
                 android:textColor="@color/light_blue"
@@ -60,7 +60,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:maxLines="1"
             android:text="CAN fertilizer 90 KGs "
             android:textSize="14sp"
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:text="$50.00"
             android:textColor="@color/main"
             android:textStyle="bold"
@@ -83,20 +83,19 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
 
 
-        <Button
+        <ImageView
             android:id="@+id/buttonRemoveCartItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16dp"
-            android:drawableLeft="@drawable/baseline_delete_forever_24"
-            android:fontFamily="@font/nunito_sans_semibold"
-            android:text="Remove"
+            android:src="@drawable/baseline_delete_forever_24"
             android:clickable="true"
             android:focusable="true"
+            app:tint="@color/main1"
             android:foreground="?android:selectableItemBackground"
-            android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="@id/imageViewProductFarmInputName"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/remove_from_cart" />
 
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -117,7 +116,7 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:layout_marginStart="@dimen/_2dp"
-            android:fontFamily="@font/montserrat_semibold"
+            android:fontFamily="@font/nunito_sans"
             app:layout_constraintBottom_toBottomOf="@+id/imageButtonIncrease"
             app:layout_constraintStart_toEndOf="@+id/imageButtonIncrease"
             app:layout_constraintTop_toTopOf="@+id/imageButtonIncrease"

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.main.AddNewFarmFieldFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +53,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputFarmName"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -66,7 +65,7 @@
             android:layout_height="wrap_content"
             android:text="Farm Name"
             android:layout_marginBottom="2dp"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             app:layout_constraintBottom_toTopOf="@+id/enterFarmNameTl"
             app:layout_constraintStart_toStartOf="@+id/enterFarmNameTl" />
 
@@ -79,8 +78,7 @@
             android:layout_marginEnd="@dimen/_16dp"
             android:entries="@array/crop_list"
             android:background="@drawable/rounded_corner"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/enterFarmNameTl" />
 
@@ -89,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Crop"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:layout_marginBottom="@dimen/_2dp"
             app:layout_constraintBottom_toTopOf="@+id/spinnerYourCropName"
             app:layout_constraintStart_toStartOf="@+id/spinnerYourCropName" />
@@ -120,8 +118,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputFarmLocationDescription"
-                android:fontFamily="@font/montserrat_medium"
-                android:layout_width="match_parent"
+                android:fontFamily="@font/nunito_sans"                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -131,8 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Farm Location Description"
-            android:fontFamily="@font/montserrat_medium"
-            android:layout_marginBottom="@dimen/_2dp"
+            android:fontFamily="@font/nunito_sans"            android:layout_marginBottom="@dimen/_2dp"
             app:layout_constraintBottom_toTopOf="@+id/enterFarmLocationDescription"
             app:layout_constraintStart_toStartOf="@+id/enterFarmLocationDescription" />
 
@@ -142,8 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="I want to map out my farm \nboundaries"
-            android:fontFamily="@font/montserrat_semibold"
-            android:textColor="@color/black"
+            android:fontFamily="@font/nunito_sans"            android:textColor="@color/black"
             android:textSize="@dimen/_12sp_text_size"
             android:layout_marginStart="@dimen/_16dp"
             app:layout_constraintStart_toStartOf="@+id/enterFarmLocationDescription"
@@ -295,8 +290,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/farmSizeInHaInput"
-                android:fontFamily="@font/montserrat_medium"
-                android:layout_width="match_parent"
+                android:fontFamily="@font/nunito_sans"                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -310,8 +304,7 @@
             android:layout_marginEnd="@dimen/_16dp"
             android:entries="@array/year_of_farm_mapping"
             android:background="@drawable/rounded_corner"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/yourFarmSizeInHectares" />
 
@@ -321,8 +314,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:text="Year of farming"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerYearOfFarming"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintBottom_toTopOf="@+id/spinnerYearOfFarming"
             app:layout_constraintStart_toStartOf="@+id/spinnerYearOfFarming" />
 
 
@@ -332,8 +324,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:text="Farm size"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toTopOf="@+id/yourFarmSizeInHectares"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintBottom_toTopOf="@+id/yourFarmSizeInHectares"
             app:layout_constraintStart_toStartOf="@+id/yourFarmSizeInHectares" />
 
         <Spinner
@@ -345,8 +336,7 @@
             android:layout_marginEnd="@dimen/_16dp"
             android:entries="@array/season_of_farm_mapping"
             android:background="@drawable/rounded_corner"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerYearOfFarming" />
         <TextView
@@ -355,8 +345,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:text="Season"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerSeason"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintBottom_toTopOf="@+id/spinnerSeason"
             app:layout_constraintStart_toStartOf="@+id/spinnerSeason" />
         <Spinner
             android:id="@+id/spinnerOwnershipType"
@@ -367,8 +356,7 @@
             android:layout_marginEnd="@dimen/_16dp"
             android:entries="@array/farm_ownership_type"
             android:background="@drawable/rounded_corner"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerSeason" />
         <TextView
@@ -377,8 +365,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:text="Farm owership type"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerOwnershipType"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintBottom_toTopOf="@+id/spinnerOwnershipType"
             app:layout_constraintStart_toStartOf="@+id/spinnerOwnershipType" />
 
         <Spinner
@@ -390,8 +377,7 @@
             android:layout_marginEnd="@dimen/_16dp"
             android:entries="@array/counties"
             android:background="@drawable/rounded_corner"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerOwnershipType" />
         <TextView
@@ -400,8 +386,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:text="County location of the farm"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerCountyLocationOftheFarm"
+            android:fontFamily="@font/nunito_sans"            app:layout_constraintBottom_toTopOf="@+id/spinnerCountyLocationOftheFarm"
             app:layout_constraintStart_toStartOf="@+id/spinnerCountyLocationOftheFarm" />
 
 
@@ -431,7 +416,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/stimatedFarmersPerDayInput"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -441,8 +426,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Estimated Number of Farmers Per Day"
-            android:fontFamily="@font/montserrat_medium"
-            android:layout_marginBottom="@dimen/_2dp"
+            android:fontFamily="@font/nunito_sans"            android:layout_marginBottom="@dimen/_2dp"
             app:layout_constraintBottom_toTopOf="@+id/enterEstimatedFarmersPerDay"
             app:layout_constraintStart_toStartOf="@+id/enterEstimatedFarmersPerDay" />
 
@@ -453,8 +437,7 @@
             android:layout_marginStart="@dimen/_16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="@dimen/_16dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="Create Farm"
+            android:fontFamily="@font/nunito_sans"            android:text="Create Farm"
             android:background="@drawable/rounded_corner"
             android:textAllCaps="false"
             android:clickable="true"

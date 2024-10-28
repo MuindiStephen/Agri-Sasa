@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     android:fillViewport="true"
     android:scrollbars="none"
     android:fitsSystemWindows="true"
@@ -17,7 +16,7 @@
 
         <include
             android:id="@+id/includeToolBar"
-            layout="@layout/custom_toolbar"
+            layout="@layout/custom_toolbar_ui_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,50 +24,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/menuIconHomeDashboard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="60dp"
-            android:layout_marginTop="@dimen/_4dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:visibility="invisible"
-            android:foreground="?android:selectableItemBackground"
-            app:layout_constraintBottom_toTopOf="@+id/textViewLastLoggedInTimeDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/includeToolBar"
-            app:srcCompat="@drawable/ic_hamburger_menu" />
 
         <TextView
         android:id="@+id/textView10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:text="What would you like to know??"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:text="What would you like to do?"
         android:textColor="@color/main_black"
-        android:textSize="22sp"
+            android:textSize="16sp"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeToolBar"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLastLoggedInTimeDate"
         android:focusable="true" />
 
         <HorizontalScrollView
             android:id="@+id/TopicsChipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/_16dp"
             android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@id/textView10">
+            android:layout_marginTop="@dimen/_4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView179">
 
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="@dimen/_32dp">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip1"
@@ -79,8 +68,8 @@
                     android:textColor="@color/text_color"
                     app:chipBackgroundColor="@color/main1"
                     app:chipCornerRadius="14dp"
-                    app:chipIcon="@drawable/ic_plant_growing_svgrepo_com2"
-                    app:chipIconTint="@color/white" />
+                    app:chipIconTint="@color/white"
+                    />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip2"
@@ -104,7 +93,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Trending topics"
-                    app:chipCornerRadius="14dp" />
+                    app:chipCornerRadius="14dp"
+                    android:layout_marginEnd="@dimen/_16dp"
+                    />
 
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
@@ -306,27 +297,17 @@
                 android:layout_gravity="center"/>
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/logoutText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
-            android:text="TextView"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/includeToolBar"
-            app:layout_constraintEnd_toEndOf="@+id/includeToolBar"
-            app:layout_constraintTop_toTopOf="@+id/includeToolBar"
-            app:layout_constraintVertical_bias="0.54" />
 
         <TextView
             android:id="@+id/textViewLastLoggedInTimeDate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:fontFamily="@font/montserrat_medium"
+            android:layout_height="19dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/_1dp"
+            android:fontFamily="@font/nunito_sans"
             android:text="@string/last_login_apr_10_2024"
             android:textColor="@color/main"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
 
@@ -337,7 +318,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvViewAllGAPs"
+            app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup"
             >
 
             <androidx.recyclerview.widget.RecyclerView
@@ -353,24 +334,22 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-
         <TextView
             android:id="@+id/tvViewAllGAPs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="17dp"
-            android:layout_marginTop="8dp"
-            android:text="View all GAPs >>"
-            android:textSize="@dimen/_12sp_text_size"
+            android:layout_marginEnd="16dp"
             android:clickable="true"
             android:focusable="true"
-            android:textColor="@color/light_blue"
-            android:textStyle="bold"
+            android:fontFamily="@font/nunito_sans"
             android:foreground="?attr/selectableItemBackground"
-            android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toTopOf="@+id/swipeRefreshRecView"
+            android:text="View all GAPs"
+            android:textColor="@color/main1"
+            android:textSize="@dimen/_12sp_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView179"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TopicsChipGroup" />
+            app:layout_constraintTop_toTopOf="@+id/textView179" />
 
 
         <ProgressBar
@@ -395,7 +374,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="32dp"
             android:gravity="center_horizontal"
-            android:fontFamily="@font/montserrat_semibold"
+            android:fontFamily="@font/nunito_sans_bold"
             android:text="No GAP records found now! Consider checking your internet connection and try again."
             android:textSize="12sp"
             android:visibility="gone"
@@ -419,5 +398,16 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/no_records_available" />
+
+        <TextView
+            android:id="@+id/textView179"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Categories"
+            android:textSize="@dimen/_14sp_text_size"
+            android:fontFamily="@font/nunito_sans"
+            app:layout_constraintStart_toStartOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

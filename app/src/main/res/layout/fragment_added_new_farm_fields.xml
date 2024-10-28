@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.main.AddedNewFarmFieldsFragment">
 
@@ -16,6 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:textColor="@color/white"
+        app:startIconDrawable="@drawable/ic_search"
         app:endIconDrawable="@drawable/baseline_close_24"
         app:endIconMode="custom"
         app:endIconTint="#aaaaaa"
@@ -29,32 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner"
-            android:hint="@string/search_for_farm"
+            android:hint="         Search for farm"
             android:inputType="text"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:imeOptions="actionSearch"
             android:textColorHint="@color/main" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonAddNewFarmField"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/add_new_farm"
-        android:textAllCaps="false"
-        android:textColor="@color/main"
-        android:clickable="true"
-        android:focusable="true"
-        android:fontFamily="@font/montserrat_medium"
-        android:foreground="?attr/selectableItemBackground"
-        android:background="@drawable/rounded_corner"
-        android:layout_marginStart="@dimen/_16dp"
-        android:layout_marginEnd="@dimen/_16dp"
-        app:layout_constraintEnd_toEndOf="@+id/searchViewFarmField"
-        app:layout_constraintStart_toStartOf="@+id/searchViewFarmField"
-        app:layout_constraintTop_toBottomOf="@+id/searchViewFarmField" />
+
 
     <TextView
         android:id="@+id/textView107"
@@ -62,16 +45,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:text="@string/farms_available"
-        android:fontFamily="@font/montserrat_medium"
-        app:layout_constraintStart_toStartOf="@+id/buttonAddNewFarmField"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddNewFarmField" />
+        android:fontFamily="@font/nunito_sans"
+        app:layout_constraintStart_toStartOf="@+id/searchViewFarmField"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewFarmField" />
 
     <TextView
         android:id="@+id/textViewFarmFieldInitialLr"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/circle_custom"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/nunito_sans_bold"
         android:gravity="center_horizontal|center_vertical"
         android:letterSpacing="0.03"
         android:lineSpacingExtra="3sp"
@@ -101,14 +84,49 @@
         android:id="@+id/textViewNoFarmsAvailable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Farms Available"
         android:fontFamily="@font/montserrat_medium"
+        android:text="No Farms Available"
         android:textSize="@dimen/_16sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searchViewFarmField" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLottieNoRecords"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonAddNewFarmField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/main1"
+        android:clickable="true"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:layout_marginBottom="61dp"
+        android:src="@drawable/ic_add"
+        app:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/addfarmfield"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"/>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/imageViewLottieNoRecords"
+        android:layout_width="@dimen/_200dp"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewFarmFieldInitialLr"
+        app:layout_constraintVertical_bias="0.61"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/no_records_available" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

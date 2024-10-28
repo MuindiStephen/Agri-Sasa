@@ -277,6 +277,9 @@
         <action
             android:id="@+id/action_marketProduce_to_marketProduceInDetailsFragment"
             app:destination="@id/marketProduceInDetailsFragment" />
+        <action
+            android:id="@+id/action_marketProduce_to_myCartBuyerFragment"
+            app:destination="@id/myCartBuyerFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
@@ -426,6 +429,12 @@
         <action
             android:id="@+id/action_yourAccountFragment_to_transactionsHistory2"
             app:destination="@id/transactionsHistory2" />
+        <action
+            android:id="@+id/action_yourAccountFragment_to_profileDetailsAccountFragment"
+            app:destination="@id/profileDetailsAccountFragment" />
+        <action
+            android:id="@+id/action_yourAccountFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpFragment"
@@ -617,10 +626,13 @@
         tools:layout="@layout/fragment_added_new_farm_fields" >
         <action
             android:id="@+id/action_addedNewFarmFieldsFragment_to_addNewFarmFieldFragment"
-            app:destination="@id/addNewFarmFieldFragment" />
+            app:destination="@id/addNewFarmFieldFragment"
+            app:popUpTo="@id/addedNewFarmFieldsFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_addedNewFarmFieldsFragment_to_monitorFarmConditionFragment"
-            app:destination="@id/monitorFarmConditionFragment" />
+            app:destination="@id/monitorFarmConditionFragment"
+            app:popUpTo="@id/addedNewFarmFieldsFragment" />
     </fragment>
     <fragment
         android:id="@+id/manualWalkingFarmMappingFragment"
@@ -807,7 +819,26 @@
         android:id="@+id/marketProduceInDetailsFragment"
         android:name="com.steve_md.smartmkulima.ui.fragments.main.buyer.MarketProduceInDetailsFragment"
         android:label="fragment_market_produce_in_details"
-        tools:layout="@layout/fragment_market_produce_in_details" />
+        tools:layout="@layout/fragment_market_produce_in_details" >
+        <action
+            android:id="@+id/action_marketProduceInDetailsFragment_to_myCartBuyerFragment"
+            app:destination="@id/myCartBuyerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myCartBuyerFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.buyer.MyCartBuyerFragment"
+        android:label="fragment_my_cart_buyer"
+        tools:layout="@layout/fragment_my_cart_buyer" />
+    <fragment
+        android:id="@+id/profileDetailsAccountFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.ProfileDetailsAccountFragment"
+        android:label="fragment_profile_details_account"
+        tools:layout="@layout/fragment_profile_details_account" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.others.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 
 
 </navigation>

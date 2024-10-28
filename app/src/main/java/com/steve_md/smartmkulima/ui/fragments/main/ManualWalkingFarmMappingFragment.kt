@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationListener
@@ -54,6 +55,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
 
     private lateinit var locationManager: LocationManager
     private lateinit var locationListener: LocationListener
+    private lateinit var locationCallback: LocationCallback
 
 
     companion object {
@@ -77,11 +79,54 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                super.onLocationResult(locationResult)
+                if (isMappingActive) {
+                    for (location in locationResult.locations) {
+                        val latLng = LatLng(location.latitude, location.longitude)
+                        pathPoints.add(latLng)
+                        googleMap.addMarker(MarkerOptions().position(latLng))
+
+                        // Draw a polyline connecting the pathPoints
+                        googleMap.addPolyline(
+                            PolylineOptions()
+                                .addAll(pathPoints)
+                                .color(0xFF0000FF.toInt())  // Blue color
+                                .width(5f)
+                        )
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
+
+                        updatePolygonArea()
+                    }
+                }
+            }
+        }
+
          //set up location manager
 
         binding.apply {
             buttonStartMapping.setOnClickListener {
+
+                val locationRequest = LocationRequest.create().apply {
+                    interval = 5000
+                    fastestInterval = 2000
+                    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                }
+
                 isMappingActive = true
+
+                if (ActivityCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    requestLocationPermission()
+                }
+                fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
                 buttonStartMapping.visibility = View.GONE
                 buttonStopMapping.visibility = View.VISIBLE
                 showMappingInProgressDialog()
@@ -89,6 +134,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
 
             buttonStopMapping.setOnClickListener {
                 isMappingActive = false
+                fusedLocationClient.removeLocationUpdates(locationCallback) //
                 buttonStopMapping.visibility = View.GONE
                 buttonRedoMapping.visibility = View.VISIBLE
                 buttonSaveMappedArea.visibility = View.VISIBLE
@@ -117,14 +163,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
     }
 
 
-    /*
-    private fun getPolygonCorners(startLatLng: LatLng, endLng: LatLng) {
-        val corners = arrayOfNulls<LatLng>(4)
-        corners[0] = computeOffsetOrigin(endLng, 12.0, 16.0) // test dummy values
-    }
-     */
-
-
     private fun saveMapppedArea() {
 
         val calculatedFarmSize = SphericalUtil.computeArea(pathPoints) // area in Metres squared
@@ -135,7 +173,6 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         val bundle = bundleOf(
             Pair("FARM_SIZE","$areaInHectares"), Pair("FARM_COORDINATES","$bdPointString")
         )
-
         findNavController().navigate(R.id.addNewFarmFieldFragment, bundle)
     }
 
@@ -177,57 +214,31 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
      * current location on the Map.
      */
     private fun getMyCurrentLocationANDStartManualMapping() {
-
-
-        // Zoom to current location
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                googleMap.moveCamera(
-                    CameraUpdateFactory.newLatLngZoom(
-                        currentLatLng,
-                        18f
-                    )
-                ) // Zoom to current location
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 18f))
             }
         }
 
-        // Initialize PolylineOptions to track the walking path
-        val polylineOptions = PolylineOptions()
-            .color(0xFF0000FF.toInt()) // Blue color for the path
-            .width(5f)
+        val polylineOptions = PolylineOptions().color(0xFF0000FF.toInt()).width(5f)
 
-
-        if (isMappingActive) {
-
-            if (ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                requestLocationPermission()
-            } else {
-
-
-                /**
-                 * Real time tracking
-                 */
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            if (isMappingActive) {
+                Timber.e("Manual Mapping: MAPPING is ON.")
                 val locationRequest = LocationRequest.create().apply {
                     interval = 5000
                     fastestInterval = 2000
                     priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                 }
 
-
-                /**
-                 * Geographic Information Systems.
-                 */
-
-                // GPS to record user movement , track and provide location updates.
-                // Start plotting immediately.
                 fusedLocationClient.requestLocationUpdates(
                     locationRequest,
                     object : LocationCallback() {
@@ -237,8 +248,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
                                 val latLng = LatLng(location.latitude, location.longitude)
                                 pathPoints.add(latLng)
 
+                                // Update the path with polyline and markers
                                 googleMap.addMarker(MarkerOptions().position(latLng))
-
                                 polylineOptions.add(latLng)
                                 googleMap.addPolyline(polylineOptions)
 
@@ -250,12 +261,14 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
                     },
                     Looper.getMainLooper()
                 )
-            }
             } else {
                 showMappingNotYetStartedDialog()
+                Timber.e("Manual Mapping: MAPPING FAILED.")
             }
+        } else {
+            requestLocationPermission()
         }
-
+    }
 
     private fun updatePolygonArea() {
         if (pathPoints.size > 2) {
@@ -263,7 +276,11 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
             val areaInHectares = areaInSquareMeters / 10000
 
             // Display the area in real time
-            binding.buttonSaveMappedArea.text = "Area: %.2f ha".format(areaInHectares)
+            binding.buttonSaveMappedArea.text = "Area Mapped: ${areaInSquareMeters} ha"
+                // "Area: %.7f ha".format(areaInHectares)
+               // "Area Mapped: ${areaInSquareMeters} ha"
+            Timber.d("Updated Polygon => Mappped Area: ${areaInHectares} hectares")
+
         }
     }
 
@@ -312,6 +329,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE)
                 as LocationManager
 
+
         locationListener = LocationListener { location ->
             // Handle new location
             val latitude = location.latitude
@@ -353,6 +371,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
         googleMap.clear()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun createPolygon() {
         if (pathPoints.size > 0) {
             farmPolygon = googleMap.addPolygon(
@@ -368,7 +387,8 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
             val areaInHectares = areaInSquareMeters / 10000
 
             // Display the area
-            binding.buttonSaveMappedArea.text = "Save Mapped Area: %.2f ha".format(areaInHectares)
+            binding.buttonSaveMappedArea.text =  "Save Mapped Area: $areaInSquareMeters"
+                //"Save Mapped Area: %.7f ha".format(areaInHectares)
             Timber.d("Mapped $areaInHectares ha")
 
         }

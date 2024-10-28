@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -68,24 +69,11 @@ class ApplyInsuranceFragment : Fragment() {
             displaySnackBar("View transactions history")
 
             if (transactionList.isEmpty()) {
-                displaySnackBar("No new transactions")
+                binding.noNewTxns.isVisible = true
+                binding.tvNoTrxns.isVisible = true
             }
         }
-        /** NB: Not working correctly
-        transactionDao.getAllTransactions().observe(this) { transactions ->
-            if (transactions.isEmpty()) {
-               displaySnackBar("No new transactions")
-            }
-            else {
-               activity?.runOnUiThread {
-                   transactionAdapter.submitList(transactions)
-                   transactionAdapter.notifyDataSetChanged()
-                   binding.allInsuranceTransactionsRecyclerView.adapter = transactionAdapter
-                   displaySnackBar("Transactions History updated")
-               }
-            }
-        }
-        */
+
     }
 
     private fun setUpBinding() {

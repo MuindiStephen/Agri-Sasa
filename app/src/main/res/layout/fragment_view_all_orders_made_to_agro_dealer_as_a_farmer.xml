@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.main.ViewAllOrdersMadeToAgroDealerAsAFarmerFragment">
 
 
@@ -30,7 +29,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Easily track orders you made to agro-dealers\nhere."
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans_bold"
         android:textSize="@dimen/_14sp_text_size"
         app:layout_constraintStart_toStartOf="@+id/toolbar4"
         app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
@@ -39,10 +38,10 @@
         android:id="@+id/textView170"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Placed Orders"
-        android:fontFamily="@font/montserrat_semibold"
-        android:textSize="@dimen/_16sp_text_size"
+        android:layout_marginTop="8dp"
+        android:text="Placed orders"
+        android:fontFamily="@font/nunito_sans"
+        android:textSize="@dimen/_12sp_text_size"
         app:layout_constraintStart_toStartOf="@+id/textView169"
         app:layout_constraintTop_toBottomOf="@+id/textView169" />
 
@@ -51,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:listitem="@layout/item_farmer_track_orders_to_agrodealers_row"
-        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

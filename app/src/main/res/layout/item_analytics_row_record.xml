@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray">
+   >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card11"
@@ -20,7 +20,7 @@
         android:layout_marginTop="4dp"
         app:cardCornerRadius="@dimen/_10dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/bg_gray"
+        android:backgroundTint="@color/color_shade_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/circle_custom"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="0.03"
                 android:lineSpacingExtra="3sp"
@@ -57,10 +57,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8dp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/nunito_sans_semibold"
                 android:text="Spinach"
-                android:textSize="@dimen/_12sp_text_size"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewFarmFieldInitialLr"
+                android:textSize="@dimen/_14sp_text_size"
                 app:layout_constraintStart_toEndOf="@+id/textViewFarmFieldInitialLr"
                 app:layout_constraintTop_toTopOf="@+id/textViewFarmFieldInitialLr" />
 
@@ -68,39 +67,31 @@
                 android:id="@+id/textView119"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Expenses: Kes. 200"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="224dp"
+                android:fontFamily="@font/nunito_sans"
+                android:text="Total revenues: Kes. 200"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView109"
+                app:layout_constraintTop_toBottomOf="@+id/textView109" />
 
-            <TextView
-                android:id="@+id/textView124"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Revenues: Kes 1500"
-                android:textSize="10sp"
-                android:layout_marginEnd="@dimen/_8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView119" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView125"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:layout_marginTop="4dp"
-                android:text="Open >>"
-                android:textSize="10sp"
-                android:textStyle="bold"
+                android:src="@drawable/right_chevron"
+                app:tint="@color/main1"
+                android:focusable="true"
+                android:clickable="true"
+                android:layout_marginEnd="@dimen/_16dp"
                 android:textColor="@color/light_blue"
-                android:foreground="?android:selectableItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:fontFamily="@font/montserrat_medium"
-                app:layout_constraintEnd_toEndOf="@+id/textView124"
-                app:layout_constraintTop_toBottomOf="@+id/textView124" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

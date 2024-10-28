@@ -18,6 +18,11 @@ import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+
+/**
+ * View orders in details as an agrodealer user
+ * logged in the app
+ */
 @AndroidEntryPoint
 class AgroDealerViewOrderListItemsInDetailFragment : Fragment() {
 

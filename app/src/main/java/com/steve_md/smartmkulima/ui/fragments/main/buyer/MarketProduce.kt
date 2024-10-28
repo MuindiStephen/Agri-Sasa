@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.FarmProduceAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMarketProduceBinding
@@ -26,7 +27,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
+/**
+ * Market produce - Buyers access
+ */
 @AndroidEntryPoint
 class MarketProduce : Fragment() {
 
@@ -48,9 +51,8 @@ class MarketProduce : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
         subScribeToFarmProduceObserver()
+
         setUpBinding()
-
-
 
         farmProduceAdapter =
             FarmProduceAdapter(FarmProduceAdapter.OnClickListener { farmProduce ->
@@ -65,6 +67,7 @@ class MarketProduce : Fragment() {
             })
     }
     private fun setUpBinding() {
+
 
         // Filters Search results as you type in the Edit Text
         binding.inputSearchFarmProduce.addTextChangedListener( object : TextWatcher {
@@ -91,6 +94,14 @@ class MarketProduce : Fragment() {
         binding.apply {
             imageView4.setOnClickListener {
                 findNavController().navigateUp()
+            }
+
+            imageView33.setOnClickListener {
+
+                // navigate to cart.
+                findNavController().navigate(
+                    R.id.myCartBuyerFragment
+                )
             }
         }
 
@@ -168,5 +179,10 @@ class MarketProduce : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.farmProduceRecyclerView.isVisible = true
     }
 }

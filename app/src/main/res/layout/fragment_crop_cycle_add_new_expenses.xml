@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.others.crop_cycle.CropCycleAddNewExpensesFragment">
 
 
@@ -16,7 +15,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="@dimen/_16dp"
         android:background="@drawable/rounded_corner"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar3Expense" />
@@ -27,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name of crop cycle"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:layout_marginBottom="@dimen/_2dp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerNameOfCycle"
         app:layout_constraintStart_toStartOf="@+id/spinnerNameOfCycle" />
@@ -60,7 +59,7 @@
             android:id="@+id/inputExpenseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +105,7 @@
             android:id="@+id/inputExpenseAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +153,7 @@
             android:id="@+id/inputExpenseDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -167,7 +166,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/main1"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/nunito_sans_bold"
         android:text="Confirm"
         android:textAllCaps="false"
         android:focusable="true"
@@ -186,7 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
         android:text="Task"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintBottom_toTopOf="@+id/spinnerentertaskname"
         app:layout_constraintStart_toStartOf="@+id/spinnerentertaskname" />
 

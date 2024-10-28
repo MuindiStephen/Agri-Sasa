@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.main.fieldagents.FieldAgentDashboardFragment">
 
     <include
         android:id="@+id/includeToolBar"
-        layout="@layout/custom_toolbar"
+        layout="@layout/custom_toolbar_ui_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,11 +20,11 @@
         android:id="@+id/textViewLastLoggedInTimeDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
+        android:layout_marginStart="16dp"
         android:text="@string/last_login_apr_10_2024"
         android:textSize="12sp"
         android:textColor="@color/main"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/includeToolBar" />
 
@@ -33,11 +32,11 @@
         android:id="@+id/textViewWhatTODO"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/_8dp"
         android:text="Welcome back, what would you like to do today?"
         android:textSize="@dimen/_12sp_text_size"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintTop_toBottomOf="@id/textViewLastLoggedInTimeDate"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -48,7 +47,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="@dimen/_16dp"
-        app:cardBackgroundColor="@color/gray"
+        app:cardBackgroundColor="@color/color_shade_gray"
         app:cardCornerRadius="@dimen/_8dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +68,7 @@
                 android:clickable="true"
                 android:drawableLeft="@drawable/ic_view"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:foreground="?android:selectableItemBackground"
                 android:text="View\n AgroDealers"
                 android:textAllCaps="false"
@@ -87,7 +86,7 @@
                 android:clickable="true"
                 android:drawableLeft="@drawable/baseline_add_24"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:foreground="?android:selectableItemBackground"
                 android:text="Add \nAgroDealer"
                 android:textAllCaps="false"
@@ -105,7 +104,7 @@
         android:layout_marginTop="8dp"
         android:text="AGRO-DEALERS"
         android:textSize="@dimen/_14sp_text_size"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintStart_toStartOf="@+id/cardView19"
         app:layout_constraintTop_toBottomOf="@+id/cardView19" />
 
@@ -133,7 +132,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner"
             android:drawableLeft="@drawable/ic_search"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/nunito_sans"
             android:hint="    Search Agrodealer"
             android:imeOptions="actionSearch"
             android:inputType="text"
@@ -192,7 +191,7 @@
         android:text="Current Earnings: 0 points worth KSH. 0"
         android:textSize="@dimen/_14sp_text_size"
         android:textColor="@color/fireBrickRed"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans_bold"
         app:layout_constraintStart_toStartOf="@+id/textViewWhatTODO"
         app:layout_constraintTop_toBottomOf="@+id/textViewWhatTODO" />
 </androidx.constraintlayout.widget.ConstraintLayout>

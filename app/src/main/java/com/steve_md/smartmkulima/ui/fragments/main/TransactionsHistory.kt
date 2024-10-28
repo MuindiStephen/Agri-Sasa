@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
@@ -41,6 +42,7 @@ class TransactionsHistory : Fragment() {
         val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java,"shambaapp-db")
             .fallbackToDestructiveMigration()
             .build()
+
         transactionDao = db.transactionDao()
 
         lifecycleScope.launch {
@@ -50,10 +52,11 @@ class TransactionsHistory : Fragment() {
             }
             transactionAdapter.submitList(transactionList)
             binding.transactionsHistory.adapter = transactionAdapter
-            displaySnackBar("View transactions history")
 
             if (transactionList.isEmpty()) {
                 displaySnackBar("No new transactions")
+                binding.noNewTxns.isVisible = true
+                binding.tvNoTrxns.isVisible = true
             }
         }
     }

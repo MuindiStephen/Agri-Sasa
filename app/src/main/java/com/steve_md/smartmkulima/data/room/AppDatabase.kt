@@ -6,6 +6,8 @@ import androidx.room.TypeConverters
 import com.steve_md.smartmkulima.data.room.converters.Converters
 import com.steve_md.smartmkulima.data.room.converters.FarmInputCartItemConverters
 import com.steve_md.smartmkulima.data.room.converters.LocalFarmCycleConverter
+import com.steve_md.smartmkulima.model.BuyerCart
+import com.steve_md.smartmkulima.model.BuyerCartDao
 import com.steve_md.smartmkulima.model.Cycle
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
@@ -32,8 +34,10 @@ import com.steve_md.smartmkulima.model.responses.fieldagent.Data
     FarmFinanceRevenueRecords::class, FarmFinancialDataSummary::class,
     OrderCheckoutByFarmer::class,
     FieldAgentAddAgroDealerData::class,
-    Data::class,  FieldAgentEarnings::class, com.steve_md.smartmkulima.model.responses.buyer.Data::class],
-    version = 13,exportSchema = false)
+    Data::class,  FieldAgentEarnings::class,
+    com.steve_md.smartmkulima.model.responses.buyer.Data::class,
+    BuyerCart::class],
+    version = 14,exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao
@@ -60,6 +64,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun fieldAgentUserDao(): FieldAgentUserDao
 
     abstract fun buyerDao(): BuyersDao
+
+    abstract fun buyerCartDao(): BuyerCartDao
 
     /**
      * Implement singleton pattern in room to prevent

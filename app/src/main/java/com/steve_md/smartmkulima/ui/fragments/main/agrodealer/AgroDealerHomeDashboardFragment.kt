@@ -22,6 +22,10 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.Calendar
 
+
+/**
+ * Home dashboard for user - agrodealer
+ */
 @AndroidEntryPoint
 class AgroDealerHomeDashboardFragment : Fragment() {
 

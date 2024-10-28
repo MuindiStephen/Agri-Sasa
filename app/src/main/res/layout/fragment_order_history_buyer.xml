@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/_0dp"
+    app:cardBackgroundColor="@color/color_shade_gray"
+    app:cardCornerRadius="@dimen/_10dp"
+    android:layout_margin="@dimen/_8dp"
+    tools:context=".ui.fragments.main.buyer.OrderHistoryBuyerFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textView157"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="#Order No: 1234"
+            android:textSize="@dimen/_14sp_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView158"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Total Kes. 2400"
+            android:textSize="@dimen/_14sp_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView159"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Status: Pending"
+            android:textStyle="italic"
+            android:textColor="@color/fireBrickRed"
+            android:textSize="@dimen/_14sp_text_size"
+            app:layout_constraintStart_toStartOf="@+id/textView157"
+            app:layout_constraintTop_toBottomOf="@+id/textView157" />
+
+        <TextView
+            android:id="@+id/textView160"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Farmer contact info: farmer@gmail.com"
+            android:textSize="@dimen/_14sp_text_size"
+            app:layout_constraintStart_toStartOf="@+id/textView159"
+            app:layout_constraintTop_toBottomOf="@+id/textView159" />
+
+        <TextView
+            android:id="@+id/textView161"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Farmer Location: 1.4km away"
+            android:textSize="@dimen/_14sp_text_size"
+            app:layout_constraintStart_toStartOf="@+id/textView160"
+            app:layout_constraintTop_toBottomOf="@+id/textView160" />
+
+
+        <TextView
+            android:id="@+id/textView162"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="View >>"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textColor="@color/main"
+            android:foreground="?android:selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/textView161"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView161" />
+
+
+    <TextView
+        android:id="@+id/textView177"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No order records"
+        android:textSize="@dimen/_14sp_text_size"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:fontFamily="@font/montserrat_semibold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView178"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Products: Wine Berries, Quantity: 1"
+        android:textSize="@dimen/_14sp_text_size"
+        android:fontFamily="@font/nunito_sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_8dp"
+        app:layout_constraintStart_toStartOf="@+id/textView161"
+        app:layout_constraintTop_toBottomOf="@+id/textView161" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

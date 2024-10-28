@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     tools:context=".ui.fragments.main.PredictYourCropProductionFragment">
@@ -21,8 +20,8 @@
            android:layout_marginStart="16dp"
            android:layout_marginTop="84dp"
            android:layout_marginEnd="24dp"
-           android:fontFamily="@font/montserrat_semibold"
-           android:text="@string/we_use_linear_regression_machine_learning_algorithm_to_predict_your_farm_crop_yields"
+           android:fontFamily="@font/nunito_sans_semibold"
+           android:text="We use Machine learning models to predict your crop yields."
            android:textSize="16sp"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintHorizontal_bias="0.0"
@@ -54,7 +53,7 @@
             android:layout_marginStart="32dp"
             android:layout_gravity="center"
             android:textSize="18sp"
-            android:fontFamily="@font/montserrat_semibold"
+            android:fontFamily="@font/nunito_sans"
             android:text="Predict Your Farm Output" />
     </LinearLayout>
 
@@ -63,28 +62,27 @@
            android:layout_width="match_parent"
            android:layout_height="50dp"
            android:layout_marginStart="@dimen/_16dp"
-           android:layout_marginTop="32dp"
            android:layout_marginEnd="@dimen/_16dp"
-           android:entries="@array/crop_list"
+           android:layout_marginTop="@dimen/_32dp"
            android:background="@drawable/rounded_corner"
-           android:fontFamily="@font/montserrat_medium"
+           android:entries="@array/crop_list"
+           android:fontFamily="@font/nunito_sans"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/buttonGetGPSData" />
+           app:layout_constraintTop_toBottomOf="@+id/cardViewBtnsGetData2" />
 
        <Spinner
            android:id="@+id/enterSoilType"
            android:layout_width="match_parent"
            android:layout_height="50dp"
            android:layout_marginStart="16dp"
-           android:layout_marginTop="32dp"
            android:layout_marginEnd="16dp"
+           android:layout_marginTop="@dimen/_32dp"
            android:background="@drawable/rounded_corner"
            android:entries="@array/soil_type"
-           android:fontFamily="@font/montserrat_medium"
-           app:layout_constraintEnd_toEndOf="parent"
+           android:fontFamily="@font/nunito_sans"           app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/buttonGetIotSensorData" />
+           app:layout_constraintTop_toBottomOf="@+id/enterFarmSizeInHa" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -113,8 +111,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputRainfall"
-            android:fontFamily="@font/montserrat_medium"
-            android:layout_width="match_parent"
+            android:fontFamily="@font/nunito_sans"            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -127,8 +124,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:text="Predict yield"
-        android:fontFamily="@font/montserrat_medium"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/nunito_sans"        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerSowingSeason" />
 
@@ -139,8 +135,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Result?"
+        android:fontFamily="@font/nunito_sans"        android:text="Result?"
         android:textSize="16sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -178,8 +173,7 @@
            <com.google.android.material.textfield.TextInputEditText
                android:id="@+id/inputTemperature"
                android:layout_width="match_parent"
-               android:fontFamily="@font/montserrat_medium"
-               android:layout_height="wrap_content"
+               android:fontFamily="@font/nunito_sans"               android:layout_height="wrap_content"
                android:inputType="text" />
        </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,8 +204,7 @@
            <com.google.android.material.textfield.TextInputEditText
                android:id="@+id/inputHumidity"
                android:layout_width="match_parent"
-               android:fontFamily="@font/montserrat_medium"
-               android:layout_height="wrap_content"
+               android:fontFamily="@font/nunito_sans"               android:layout_height="wrap_content"
                android:inputType="text" />
        </com.google.android.material.textfield.TextInputLayout>
 
@@ -242,8 +235,7 @@
            <com.google.android.material.textfield.TextInputEditText
                android:id="@+id/farmSize"
                android:layout_width="match_parent"
-               android:fontFamily="@font/montserrat_medium"
-               android:layout_height="wrap_content"
+               android:fontFamily="@font/nunito_sans"               android:layout_height="wrap_content"
                android:inputType="text" />
        </com.google.android.material.textfield.TextInputLayout>
 
@@ -275,8 +267,7 @@
             android:id="@+id/inputSoilQualityPh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:inputType="text" />
+            android:fontFamily="@font/nunito_sans"            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
        <com.google.android.material.textfield.TextInputLayout
@@ -307,8 +298,7 @@
                android:id="@+id/inputNBKLevel"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:fontFamily="@font/montserrat_medium"
-               android:inputType="text" />
+               android:fontFamily="@font/nunito_sans"               android:inputType="text" />
        </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -321,23 +311,10 @@
            android:layout_marginEnd="16dp"
            android:background="@drawable/rounded_corner"
            android:entries="@array/season"
-           android:fontFamily="@font/montserrat_medium"
-           app:layout_constraintEnd_toEndOf="parent"
+           android:fontFamily="@font/nunito_sans"           app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toBottomOf="@+id/enterNBKLevel" />
 
-       <Button
-           android:id="@+id/buttonGetGPSData"
-           android:layout_width="match_parent"
-           android:layout_height="60dp"
-           android:layout_marginStart="@dimen/_16dp"
-           android:layout_marginTop="@dimen/_8dp"
-           android:layout_marginEnd="@dimen/_16dp"
-           android:fontFamily="@font/montserrat_medium"
-           android:text="Get GPS Monitor Data"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="@+id/textView58"
-           app:layout_constraintTop_toBottomOf="@+id/textView95" />
 
        <TextView
            android:id="@+id/textView95"
@@ -356,7 +333,7 @@
            android:layout_marginBottom="2dp"
            android:text="Select Crop"
            android:textSize="@dimen/_14sp_text_size"
-           android:fontFamily="@font/montserrat_medium"
+           android:fontFamily="@font/nunito_sans"
            app:layout_constraintBottom_toTopOf="@+id/spinnerCropPredict"
            app:layout_constraintStart_toStartOf="@+id/spinnerCropPredict" />
 
@@ -367,8 +344,7 @@
            android:layout_marginBottom="2dp"
            android:text="Select the type of soil in your farm"
            android:textSize="@dimen/_14sp_text_size"
-           android:fontFamily="@font/montserrat_medium"
-           app:layout_constraintBottom_toTopOf="@+id/enterSoilType"
+           android:fontFamily="@font/nunito_sans"           app:layout_constraintBottom_toTopOf="@+id/enterSoilType"
            app:layout_constraintStart_toStartOf="@+id/enterSoilType" />
 
        <TextView
@@ -378,32 +354,101 @@
            android:layout_marginBottom="2dp"
            android:text="Select crop season"
            android:textSize="@dimen/_14sp_text_size"
-           android:fontFamily="@font/montserrat_medium"
-           app:layout_constraintBottom_toTopOf="@+id/spinnerSowingSeason"
+           android:fontFamily="@font/nunito_sans"           app:layout_constraintBottom_toTopOf="@+id/spinnerSowingSeason"
            app:layout_constraintStart_toStartOf="@+id/spinnerSowingSeason" />
 
-       <Button
-           android:id="@+id/buttonGetIotSensorData"
-           android:layout_width="match_parent"
-           android:layout_height="60dp"
-           android:layout_marginStart="@dimen/_16dp"
-           android:layout_marginTop="40dp"
-           android:layout_marginEnd="@dimen/_16dp"
-           android:fontFamily="@font/montserrat_medium"
-           android:text="Get IOT sensor data"
-           app:layout_constraintEnd_toEndOf="@id/enterFarmSizeInHa"
-           app:layout_constraintStart_toStartOf="@+id/enterFarmSizeInHa"
-           app:layout_constraintTop_toBottomOf="@+id/enterFarmSizeInHa" />
 
-       <TextView
-           android:id="@+id/textView105"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="16dp"
-           android:layout_marginBottom="4dp"
-           android:text="Click the button below to load IOT sensor data"
-           android:fontFamily="@font/montserrat_medium"
-           app:layout_constraintBottom_toTopOf="@+id/buttonGetIotSensorData"
-           app:layout_constraintStart_toStartOf="parent" />
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cardViewBtnsGetData"
+           android:layout_width="match_parent"
+           android:layout_height="100dp"
+           android:layout_marginStart="@dimen/_16dp"
+           android:layout_marginEnd="@dimen/_16dp"
+           android:backgroundTint="@color/color_shade_gray"
+           app:cardCornerRadius="@dimen/_16dp"
+           app:cardElevation="@dimen/_0dp"
+           android:layout_marginTop="@dimen/_16dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView58">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <Button
+                   android:id="@+id/buttonGetGPSData"
+                   android:layout_width="wrap_content"
+                   android:layout_height="55dp"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="16dp"
+                   android:layout_marginBottom="16dp"
+                   android:text="Get results"
+                   android:textAllCaps="false"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
+               <TextView
+                   android:id="@+id/textView65"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="16dp"
+                   android:fontFamily="@font/nunito_sans"
+                   android:text="Get GPS Monitor Data"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+       </androidx.cardview.widget.CardView>
+
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cardViewBtnsGetData2"
+           android:layout_width="match_parent"
+           android:layout_height="100dp"
+           android:layout_marginStart="@dimen/_16dp"
+           android:layout_marginEnd="@dimen/_16dp"
+           android:backgroundTint="@color/color_shade_gray"
+           app:cardCornerRadius="@dimen/_16dp"
+           app:cardElevation="@dimen/_0dp"
+           android:layout_marginTop="@dimen/_16dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/cardViewBtnsGetData">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <Button
+                   android:id="@+id/buttonGetIoTData"
+                   android:layout_width="wrap_content"
+                   android:layout_height="55dp"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="16dp"
+                   android:layout_marginBottom="16dp"
+                   android:text="Get results"
+                   android:textAllCaps="false"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/textViewIoTGet" />
+
+               <TextView
+                   android:id="@+id/textViewIoTGet"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="16dp"
+                   android:fontFamily="@font/nunito_sans"
+                   android:text="Get IoT Sensor Data"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+       </androidx.cardview.widget.CardView>
+
    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

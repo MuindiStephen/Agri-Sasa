@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.main.ApplyInsuranceFragment">
 
     <LinearLayout
@@ -26,27 +25,17 @@
             android:contentDescription="@string/arrow_back"
             android:src="@drawable/ic_arrow_back" />
 
-        <TextView
-            android:id="@+id/textView41"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/montserrat_semibold"
-            android:gravity="center"
-            android:text="@string/crop_insurance"
-            android:textColor="#F1ECE7"
-            android:textSize="18sp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView42"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:textColor="@color/textColor"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="@string/climate_change_or_the_weather_is_unpredictable_protect_your_crops_against_natural_calamities_such_as_pests_lack_of_rainfall_floods_and_theft"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="50dp"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:text="@string/insurance_plan_starting_from_ksh_1000"
                 android:textColor="@color/bg_gray"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/nunito_sans"
                 android:text="AGRI-SASA"
                 android:textColor="@color/bg_gray"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:text="@string/plan_validity_1_year"
                 android:textColor="@color/bg_gray"
                 android:textSize="8dp"
@@ -110,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/nunito_sans"
                 android:text="Prepaid Crop Insurance : "
                 android:textColor="@color/bg_gray"
                 android:textSize="16sp"
@@ -150,12 +139,12 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView11"
-        android:layout_marginStart="32dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardView12"
         app:layout_constraintStart_toStartOf="@+id/cardView10"
         app:layout_constraintTop_toBottomOf="@+id/cardView10">
 
@@ -165,8 +154,8 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:foregroundGravity="center"
                 android:src="@drawable/ic_add_shopping"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -181,25 +170,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Buy insurance"
+        android:fontFamily="@font/nunito_sans"
+        android:text="    Buy \nInsurance"
+        android:textSize="@dimen/_12sp_text_size"
         app:layout_constraintEnd_toEndOf="@+id/cardView11"
         app:layout_constraintStart_toStartOf="@+id/cardView11"
         app:layout_constraintTop_toBottomOf="@+id/cardView11" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView12"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="22dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView11"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toEndOf="@id/cardView11"
         app:layout_constraintTop_toTopOf="@+id/cardView11"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintEnd_toStartOf="@+id/cardView13"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -207,8 +197,8 @@
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_manage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -222,31 +212,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:text="Manage"
+        android:textSize="@dimen/_12sp_text_size"
         app:layout_constraintEnd_toEndOf="@+id/cardView12"
         app:layout_constraintStart_toStartOf="@+id/cardView12"
         app:layout_constraintTop_toBottomOf="@+id/cardView12" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView13"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView12"
+        app:layout_constraintEnd_toStartOf="@+id/cardView14"
         app:layout_constraintStart_toEndOf="@+id/cardView12"
-        app:layout_constraintTop_toTopOf="@+id/cardView12"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="@+id/cardView12">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_status"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -257,11 +250,12 @@
 
     <TextView
         android:id="@+id/textView51"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="Status"
+        android:textSize="@dimen/_12sp_text_size"
         app:layout_constraintEnd_toEndOf="@+id/cardView13"
         app:layout_constraintStart_toStartOf="@+id/cardView13"
         app:layout_constraintTop_toBottomOf="@+id/cardView13">
@@ -269,15 +263,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView14"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:backgroundTint="@color/main"
         app:cardCornerRadius="100dp"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView50">
+        android:layout_marginEnd="@dimen/_32dp"
+        android:layout_marginStart="@dimen/_32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView13"
+        app:layout_constraintEnd_toEndOf="@+id/cardView10"
+        app:layout_constraintTop_toTopOf="@+id/cardView13">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -285,8 +279,8 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_faqs"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -301,7 +295,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="FAGs"
-        android:fontFamily="@font/montserrat_medium"
+        android:textSize="@dimen/_12sp_text_size"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintEnd_toEndOf="@+id/cardView14"
         app:layout_constraintStart_toStartOf="@+id/cardView14"
         app:layout_constraintTop_toBottomOf="@+id/cardView14" />
@@ -310,13 +305,13 @@
         android:id="@+id/textView53"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="@dimen/_32dp"
+        android:fontFamily="@font/nunito_sans"
         android:text="Recent Transactions"
-        android:fontFamily="@font/montserrat_medium"
-        android:textSize="18sp"
-        android:layout_marginTop="16dp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -346,12 +341,46 @@
         android:id="@+id/tvViewAllTransactions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View All >>>"
-        android:fontFamily="@font/montserrat_medium"
+        android:text="View All"
+        android:textSize="@dimen/_14sp_text_size"
+        android:textColor="@color/main"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_marginEnd="@dimen/_32dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView53"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.913"
-        app:layout_constraintStart_toEndOf="@+id/textView53"
         app:layout_constraintTop_toTopOf="@+id/textView53" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/noNewTxns"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/_150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+        app:layout_constraintVertical_bias="0.8"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/no_records_available" />
+
+    <TextView
+        android:id="@+id/tvNoTrxns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="No transactions found."
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/noNewTxns"
+        app:layout_constraintVertical_bias="0.249" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_gray"
     tools:context=".ui.fragments.main.FarmEquipmentDetailsFragment">
 
     <LinearLayout
@@ -42,7 +41,7 @@
         android:id="@+id/cardView17"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/gray"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,9 +75,10 @@
         android:id="@+id/equipmentImageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Tractor"
-        android:textSize="22sp"
+        android:layout_marginTop="4dp"
+        android:text="Name: Tractor"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_sans_bold"
         app:layout_constraintStart_toStartOf="@+id/cardView17"
         app:layout_constraintTop_toBottomOf="@+id/cardView17" />
 
@@ -86,10 +86,10 @@
         android:id="@+id/equipmentYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Year: 2000"
-        android:fontFamily="@font/montserrat"
-        android:textSize="22sp"
+        android:fontFamily="@font/nunito_sans"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/equipmentImageText"
         app:layout_constraintTop_toBottomOf="@+id/equipmentImageText"
         app:layout_constraintVertical_bias="0.0" />
@@ -98,10 +98,10 @@
         android:id="@+id/costEquipmentHire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Ksh. 5000"
-        android:textSize="22sp"
-        android:fontFamily="@font/montserrat"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_sans"
         app:layout_constraintStart_toStartOf="@+id/equipmentYear"
         app:layout_constraintTop_toBottomOf="@+id/equipmentYear" />
 

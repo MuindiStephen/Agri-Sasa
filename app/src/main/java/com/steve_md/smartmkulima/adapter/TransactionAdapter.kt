@@ -10,6 +10,9 @@ import com.steve_md.smartmkulima.databinding.TransactionRowBinding
 import com.steve_md.smartmkulima.model.Transaction
 
 
+/**
+ * Transactions-Adapter for displaying transactions made.
+ */
 class TransactionAdapter : ListAdapter<Transaction, TransactionAdapter.MyViewHolder>(MyDiffUtil) {
 
     object MyDiffUtil : DiffUtil.ItemCallback<Transaction>() {

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="none"
+    tools:context=".ui.fragments.main.buyer.CurrentOrderBuyerFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartLineItemsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="48dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/textView96"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_deal_agrodealer_add_to_cart" />
+
+
+        <TextView
+            android:id="@+id/textView96"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Subtotal:"
+            android:textSize="@dimen/_14sp_text_size"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/textViewSubTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="Kes. 2000"
+            android:textSize="@dimen/_14sp_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/textView96"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView96"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView136"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Delivery fee:"
+            android:textSize="@dimen/_14sp_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView96"
+            app:layout_constraintTop_toBottomOf="@+id/textView96" />
+
+        <TextView
+            android:id="@+id/textView137"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="Kes. 200"
+            app:layout_constraintBottom_toBottomOf="@+id/textView136"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView96" />
+
+        <TextView
+            android:id="@+id/textView138"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Total:"
+            android:fontFamily="@font/nunito_sans"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/textView136"
+            app:layout_constraintTop_toBottomOf="@+id/textView136" />
+
+        <TextView
+            android:id="@+id/textView139"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Kes 2400"
+            android:textStyle="bold"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/textView137"
+            app:layout_constraintTop_toBottomOf="@+id/textView137" />
+
+        <Button
+            android:id="@+id/buttonCheckoutCartItems"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Checkout"
+            android:textAllCaps="false"
+            android:layout_marginBottom="@dimen/_32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView138" />
+
+        <TextView
+            android:id="@+id/noCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No carts found"
+            android:visibility="gone"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:textSize="@dimen/_14sp_text_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

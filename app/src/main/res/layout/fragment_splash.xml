@@ -41,7 +41,7 @@
         android:layout_marginBottom="24dp"
         android:text="Eclectics International Limited 2024"
         android:textColor="@color/bg_gray"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/nunito_sans"
         android:textSize="@dimen/_16sp_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
