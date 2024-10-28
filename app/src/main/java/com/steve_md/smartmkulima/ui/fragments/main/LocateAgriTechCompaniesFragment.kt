@@ -2,9 +2,13 @@ package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +28,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
@@ -100,7 +103,6 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
            findNavController().navigateUp()
         }
 
-
         // Inflate Data To Recycler View
         val recyclerView = view?.findViewById<RecyclerView>(R.id.agrodealersListRecView)
         recyclerView!!.layoutManager = LinearLayoutManager(requireContext())
@@ -171,6 +173,12 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
     }
 
     private fun getMyCurrentLocation() {
+
+        if (!isLocationEnabled()) {
+            promptEnableLocationServices()
+            return
+        }
+
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 ACCESS_FINE_LOCATION
@@ -179,17 +187,26 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                 ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            promptUserForLocationPermissions()
+            requestLocationPermission()
             return
         }
 
         locationProvider = LocationProvider(this.requireContext())
         locationProvider.getLastKnownLocation { location ->
-                val userLatLng = location?.let { LatLng(it.latitude, location.longitude) }
-                val agrodealers = getAgroDealersData().filter { agrovet ->
-                    val agrovetLatLng = LatLng(agrovet.latitude, agrovet.longitude)
-                    userLatLng?.let { calculateDistance(it, agrovetLatLng) }!! <= SEARCH_RADIUS_METERS
-                }
+
+            if (location == null) {
+                displaySnackBar("Unable to get current location. Please check your settings")
+                return@getLastKnownLocation
+            } else {
+                Timber.tag("LocateNearAgroDealersFragment").e("Location services are enabled." +
+                        " Showing nearby agro-dealers to the user.")
+            }
+
+            val userLatLng = LatLng(location.latitude, location.longitude)
+            val agrodealers = getAgroDealersData().filter { agrovet ->
+                val agrovetLatLng = LatLng(agrovet.latitude, agrovet.longitude)
+                calculateDistance(userLatLng, agrovetLatLng) <= SEARCH_RADIUS_METERS
+            }
 
                 // Add filtered Agro-Dealers Markers to the map
                 for (agrodealer in agrodealers) {
@@ -202,18 +219,18 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
 
                 }
 
-            userLatLng?.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
-                ?.let { googleMap.moveCamera(it)
-                googleMap.animateCamera(it)}
+            userLatLng.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
+                .let { googleMap.moveCamera(it)
+                    googleMap.animateCamera(it)}
 
                 if (agrodealers.isNotEmpty()) {
 
                     val boundsBuilder = LatLngBounds.Builder()
 
-                    val userLatLng1 = location?.let { LatLng(it.latitude, location.longitude) }
+                    val userLatLng1 = LatLng(location.latitude, location.longitude)
                     val agrodealers1 = getAgroDealersData().filter { agrovet ->
                         val agrovetLatLng = LatLng(agrovet.latitude, agrovet.longitude)
-                        userLatLng1?.let { calculateDistance(it, agrovetLatLng) }!! <= SEARCH_RADIUS_METERS
+                        calculateDistance(userLatLng1, agrovetLatLng) <= SEARCH_RADIUS_METERS
                     }
 
                     // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 18f))
@@ -231,11 +248,11 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
                     }
 
 
-                    userLatLng1?.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
-                        ?.let { googleMap.moveCamera(it) }
+                    userLatLng1.let { CameraUpdateFactory.newLatLngZoom(it, 18f) }
+                        .let { googleMap.moveCamera(it) }
 
                     // include user's location in bounds
-                    userLatLng?.let { boundsBuilder.include(it) }
+                    userLatLng.let { boundsBuilder.include(it) }
 
                     /**
                      * Adjust the map's camera zoom level after calculating the bounds that
@@ -278,6 +295,26 @@ class LocateAgriTechCompaniesFragment : Fragment() , OnMapReadyCallback {
             arrayOf(ACCESS_FINE_LOCATION),
             LOCATION_PERMISSION_REQUEST_CODE
         )
+    }
+
+    // Prompt user to enable location if it’s turned off
+    private fun promptEnableLocationServices() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Enable Location Services")
+            .setMessage("Location services are required to find nearby agro-dealers. Please enable them.")
+            .setPositiveButton("Settings") { _, _ ->
+                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+
+    // Check if location services are enabled
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
     // Registering Verified AgroDealers within this platform
