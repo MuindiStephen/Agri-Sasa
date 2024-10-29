@@ -39,6 +39,8 @@ import timber.log.Timber
 
 /**
  * Aspect of Manual Mapping by walking in the farm
+ * So as the user walks around the farm boundaries ie. poles, or even the fence the
+ * app will start mapping by placing markers on the map
  */
 @AndroidEntryPoint
 class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
@@ -153,7 +155,7 @@ class ManualWalkingFarmMappingFragment : Fragment() ,OnMapReadyCallback {
 
             buttonSaveMappedArea.setOnClickListener {
 
-                // create polygon and calculate the area in the ploygon
+                // create polygon and calculate the area in the polygon
                 createPolygon()
 
                 // then navigate
