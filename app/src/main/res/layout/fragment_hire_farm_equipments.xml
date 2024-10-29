@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
+            android:visibility="invisible"
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Hire Farm Equipments"
             android:textColor="#F1ECE7"
