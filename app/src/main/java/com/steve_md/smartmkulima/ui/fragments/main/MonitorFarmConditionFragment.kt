@@ -176,14 +176,15 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     // Mock farm conditions with Fake DATA
     private fun monitorFarmConditions(latitude: Double, longitude: Double) {
         val mockFarmConditions = FarmConditions(
-            temperature = 25.8,
-            humidity = 67.7,
-            soilMoisture = 32.7,
-            windspeed = 9.0,
-            precipitation = 5.8,
-            lightDensity = 45000.0,
-            nbkLevel = 30.5,
-            soilPh = 8.0
+            temperature = 21.448463,
+            humidity = 69.0,
+            soilMoisture = 28.6,
+            windspeed = 0.0,
+            precipitation = 0.0,
+            lightDensity = 2.9,
+            nbkLevel = 0.0,
+            soilPh = 0.0,
+            soilTemperature = 18.4
         )
 
         /*
@@ -201,6 +202,23 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
     @SuppressLint("SetTextI18n")
     private fun displayFarmConditions(mockFarmConditions: FarmConditions) {
+
+
+        /*
+
+         val mockFarmConditions = FarmConditions(
+            temperature = 21.448463,
+            humidity = 69.0,
+            soilMoisture = 28.6,
+            windspeed = 0.0,
+            precipitation = 0.0,
+            lightDensity = 2.9,
+            nbkLevel = 0.0,
+            soilPh = 0.0,
+            soilTemperature = 18.4
+        )
+
+         */
         val temperature = view?.findViewById<TextView>(R.id.textViewTemperature)
         val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
         val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
@@ -213,11 +231,14 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         temperature?.text = "${mockFarmConditions.temperature}°C"
         humidity?.text = "${mockFarmConditions.humidity}%"
         soilMoisture?.text = "${mockFarmConditions.soilMoisture}%"
+
         windspeed?.text = "${mockFarmConditions.windspeed} m/s"
+
         precipitation?.text = "${mockFarmConditions.precipitation} mm"
-        lightDensity?.text = "${mockFarmConditions.windspeed} lux"
+
+        lightDensity?.text = "${mockFarmConditions.lightDensity}"
         nbkLevel?.text = "${mockFarmConditions.nbkLevel} %"
-        view?.findViewById<TextView>(R.id.textViewSoilPH)?.text = "${mockFarmConditions.soilPh}"
+        view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${mockFarmConditions.soilTemperature}"
     }
 
     override fun onMapReady(p0: GoogleMap) {

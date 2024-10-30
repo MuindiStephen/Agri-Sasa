@@ -8,5 +8,6 @@ data class FarmConditions(
     val precipitation: Double,
     val lightDensity: Double,
     val nbkLevel: Double,
-    val soilPh: Double
+    val soilPh: Double,
+    val soilTemperature: Double
 )
