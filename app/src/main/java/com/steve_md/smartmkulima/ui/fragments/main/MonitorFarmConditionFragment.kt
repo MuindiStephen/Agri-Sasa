@@ -203,7 +203,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
 
         /*
-
          val mockFarmConditions = FarmConditions(
             temperature = 21.448463,
             humidity = 69.0,
@@ -215,8 +214,8 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             soilPh = 0.0,
             soilTemperature = 18.4
         )
-
          */
+
         val temperature = view?.findViewById<TextView>(R.id.textViewTemperature)
         val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
         val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
@@ -229,11 +228,8 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         temperature?.text = "${mockFarmConditions.temperature}°C"
         humidity?.text = "${mockFarmConditions.humidity}%"
         soilMoisture?.text = "${mockFarmConditions.soilMoisture}%"
-
         windspeed?.text = "${mockFarmConditions.windspeed} m/s"
-
         precipitation?.text = "${mockFarmConditions.precipitation} mm"
-
         lightDensity?.text = "${mockFarmConditions.lightDensity}"
         nbkLevel?.text = "${mockFarmConditions.nbkLevel} %"
         view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${mockFarmConditions.soilTemperature}"
@@ -242,7 +238,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     override fun onMapReady(p0: GoogleMap) {
         googleMap = p0
 
-        // handle no internet connection when map is not loaded
+        // Handle No internet connection when map is not loaded
         if (!isInternetAvailable(requireContext())) {
             showInternetErrorDialog()
             return
@@ -279,7 +275,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
     /**
      * Handle lifecycle for the Map
-     * This is implemented in order for it to work pretty well
+     * This is implemented in order for the map to work pretty well
      */
     override fun onResume() {
         super.onResume()
