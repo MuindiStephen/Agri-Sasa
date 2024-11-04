@@ -187,6 +187,9 @@ dependencies {
     // Google Firebase Analytics
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation("com.google.firebase:firebase-analytics")
+    
+    // MP-Android-Chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
 // Allow references to generated code
 kapt {
