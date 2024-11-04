@@ -138,13 +138,11 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         val pieChart = view?.findViewById<PieChart>(R.id.pieChart)
 
         pieChart?.slices = listOf(
-            PieChart.Slice(0.30f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
-            PieChart.Slice(0.20f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
-            PieChart.Slice(0.20f, Color.rgb(0, 162, 216), Color.rgb(31, 199, 255), legend = "Soil Moisture"),
-            PieChart.Slice(0.17f, Color.rgb(255, 4, 4), Color.rgb(255, 72, 86), legend = "Wind speed"),
-            PieChart.Slice(0.13f, Color.rgb(160, 100, 167), Color.rgb(160, 145, 175), legend = "Precipitation") ,
-            PieChart.Slice(0.23f, Color.rgb(0, 163, 170), Color.rgb(165, 180, 165), legend = "Light Density"),
-            PieChart.Slice(0.25f, Color.rgb(110, 165, 169), Color.rgb(175, 130, 185), legend = "NBK level")
+            PieChart.Slice(0.20f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
+            PieChart.Slice(0.30f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
+            PieChart.Slice(0.18f, Color.rgb(0, 162, 216), Color.rgb(31, 199, 255), legend = "Soil moisture"),
+            PieChart.Slice(0.12f, Color.rgb(255, 4, 4), Color.rgb(255, 72, 86), legend = "Light density"),
+            PieChart.Slice(0.14f, Color.rgb(160, 100, 167), Color.rgb(160, 145, 175), legend = "Soil temperature") ,
         )
 
 
@@ -302,6 +300,9 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         mapView.onLowMemory()
     }
 
+    /**
+     * Handle null map-location
+     */
     private fun showInternetErrorDialog() {
         AlertDialog.Builder(requireContext())
             .setTitle("No Internet Connection to load map")
