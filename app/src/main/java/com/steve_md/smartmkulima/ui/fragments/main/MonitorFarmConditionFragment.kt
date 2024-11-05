@@ -42,6 +42,9 @@ import ir.mahozad.android.unit.Dimension
 import kotlinx.coroutines.flow.combine
 import timber.log.Timber
 
+/**
+ * Monitor Farm conditions + (GPS locator)
+ */
 @AndroidEntryPoint
 class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
@@ -234,6 +237,10 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         nbkLevel?.text = "${mockFarmConditions.nbkLevel} %"
         view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${mockFarmConditions.soilTemperature}"
     }
+
+    /**
+     * If we can add a graph to show the IoT reading in realtime
+     */
 
     override fun onMapReady(p0: GoogleMap) {
         googleMap = p0

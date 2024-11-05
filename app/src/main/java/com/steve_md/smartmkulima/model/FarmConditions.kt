@@ -1,5 +1,8 @@
 package com.steve_md.smartmkulima.model
 
+/**
+ * Model to map farm conditions data values.
+ */
 data class FarmConditions(
     val temperature: Double,
     val humidity: Double,
