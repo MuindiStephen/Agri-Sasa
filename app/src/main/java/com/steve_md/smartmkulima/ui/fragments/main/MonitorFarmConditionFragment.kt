@@ -83,6 +83,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        initBinding()
 
         if (!isLocationEnabled()) {
             promptEnableLocationServices()
@@ -116,6 +117,13 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         }
 
         setUpChart()
+    }
+
+    private fun initBinding() {
+        view?.findViewById<TextView>(R.id.textViewViewAllGraphs)
+            ?.setOnClickListener {
+                findNavController().navigate(R.id.ioTGraphsFragment)
+            }
     }
 
 

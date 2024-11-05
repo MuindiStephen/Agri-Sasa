@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -42,6 +43,14 @@ class IoTGraphsFragment : Fragment() {
         setUpSoilMoisture()
         setUpLightDensity()
         setUpSoilTemperature()
+
+        initBinding()
+    }
+
+    private fun initBinding() {
+        binding.materialToolbarioTGraphs.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setUpSoilTemperature() {

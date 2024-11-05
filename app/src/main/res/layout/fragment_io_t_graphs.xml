@@ -11,12 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChartTemperature"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="68dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +70,19 @@
             android:layout_marginBottom="@dimen/_16dp"
             app:layout_constraintTop_toBottomOf="@+id/lineChartLightDensity"/>
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/materialToolbarioTGraphs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:subtitle="Graphs"
+            app:subtitleTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
