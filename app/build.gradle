@@ -11,12 +11,12 @@ plugins {
 
 android {
     namespace 'com.steve_md.smartmkulima'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.steve_md.smartmkulima"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
         versionCode 2
         versionName "1.0"
 
@@ -54,17 +54,17 @@ android {
 dependencies {
 
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-    implementation 'com.google.firebase:firebase-auth-ktx:23.0.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:23.1.0'
     implementation 'com.google.firebase:firebase-database-ktx:21.0.0'
     implementation 'com.google.firebase:firebase-storage-ktx:21.0.1'
-    implementation 'com.google.firebase:firebase-firestore-ktx:25.1.0'
-    implementation 'androidx.activity:activity:1.9.2'
+    implementation 'com.google.firebase:firebase-firestore-ktx:25.1.1'
+    implementation 'androidx.activity:activity-ktx:1.9.3'
     def timber_version = "5.0.1"
     def room_version = "2.6.1"
 
 
     // Ktx
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.15.0'
 
     // AppCompat
     implementation 'androidx.appcompat:appcompat:1.7.0'
@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.12.0'
 
     // Constraint Layout
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
 
     // Testing
     testImplementation 'junit:junit:4.13.2'
@@ -91,15 +91,15 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragment_testing"
 
     // Navigation Components
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.2")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
 
 
     // Alternatively - just LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
 
     // Alternatively - just ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
 
     // Dagger - Hilt
     implementation 'com.google.dagger:hilt-android:2.51.1'
@@ -116,7 +116,7 @@ dependencies {
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
 
     // Gson
     implementation 'com.google.code.gson:gson:2.10.1'
@@ -163,7 +163,7 @@ dependencies {
     // Barcode scanner
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
-    implementation 'com.google.maps.android:android-maps-utils:1.1.0'
+    implementation 'com.google.maps.android:android-maps-utils:2.3.0'
 
     // Print service
     implementation files("libs/nexgo-smartpos-sdk-v3.0.3.aar") // nexgen printer - nexg
@@ -185,8 +185,11 @@ dependencies {
     implementation("com.google.android.play:app-update-ktx:2.1.0")
 
     // Google Firebase Analytics
-    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-analytics")
+    
+    // MP-Android-Chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
 // Allow references to generated code
 kapt {

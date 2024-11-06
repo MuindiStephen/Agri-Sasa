@@ -321,6 +321,9 @@
         <argument
             android:name="newfarmfield"
             app:argType="com.steve_md.smartmkulima.model.NewFarmField" />
+        <action
+            android:id="@+id/action_monitorFarmConditionFragment_to_ioTGraphsFragment"
+            app:destination="@id/ioTGraphsFragment" />
     </fragment>
     <fragment
         android:id="@+id/locateAgriTechCompaniesFragment"
@@ -839,6 +842,11 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.others.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/ioTGraphsFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.IoTGraphsFragment"
+        android:label="fragment_io_t_graphs"
+        tools:layout="@layout/fragment_io_t_graphs" />
 
 
 </navigation>

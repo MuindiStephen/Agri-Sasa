@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+     android:background="@drawable/rounded_bottom_sheets_agrisasa">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottiePayOption"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:padding="16dp"
+        android:paddingTop="2dp"
+        android:paddingStart="@dimen/_16dp"
+        android:paddingEnd="@dimen/_16dp"
         android:fontFamily="@font/nunito_sans"
         android:textSize="14sp"
         android:text="Dear farmer, how would you like to pay for crop insurance?"
@@ -37,8 +40,8 @@
         android:layout_marginTop="16dp"
         android:translationZ="10dp"
         app:cardCornerRadius="20dp"
-        android:layout_marginBottom="@dimen/_16dp"
-        app:layout_constraintVertical_bias="0.1"
+        android:layout_marginBottom="@dimen/_32dp"
+        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView54">
@@ -47,7 +50,8 @@
             android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_saf" />
+            app:srcCompat="@drawable/ic_saf"
+            android:contentDescription="mpesa" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -57,16 +61,17 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="50dp"
         app:cardCornerRadius="20dp"
-        android:layout_marginBottom="@dimen/_16dp"
+        android:layout_marginBottom="@dimen/_32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView54"
-        app:layout_constraintVertical_bias="0.1">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/imageView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_visa" />
+            app:srcCompat="@drawable/ic_visa"
+            android:contentDescription="visa" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

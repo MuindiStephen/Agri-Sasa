@@ -142,7 +142,7 @@ class AddANewAgroDealerBottomSheetFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val LOCATION_PERMISSION_REQUEST_CODE = 1000
-        const val TAG = "AddNewAgroDealerBottomSheeet"
+        const val TAG = "AddNewAgroDealerBottomSheet"
     }
 
 

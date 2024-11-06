@@ -30,7 +30,7 @@ import java.util.Calendar
 class AgroDealerHomeDashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentAgroDealerHomeDashboardBinding
-    private lateinit var userProfileTxt: TextView
+//private lateinit var userProfileTxt: TextView
     private val viewModel: MainViewModel by viewModels()
     private lateinit var agrodealerOrdersAdapter : AgrodealerOrdersAdapter
     private var ordersList =  mutableListOf<OrderCheckoutByFarmer>()
@@ -48,16 +48,16 @@ class AgroDealerHomeDashboardFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
+        //userProfileTxt = view.findViewById<TextView>(R.id.userNameTextView)
 
-        val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
-        val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-
-        greetingDateTime.text = when (currentTime) {
-            in 0..11 -> "Good Morning"
-            in 12..15 -> "Good Afternoon"
-            else -> "Good Evening"
-        }
+//        val greetingDateTime = view.findViewById<TextView>(R.id.greetingsTextView)
+//        val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+//
+//        greetingDateTime.text = when (currentTime) {
+//            in 0..11 -> "Good Morning"
+//            in 12..15 -> "Good Afternoon"
+//            else -> "Good Evening"
+//        }
 
         binding.textViewLastLoggedInTimeDate.text = "Last seen: " + getCurrentDate()
 

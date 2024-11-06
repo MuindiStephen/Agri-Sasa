@@ -32,6 +32,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/nunito_sans_semibold"
             android:gravity="center"
+            android:visibility="invisible"
             android:text="@string/your_account"
             android:textColor="#F1ECE7"
             android:textSize="18sp" />

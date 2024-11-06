@@ -41,6 +41,29 @@ class SettingsFragment : Fragment() {
         editor.putBoolean("FINGERPRINT_LOCK", binding.switch1FingerPrintLock.isChecked)
         editor.apply()
 
+        /*
+        binding.switch1FingerPrintLock.setOnCheckedChangeListener { buttonView, isChecked ->
+            val sharedPreferences3: SharedPreferences = requireActivity().getSharedPreferences("Authentication", 0)
+            val editor3: SharedPreferences.Editor = sharedPreferences3.edit()
+            editor3.putString("TEXT", "1")
+            editor3.putBoolean("FINGERPRINT_LOCK", isChecked)
+            editor3.apply()
+        }
+
+         */
+
+        // Handle The Switch programmatically
+        val sharedPreferences2: SharedPreferences =
+            requireActivity().getSharedPreferences("Authentication", 0)
+        val bio = sharedPreferences2.getString("TEXT", "")
+
+        if (bio.equals("1")) {
+            binding.switch1FingerPrintLock.isChecked = true
+        } else if (bio.equals("0")) {
+            binding.switch1FingerPrintLock.isChecked = false
+        } else {
+            binding.switch1FingerPrintLock.isChecked = false
+        }
 
     }
 }

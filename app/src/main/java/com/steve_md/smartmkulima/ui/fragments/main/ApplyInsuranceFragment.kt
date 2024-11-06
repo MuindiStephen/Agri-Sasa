@@ -17,6 +17,7 @@ import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.data.room.TransactionDao
 import com.steve_md.smartmkulima.databinding.FragmentApplyInsuranceBinding
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.showBottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -79,7 +80,12 @@ class ApplyInsuranceFragment : Fragment() {
     private fun setUpBinding() {
         binding.apply {
             cardView11.setOnClickListener {
-                findNavController().navigate(R.id.action_applyInsuranceFragment_to_payInsuranceModalBottomSheet)
+               findNavController().navigate(R.id.action_applyInsuranceFragment_to_payInsuranceModalBottomSheet)
+//                showBottomSheetDialog (
+//                    layout = R.layout.modal_bottom_sheet_payment_option,
+//                    fullScreen = true,
+//                    expand = true
+//                )
             }
             imageView3.setOnClickListener {
                 findNavController().navigateUp()

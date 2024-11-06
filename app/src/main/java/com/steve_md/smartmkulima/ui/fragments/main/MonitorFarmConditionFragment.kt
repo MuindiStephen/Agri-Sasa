@@ -2,10 +2,14 @@ package com.steve_md.smartmkulima.ui.fragments.main
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +42,9 @@ import ir.mahozad.android.unit.Dimension
 import kotlinx.coroutines.flow.combine
 import timber.log.Timber
 
+/**
+ * Monitor Farm conditions + (GPS locator)
+ */
 @AndroidEntryPoint
 class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
@@ -76,16 +83,24 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-       // val farmField = args.newfarmfield
+        initBinding()
 
-        val whichFarm =  view.findViewById<TextView>(R.id.textView104)
-
-      //  whichFarm.text = farmField.farmName
+        if (!isLocationEnabled()) {
+            promptEnableLocationServices()
+            return
+        }
         
         locationProvider = LocationProvider(this.requireContext())
 
         // Request user's location
         locationProvider.getLastKnownLocation { location ->
+
+            if (location == null) {
+                displaySnackBar("Unable to get current location. Please check your device settings")
+                return@getLastKnownLocation
+            } else {
+                Timber.tag("LocateMyFarm").e("Location services are enabled. Showing farm location")
+            }
 
             val loading = view.findViewById<ProgressBar>(R.id.progressBar8)
             loading.isVisible = true
@@ -104,17 +119,41 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         setUpChart()
     }
 
+    private fun initBinding() {
+        view?.findViewById<TextView>(R.id.textViewViewAllGraphs)
+            ?.setOnClickListener {
+                findNavController().navigate(R.id.ioTGraphsFragment)
+            }
+    }
+
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
+
+    // Prompt user to enable location if it’s turned off
+    private fun promptEnableLocationServices() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Enable Location Services")
+            .setMessage("Location services are required to locate your farm. Please enable them.")
+            .setPositiveButton("Settings") { _, _ ->
+                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
     private fun setUpChart() {
         val pieChart = view?.findViewById<PieChart>(R.id.pieChart)
 
         pieChart?.slices = listOf(
-            PieChart.Slice(0.30f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
-            PieChart.Slice(0.20f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
-            PieChart.Slice(0.20f, Color.rgb(0, 162, 216), Color.rgb(31, 199, 255), legend = "Soil Moisture"),
-            PieChart.Slice(0.17f, Color.rgb(255, 4, 4), Color.rgb(255, 72, 86), legend = "Wind speed"),
-            PieChart.Slice(0.13f, Color.rgb(160, 100, 167), Color.rgb(160, 145, 175), legend = "Precipitation") ,
-            PieChart.Slice(0.23f, Color.rgb(0, 163, 170), Color.rgb(165, 180, 165), legend = "Light Density"),
-            PieChart.Slice(0.25f, Color.rgb(110, 165, 169), Color.rgb(175, 130, 185), legend = "NBK level")
+            PieChart.Slice(0.20f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
+            PieChart.Slice(0.30f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
+            PieChart.Slice(0.18f, Color.rgb(0, 162, 216), Color.rgb(31, 199, 255), legend = "Soil moisture"),
+            PieChart.Slice(0.12f, Color.rgb(255, 4, 4), Color.rgb(255, 72, 86), legend = "Light density"),
+            PieChart.Slice(0.14f, Color.rgb(160, 100, 167), Color.rgb(160, 145, 175), legend = "Soil temperature") ,
         )
 
 
@@ -146,14 +185,15 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     // Mock farm conditions with Fake DATA
     private fun monitorFarmConditions(latitude: Double, longitude: Double) {
         val mockFarmConditions = FarmConditions(
-            temperature = 25.8,
-            humidity = 67.7,
-            soilMoisture = 32.7,
-            windspeed = 9.0,
-            precipitation = 5.8,
-            lightDensity = 45000.0,
-            nbkLevel = 30.5,
-            soilPh = 8.0
+            temperature = 21.448463,
+            humidity = 69.0,
+            soilMoisture = 28.6,
+            windspeed = 0.0,
+            precipitation = 0.0,
+            lightDensity = 2.9,
+            nbkLevel = 0.0,
+            soilPh = 0.0,
+            soilTemperature = 18.4
         )
 
         /*
@@ -171,6 +211,22 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
     @SuppressLint("SetTextI18n")
     private fun displayFarmConditions(mockFarmConditions: FarmConditions) {
+
+
+        /*
+         val mockFarmConditions = FarmConditions(
+            temperature = 21.448463,
+            humidity = 69.0,
+            soilMoisture = 28.6,
+            windspeed = 0.0,
+            precipitation = 0.0,
+            lightDensity = 2.9,
+            nbkLevel = 0.0,
+            soilPh = 0.0,
+            soilTemperature = 18.4
+        )
+         */
+
         val temperature = view?.findViewById<TextView>(R.id.textViewTemperature)
         val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
         val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
@@ -185,15 +241,19 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         soilMoisture?.text = "${mockFarmConditions.soilMoisture}%"
         windspeed?.text = "${mockFarmConditions.windspeed} m/s"
         precipitation?.text = "${mockFarmConditions.precipitation} mm"
-        lightDensity?.text = "${mockFarmConditions.windspeed} lux"
+        lightDensity?.text = "${mockFarmConditions.lightDensity}"
         nbkLevel?.text = "${mockFarmConditions.nbkLevel} %"
-        view?.findViewById<TextView>(R.id.textViewSoilPH)?.text = "${mockFarmConditions.soilPh}"
+        view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${mockFarmConditions.soilTemperature}"
     }
+
+    /**
+     * If we can add a graph to show the IoT reading in realtime
+     */
 
     override fun onMapReady(p0: GoogleMap) {
         googleMap = p0
 
-        // handle no internet connection when map is not loaded
+        // Handle No internet connection when map is not loaded
         if (!isInternetAvailable(requireContext())) {
             showInternetErrorDialog()
             return
@@ -230,7 +290,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
     /**
      * Handle lifecycle for the Map
-     * This is implemented in order for it to work pretty well
+     * This is implemented in order for the map to work pretty well
      */
     override fun onResume() {
         super.onResume()
@@ -251,6 +311,9 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         mapView.onLowMemory()
     }
 
+    /**
+     * Handle null map-location
+     */
     private fun showInternetErrorDialog() {
         AlertDialog.Builder(requireContext())
             .setTitle("No Internet Connection to load map")
