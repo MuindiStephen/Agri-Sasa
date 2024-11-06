@@ -325,7 +325,7 @@
         <ir.mahozad.android.PieChart
             android:id="@+id/pieChart"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="@dimen/_300dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="16dp"
@@ -341,6 +341,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="@dimen/_16dp"
+            android:contentDescription="map"
             android:apiKey="AIzaSyAmjw_S5Bhy_Fq6qkepiXmoRLCYFrd6XUc"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -375,7 +376,7 @@
 
         <TextView
             android:id="@+id/textView181"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="2dp"
@@ -385,13 +386,14 @@
             android:textStyle="bold"
             android:clickable="true"
             android:focusable="true"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/pieChart"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textViewViewAllGraphs"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="2dp"
@@ -400,6 +402,7 @@
             android:fontFamily="@font/nunito_sans"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:clickable="true"
             android:focusable="true"

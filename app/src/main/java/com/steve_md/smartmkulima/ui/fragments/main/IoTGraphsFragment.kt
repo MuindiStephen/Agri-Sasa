@@ -209,7 +209,5 @@ class IoTGraphsFragment : Fragment() {
 
         // Refresh the chart
         binding.lineChartTemperature.invalidate()
-
-
     }
 }
