@@ -66,9 +66,6 @@ class YourAccountFragment : Fragment() {
             }
 
             cardViewSettings.setOnClickListener {
-                // startActivity(Intent(requireActivity().applicationContext, Settings::class.java))
-                // requireActivity().finish()
-
                 findNavController().navigate(R.id.settingsFragment)
             }
 
