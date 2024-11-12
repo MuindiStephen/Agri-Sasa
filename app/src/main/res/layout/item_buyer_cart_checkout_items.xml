@@ -83,14 +83,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
 
 
-        <Button
+        <ImageView
             android:id="@+id/buttonRemoveCartItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16dp"
-            android:drawableLeft="@drawable/baseline_delete_forever_24"
-            android:fontFamily="@font/nunito_sans_semibold"
-            android:text="Remove"
+            android:src="@drawable/baseline_delete_forever_24"
+            android:contentDescription="Remove"
+            app:tint="@color/main"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:selectableItemBackground"
@@ -105,7 +105,6 @@
             android:layout_height="@dimen/_32dp"
             android:backgroundTint="@color/main"
             android:tint="@color/white"
-            android:visibility="invisible"
             android:layout_marginStart="@dimen/_10dp"
             android:layout_marginBottom="@dimen/_2dp"
             app:layout_constraintStart_toEndOf="@id/imageViewProductFarmInputName"
@@ -117,7 +116,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:visibility="invisible"
             android:layout_marginStart="@dimen/_2dp"
             android:fontFamily="@font/montserrat_semibold"
             app:layout_constraintBottom_toBottomOf="@+id/imageButtonIncrease"
@@ -131,7 +129,6 @@
             android:layout_height="@dimen/_32dp"
             android:backgroundTint="@color/light_blue"
             android:tint="@color/white"
-            android:visibility="invisible"
             android:layout_marginStart="@dimen/_2dp"
             android:layout_marginBottom="@dimen/_2dp"
             app:layout_constraintStart_toEndOf="@id/textViewCartValue"

@@ -21,9 +21,10 @@ import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 /**
- * Buyer - track all current order
+ * Buyer - track all current orders
  */
 @AndroidEntryPoint
 class CurrentOrderBuyerFragment : Fragment() {
@@ -46,8 +47,43 @@ class CurrentOrderBuyerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        /**Getting all cart items */
+        mainViewModel.updateCartSummary()
+
+
+        // Observe total quantity and price
+        mainViewModel.totalQuantity.observe(viewLifecycleOwner) { quantity ->
+            Timber.i("Quantity: $quantity")
+        }
+
+        mainViewModel.totalPrice.observe(viewLifecycleOwner) { price ->
+            // Update UI for total price
+            binding.textViewSubTotal.text = "Kes. $price"
+            binding.textView139.text = "Kes."+price+200.0
+        }
+
+
+        /**
+         *Getting all cart items
+         **/
         mainViewModel.cartLineItems.observe(viewLifecycleOwner) { cartItem ->
+
+            if (cartItem.isNotEmpty()) {
+                Timber.i("Cart Items: $cartItem")
+                Timber.i("Cart Items: ${cartItem.size}")
+                Timber.i("Cart Items: ${cartItem.isNotEmpty()}")
+                binding.noCart.isVisible = false
+                binding.buttonCheckoutCartItems.isEnabled = true
+
+
+            } else {
+                Timber.i("Cart Items: ${cartItem.isEmpty()}")
+                binding.buttonCheckoutCartItems.isEnabled = false
+                binding.noCart.isVisible = true
+
+                binding.textViewSubTotal.text = "Kes. 0.0"
+                binding.textView139.text = "Kes. 0.0"
+            }
+
             buyerCartAdapter.submitList(cartItem)
 
             checkCartQuantity()
@@ -56,10 +92,25 @@ class CurrentOrderBuyerFragment : Fragment() {
         /**
          * Handling deleting an item from the cart
          */
-        buyerCartAdapter = BuyerCartAdapter(BuyerCartAdapter.OnClickListener { cartItem->
-            mainViewModel.removeOnlyOneItemFromCartLine(cartItem)
-        })
-
+        buyerCartAdapter = BuyerCartAdapter(BuyerCartAdapter.OnClickListener (
+            clickListener = { cart ->
+                mainViewModel.removeOnlyOneItemFromCartLine(cart)
+            },
+            increaseQuantity = { cart ->
+                val newQuantity = cart.quantity + 1
+                mainViewModel.updateQuantity(
+                    cart,
+                    newQuantity = newQuantity
+                )
+            },
+            decreaseQuantity = { cart ->
+                val newQuantity = cart.quantity - 1
+                mainViewModel.updateQuantity(
+                    cart,
+                    newQuantity = newQuantity
+                )
+            }
+        ))
     }
 
     private fun checkCartQuantity() {
@@ -67,6 +118,9 @@ class CurrentOrderBuyerFragment : Fragment() {
             toast("Cart is empty")
 
             binding.cartLineItemsRecyclerView.visibility = View.GONE
+
+            binding.textViewSubTotal.text = "Kes. 0.0"
+            binding.textView139.text = "Kes. 0.0"
 
             binding.cartLineItemsRecyclerView.removeView(view)
 
@@ -77,9 +131,9 @@ class CurrentOrderBuyerFragment : Fragment() {
         } else {
             toast("Items in your cart ready for checkout.")
             binding.cartLineItemsRecyclerView.adapter = buyerCartAdapter
-            view?.findViewById<ImageView>(R.id.imageButtonDecrease)?.visibility = View.GONE
-            view?.findViewById<ImageView>(R.id.imageButtonIncrease)?.visibility = View.GONE
-            view?.findViewById<TextView>(R.id.textViewCartValue)?.visibility = View.GONE
+//            view?.findViewById<ImageView>(R.id.imageButtonDecrease)?.visibility = View.GONE
+//            view?.findViewById<ImageView>(R.id.imageButtonIncrease)?.visibility = View.GONE
+//            view?.findViewById<TextView>(R.id.textViewCartValue)?.visibility = View.GONE
 
             binding.buttonCheckoutCartItems.isEnabled = true
             binding.buttonCheckoutCartItems.setOnClickListener {

@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_deal_agrodealer_add_to_cart" />
+        tools:listitem="@layout/item_buyer_cart_checkout_items" />
 
 
         <TextView
@@ -36,6 +36,7 @@
             android:text="Subtotal:"
             android:textSize="@dimen/_14sp_text_size"
             android:textStyle="bold"
+            android:visibility="invisible"
             android:layout_marginBottom="@dimen/_120dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
             android:fontFamily="@font/nunito_sans_bold"
             android:text="Kes. 2000"
             android:textSize="@dimen/_14sp_text_size"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textView96"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView96"
@@ -63,6 +65,7 @@
             android:text="Delivery fee:"
             android:textSize="@dimen/_14sp_text_size"
             android:textStyle="bold"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/textView96"
             app:layout_constraintTop_toBottomOf="@+id/textView96" />
 
@@ -74,6 +77,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/nunito_sans_bold"
             android:text="Kes. 200"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textView136"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView96" />
@@ -87,6 +91,7 @@
             android:fontFamily="@font/nunito_sans"
             android:textSize="@dimen/_16sp"
             android:textStyle="bold"
+            android:visibility="invisible"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@+id/textView136"
             app:layout_constraintTop_toBottomOf="@+id/textView136" />
@@ -98,6 +103,7 @@
             android:layout_marginTop="8dp"
             android:text="Kes 2400"
             android:textStyle="bold"
+            android:visibility="invisible"
             android:fontFamily="@font/nunito_sans_bold"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sp_text_size"

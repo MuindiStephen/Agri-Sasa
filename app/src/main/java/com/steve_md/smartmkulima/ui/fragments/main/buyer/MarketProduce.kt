@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -37,6 +39,7 @@ class MarketProduce : Fragment() {
     private val mainViewModel by viewModels<MainViewModel>()
     private lateinit var farmProduceAdapter: FarmProduceAdapter
     private val farmProduceList = mutableListOf<FarmProduce>()
+    private var onBackPressedCallback: OnBackPressedCallback? = null
 
 
     override fun onCreateView(
@@ -51,6 +54,16 @@ class MarketProduce : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
         subScribeToFarmProduceObserver()
+
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finishAffinity()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, onBackPressedCallback!!
+        )
 
         setUpBinding()
 

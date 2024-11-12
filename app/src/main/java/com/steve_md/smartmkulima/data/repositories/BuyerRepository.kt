@@ -63,4 +63,18 @@ class BuyerRepository @Inject constructor(
     fun getCartLineItems() : LiveData<List<BuyerCart>> {
         return buyerCartDao.getCartItems()
     }
+
+    // Update the quantity of an item in the cart
+    suspend fun updateQuantity(cartItem: BuyerCart, newQuantity: Int) {
+        val updatedItem = cartItem.copy(quantity = newQuantity)
+        buyerCartDao.updateItem(updatedItem)
+    }
+
+    // Retrieve the total quantity and total price
+    suspend fun getCartSummary(): Pair<Int, Double> {
+        val totalQuantity = buyerCartDao.getTotalQuantity() ?: 0
+        val totalPrice = buyerCartDao.getTotalPrice() ?: 0.0
+        return Pair(totalQuantity, totalPrice)
+    }
+
 }

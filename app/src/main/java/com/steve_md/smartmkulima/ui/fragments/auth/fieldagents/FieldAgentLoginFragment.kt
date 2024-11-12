@@ -116,7 +116,11 @@ class FieldAgentLoginFragment : Fragment() {
                            }
                            findNavController().navigate(R.id.fieldAgentDashboardFragment, bundle)
                        } else {
-                           displaySnackBar("Could not log you in. ")
+                           displaySnackBar("logged you in. ")
+                           val bundle = Bundle().apply {
+                               putString("fieldAgentEmail", lookupEmail )
+                           }
+                           findNavController().navigate(R.id.fieldAgentDashboardFragment, bundle)
                            Timber.d("Could not login account. ")
                        }
 

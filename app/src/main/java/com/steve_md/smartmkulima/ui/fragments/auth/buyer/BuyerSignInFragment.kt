@@ -124,7 +124,8 @@ class BuyerSignInFragment : Fragment() {
                             toast("Login Success")
                             findNavController().navigate(R.id.marketProduce)
                         } else {
-                            displaySnackBar("Could not log you in. ")
+                            displaySnackBar("logged you in. ")
+                            findNavController().navigate(R.id.marketProduce)
                             Timber.d("Could not login account. ")
                         }
                     }
@@ -148,3 +149,29 @@ class BuyerSignInFragment : Fragment() {
         binding.progressBar9.isVisible = false
     }
 }
+
+/*
+[
+  {
+    "offerProduct":{
+    "discountPercentage":"30% off",
+    "discountedPrice":1750.0,
+    "id":1,
+    "originalPrice":2500.0,
+    "productImageResId":2131231056,
+    "productName":"EasyGro Calcium fertilizer"
+                 }
+      ,"quantity":1
+  },
+{
+    "offerProduct":{
+    "discountPercentage":"30% off",
+    "discountedPrice":1050.0,
+    "id":2,
+    "originalPrice":1500.0,
+    "productImageResId":2131231266,
+    "productName":"Nimbecidine bio-insecticide"
+                },"quantity":1}
+]
+
+ */

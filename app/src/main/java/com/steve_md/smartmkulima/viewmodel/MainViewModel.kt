@@ -3,6 +3,7 @@ package com.steve_md.smartmkulima.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
@@ -517,6 +518,7 @@ class MainViewModel @Inject constructor(
 
     ///////// BUYERS CART ///////////
     val cartLineItems = buyerRepository.getCartLineItems()
+    // val cartLineItems = buyerRepository.getCartLineItems().distinctUntilChanged()
 
     fun insertItemToCartLine(productItem :BuyerCart) = viewModelScope.launch {
         buyerRepository.insertProductToCartLineItem(productItem)
@@ -528,6 +530,32 @@ class MainViewModel @Inject constructor(
 
     fun removeOnlyOneItemFromCartLine(cartEntity: BuyerCart) = viewModelScope.launch {
         buyerRepository.deleteAnItemFromCartLine(cartEntity)
+        updateCartSummary()
+    }
+
+    // LiveData for total quantity and total price in the cart
+    private val _totalQuantity = MutableLiveData<Int>()
+    val totalQuantity: LiveData<Int> = _totalQuantity
+
+    private val _totalPrice = MutableLiveData<Double>()
+    val totalPrice: LiveData<Double> = _totalPrice
+
+    fun updateQuantity(cartItem: BuyerCart, newQuantity: Int) = viewModelScope.launch {
+        buyerRepository.updateQuantity(cartItem, newQuantity)
+        updateCartSummary()
+    }
+
+//    fun getCartSummary() = viewModelScope.launch {
+//        buyerRepository.getCartSummary()
+//        updateCartSummary()
+//    }
+
+     fun updateCartSummary() {
+        viewModelScope.launch {
+            val (quantity, price) = buyerRepository.getCartSummary()
+            _totalQuantity.postValue(quantity)
+            _totalPrice.postValue(price)
+        }
     }
 }
 

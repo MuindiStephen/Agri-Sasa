@@ -92,8 +92,7 @@ class FieldAgentDashboardFragment : Fragment() {
 //            else -> "Good Evening"
 //        }
 
-        binding.includeToolBar.welcomeText.text = "Welcome back, "+arguments?.getString("fieldAgentEmail")
-            ?.let { formatNameFromEmail(it) }
+        binding.includeToolBar.welcomeText.text = "Welcome back,"
 
         binding.textViewLastLoggedInTimeDate.text = "Last seen: "+DateFormat.getCurrentDate()
 
@@ -256,9 +255,10 @@ class FieldAgentDashboardFragment : Fragment() {
             .setMessage("Are you sure you want to exit?")
             .setPositiveButton("Yes") { _, which ->
                 clearBackStack()
-                findNavController().navigate(
-                    R.id.fieldAgentLoginFragment
-                )
+//                findNavController().navigate(
+//                    R.id.fieldAgentLoginFragment
+//                )
+                requireActivity().finishAffinity()
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.dismiss()
