@@ -2,11 +2,13 @@ package com.steve_md.smartmkulima.di
 
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.remote.RetrofitApiService
+import com.steve_md.smartmkulima.data.remote.UbiBotIoTWebService
 import com.steve_md.smartmkulima.data.repositories.AuthRepository
 import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
+import com.steve_md.smartmkulima.data.repositories.UbiBotIoTRepository
 import com.steve_md.smartmkulima.data.repositories.impl.AuthRepositoryImpl
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import dagger.Module
@@ -70,4 +72,13 @@ object RepositoryModule {
     ): BuyerRepository {
         return BuyerRepository(retrofitApiService, appDatabase)
     }
+
+    @Singleton
+    @Provides
+    fun providesUbiBotIoTRepository(
+        ubiBotIoTWebService: UbiBotIoTWebService
+    ): UbiBotIoTRepository {
+        return UbiBotIoTRepository(ubiBotIoTWebService)
+    }
+
 }

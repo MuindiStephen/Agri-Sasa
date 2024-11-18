@@ -1,0 +1,15 @@
+package com.steve_md.smartmkulima.data.remote
+
+import androidx.lifecycle.LiveData
+import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
+import retrofit2.http.GET
+
+interface UbiBotIoTWebService {
+
+    @GET("macros/echo?user_content_key=PK6T1IGB8zYVingaIu7qeKPqPzRiixtYiMXKmvID8VycUMFwjz0T0WMCWE3Gj3SyqWVm4J9llRWsTwkvF3xr2iFxkEB2RsSEm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGLrYzz8ht2dio76GunWlg2MwTfqWO3jhzkVx9vkJWxEn99KV9CtNrWPjTW7rudvks4598UyzbDOXxtlUR4xrfQ_VC_Uc-qPXNz9Jw9Md8uu&lib=Mkbyn5EzvoZDKndMBOwjYSMmoKdKy5H4y")
+    suspend fun fetchLatestEntryUbiBotData(): UbiBotResponse
+
+    @GET("macros/echo?user_content_key=C-H4on8k16V8n4_0_Fd1C7LKu2NxOQHQujds-3Ll9dZUmnDbAc1ZmmmrSWvnroAN7exOAnt0vyQyzvawdlAHzu1Dbgz4jB3fm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGNCv2W9MSHgTSBDbxIx73Q823J737pYUwBkpPv40Hg0hpAs7a-A7gd5vR0kB_N3Xuf4SI5Pa3wGOsKueFjWjcWqvN8UpQiEWA&lib=Mkbyn5EzvoZDKndMBOwjYSMmoKdKy5H4y")
+    suspend fun fetchAllUbiBotData(): List<UbiBotResponse>
+
+}

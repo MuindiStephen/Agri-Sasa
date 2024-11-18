@@ -204,7 +204,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="@dimen/_16dp"
                 android:fontFamily="@font/nunito_sans"
-                android:text="0.00cd/m&#179;"
+                android:text="0.00 lux"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView97"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -280,13 +280,27 @@
                 android:id="@+id/textViewSoilTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5"
+                android:text="0"
                 android:fontFamily="@font/nunito_sans"
                 android:textSize="18sp"
                 android:layout_marginEnd="@dimen/_16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/textView106"
                 app:layout_constraintTop_toTopOf="@+id/textView106" />
+
+            <ProgressBar
+                android:id="@+id/progressBarLoadingIoT"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                android:indeterminateTint="@color/main"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.514"
+                app:layout_constraintStart_toStartOf="@+id/textView59"
+                app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -319,7 +333,7 @@
             android:fontFamily="@font/nunito_sans_bold"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:text="Farm monitor" />
+            android:text="Farm monitor IoT" />
     </LinearLayout>
 
         <ir.mahozad.android.PieChart
@@ -408,5 +422,6 @@
             android:focusable="true"
             app:layout_constraintBottom_toTopOf="@+id/pieChart"
             app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

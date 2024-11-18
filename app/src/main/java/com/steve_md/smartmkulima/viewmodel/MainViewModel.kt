@@ -3,12 +3,12 @@ package com.steve_md.smartmkulima.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
+import com.steve_md.smartmkulima.data.repositories.UbiBotIoTRepository
 import com.steve_md.smartmkulima.model.AgroDealerOffers
 import com.steve_md.smartmkulima.model.BuyerCart
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
@@ -25,9 +25,8 @@ import com.steve_md.smartmkulima.model.requests.buyers.BuyerRegisterRequest
 import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterRequest
 import com.steve_md.smartmkulima.model.responses.buyer.BuyerRegisterResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.Data
-import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentLoginResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
-import com.steve_md.smartmkulima.model.toCartEntity
+import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
 import com.steve_md.smartmkulima.utils.ApiStates
 import com.steve_md.smartmkulima.utils.ResourceNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,14 +40,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.toList
 
 
 /**
@@ -60,7 +55,8 @@ class MainViewModel @Inject constructor(
     private val farmProduceRepository: FarmProduceRepository,
     private val repository: FarmCycleRepository,
     private val fieldAgentsRepository: FieldAgentsRepository,
-    private val buyerRepository: BuyerRepository
+    private val buyerRepository: BuyerRepository,
+    private val ubiBotIoTRepository: UbiBotIoTRepository
 ) : ViewModel() {
 
     private val _produce = MutableSharedFlow<FarmProduceState>()
@@ -461,7 +457,6 @@ class MainViewModel @Inject constructor(
     val userInfoUiState: StateFlow<UserInfoUiState> get() = _userInfoUiState
 
 
-
     // field agents register function
     fun registerFieldAgent(email: String, password: String) = viewModelScope.launch {
         _fieldAgentRegisterState.value = fieldAgentsRepository.registerFieldAgent(fieldAgentRegisterRequest = FieldAgentRegisterRequest(email = email, password = password))
@@ -557,6 +552,18 @@ class MainViewModel @Inject constructor(
             _totalPrice.postValue(price)
         }
     }
+
+    fun fetchUbiBotData(): LiveData<UbiBotResponse> {
+        Timber.d("Viewmodel-UbiBot Data: ${ubiBotIoTRepository.fetchLatestEntryUbiBotData()}")
+        return ubiBotIoTRepository.fetchLatestEntryUbiBotData()
+    }
+
+    fun fetchAllUbiBotData(): LiveData<List<UbiBotResponse>> {
+        val response = ubiBotIoTRepository.fetchAllUbiBotData()
+        Timber.d("Viewmodel-UbiBot Data: $response")
+        return response
+    }
+
 }
 
 // UI State for managing FarmProduce State

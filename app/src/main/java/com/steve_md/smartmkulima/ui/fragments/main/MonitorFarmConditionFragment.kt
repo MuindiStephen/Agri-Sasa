@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -36,10 +39,13 @@ import com.steve_md.smartmkulima.model.FarmConditions
 import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.isInternetAvailable
+import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import ir.mahozad.android.PieChart
 import ir.mahozad.android.unit.Dimension
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
@@ -52,6 +58,8 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap
     private var LOCATIONPERMISSIONREQUESTCODE = 1
     private lateinit var locationProvider: LocationProvider
+
+    private val viewModel: MainViewModel by viewModels()
 
 
    // private val args: MonitorFarmConditionFragmentArgs by navArgs()
@@ -83,6 +91,32 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
+        if (isAdded) {  // Ensure the Fragment is attached to an Activity
+            locationProvider = LocationProvider(this.requireActivity())
+            locationProvider.getLastKnownLocation { location ->
+                if (location == null) {
+                    displaySnackBar("Unable to get current location. Please check your device settings")
+                    return@getLastKnownLocation
+                } else {
+                    Timber.tag("LocateMyFarm").e("Location services are enabled. Showing farm location")
+                }
+
+                val loading = view.findViewById<ProgressBar>(R.id.progressBar8)
+                loading.isVisible = true
+
+                if (location != null) {
+                    loading.isVisible = false
+                } else {
+                    // Handle case when location is null
+                    loading.isVisible = false
+                    Timber.e("An error occurred")
+                    displaySnackBar("Could not update your location")
+                }
+            }
+        } else {
+            Log.e("MonitorFarmCondition", "Fragment not attached, cannot get location.")
+        }
+
         initBinding()
 
         if (!isLocationEnabled()) {
@@ -107,7 +141,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
             if (location != null) {
                 loading.isVisible = false
-                monitorFarmConditions(location.latitude, location.longitude)
             } else {
                 // Handle case when location is null
                 loading.isVisible = false
@@ -116,7 +149,27 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             }
         }
 
+        setUpUbiBotIoTData()
+
         setUpChart()
+    }
+
+    private fun setUpUbiBotIoTData() {
+        val temperature = view?.findViewById<TextView>(R.id.textViewTemperature)
+        val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
+        val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
+        val lightDensity = view?.findViewById<TextView>(R.id.textViewLightDensity)
+
+        lifecycleScope.launch {
+            viewModel.fetchUbiBotData().observe(viewLifecycleOwner) {
+                temperature?.text = "${it.field1Temperature}°C"
+                humidity?.text = "${it.field2Humidity}%"
+                soilMoisture?.text = "${it.field10SoilMoisture}%"
+                lightDensity?.text = "${it.field6Light} Lux"
+                view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${it.field9SoilTemperature}°C"
+            }
+        }
+
     }
 
     private fun initBinding() {
@@ -156,7 +209,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             PieChart.Slice(0.14f, Color.rgb(160, 100, 167), Color.rgb(160, 145, 175), legend = "Soil temperature") ,
         )
 
-
         pieChart?.gradientType = PieChart.GradientType.RADIAL
         pieChart?.legendIconsMargin = Dimension.DP(8F)
         pieChart?.legendTitleMargin = Dimension.DP(14F)
@@ -182,69 +234,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     fun dpToPx(dp: Int): Int {
         return (dp * Resources.getSystem().displayMetrics.density).toInt()
     }
-    // Mock farm conditions with Fake DATA
-    private fun monitorFarmConditions(latitude: Double, longitude: Double) {
-        val mockFarmConditions = FarmConditions(
-            temperature = 21.448463,
-            humidity = 69.0,
-            soilMoisture = 28.6,
-            windspeed = 0.0,
-            precipitation = 0.0,
-            lightDensity = 2.9,
-            nbkLevel = 0.0,
-            soilPh = 0.0,
-            soilTemperature = 18.4
-        )
 
-        /*
-            val temperature: Double,
-            val humidity: Double,
-            val soilMoisture: Double,
-            val windspeed: Double,
-            val precipitation: Double,
-            val lightDensity: Double,
-            val nbkLevel: Double
-         */
-        // Process the farm conditions data as needed
-        displayFarmConditions(mockFarmConditions)
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun displayFarmConditions(mockFarmConditions: FarmConditions) {
-
-
-        /*
-         val mockFarmConditions = FarmConditions(
-            temperature = 21.448463,
-            humidity = 69.0,
-            soilMoisture = 28.6,
-            windspeed = 0.0,
-            precipitation = 0.0,
-            lightDensity = 2.9,
-            nbkLevel = 0.0,
-            soilPh = 0.0,
-            soilTemperature = 18.4
-        )
-         */
-
-        val temperature = view?.findViewById<TextView>(R.id.textViewTemperature)
-        val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
-        val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
-        val windspeed = view?.findViewById<TextView>(R.id.textViewWindSpeed)
-        val precipitation = view?.findViewById<TextView>(R.id.textViewPrecipitation)
-        val lightDensity = view?.findViewById<TextView>(R.id.textViewLightDensity)
-        val nbkLevel = view?.findViewById<TextView>(R.id.textViewNBKLevel)
-
-        // As kotlin does not interpret html symbol entities
-        temperature?.text = "${mockFarmConditions.temperature}°C"
-        humidity?.text = "${mockFarmConditions.humidity}%"
-        soilMoisture?.text = "${mockFarmConditions.soilMoisture}%"
-        windspeed?.text = "${mockFarmConditions.windspeed} m/s"
-        precipitation?.text = "${mockFarmConditions.precipitation} mm"
-        lightDensity?.text = "${mockFarmConditions.lightDensity}"
-        nbkLevel?.text = "${mockFarmConditions.nbkLevel} %"
-        view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${mockFarmConditions.soilTemperature}"
-    }
 
     /**
      * If we can add a graph to show the IoT reading in realtime
@@ -258,7 +248,7 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             showInternetErrorDialog()
             return
         } else {
-            displaySnackBar("Farm Location update successful")
+            displaySnackBar("Farm Location update successful.")
         }
 
         // Check Map Location Permission
@@ -272,15 +262,16 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             requestLocationPermission()
         }
 
-        // Sample farm Location // Not Real Data
-        val location = LatLng(-1.2860732, 36.8103714)
+        // Based on Farm Location
+        val location = LatLng(-1.6716909, 36.8384027)
 
         googleMap.addMarker(MarkerOptions().position(location).title("Your Farm is Here"))
             ?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12f))
     }
 
-    private fun requestLocationPermission() {
+
+     fun requestLocationPermission() {
         ActivityCompat.requestPermissions(
             requireActivity(),
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -295,6 +286,13 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+
+        // Progress bar visibility
+        lifecycleScope.launch {
+            view?.findViewById<ProgressBar>(R.id.progressBarLoadingIoT)?.isVisible = true
+            delay(5000L)
+            view?.findViewById<ProgressBar>(R.id.progressBarLoadingIoT)?.isVisible = false
+        }
     }
     override fun onPause() {
         super.onPause()
@@ -328,5 +326,4 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             }
             .show()
     }
-
 }

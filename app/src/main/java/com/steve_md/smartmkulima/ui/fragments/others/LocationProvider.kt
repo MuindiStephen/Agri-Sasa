@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.steve_md.smartmkulima.ui.fragments.main.LocateAgriTechCompaniesFragment
+import com.steve_md.smartmkulima.ui.fragments.main.MonitorFarmConditionFragment
 
 
 /**
@@ -30,7 +31,8 @@ class LocationProvider(private val context:Context) {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            promptUserRequestingPermissions()
+            //promptUserRequestingPermissions()
+           // MonitorFarmConditionFragment().requestLocationPermission()
             return
         }
 

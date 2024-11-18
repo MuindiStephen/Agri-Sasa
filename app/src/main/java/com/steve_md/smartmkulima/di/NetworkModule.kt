@@ -4,6 +4,7 @@ import com.androidstudy.daraja.network.ApiClient
 import com.steve_md.smartmkulima.data.remote.DarajaApiClient
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.remote.RetrofitApiService
+import com.steve_md.smartmkulima.data.remote.UbiBotIoTWebService
 import com.steve_md.smartmkulima.utils.Constants
 
 import dagger.Module
@@ -16,6 +17,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -48,6 +50,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @Named("retrofit1")
     fun providesRetrofit(
         okHttpClient: OkHttpClient,
         converter: Converter.Factory
@@ -61,14 +64,34 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesApiService(retrofit: Retrofit): FarmProduceApiService {
+    @Named("retrofit2")
+    fun providesRetrofit2(
+        okHttpClient: OkHttpClient,
+        converter: Converter.Factory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://script.googleusercontent.com/")
+            .client(okHttpClient)
+            .addConverterFactory(converter)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesApiService(@Named("retrofit1") retrofit: Retrofit): FarmProduceApiService {
         return retrofit.create(FarmProduceApiService::class.java)
     }
 
     @Singleton
     @Provides
-    fun providesRetrofitService(retrofit: Retrofit): RetrofitApiService {
+    fun providesRetrofitService(@Named("retrofit1") retrofit: Retrofit): RetrofitApiService {
         return retrofit.create(RetrofitApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesUbiBotIoTWebService(@Named("retrofit2") retrofit2: Retrofit): UbiBotIoTWebService {
+        return retrofit2.create(UbiBotIoTWebService::class.java)
     }
 
 }
