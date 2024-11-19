@@ -16,7 +16,7 @@ class UbiBotIoTRepository @Inject constructor(
             val response = ubiBotIoTWebService.fetchLatestEntryUbiBotData()
             emit(response) // Emit the response as LiveData
         } catch (e: Exception) {
-            Timber.d("Error:Could not pull IoT data")
+            Timber.d("Error:Could not pull IoT data :WHY: ${e.message}")
         }
     }
 

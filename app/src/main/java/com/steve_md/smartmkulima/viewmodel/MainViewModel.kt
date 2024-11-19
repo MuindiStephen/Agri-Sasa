@@ -3,6 +3,8 @@ package com.steve_md.smartmkulima.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
@@ -553,10 +555,30 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun fetchUbiBotData(): LiveData<UbiBotResponse> {
-        Timber.d("Viewmodel-UbiBot Data: ${ubiBotIoTRepository.fetchLatestEntryUbiBotData()}")
-        return ubiBotIoTRepository.fetchLatestEntryUbiBotData()
+    // Declare a LiveData to expose the data
+    private val _ubiBotData = MutableLiveData<UbiBotResponse>()
+    val ubiBotData: LiveData<UbiBotResponse> get() = _ubiBotData
+
+
+    fun fetchUbiBotData() {
+        viewModelScope.launch {
+            try {
+                // Observe the LiveData from the repository to extract the value
+                val liveData = ubiBotIoTRepository.fetchLatestEntryUbiBotData()
+                liveData.observeForever { ubiBotResponse ->
+                    _ubiBotData.postValue(ubiBotResponse) // Post the response to your LiveData
+
+                    // To remove observer immediately after receiving data
+                    liveData.removeObserver { }
+
+                }
+            } catch (e: Exception) {
+                Timber.e("Error fetching UbiBot data: ${e.message}")
+            }
+        }
     }
+
+
 
     fun fetchAllUbiBotData(): LiveData<List<UbiBotResponse>> {
         val response = ubiBotIoTRepository.fetchAllUbiBotData()

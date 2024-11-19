@@ -15,7 +15,7 @@ data class UbiBotResponse(
     @SerializedName("field5(GSM RSSI)") val field5GsmRssi: Int,
     @SerializedName("field6(Light)") val field6Light: Double,
     @SerializedName("field9(RS485 Soil Temperature)") val field9SoilTemperature: Double,
-    @SerializedName("field10(RS485 Soil Moisture)") val field10SoilMoisture: Int,
+    @SerializedName("field10(RS485 Soil Moisture)") val field10SoilMoisture: Double,
     @SerializedName("status") val status: String,
     @SerializedName("serial") val serial: String
 )

@@ -17,6 +17,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -32,6 +33,11 @@ object NetworkModule {
     fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
+
+            // Allow more time for the server to respond
+            .connectTimeout(30, TimeUnit.SECONDS)  // Connection timeout
+            .readTimeout(30, TimeUnit.SECONDS)    // Read timeout
+            .writeTimeout(30, TimeUnit.SECONDS)   // Write timeout
             .build()
     }
 

@@ -36,6 +36,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.model.FarmConditions
+import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
 import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.isInternetAvailable
@@ -91,7 +92,12 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        if (isAdded) {  // Ensure the Fragment is attached to an Activity
+        if (isAdded) {
+
+            viewModel.fetchUbiBotData()
+
+
+            // Ensure the Fragment is attached to an Activity
             locationProvider = LocationProvider(this.requireActivity())
             locationProvider.getLastKnownLocation { location ->
                 if (location == null) {
@@ -149,7 +155,10 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
             }
         }
 
-        setUpUbiBotIoTData()
+
+        lifecycleScope.launch {
+            setUpUbiBotIoTData()
+        }
 
         setUpChart()
     }
@@ -160,16 +169,31 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
         val lightDensity = view?.findViewById<TextView>(R.id.textViewLightDensity)
 
-        lifecycleScope.launch {
-            viewModel.fetchUbiBotData().observe(viewLifecycleOwner) {
-                temperature?.text = "${it.field1Temperature}°C"
-                humidity?.text = "${it.field2Humidity}%"
-                soilMoisture?.text = "${it.field10SoilMoisture}%"
-                lightDensity?.text = "${it.field6Light} Lux"
-                view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${it.field9SoilTemperature}°C"
-            }
-        }
+        viewModel.ubiBotData.observe(viewLifecycleOwner) { it: UbiBotResponse? ->
+                if (it != null) {
+                    temperature?.text = "${it.field1Temperature}°C"
+                }
+                if (it != null) {
+                    humidity?.text = "${it.field2Humidity}%"
+                }
+                if (it != null) {
+                    soilMoisture?.text = "${it.field10SoilMoisture}%"
+                }
+                if (it != null) {
+                    lightDensity?.text = "${it.field6Light} Lux"
+                }
+                if (it != null) {
+                    view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${it.field9SoilTemperature}°C"
+                }
+                if (it != null) {
+                    displaySnackBar("UbiBot Data fetched successfully")
+                } else {
+                    displaySnackBar("Unable to fetch IoT Data")
+                    Timber.e("Unable to fetch IoT Data")
+                    Timber.e("Caused by ${it.toString()} and READ TIME OUT")
+                }
 
+            }
     }
 
     private fun initBinding() {
