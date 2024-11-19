@@ -1,12 +1,9 @@
 package com.steve_md.smartmkulima.di
 
-import com.androidstudy.daraja.network.ApiClient
-import com.steve_md.smartmkulima.data.remote.DarajaApiClient
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 import com.steve_md.smartmkulima.data.remote.UbiBotIoTWebService
 import com.steve_md.smartmkulima.utils.Constants
-
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton

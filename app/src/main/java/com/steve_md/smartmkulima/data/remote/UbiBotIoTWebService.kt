@@ -1,6 +1,6 @@
 package com.steve_md.smartmkulima.data.remote
 
-import androidx.lifecycle.LiveData
+import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotAllResponse
 import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
 import retrofit2.http.GET
 
@@ -10,6 +10,6 @@ interface UbiBotIoTWebService {
     suspend fun fetchLatestEntryUbiBotData(): UbiBotResponse
 
     @GET("macros/echo?user_content_key=C-H4on8k16V8n4_0_Fd1C7LKu2NxOQHQujds-3Ll9dZUmnDbAc1ZmmmrSWvnroAN7exOAnt0vyQyzvawdlAHzu1Dbgz4jB3fm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGNCv2W9MSHgTSBDbxIx73Q823J737pYUwBkpPv40Hg0hpAs7a-A7gd5vR0kB_N3Xuf4SI5Pa3wGOsKueFjWjcWqvN8UpQiEWA&lib=Mkbyn5EzvoZDKndMBOwjYSMmoKdKy5H4y")
-    suspend fun fetchAllUbiBotData(): List<UbiBotResponse>
+    suspend fun fetchAllUbiBotData(): List<UbiBotAllResponse>
 
 }

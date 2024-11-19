@@ -28,6 +28,7 @@ import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterReq
 import com.steve_md.smartmkulima.model.responses.buyer.BuyerRegisterResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.Data
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
+import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotAllResponse
 import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
 import com.steve_md.smartmkulima.utils.ApiStates
 import com.steve_md.smartmkulima.utils.ResourceNetwork
@@ -573,19 +574,32 @@ class MainViewModel @Inject constructor(
 
                 }
             } catch (e: Exception) {
-                Timber.e("Error fetching UbiBot data: ${e.message}")
+                Timber.e("UbiBot ViewModel: Error fetching UbiBot data: ${e.message}")
             }
         }
     }
 
+    private val _allUbiBotLiveData = MutableLiveData<List<UbiBotAllResponse>>()
+    val allUbiBotLiveData: LiveData<List<UbiBotAllResponse>> get() = _allUbiBotLiveData
 
 
-    fun fetchAllUbiBotData(): LiveData<List<UbiBotResponse>> {
-        val response = ubiBotIoTRepository.fetchAllUbiBotData()
-        Timber.d("Viewmodel-UbiBot Data: $response")
-        return response
+    fun fetchAllUbiBotData() {
+        viewModelScope.launch {
+            try {
+                val allData = ubiBotIoTRepository.fetchAllUbiBotData()
+
+                allData.observeForever { ubiBotResponse ->
+                    _allUbiBotLiveData.postValue(ubiBotResponse) // Post the response to your LiveData
+
+                    // To remove observer immediately after receiving data
+                    allData.removeObserver {
+                    }
+                }
+            } catch (e: Exception) {
+                Timber.e("UbiBotViewModel", "Error fetching all data: ${e.message}")
+            }
+        }
     }
-
 }
 
 // UI State for managing FarmProduce State
