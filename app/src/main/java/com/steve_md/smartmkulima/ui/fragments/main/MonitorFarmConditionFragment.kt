@@ -238,9 +238,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         pieChart?.isLegendEnabled = true
         pieChart?.legendsTitleColor = Color.BLACK
         pieChart?.legendsColor = Color.BLACK
-
-//        pieChart?.isAnimationEnabled = true
-//        pieChart?.isLegendsPercentageEnabled = true
     }
 
     val Float.toSp get() = this * Resources.getSystem().displayMetrics.scaledDensity
