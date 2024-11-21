@@ -72,7 +72,7 @@ object NetworkModule {
         converter: Converter.Factory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://script.googleusercontent.com/")
+            .baseUrl("https://script.google.com/")
             .client(okHttpClient)
             .addConverterFactory(converter)
             .build()

@@ -6,10 +6,12 @@ import retrofit2.http.GET
 
 interface UbiBotIoTWebService {
 
-    @GET("macros/echo?user_content_key=PK6T1IGB8zYVingaIu7qeKPqPzRiixtYiMXKmvID8VycUMFwjz0T0WMCWE3Gj3SyqWVm4J9llRWsTwkvF3xr2iFxkEB2RsSEm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGLrYzz8ht2dio76GunWlg2MwTfqWO3jhzkVx9vkJWxEn99KV9CtNrWPjTW7rudvks4598UyzbDOXxtlUR4xrfQ_VC_Uc-qPXNz9Jw9Md8uu&lib=Mkbyn5EzvoZDKndMBOwjYSMmoKdKy5H4y")
+    // https://script.google.com/macros/s/AKfycbwqMY1ru0BdRR1fHgFG06J9bNjzV4JXhMSpACwAb03C34_rOusJNVY2bOp06cpTvFZT/exec
+
+    @GET("macros/s/AKfycbwqMY1ru0BdRR1fHgFG06J9bNjzV4JXhMSpACwAb03C34_rOusJNVY2bOp06cpTvFZT/exec")
     suspend fun fetchLatestEntryUbiBotData(): UbiBotResponse
 
-    @GET("macros/echo?user_content_key=C-H4on8k16V8n4_0_Fd1C7LKu2NxOQHQujds-3Ll9dZUmnDbAc1ZmmmrSWvnroAN7exOAnt0vyQyzvawdlAHzu1Dbgz4jB3fm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGNCv2W9MSHgTSBDbxIx73Q823J737pYUwBkpPv40Hg0hpAs7a-A7gd5vR0kB_N3Xuf4SI5Pa3wGOsKueFjWjcWqvN8UpQiEWA&lib=Mkbyn5EzvoZDKndMBOwjYSMmoKdKy5H4y")
+    @GET("macros/echo?user_content_key=O_1T39g7a7JgpWMYTawsjhQIF3BAyK1W8lVbue0gnhq64mtxv3yPPs-UBE2ITKWFlV29bYJ3RBZbQlDZh_zMH-YTNbLVngBjm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnO7sVaYUUEXvTEw2RWBjKDuP8ARs8ruhxZkWn222-mgec6FbcWkx3TczwrKdXp_9tE0Sj8V9ZNMFmGp-TJjK8aNnRBK1fWZWKQ&lib=MQStUg-N7V5JwG09gd0GvfsmoKdKy5H4y")
     suspend fun fetchAllUbiBotData(): List<UbiBotAllResponse>
 
 }

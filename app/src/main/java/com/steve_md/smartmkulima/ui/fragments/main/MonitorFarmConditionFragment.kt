@@ -35,7 +35,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.steve_md.smartmkulima.R
-import com.steve_md.smartmkulima.model.FarmConditions
 import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
 import com.steve_md.smartmkulima.ui.fragments.others.LocationProvider
 import com.steve_md.smartmkulima.utils.displaySnackBar
@@ -45,7 +44,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.mahozad.android.PieChart
 import ir.mahozad.android.unit.Dimension
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -166,7 +164,6 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
     private fun setUpUbiBotIoTData() {
         val temperature = view?.findViewById<TextView>(R.id.textViewTemperature)
         val humidity = view?.findViewById<TextView>(R.id.textViewHumidity)
-        val soilMoisture = view?.findViewById<TextView>(R.id.textViewSoilMoisture)
         val lightDensity = view?.findViewById<TextView>(R.id.textViewLightDensity)
 
         viewModel.ubiBotData.observe(viewLifecycleOwner) { it: UbiBotResponse? ->
@@ -176,14 +173,9 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
                 if (it != null) {
                     humidity?.text = "${it.field2Humidity}%"
                 }
-                if (it != null) {
-                    soilMoisture?.text = "${it.field10SoilMoisture}%"
-                }
+
                 if (it != null) {
                     lightDensity?.text = "${it.field6Light} Lux"
-                }
-                if (it != null) {
-                    view?.findViewById<TextView>(R.id.textViewSoilTemp)?.text = "${it.field9SoilTemperature}°C"
                 }
                 if (it != null) {
                     displaySnackBar("UbiBot Data fetched successfully")
@@ -226,11 +218,9 @@ class MonitorFarmConditionFragment : Fragment(),OnMapReadyCallback {
         val pieChart = view?.findViewById<PieChart>(R.id.pieChart)
 
         pieChart?.slices = listOf(
-            PieChart.Slice(0.20f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
-            PieChart.Slice(0.30f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
-            PieChart.Slice(0.18f, Color.rgb(0, 162, 216), Color.rgb(31, 199, 255), legend = "Soil moisture"),
-            PieChart.Slice(0.12f, Color.rgb(255, 4, 4), Color.rgb(255, 72, 86), legend = "Light density"),
-            PieChart.Slice(0.14f, Color.rgb(160, 100, 167), Color.rgb(160, 145, 175), legend = "Soil temperature") ,
+            PieChart.Slice(0.50f, Color.rgb(120, 181, 0), Color.rgb(149, 224, 0), legend = "Temperature"),
+            PieChart.Slice(0.35f, Color.rgb(204, 168, 0), Color.rgb(249, 228, 0), legend = "Humidity"),
+            PieChart.Slice(0.15f, Color.rgb(255, 4, 4), Color.rgb(255, 72, 86), legend = "Light density"),
         )
 
         pieChart?.gradientType = PieChart.GradientType.RADIAL

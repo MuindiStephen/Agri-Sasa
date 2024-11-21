@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Fetch only the latest data for each field
  * from the UbiBot WSI Pro (WiFi) sensor - (UbiBot Sensor)
  */
-data class UbiBotResponse(
+data class UbiBotResponse2(
     @SerializedName("created_at") val createdAt: Int,
     @SerializedName("created_at_ISO") val createdAtISO: String,
     @SerializedName("field1(Temperature)") val field1Temperature: Double,
@@ -18,4 +18,26 @@ data class UbiBotResponse(
     @SerializedName("field10(RS485 Soil Moisture)") val field10SoilMoisture: Double,
     @SerializedName("status") val status: String,
     @SerializedName("serial") val serial: String
+)
+
+
+data class UbiBotResponse(
+    @SerializedName("created_at")
+    val createdAt: Int,
+    @SerializedName("created_at_ISO")
+    val createdAtISO: String,
+    @SerializedName("field1(Temperature)")
+    val field1Temperature: Double,
+    @SerializedName("field2(Humidity)")
+    val field2Humidity: Int,
+    @SerializedName("field3(Voltage)")
+    val field3Voltage: Double,
+    @SerializedName("field5(GSM RSSI)")
+    val field5GSMRSSI: Int,
+    @SerializedName("field6(Light)")
+    val field6Light: Double,
+    @SerializedName("serial")
+    val serial: String,
+    @SerializedName("status")
+    val status: String
 )

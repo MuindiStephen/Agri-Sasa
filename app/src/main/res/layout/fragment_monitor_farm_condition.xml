@@ -19,7 +19,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView15"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
@@ -91,6 +91,7 @@
                 android:fontFamily="@font/nunito_sans"
                 android:text="Soil Moisture : "
                 android:textSize="14sp"
+                android:visibility="invisible"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView59"
                 app:layout_constraintTop_toBottomOf="@+id/textView59" />
@@ -101,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_sans"
                 android:text="0.00%"
+                android:visibility="invisible"
                 android:textSize="18sp"
                 android:layout_marginEnd="@dimen/_16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -194,8 +196,8 @@
                 android:text="Light density : "
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/textView61"
-                app:layout_constraintTop_toBottomOf="@+id/textView61" />
+                app:layout_constraintStart_toStartOf="@+id/textView59"
+                app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
             <TextView
                 android:id="@+id/textViewLightDensity"
@@ -272,6 +274,7 @@
                 android:text="Soil Temperature : "
                 android:textColor="@color/black"
                 android:textSize="14sp"
+                android:visibility="invisible"
                 android:layout_marginBottom="@dimen/_16dp"
                 app:layout_constraintStart_toStartOf="@+id/textView97"
                 app:layout_constraintTop_toBottomOf="@+id/textView97" />
@@ -283,6 +286,7 @@
                 android:text="0"
                 android:fontFamily="@font/nunito_sans"
                 android:textSize="18sp"
+                android:visibility="invisible"
                 android:layout_marginEnd="@dimen/_16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/textView106"

@@ -17,9 +17,12 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.steve_md.smartmkulima.databinding.FragmentIoTGraphsBinding
 import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotAllResponse
+import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
+import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class IoTGraphsFragment : Fragment() {
@@ -46,13 +49,116 @@ class IoTGraphsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
 
-        //setUpIoTGraphsAndCharts()
+        // setUpIoTGraphsAndCharts()
 
-        setUpIoTGraphs()
-        //setUpIoTGraphs2()
+        // setUpIoTGraphs()
+        // setUpIoTGraphs2()
+        // viewModel.fetchAllUbiBotData()
+
         initBinding()
 
-        viewModel.fetchAllUbiBotData()
+        viewModel.fetchUbiBotData()
+
+        setUpTemperatureData()
+        setUpHumidity()
+        setUpLightDensity()
+    }
+
+    private fun setUpTemperatureData() {
+        viewModel.ubiBotData.observe(viewLifecycleOwner) { it: UbiBotResponse? ->
+            if (it != null) {
+                val temperatureData = listOf(
+                    22.535286, 22.465858, 22.409782, 23.170822, it.field1Temperature
+                )
+
+                val entries = temperatureData.mapIndexed { index, temp ->
+                    Entry(index.toFloat(), temp.toFloat())
+                }
+
+                // Create LineDataSet and style it
+                val dataSet = LineDataSet(entries, "Temperature")
+                dataSet.color = Color.BLUE
+                dataSet.setCircleColor(Color.RED)
+                dataSet.lineWidth = 2f
+                dataSet.circleRadius = 4f
+                dataSet.setDrawCircleHole(false)
+
+                // Adding data to chart
+                val lineData = LineData(dataSet)
+                binding.lineChartTemperature.data = lineData
+                binding.lineChartTemperature.description.isEnabled =
+                    false // Disable description label
+
+                // Refresh the chart
+                binding.lineChartTemperature.invalidate()
+            } else {
+                displaySnackBar("Updated IoT graphs")
+                Timber.e("Unable to fetch IoT Data")
+                Timber.e("Caused by ${it.toString()} and READ TIME OUT")
+            }
+        }
+    }
+
+    private fun setUpHumidity() {
+        viewModel.ubiBotData.observe(viewLifecycleOwner) { it: UbiBotResponse? ->
+            if (it != null) {
+                val humidityData = listOf(
+                    70, 70, 70,70, 71, it.field2Humidity
+                )
+
+                val entries = humidityData.mapIndexed { index, temp ->
+                    Entry(index.toFloat(), temp.toFloat())
+                }
+
+                // Create LineDataSet and style it
+                val dataSet = LineDataSet(entries, "Humidity")
+                dataSet.color = Color.BLUE
+                dataSet.setCircleColor(Color.RED) // Mark points for better visibility
+                dataSet.lineWidth = 2f
+                dataSet.circleRadius = 4f
+                dataSet.setDrawCircleHole(false)
+
+                // Adding data to chart
+                val lineData = LineData(dataSet)
+                binding.lineChartHumidity.data = lineData
+                binding.lineChartHumidity.description.isEnabled = false // Disable description label
+
+                // Refresh the chart
+                binding.lineChartHumidity.invalidate()
+
+            }
+        }
+    }
+
+    private fun setUpLightDensity() {
+        viewModel.ubiBotData.observe(viewLifecycleOwner) { it: UbiBotResponse? ->
+            if (it != null) {
+                val lightDensityData = listOf(
+                    0,0,0,11.5,0.48,0.93, it.field6Light
+                )
+
+                val entries = lightDensityData.mapIndexed { index, temp ->
+                    Entry(index.toFloat(), temp.toFloat())
+                }
+
+                // Create LineDataSet and style it
+                val dataSet = LineDataSet(entries, "Light Density")
+                dataSet.color = Color.BLUE
+                dataSet.setCircleColor(Color.RED) // Mark points for better visibility
+                dataSet.lineWidth = 2f
+                dataSet.circleRadius = 4f
+                dataSet.setDrawCircleHole(false)
+
+                // Adding data to chart
+                val lineData = LineData(dataSet)
+                binding.lineChartLightDensity.data = lineData
+                binding.lineChartLightDensity.description.isEnabled =
+                    false // Disable description label
+
+                // Refresh the chart
+                binding.lineChartLightDensity.invalidate()
+            }
+        }
     }
 
     private fun initBinding() {
