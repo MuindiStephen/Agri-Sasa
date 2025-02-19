@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@android:color/white">
+
+    <!-- Product Image -->
+    <ImageView
+        android:id="@+id/machineryImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Machinery Image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/agreement" />
+
+    <!-- Machinery Name -->
+    <TextView
+        android:id="@+id/machineryName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/machineryImage"
+        app:layout_constraintTop_toTopOf="@id/machineryImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="8dp"
+        tools:text="Tractor Model X" />
+
+    <!-- Machinery Description -->
+    <TextView
+        android:id="@+id/machineryDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@id/machineryName"
+        app:layout_constraintTop_toBottomOf="@id/machineryName"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:maxLines="2"
+        android:paddingStart="8dp"
+        android:fontFamily="@font/nunito_sans"
+        android:ellipsize="end"
+        tools:text="Heavy-duty tractor for plowing and harvesting." />
+
+    <!-- Price -->
+    <TextView
+        android:id="@+id/machineryPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:paddingStart="8dp"
+        android:fontFamily="@font/nunito_sans_semibold"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintStart_toStartOf="@id/machineryName"
+        app:layout_constraintTop_toBottomOf="@id/machineryDescription"
+        tools:text="Ksh 250,000" />
+
+    <!-- Sync Status Indicator -->
+    <TextView
+        android:id="@+id/syncStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:padding="4dp"
+        android:fontFamily="@font/nunito_sans"
+        android:textColor="@android:color/white"
+        android:background="@color/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/machineryDescription"
+        tools:text="Unsynced" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

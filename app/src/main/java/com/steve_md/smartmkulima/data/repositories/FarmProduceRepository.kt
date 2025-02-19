@@ -16,6 +16,8 @@ class FarmProduceRepository @Inject constructor(
 ) {
     private val farmProduceDao = appDatabase.farmProduceDao()
 
+    private val farmMachineryDao = appDatabase.farmMachineryDao()
+
     fun getAllFarmProduce() = networkBoundResource(
 
         // Logic to query data from database - [offline cache storage]
@@ -49,4 +51,6 @@ class FarmProduceRepository @Inject constructor(
     fun searchDatabase(searchQuery: String): Flow<List<FarmProduce>> {
         return farmProduceDao.searchDatabase(searchQuery)
     }
+
+
 }

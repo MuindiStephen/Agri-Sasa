@@ -6,6 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.data.room.BuyersDao
+import com.steve_md.smartmkulima.data.room.FarmMachineryDao
 import com.steve_md.smartmkulima.data.room.FarmProduceDao
 import com.steve_md.smartmkulima.data.room.FieldAgentUserDao
 import com.steve_md.smartmkulima.data.room.GAPDao
@@ -67,5 +68,11 @@ object DatabaseModule {
     @Provides
     fun providesBuyerCartDao(appDatabase: AppDatabase): BuyerCartDao {
         return appDatabase.buyerCartDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesFarmMachineryDao(appDatabase: AppDatabase): FarmMachineryDao {
+        return appDatabase.farmMachineryDao()
     }
 }

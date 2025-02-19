@@ -14,6 +14,7 @@ import com.steve_md.smartmkulima.adapter.FarmEquipmentAdapter
 import com.steve_md.smartmkulima.data.remote.FarmEquipmentsApiClient
 import com.steve_md.smartmkulima.databinding.FragmentHireFarmEquipmentsBinding
 import com.steve_md.smartmkulima.model.FarmEquipment
+import com.steve_md.smartmkulima.ui.fragments.main.fieldagents.AddANewAgroDealerBottomSheetFragment
 import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -95,6 +96,17 @@ class HireFarmEquipmentsFragment : Fragment() {
     private fun setUpBinding() {
         binding.imageViewBackFromFarmEquipments.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.buttonAddFarmMachinery.setOnClickListener {
+            val modal = AddFarmMachineryBottomSheetFragment()
+            // modal.show(parentFragmentManager, TAG)
+            parentFragmentManager.let {
+                modal.show(it, AddANewAgroDealerBottomSheetFragment.TAG)
+            }
+        }
+        binding.textView182.setOnClickListener {
+
         }
 
         // performing filtering of farm equipments here

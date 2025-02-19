@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.fragments.main.AddFarmMachineryBottomSheetFragment">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Machinery Image -->
+            <ImageView
+                android:id="@+id/machineryImageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="Select Image"
+                android:background="@drawable/select_image"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <!-- Machinery Name -->
+            <EditText
+                android:id="@+id/machineryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Machinery Name"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:fontFamily="@font/nunito_sans"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="text" />
+
+            <!-- Machinery Description -->
+            <EditText
+                android:id="@+id/machineryDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Machinery Description"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:fontFamily="@font/nunito_sans"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textMultiLine"
+                android:minLines="3" />
+
+            <!-- Price -->
+            <EditText
+                android:id="@+id/machineryPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Price (Ksh)"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:fontFamily="@font/nunito_sans"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="numberDecimal" />
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:padding="12dp"
+                android:layout_marginBottom="@dimen/_32dp"
+                android:fontFamily="@font/nunito_sans"
+                android:backgroundTint="@color/main"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+
+
+
+</ScrollView>

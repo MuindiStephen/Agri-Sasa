@@ -8,12 +8,14 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
+import com.steve_md.smartmkulima.data.repositories.FarmMachineryRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
 import com.steve_md.smartmkulima.data.repositories.UbiBotIoTRepository
 import com.steve_md.smartmkulima.model.AgroDealerOffers
 import com.steve_md.smartmkulima.model.BuyerCart
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
+import com.steve_md.smartmkulima.model.FarmMachinery
 import com.steve_md.smartmkulima.model.FarmProduce
 import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.model.NewFarmField
@@ -59,7 +61,8 @@ class MainViewModel @Inject constructor(
     private val repository: FarmCycleRepository,
     private val fieldAgentsRepository: FieldAgentsRepository,
     private val buyerRepository: BuyerRepository,
-    private val ubiBotIoTRepository: UbiBotIoTRepository
+    private val ubiBotIoTRepository: UbiBotIoTRepository,
+    private val farmMachineryRepository: FarmMachineryRepository
 ) : ViewModel() {
 
     private val _produce = MutableSharedFlow<FarmProduceState>()
@@ -600,6 +603,16 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+    // Farm Machinery
+    val allMachinery: LiveData<List<FarmMachinery>> = farmMachineryRepository.allMachinery
+
+
+    fun insertMachinery(machinery: FarmMachinery) = viewModelScope.launch {
+        farmMachineryRepository.insertMachinery(machinery)
+    }
+
+
 }
 
 // UI State for managing FarmProduce State
