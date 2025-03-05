@@ -45,6 +45,7 @@
     <color name="colorSecondaryVariant">#FF018786</color>
     <color name="colorOnPrimary">@color/white</color>
     <color name="colorAccent">#083273</color>
+    <color name="colorAccent2">#b0bec5</color>
 
     <color name="ColorPrimaryTint">#D922285D</color>
     <color name="orangebackground">#ff6400</color>

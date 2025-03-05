@@ -98,6 +98,7 @@ class HireFarmEquipmentsFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+
         binding.buttonAddFarmMachinery.setOnClickListener {
             val modal = AddFarmMachineryBottomSheetFragment()
             // modal.show(parentFragmentManager, TAG)
@@ -105,17 +106,26 @@ class HireFarmEquipmentsFragment : Fragment() {
                 modal.show(it, AddANewAgroDealerBottomSheetFragment.TAG)
             }
         }
-        binding.textView182.setOnClickListener {
 
+        binding.textView182.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_hireFarmEquipmentsFragment_to_offlineFarmMachineryFragment
+            )
         }
 
         // performing filtering of farm equipments here
         binding.card1.setOnClickListener {
             filterFarmEquipments("F")
         }
-        binding.card2.setOnClickListener { filterFarmEquipments("W") }
-        binding.card3.setOnClickListener { filterFarmEquipments("J") }
-        binding.card4.setOnClickListener { filterFarmEquipments("P") }
+        binding.card2.setOnClickListener {
+            filterFarmEquipments("W")
+        }
+        binding.card3.setOnClickListener {
+            filterFarmEquipments("J")
+        }
+        binding.card4.setOnClickListener {
+            filterFarmEquipments("P")
+        }
     }
 
     private fun filterFarmEquipments(query: String) {
