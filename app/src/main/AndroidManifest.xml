@@ -65,6 +65,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <!---
+            Voice
+            -->
+
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

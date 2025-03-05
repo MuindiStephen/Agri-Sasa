@@ -312,6 +312,9 @@
         <action
             android:id="@+id/action_hireFarmEquipmentsFragment_to_farmEquipmentDetailsFragment"
             app:destination="@id/farmEquipmentDetailsFragment" />
+        <action
+            android:id="@+id/action_hireFarmEquipmentsFragment_to_offlineFarmMachineryFragment"
+            app:destination="@id/offlineFarmMachineryFragment" />
     </fragment>
     <fragment
         android:id="@+id/monitorFarmConditionFragment"
@@ -400,6 +403,9 @@
         <action
             android:id="@+id/action_newFarmingTechnologyFragment_to_viewAllOrdersMadeToAgroDealerAsAFarmerFragment"
             app:destination="@id/viewAllOrdersMadeToAgroDealerAsAFarmerFragment" />
+        <action
+            android:id="@+id/action_newFarmingTechnologyFragment_to_customDeviceFragment"
+            app:destination="@id/customDeviceFragment" />
     </fragment>
     <fragment
         android:id="@+id/didYouKnow"
@@ -847,6 +853,20 @@
         android:name="com.steve_md.smartmkulima.ui.fragments.main.IoTGraphsFragment"
         android:label="fragment_io_t_graphs"
         tools:layout="@layout/fragment_io_t_graphs" />
+    <fragment
+        android:id="@+id/offlineFarmMachineryFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.main.OfflineFarmMachineryFragment"
+        android:label="fragment_offline_farm_machinery"
+        tools:layout="@layout/fragment_offline_farm_machinery" />
+    <fragment
+        android:id="@+id/customDeviceFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.twilio.CustomDeviceFragment"
+        android:label="fragment_custom_device"
+        tools:layout="@layout/fragment_custom_device" >
+        <action
+            android:id="@+id/action_customDeviceFragment_to_marketProduce"
+            app:destination="@id/marketProduce" />
+    </fragment>
 
 
 </navigation>
