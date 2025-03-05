@@ -39,7 +39,7 @@ import java.util.Locale
 
 class CustomDeviceFragment : Fragment() {
     private val accessToken =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2E0MGM5OWE1ZGFiNjkzOTUyZTZmYmRiMjcyZTNkN2QwLTE3NDExODM5ODkiLCJncmFudHMiOnsiaWRlbnRpdHkiOiJDaHJpcyIsInZvaWNlIjp7ImluY29taW5nIjp7ImFsbG93Ijp0cnVlfSwib3V0Z29pbmciOnsiYXBwbGljYXRpb25fc2lkIjoiQVAyN2YxY2I4ZDdlNzM4ZjQxZjFiNjIwOWQxZDY4MmYyZCJ9fX0sImlhdCI6MTc0MTE4Mzk4OSwiZXhwIjoxNzQxMjcwMzg5LCJpc3MiOiJTS2E0MGM5OWE1ZGFiNjkzOTUyZTZmYmRiMjcyZTNkN2QwIiwic3ViIjoiQUNlZTczNGJlYTMxMzAzMmNiMTNkMDczOWYyYzA0MGQ1ZSJ9.4x5ixB3m4xwT5WQuw9BVnFnsqHeQIZEwcLBwQgw9Ivc"
+        "PASTE_YOUR_ACCESS_TOKEN_HERE"
     private var audioManager: AudioManager? = null
     private var activeCall: Call? = null
 
