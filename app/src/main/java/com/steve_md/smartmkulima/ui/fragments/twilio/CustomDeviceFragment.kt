@@ -3,6 +3,7 @@ package com.steve_md.smartmkulima.ui.fragments.twilio
 import android.Manifest
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.media.AudioAttributes
@@ -20,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Chronometer
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
@@ -31,15 +33,18 @@ import com.google.android.material.snackbar.Snackbar
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.common.FileAndMicAudioDevice
 import com.steve_md.smartmkulima.common.SoundPoolManager
+import com.steve_md.smartmkulima.utils.services.PrintServiceActivity
 import com.twilio.voice.Call
 import com.twilio.voice.CallException
 import com.twilio.voice.ConnectOptions
 import com.twilio.voice.Voice
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+@AndroidEntryPoint
 class CustomDeviceFragment : Fragment() {
     private val accessToken =
-        "PASTE_YOUR_ACCESS_TOKEN_HERE"
+        "YOUR_TOKEN"
     private var audioManager: AudioManager? = null
     private var activeCall: Call? = null
 
@@ -78,15 +83,12 @@ class CustomDeviceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setHasOptionsMenu(true)
-
-
 
         holdActionFab = view.findViewById(R.id.hold_action_fab)
         muteActionFab = view.findViewById(R.id.mute_action_fab)
         inputSwitchFab = view.findViewById(R.id.input_switch_fab)
-
-
     }
 
     private fun initializeUI(view: View) {
@@ -98,6 +100,8 @@ class CustomDeviceFragment : Fragment() {
 
         val callActionFab: FloatingActionButton = view.findViewById(R.id.call_action_fab)
         val hangupActionFab: FloatingActionButton = view.findViewById(R.id.hangup_action_fab)
+
+
 
         callActionFab.setOnClickListener { placeCall() }
         hangupActionFab.setOnClickListener { hangUpCall() }
@@ -113,6 +117,8 @@ class CustomDeviceFragment : Fragment() {
         val billPay: CardView = view.findViewById(R.id.billPay)
         val bulkPur: CardView = view.findViewById(R.id.bulkPay)
 
+        val vieworder: CardView = view.findViewById(R.id.orders)
+
         sales.setOnClickListener {
             findNavController().navigate(
                 R.id.action_customDeviceFragment_to_marketProduce
@@ -126,6 +132,12 @@ class CustomDeviceFragment : Fragment() {
         bulkPur.setOnClickListener {
             findNavController().navigate(
                 R.id.action_customDeviceFragment_to_marketProduce
+            )
+        }
+
+        vieworder.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_customDeviceFragment_to_voiceBotOrdersFragment
             )
         }
 
@@ -298,12 +310,18 @@ class CustomDeviceFragment : Fragment() {
             }
 
             override fun onReconnected(call: Call) {
-                Log.d(TAG, "onRec   onnected")
+                Log.d(TAG, "onReconnected")
             }
+
+
 
             override fun onDisconnected(call: Call, error: CallException?) {
                 setAudioFocus(false)
                 Log.d(TAG, "Call disconnected")
+
+               // startActivity(Intent(requireContext(), PrintServiceActivity::class.java))
+                Toast.makeText(requireContext(),"Transaction was Successful...",Toast.LENGTH_LONG)
+                    .show()
 
                 if (error != null) {
                     val message = String.format(
@@ -318,6 +336,7 @@ class CustomDeviceFragment : Fragment() {
 
                 resetUI()
             }
+
         }
     }
 

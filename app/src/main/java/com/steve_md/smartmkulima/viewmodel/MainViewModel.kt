@@ -3,8 +3,6 @@ package com.steve_md.smartmkulima.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.steve_md.smartmkulima.data.repositories.BuyerRepository
 import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
@@ -12,6 +10,7 @@ import com.steve_md.smartmkulima.data.repositories.FarmMachineryRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
 import com.steve_md.smartmkulima.data.repositories.UbiBotIoTRepository
+import com.steve_md.smartmkulima.data.repositories.VoiceBotRepo
 import com.steve_md.smartmkulima.model.AgroDealerOffers
 import com.steve_md.smartmkulima.model.BuyerCart
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
@@ -30,6 +29,7 @@ import com.steve_md.smartmkulima.model.requests.fieldagent.FieldAgentRegisterReq
 import com.steve_md.smartmkulima.model.responses.buyer.BuyerRegisterResponse
 import com.steve_md.smartmkulima.model.responses.fieldagent.Data
 import com.steve_md.smartmkulima.model.responses.fieldagent.FieldAgentRegisterResponse
+import com.steve_md.smartmkulima.model.voicebotresponse.BotOrdersResponse
 import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotAllResponse
 import com.steve_md.smartmkulima.model.ubibot_iot.UbiBotResponse
 import com.steve_md.smartmkulima.utils.ApiStates
@@ -62,7 +62,8 @@ class MainViewModel @Inject constructor(
     private val fieldAgentsRepository: FieldAgentsRepository,
     private val buyerRepository: BuyerRepository,
     private val ubiBotIoTRepository: UbiBotIoTRepository,
-    private val farmMachineryRepository: FarmMachineryRepository
+    private val farmMachineryRepository: FarmMachineryRepository,
+    private val voiceBotRepo: VoiceBotRepo
 ) : ViewModel() {
 
     private val _produce = MutableSharedFlow<FarmProduceState>()
@@ -611,6 +612,9 @@ class MainViewModel @Inject constructor(
     fun insertMachinery(machinery: FarmMachinery) = viewModelScope.launch {
         farmMachineryRepository.insertMachinery(machinery)
     }
+
+    // HandleVoice Bot repo
+    val voiceBotOrders : LiveData<BotOrdersResponse> = voiceBotRepo.fetchVoiceBotOrders()
 
 
 }

@@ -866,6 +866,27 @@
         <action
             android:id="@+id/action_customDeviceFragment_to_marketProduce"
             app:destination="@id/marketProduce" />
+        <action
+            android:id="@+id/action_customDeviceFragment_to_voiceBotOrdersFragment"
+            app:destination="@id/voiceBotOrdersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/voiceBotOrdersFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.twilio.VoiceBotOrdersFragment"
+        android:label="fragment_voice_bot_orders"
+        tools:layout="@layout/fragment_voice_bot_orders" >
+        <action
+            android:id="@+id/action_voiceBotOrdersFragment_to_voiceOrderInDetailFragment"
+            app:destination="@id/voiceOrderInDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/voiceOrderInDetailFragment"
+        android:name="com.steve_md.smartmkulima.ui.fragments.twilio.VoiceOrderInDetailFragment"
+        android:label="fragment_voice_order_in_detail"
+        tools:layout="@layout/fragment_voice_order_in_detail" >
+        <argument
+            android:name="orderitem"
+            app:argType="com.steve_md.smartmkulima.model.voicebotresponse.Order" />
     </fragment>
 
 
