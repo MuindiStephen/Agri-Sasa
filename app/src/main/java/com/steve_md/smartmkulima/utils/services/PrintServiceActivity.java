@@ -762,9 +762,9 @@ public class PrintServiceActivity extends AppCompatActivity implements OnPrintLi
     private void init_Gray() {
         if (deviceType == DeviceType.CS10) {
             int flag = getValue();
-            posApiHelper.PrintSetGray(flag);
+            //posApiHelper.PrintSetGray(flag);
         } else if (deviceType == DeviceType.N5 ){
-            printer.setGray(GrayLevelEnum.LEVEL_0);
+           // printer.setGray(GrayLevelEnum.LEVEL_0);
         }
 
     }

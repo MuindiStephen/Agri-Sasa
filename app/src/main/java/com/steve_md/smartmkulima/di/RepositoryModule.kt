@@ -1,5 +1,7 @@
 package com.steve_md.smartmkulima.di
 
+import android.speech.tts.Voice
+import com.steve_md.smartmkulima.data.remote.BotOrderApiServices
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 import com.steve_md.smartmkulima.data.remote.UbiBotIoTWebService
@@ -9,6 +11,7 @@ import com.steve_md.smartmkulima.data.repositories.FarmCycleRepository
 import com.steve_md.smartmkulima.data.repositories.FarmProduceRepository
 import com.steve_md.smartmkulima.data.repositories.FieldAgentsRepository
 import com.steve_md.smartmkulima.data.repositories.UbiBotIoTRepository
+import com.steve_md.smartmkulima.data.repositories.VoiceBotRepo
 import com.steve_md.smartmkulima.data.repositories.impl.AuthRepositoryImpl
 import com.steve_md.smartmkulima.data.room.AppDatabase
 import dagger.Module
@@ -81,4 +84,11 @@ object RepositoryModule {
         return UbiBotIoTRepository(ubiBotIoTWebService)
     }
 
+    @Singleton
+    @Provides
+    fun providesBotOrdersRepo(
+        service: BotOrderApiServices
+    ) : VoiceBotRepo {
+        return VoiceBotRepo(service)
+    }
 }

@@ -1,5 +1,6 @@
 package com.steve_md.smartmkulima.di
 
+import com.steve_md.smartmkulima.data.remote.BotOrderApiServices
 import com.steve_md.smartmkulima.data.remote.FarmProduceApiService
 import com.steve_md.smartmkulima.data.remote.RetrofitApiService
 import com.steve_md.smartmkulima.data.remote.UbiBotIoTWebService
@@ -13,6 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -80,6 +82,21 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    @Named("retrofit3")
+    fun providesRetrofit3(
+        okHttpClient: OkHttpClient,
+        converter: Converter.Factory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("http://102.37.143.167:7136/")
+            .client(okHttpClient)
+            .addConverterFactory(converter)
+            .build()
+    }
+
+
+    @Provides
+    @Singleton
     fun providesApiService(@Named("retrofit1") retrofit: Retrofit): FarmProduceApiService {
         return retrofit.create(FarmProduceApiService::class.java)
     }
@@ -96,4 +113,9 @@ object NetworkModule {
         return retrofit2.create(UbiBotIoTWebService::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun providesVoiceBotRemoteService(@Named("retrofit3") retrofit3: Retrofit): BotOrderApiServices {
+        return retrofit3.create(BotOrderApiServices::class.java)
+    }
 }
