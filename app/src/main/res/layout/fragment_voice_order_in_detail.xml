@@ -62,9 +62,20 @@
                 android:fontFamily="@font/nunito_sans"
                 android:text="Order date: 2025-03-10"
                 android:textSize="@dimen/_12sp_text_size"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView165"
                 app:layout_constraintTop_toBottomOf="@+id/textView165" />
+
+            <TextView
+                android:id="@+id/tVOrderTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="16dp"
+                android:text="Order Total: KSH. 20000"
+                android:textSize="@dimen/_12sp_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView166"
+                app:layout_constraintTop_toBottomOf="@+id/textView166" />
 
             <TextView
                 android:id="@+id/tvBotOrderInDetail"
@@ -76,6 +87,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView166"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView166" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

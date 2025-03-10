@@ -51,7 +51,7 @@ class VoiceOrderInDetailFragment : Fragment() {
             textView163.text = "Order Id: " + orderItem.orderId.toString()
             textView165.text = "Payment Method: " + orderItem.orderId.toString()
             textView166.text = "Order date: " + orderItem.orderDate
-
+            tVOrderTotal.text = "Order Total KSH: "+ orderItem.orderTotal
         }
 
 

@@ -32,6 +32,7 @@ class VoiceBotOrdersAdapter(
             binding.textView163.text = "Order ID: "+order?.orderId.toString()
             binding.textView165.text = "Payment Method: "+order?.paymentMethod
             binding.textView166.text = "Order Date: "+order?.orderDate
+            binding.tVOrderTotal.text = "Order Total: KSH." + order?.orderTotal
         }
     }
 
