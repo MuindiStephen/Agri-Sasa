@@ -43,8 +43,7 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class CustomDeviceFragment : Fragment() {
-    private val accessToken =
-        "YOUR_TOKEN"
+    private val accessToken = "Your Token"
     private var audioManager: AudioManager? = null
     private var activeCall: Call? = null
 
@@ -120,31 +119,45 @@ class CustomDeviceFragment : Fragment() {
         val vieworder: CardView = view.findViewById(R.id.orders)
 
         sales.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_customDeviceFragment_to_marketProduce
-            )
+//            findNavController().navigate(
+//                R.id.action_customDeviceFragment_to_marketProduce
+//            )
+
+            setUpCall()
         }
         billPay.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_customDeviceFragment_to_marketProduce
-            )
+//            findNavController().navigate(
+//                R.id.action_customDeviceFragment_to_marketProduce
+//            )
+            setUpCall()
         }
         bulkPur.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_customDeviceFragment_to_marketProduce
-            )
+//            findNavController().navigate(
+//                R.id.action_customDeviceFragment_to_marketProduce
+//            )
+            setUpCall()
         }
 
         vieworder.setOnClickListener {
             findNavController().navigate(
                 R.id.action_customDeviceFragment_to_voiceBotOrdersFragment
             )
+           // setUpCall()
         }
 
         /**
          * Set up ui
          */
-        resetUI()
+        //resetUI()
+    }
+
+    private fun setUpCall() {
+        params["to"] = ""
+        val connectOptions = ConnectOptions.Builder(accessToken)
+            .params(params)
+            .build()
+        activeCall = Voice.connect(requireContext(), connectOptions, callListener())
+        setCallUI()
     }
 
     private fun holdActionFabClickListener(): View.OnClickListener {
@@ -229,7 +242,7 @@ class CustomDeviceFragment : Fragment() {
         val hangupActionFab =
             view?.findViewById<FloatingActionButton>(R.id.hangup_action_fab)
 
-        callActionFab?.show()
+        //callActionFab?.show()
         muteActionFab?.setImageDrawable(
             ContextCompat.getDrawable(
                 requireContext(),
