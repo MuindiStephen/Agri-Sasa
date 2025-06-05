@@ -4,6 +4,7 @@ package com.steve_md.smartmkulima.ui.fragments.main
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.databinding.FragmentPaymentBinding
 import com.steve_md.smartmkulima.model.Transaction
 import com.steve_md.smartmkulima.payment.mpesa.dto.AuthorizationResponse
+import com.steve_md.smartmkulima.payment.mpesa.dto.STKPushInitialResponse
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushRequest
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
 import com.steve_md.smartmkulima.utils.*
@@ -83,7 +85,7 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
 
 
         // Retrieve the total price from the arguments
-        val totalPrice = arguments?.getInt("TOTAL_PRICE") ?: 0
+        val totalPrice = arguments?.getInt("TOTAL_PRICE") ?: 1 // for testing purposes
 
         binding.inputAmountToPay.apply {
             setText(totalPrice.toString())
@@ -157,14 +159,43 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
         mApiClient!!.setGetAccessToken(false)
 
         mApiClient!!.mpesaService().sendPush(stkPush)
-            .enqueue(object : Callback<StkPushSuccessResponse> {
-                @SuppressLint("SimpleDateFormat")
+            .enqueue(object : Callback<STKPushInitialResponse> {
+                override fun onResponse(
+                    call: Call<STKPushInitialResponse>,
+                    response: Response<STKPushInitialResponse>,
+                ) {
+                    if (response.isSuccessful) {
+                        val res = response.body()
+                        if (res?.responseCode == "0") {
+                            toast("STK Push sent successfully.\nCustomerMessage: ${res.customerMessage}")
+
+                        } else {
+                            toast("STK Push failed.\nReason: ${res?.responseDescription}")
+                        }
+                    } else {
+                        Timber.e("STK Push failed: ${response.errorBody()?.string()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<STKPushInitialResponse>, t: Throwable) {
+                    //Timber.tag(TAG).e(httpException, t.printStackTrace().toString())
+                    Log.e("PAYMENTFRAGMENT","==>${httpException} ${t.printStackTrace().toString()}")
+                }
+
+            })
+
+       /* mApiClient!!.mpesaService().sendPush(stkPush)
+            .enqueue(object : Callback<STKPushInitialResponse> {
+                //                @SuppressLint("SimpleDateFormat")
+                /*
                 override fun onResponse(
                     call: Call<StkPushSuccessResponse>,
                     response: Response<StkPushSuccessResponse>
                 ) {
                     try {
-                        if (response.isSuccessful) {
+                        /*
+                        if (response.isSuccessful && response.body() != null) {
+
 
                             toast("Response : ${response.body().toString()}")
 
@@ -206,8 +237,64 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
                             Timber.e("Post submitted to the API")
                         } else {
                             Timber.e("Response %s")
+                            toast("Payment failed: $resultDesc")
+                            Timber.e("STK Push failed. Code: $resultCode, Desc: $resultDesc")
+                        }*/
+
+                        Log.e("PAYMENTFRAGMENT","LOADING>>>${response.body()}")
+
+                        if (response.isSuccessful && response.body() != null) {
+                            val resultCode = response.body()!!.body?.stkCallback?.resultCode
+                            val resultDesc = response.body()!!.body?.stkCallback?.resultDesc
+
+                            if (resultCode == 0) {
+                                toast("Payment successful: $resultDesc")
+
+                                val bundle = Bundle()
+                                bundle.putString("PHONE_NUMBER", phoneNumber)
+                                bundle.putString("AMOUNT", amount)
+
+                                clearCartViewModel.clearCart()
+
+                                findNavController().navigate(
+                                    R.id.action_paymentFragment_to_successfulPaymentFragment,
+                                    bundle
+                                )
+
+                                val sdf = SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault())
+                                val resultDate = sdf.format(Date(System.currentTimeMillis()))
+
+                                val transaction = Transaction(id = 0, amount.toDouble(), resultDate)
+
+                                val db = Room.databaseBuilder(
+                                    requireContext(), AppDatabase::class.java, "shambaapp-db"
+                                ).build()
+
+                                val transactionDao = db.transactionDao()
+
+                                lifecycleScope.launch {
+                                    withContext(Dispatchers.IO) {
+                                        transactionDao.saveTransaction(transaction)
+                                    }
+                                    withContext(Dispatchers.Main) {
+                                        displaySnackBar("Saved transaction successfully.")
+                                    }
+                                }
+
+                                Timber.e("Post submitted to the API")
+
+                            } else {
+                                toast("Payment failed: $resultDesc")
+                                Timber.e("STK Push failed. Code: $resultCode, Desc: $resultDesc")
+                            }
+
+                        } else {
+                            Timber.e("Unsuccessful response from server")
                         }
+
+
                     } catch (e: Exception) {
+
                         e.printStackTrace()
                     }
                 }
@@ -216,6 +303,19 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
                     Timber.tag(TAG).e(httpException, t.printStackTrace().toString())
                 }
             })
+
+                 */
+                override fun onResponse(
+                    call: Call<STKPushInitialResponse>,
+                    response: Response<STKPushInitialResponse>,
+                ) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onFailure(call: Call<STKPushInitialResponse>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })*/
     }
 
 

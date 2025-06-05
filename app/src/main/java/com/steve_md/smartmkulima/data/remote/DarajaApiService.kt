@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.data.remote
 
 import com.steve_md.smartmkulima.payment.mpesa.dto.AuthorizationResponse
+import com.steve_md.smartmkulima.payment.mpesa.dto.STKPushInitialResponse
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushRequest
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
 import retrofit2.Call
@@ -16,7 +17,7 @@ interface DarajaApiService {
     fun sendPush(
         @Body
         stkPushRequest: StkPushRequest
-    ) : Call<StkPushSuccessResponse>
+    ) : Call<STKPushInitialResponse>
 
     @GET("oauth/v1/generate?grant_type=client_credentials")
     fun getAccessToken() : Call<AuthorizationResponse>
