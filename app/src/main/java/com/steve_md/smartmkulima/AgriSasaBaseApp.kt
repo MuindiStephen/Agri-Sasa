@@ -19,7 +19,7 @@ import java.util.concurrent.Executors
  * With dependency injection (dagger-hilt)
  */
 @HiltAndroidApp
-class ShambaApp : Application() {
+class AgriSasaBaseApp : Application() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     override fun onCreate() {

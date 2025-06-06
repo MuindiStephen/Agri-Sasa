@@ -14,7 +14,7 @@ data class STKPushInitialResponse(
     @SerializedName("CustomerMessage") val customerMessage: String
 )
 
-// Sample response
+// Sample response 5th June 2025
 /*
 {
     "MerchantRequestID":"b18f-4a07-9aff-d6e1fb096b51472694",
@@ -23,4 +23,4 @@ data class STKPushInitialResponse(
     "ResponseDescription":"Success. Request accepted for processing",
     "CustomerMessage":"Success. Request accepted for processing"
 }
- */
+*/
