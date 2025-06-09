@@ -13,7 +13,7 @@ data class Item(
 
 /**
  *
- * @sample success response for this Transaction
+ * @sample success response for this Transaction / txn callback after successful txn.
 {
         "Body": {
         "stkCallback": {
@@ -42,5 +42,5 @@ data class Item(
         }
         }
 }
-
+ *
  */

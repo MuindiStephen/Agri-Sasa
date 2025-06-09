@@ -59,6 +59,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:21.0.1'
     implementation 'com.google.firebase:firebase-firestore-ktx:25.1.1'
     implementation 'androidx.activity:activity-ktx:1.9.3'
+
+    implementation 'com.google.firebase:firebase-functions:21.2.1'
+    implementation 'com.google.firebase:firebase-messaging:24.1.1'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+
     def timber_version = "5.0.1"
     def room_version = "2.6.1"
 

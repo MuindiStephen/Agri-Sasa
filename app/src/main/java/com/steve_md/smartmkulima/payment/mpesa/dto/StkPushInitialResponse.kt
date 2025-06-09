@@ -15,7 +15,7 @@ data class STKPushInitialResponse(
 )
 
 // Sample response 5th June 2025
-/*
+/**
 {
     "MerchantRequestID":"b18f-4a07-9aff-d6e1fb096b51472694",
     "CheckoutRequestID":"ws_CO_05062025222045312740495903",
