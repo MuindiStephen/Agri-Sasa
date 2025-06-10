@@ -1,7 +1,6 @@
 package com.steve_md.smartmkulima.ui.fragments.main
 
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
@@ -10,26 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.room.Room
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.messaging.FirebaseMessaging
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.data.remote.DarajaApiClient
-import com.steve_md.smartmkulima.data.room.AppDatabase
 import com.steve_md.smartmkulima.databinding.FragmentPaymentBinding
-import com.steve_md.smartmkulima.model.Transaction
+import com.steve_md.smartmkulima.payment.mpesa.MpesaListener
 import com.steve_md.smartmkulima.payment.mpesa.dto.AuthorizationResponse
 import com.steve_md.smartmkulima.payment.mpesa.dto.STKPushInitialResponse
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushRequest
-import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
 import com.steve_md.smartmkulima.utils.*
-import com.steve_md.smartmkulima.utils.displaySnackBar
 import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.utils.Constants.BUSINESS_SHORT_CODE
 import com.steve_md.smartmkulima.utils.Constants.CALLBACKURL
@@ -38,15 +33,13 @@ import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import timber.log.Timber
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -55,7 +48,7 @@ import java.util.*
  * @param amount
  */
 @AndroidEntryPoint
-class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
+class PaymentFragment : BottomSheetDialogFragment(), MpesaListener, View.OnClickListener {
 
     private var mApiClient: DarajaApiClient? = null
 
@@ -66,11 +59,18 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
     private val clearCartViewModel : MainViewModel by activityViewModels()
 
     private lateinit var binding: FragmentPaymentBinding
+
+    val bundle = Bundle()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
+
+        mpesaListener = this@PaymentFragment
+
         return binding.root
     }
 
@@ -134,6 +134,7 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
 
         if (v === mPay) {
             val phoneNumber = mPhone!!.text.toString()
+            bundle.putString("PHONE_NUMBER", phoneNumber)
             val amount = mAmount!!.text.toString()
             performSTKPush(phoneNumber, amount)
         }
@@ -146,7 +147,7 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
             businessShortCode = BUSINESS_SHORT_CODE,
             password = RegEx.getPassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp!!)!!,
             timestamp = timestamp,
-            transactionType = Constants.TransactionType.CustomerPayBillOnline,
+            transactionType = Constants.TransactionType.CUSTOMER_PAYBILL_ONLINE,
             amount = amount,
             partyA = RegEx.sanitizePhoneNumber(phoneNumber),
             partyB = PARTYB,
@@ -169,6 +170,22 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
                         if (res?.responseCode == "0") {
                             toast("STK Push sent successfully.\nCustomerMessage: ${res.customerMessage}")
 
+                            // This subscribes Firebase Messaging (FCM)notifications to a topic name "CheckoutRequestID"
+                            FirebaseMessaging.getInstance()
+                                .subscribeToTopic(res.checkoutRequestID)
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        Log.e("PAYMENTFRAGMENT", "Subscribed to topic ${res.checkoutRequestID}")
+                                    } else {
+                                        Log.e("PAYMENTFRAGMENT", "Subscription to topic failed", task.exception)
+                                    }
+                                }
+                                .addOnSuccessListener {
+                                    Log.e("PAYMENTFRAGMENT", "Subscribed to topic ${res.responseDescription}")
+                                }
+                                .addOnFailureListener {
+                                    Log.e("PAYMENTFRAGMENT", "Failed${res.customerMessage}")
+                                }
                         } else {
                             toast("STK Push failed.\nReason: ${res?.responseDescription}")
                         }
@@ -333,5 +350,39 @@ class PaymentFragment : BottomSheetDialogFragment(), View.OnClickListener {
     companion object {
         val httpException: HttpException? = null
         const val TAG = "PaymentFragment"
+        lateinit var mpesaListener: MpesaListener
+    }
+
+    override fun sendSuccesfull(amount: String, phone: String, date: String, receipt: String) {
+        lifecycleScope.launch {
+            run {
+                Toast.makeText(
+                    requireActivity(), "Payment Succesfull\n" +
+                            "Receipt: $receipt\n" +
+                            "Date: $date\n" +
+                            "Phone: $phone\n" +
+                            "Amount: $amount", Toast.LENGTH_LONG
+                ).show()
+            }
+
+            displaySnackBar("Payment Successful.")
+            delay(2000L)
+            bundle.putString("AMOUNT", amount)
+            findNavController().navigate(
+                R.id.action_paymentFragment_to_successfulPaymentFragment,
+                bundle
+            )
+        }
+    }
+
+    override fun sendFailed(reason: String) {
+        run {
+            Toast.makeText(
+                requireActivity(), "Payment Failed\n" +
+                        "Reason: $reason"
+                , Toast.LENGTH_LONG
+            ).show()
+        }
+        displaySnackBar("Payment Failed.")
     }
 }

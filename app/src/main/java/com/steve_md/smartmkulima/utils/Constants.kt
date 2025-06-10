@@ -30,7 +30,7 @@ object Constants {
     const val SANDBOX_BASE_URL = "https://sandbox.safaricom.co.ke/"
 
     // Production Env
-    const val Production_BASE_URL = "https://api.safaricom.co.ke/"
+    const val PROD_BASE_URL = "https://api.safaricom.co.ke/"
 
     const val BUSINESS_SHORT_CODE = "174379"
     const val PASSKEY = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
@@ -39,8 +39,10 @@ object Constants {
     const val CALLBACKURL = "https://api-um3gr35hua-uc.a.run.app/myCallbackUrl"
 
     object TransactionType {
-        const val CustomerPayBillOnline = "CustomerPayBillOnline"
+        const val CUSTOMER_PAYBILL_ONLINE = "CustomerPayBillOnline"
     }
+
+
 
 
     /**
