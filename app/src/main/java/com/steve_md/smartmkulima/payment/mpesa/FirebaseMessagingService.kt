@@ -11,7 +11,7 @@ import com.steve_md.smartmkulima.utils.displaySnackBar
 import kotlinx.coroutines.delay
 
 
-class FirebaseMessagingService : FirebaseMessagingService() {
+class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)

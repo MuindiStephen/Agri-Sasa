@@ -36,7 +36,7 @@ object Constants {
     const val PASSKEY = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
 
     const val PARTYB = "174379" // The party receiving the funds
-    const val CALLBACKURL = "https://api-um3gr35hua-uc.a.run.app/myCallbackUrl"
+    const val CALLBACKURL = "https://us-central1-shambaapp-fdb50.cloudfunctions.net/api/myCallbackUrl"
 
     object TransactionType {
         const val CUSTOMER_PAYBILL_ONLINE = "CustomerPayBillOnline"

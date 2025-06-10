@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 // Initialize Firebase Admin
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
 
 // Initialize Express app
 const app = express();

@@ -77,7 +77,7 @@
             android:name="com.steve_md.smartmkulima.utils.OverlayService"
             />
         <service
-            android:name="com.steve_md.smartmkulima.payment.mpesa.FirebaseMessagingService"
+            android:name="com.steve_md.smartmkulima.payment.mpesa.MyFirebaseMessagingService"
             android:exported="false"
             android:stopWithTask="false">
             <intent-filter>
