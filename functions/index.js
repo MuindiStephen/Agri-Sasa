@@ -1,46 +1,45 @@
-let functions = require('firebase-functions');
+const { onRequest } = require("firebase-functions/v2/https");
+const admin = require("firebase-admin");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-let admin = require('firebase-admin');
+// Initialize Firebase Admin
+admin.initializeApp();
 
-admin.initializeApp(functions.config().firebase);
-const express = require('express');
-const bodyParser = require('body-parser');
-
-//Initialize our web App
+// Initialize Express app
 const app = express();
 app.use(bodyParser.json());
-app.disable('x-powered-by');
+app.disable("x-powered-by");
 
+// Callback URL endpoint: /myCallbackUrl
+app.post("/myCallbackUrl", (req, res) => {
+  const response = {
+    ResultCode: 0,
+    ResultDesc: "Success",
+  };
 
-//This is our actual callback url `Format will be www.example.com/api/myCallbackUrl`
-app.post('/myCallbackUrl', (req, res) => {
-    let response = {
-        "ResultCode": 0,
-        "ResultDesc": "Success"
-    }
-    //Send response back to safaricom that payload has been received successfully
-    res.status(200).json(response);
+  // Respond to Safaricom that payload was received successfully
+  res.status(200).json(response);
 
-      //Then handle data through above received payload as per your app logic.
-    let body = req.body;
-    let payload = JSON.stringify(body)
+  // Handle payload
+  const body = req.body;
+  const payload = JSON.stringify(body);
 
-      console.log(payload)
+  console.log(payload);
 
-    let id =  body.Body.stkCallback.CheckoutRequestID
+  const id = body.Body?.stkCallback?.CheckoutRequestID || "unknown_checkout_id";
 
-      const payloadSend = {
-            data: {
-                payload,
-            },
-             topic: id
-        };
+  const payloadSend = {
+    data: {
+      payload,
+    },
+    topic: id,
+  };
 
-         return admin.messaging().send(payloadSend).catch(error=>{
-         console.error(error)
-         })
+  return admin.messaging().send(payloadSend).catch((error) => {
+    console.error("FCM send error:", error);
+  });
+});
 
-
-})
-
-exports.api = functions.https.onRequest(app);
+// Export HTTP Cloud Function
+exports.api = onRequest({ region: "us-central1" }, app);
