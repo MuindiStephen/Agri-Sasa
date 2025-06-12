@@ -1,15 +1,12 @@
 package com.steve_md.smartmkulima.payment.mpesa
 
 import android.util.Log
-import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
 import com.steve_md.smartmkulima.ui.fragments.main.PaymentFragment
-import com.steve_md.smartmkulima.utils.displaySnackBar
-import com.steve_md.smartmkulima.utils.displaySnackBar2
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {

@@ -233,9 +233,9 @@
             android:background="@drawable/rounded_corner"
             android:foreground="?selectableItemBackground"
             android:fontFamily="@font/montserrat_medium"
-            app:layout_constraintBottom_toBottomOf="@+id/btnAnalytics"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnAnalytics" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
             android:id="@+id/progressBarLoadingClearRecords"
@@ -247,9 +247,9 @@
             android:indeterminateTint="@color/main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAnalytics"
-            app:layout_constraintVertical_bias="0.014" />
+            app:layout_constraintVertical_bias="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
