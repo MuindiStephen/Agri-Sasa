@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.payment.mpesa
 
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -8,7 +9,7 @@ import com.google.gson.Gson
 import com.steve_md.smartmkulima.payment.mpesa.dto.StkPushSuccessResponse
 import com.steve_md.smartmkulima.ui.fragments.main.PaymentFragment
 import com.steve_md.smartmkulima.utils.displaySnackBar
-import kotlinx.coroutines.delay
+import com.steve_md.smartmkulima.utils.displaySnackBar2
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -22,19 +23,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val gson = Gson()
 
-        val mpesaResponse = gson.fromJson(payload, StkPushSuccessResponse::class.java)
+        val mpesaResponse: StkPushSuccessResponse = gson.fromJson(payload, StkPushSuccessResponse::class.java)
 
         Log.e("MessagingServiceSecond", mpesaResponse.toString())
 
-        var id = mpesaResponse.body?.stkCallback?.checkoutRequestID
+        val id = mpesaResponse.body.stkCallback.checkoutRequestID
 
-        if (mpesaResponse.body?.stkCallback?.resultCode != 0) {
+        if (mpesaResponse.body.stkCallback.resultCode != 0) {
 
-            var reason = mpesaResponse.body?.stkCallback?.resultDesc
-
-            if (reason != null) {
-                PaymentFragment.mpesaListener.sendFailed(reason)
-            }
+            val reason = mpesaResponse.body.stkCallback.resultDesc
+            PaymentFragment.mpesaListener.sendFailed(reason)
             Log.d("MessagingServiceThird", "Operation Failed")
         } else {
             Log.d("MessagingServiceThird", "Operation Success")
@@ -69,17 +67,18 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             //Log.d("NewDate", getDate(date.toLong()))
         }
 
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(id)
+        /*
         if (id != null) {
             FirebaseMessaging.getInstance()
                 .unsubscribeFromTopic(id)
-        }
+        }*/
 
     }
 
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-
     }
 
 }

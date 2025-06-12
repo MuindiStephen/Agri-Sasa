@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 
 data class StkPushSuccessResponse(
     @SerializedName("Body")
-    val body: Body?
+    val body: Body
 )

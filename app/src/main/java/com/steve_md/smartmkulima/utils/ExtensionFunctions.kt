@@ -64,6 +64,13 @@ fun Fragment.displaySnackBar(text: String) {
         .show()
 }
 
+fun displaySnackBar2(view: View, text: String) {
+    Snackbar.make(view, text, Snackbar.LENGTH_SHORT)
+        .show()
+}
+
+
+
 fun Activity.displaySnackBar(text: String) {
     val parentLayout: View = findViewById(android.R.id.content)
     Snackbar.make(parentLayout, text, Snackbar.LENGTH_SHORT)

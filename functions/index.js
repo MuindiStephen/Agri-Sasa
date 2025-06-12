@@ -1,45 +1,46 @@
-const { onRequest } = require("firebase-functions/v2/https");
-const admin = require("firebase-admin");
-const express = require("express");
-const bodyParser = require("body-parser");
+let functions = require('firebase-functions');
 
-// Initialize Firebase Admin
+let admin = require('firebase-admin');
+
 admin.initializeApp(functions.config().firebase);
+const express = require('express');
+const bodyParser = require('body-parser');
 
-// Initialize Express app
+//Initialize our web App
 const app = express();
 app.use(bodyParser.json());
-app.disable("x-powered-by");
+app.disable('x-powered-by');
 
-// Callback URL endpoint: /myCallbackUrl
-app.post("/myCallbackUrl", (req, res) => {
-  const response = {
-    ResultCode: 0,
-    ResultDesc: "Success",
-  };
 
-  // Respond to Safaricom that payload was received successfully
-  res.status(200).json(response);
+//This is our actual callback url `Format will be www.example.com/api/myCallbackUrl`
+app.post('/myCallbackUrl', (req, res) => {
+    let response = {
+        "ResultCode": 0,
+        "ResultDesc": "Success"
+    }
+    //Send response back to safaricom that payload has been received successfully
+    res.status(200).json(response);
 
-  // Handle payload
-  const body = req.body;
-  const payload = JSON.stringify(body);
+      //Then handle data through above received payload as per your app logic.
+    let body = req.body;
+    let payload = JSON.stringify(body)
 
-  console.log(payload);
+      console.log(payload)
 
-  const id = body.Body?.stkCallback?.CheckoutRequestID || "unknown_checkout_id";
+    let id =  body.Body.stkCallback.CheckoutRequestID
 
-  const payloadSend = {
-    data: {
-      payload,
-    },
-    topic: id,
-  };
+      const payloadSend = {
+            data: {
+                payload,
+            },
+             topic: id
+        };
 
-  return admin.messaging().send(payloadSend).catch((error) => {
-    console.error("FCM send error:", error);
-  });
-});
+         return admin.messaging().send(payloadSend).catch(error=>{
+         console.error(error)
+         })
 
-// Export HTTP Cloud Function
-exports.api = onRequest({ region: "us-central1" }, app);
+
+})
+
+exports.api = functions.https.onRequest(app);

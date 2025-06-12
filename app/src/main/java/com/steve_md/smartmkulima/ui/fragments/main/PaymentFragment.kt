@@ -33,6 +33,7 @@ import com.steve_md.smartmkulima.utils.Constants.PASSKEY
 import com.steve_md.smartmkulima.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -69,7 +70,7 @@ class PaymentFragment : BottomSheetDialogFragment(), MpesaListener, View.OnClick
     ): View {
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
-        mpesaListener = this@PaymentFragment
+        mpesaListener = this
 
         return binding.root
     }
@@ -354,10 +355,11 @@ class PaymentFragment : BottomSheetDialogFragment(), MpesaListener, View.OnClick
     }
 
     override fun sendSuccesfull(amount: String, phone: String, date: String, receipt: String) {
-        lifecycleScope.launch {
-            run {
+        displaySnackBar("Processing payment...")
+        viewLifecycleOwner.lifecycleScope.launch {
+            context?.let {
                 Toast.makeText(
-                    requireActivity(), "Payment Succesfull\n" +
+                    it, "Payment Successful\n" +
                             "Receipt: $receipt\n" +
                             "Date: $date\n" +
                             "Phone: $phone\n" +
@@ -365,24 +367,28 @@ class PaymentFragment : BottomSheetDialogFragment(), MpesaListener, View.OnClick
                 ).show()
             }
 
-            displaySnackBar("Payment Successful.")
+            displaySnackBar("Payment is Successful.")
             delay(2000L)
             bundle.putString("AMOUNT", amount)
-            findNavController().navigate(
-                R.id.action_paymentFragment_to_successfulPaymentFragment,
-                bundle
-            )
+            bundle.putString("TRANSACTION_ID", receipt)
+            bundle.putString("DATE",date)
+            bundle.putString("PHONE", phone)
+
+            if (isAdded) {
+                findNavController().navigate(
+                    R.id.action_paymentFragment_to_successfulPaymentFragment,
+                    bundle
+                )
+            }
         }
     }
 
+
     override fun sendFailed(reason: String) {
-        run {
-            Toast.makeText(
-                requireActivity(), "Payment Failed\n" +
-                        "Reason: $reason"
-                , Toast.LENGTH_LONG
-            ).show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            context?.let {
+                Toast.makeText(it, "Payment Failed\nReason: $reason", Toast.LENGTH_LONG).show()
+            }
         }
-        displaySnackBar("Payment Failed.")
     }
 }

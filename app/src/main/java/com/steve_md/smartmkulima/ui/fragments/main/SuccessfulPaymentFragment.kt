@@ -64,9 +64,10 @@ class SuccessfulPaymentFragment : Fragment() {
     private fun configViews() {
 
         binding.apply {
-            textView142.text = "(+254) "+arguments?.getString("PHONE_NUMBER")
+            textView142.text = "(+254) "+arguments?.getString("PHONE")
             textView150.text = "Kes. "+arguments?.getString("AMOUNT")
-            textView146.text = getWhenStarts()
+            textView146.text = arguments?.getString("DATE")
+            textView148.text = arguments?.getString("TRANSACTION_ID")
         }
     }
 

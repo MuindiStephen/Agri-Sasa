@@ -7,7 +7,7 @@ data class Item(
     @SerializedName("Name")
     val name: String,
     @SerializedName("Value")
-    val value: Double
+    val value: Any
 )
 
 
