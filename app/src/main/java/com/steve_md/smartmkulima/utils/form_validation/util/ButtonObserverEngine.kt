@@ -2,7 +2,7 @@ package com.steve_md.smartmkulima.utils.form_validation.util
 
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
-import com.ekenya.rnd.common.form_validation.ui_extensions.combineLatest
+import com.steve_md.smartmkulima.utils.form_validation.ui_extensions.combineLatest
 
 internal class ButtonObserverEngine(
     private var lifecycleOwner: LifecycleOwner?,

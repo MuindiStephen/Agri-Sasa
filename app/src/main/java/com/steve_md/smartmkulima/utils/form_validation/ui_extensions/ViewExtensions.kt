@@ -6,16 +6,11 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ekenya.rnd.common.form_validation.ui_extensions.getPasswordError
-import com.ekenya.rnd.common.form_validation.ui_extensions.isComplexPassword
-import com.ekenya.rnd.common.form_validation.ui_extensions.isComplexPin
-import com.ekenya.rnd.common.form_validation.ui_extensions.isValidEmail
-import com.ekenya.rnd.common.form_validation.ui_extensions.removeNonDigits
-import com.ekenya.rnd.common.form_validation.util.SimpleTextWatcher
+import com.steve_md.smartmkulima.utils.form_validation.util.SimpleTextWatcher
 import java.text.DecimalFormat
 import java.text.NumberFormat
 
-private fun TextView.doAfterTextChanged(block: (s: String) -> Unit) : SimpleTextWatcher{
+private fun TextView.doAfterTextChanged(block: (s: String) -> Unit) : SimpleTextWatcher {
 
     val simpleTextWatcher: SimpleTextWatcher = object : SimpleTextWatcher() {
         override fun afterTextChanged(s: Editable) {

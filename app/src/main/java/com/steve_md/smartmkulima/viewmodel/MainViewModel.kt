@@ -64,7 +64,7 @@ class MainViewModel @Inject constructor(
     private val buyerRepository: BuyerRepository,
     private val ubiBotIoTRepository: UbiBotIoTRepository,
     private val farmMachineryRepository: FarmMachineryRepository,
-    private val voiceBotRepo: VoiceBotRepo
+    voiceBotRepo: VoiceBotRepo
 ) : ViewModel() {
 
     private val _produce = MutableSharedFlow<FarmProduceState>()

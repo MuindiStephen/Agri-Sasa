@@ -21,15 +21,15 @@ app.post('/myCallbackUrl', (req, res) => {
     //Send response back to safaricom that payload has been received successfully
     res.status(200).json(response);
 
-      //Then handle data through above received payload as per your app logic.
+    //Then handle data through above received payload as per your app logic.
     let body = req.body;
     let payload = JSON.stringify(body)
 
-      console.log(payload)
+    console.log(payload)
 
     let id =  body.Body.stkCallback.CheckoutRequestID
 
-      const payloadSend = {
+    const payloadSend = {
             data: {
                 payload,
             },
@@ -39,8 +39,6 @@ app.post('/myCallbackUrl', (req, res) => {
          return admin.messaging().send(payloadSend).catch(error=>{
          console.error(error)
          })
-
-
-})
+    })
 
 exports.api = functions.https.onRequest(app);

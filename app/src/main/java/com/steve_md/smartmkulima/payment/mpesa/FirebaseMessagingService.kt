@@ -69,7 +69,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (id != null) {
             FirebaseMessaging.getInstance()
                 .unsubscribeFromTopic(id)
-        }*/
+        }
+        */
 
     }
 
