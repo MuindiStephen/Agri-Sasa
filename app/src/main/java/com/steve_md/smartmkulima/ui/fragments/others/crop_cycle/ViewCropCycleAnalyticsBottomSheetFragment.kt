@@ -37,6 +37,7 @@ class ViewCropCycleAnalyticsBottomSheetFragment : BottomSheetDialogFragment() {
         }.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,14 +69,14 @@ class ViewCropCycleAnalyticsBottomSheetFragment : BottomSheetDialogFragment() {
         // sales made observers
         viewModel.totalSalesForCrop.observe(viewLifecycleOwner) { sales ->
             sales?.let {
-                binding.textView152.setText(it)
+                binding.textView152.text = it
             }
         }
 
         // Observe calculated revenue
         viewModel.calculatedRevenue.observe(viewLifecycleOwner) { revenue ->
             revenue?.let {
-                binding.textView153.setText(it)
+                binding.textView153.text = it.toString()
             }
         }
 

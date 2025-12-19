@@ -90,6 +90,9 @@ class FieldAgentRegisterFragment : Fragment() {
                         Timber.d("Loading request")
                     }
                     is ResourceNetwork.Success -> {
+
+
+
                         Timber.d("Request success")
                         displaySnackBar("Your account is created successfully, proceed to login.")
                         findNavController().navigate(R.id.fieldAgentLoginFragment)

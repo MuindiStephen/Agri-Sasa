@@ -1,6 +1,7 @@
 package com.steve_md.smartmkulima.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -243,9 +244,6 @@ class MainViewModel @Inject constructor(
     val totalSalesForCrop: LiveData<String> get() = _totalSalesForCrop
 
 
-    // LiveData to expose calculated revenue
-    val calculatedRevenue: LiveData<String?> = MutableLiveData()
-
     init {
         // Observe changes in selectedCrop and fetch data accordingly
         _selectedCrop.observeForever { cropName ->
@@ -254,17 +252,11 @@ class MainViewModel @Inject constructor(
                 fetchTotalSalesForCrop(it)
             }
         }
-
-        // Observe total expenses and sales to calculate revenue
-        _totalExpensesForCrop.observeForever { expenses ->
-            calculateRevenue()
-        }
-
-        _totalSalesForCrop.observeForever { sales ->
-            calculateRevenue()
-        }
     }
 
+    /*
+    observeForever => will receive events & not automatically stopped.
+     */
     private fun fetchTotalSalesForCrop(cropName: String) {
 
         viewModelScope.launch {
@@ -284,13 +276,34 @@ class MainViewModel @Inject constructor(
 
     }
 
+    /**
+     * used mediatorLivedata because -:
+     * 1. Keep vm clean * asynchronous
+     * 2. Easy handling of observer - removes manual observer management
+     * 3. Make lifecycle stay safe
+     * 4. Combining multiple livedata sources into one single source
+     */
+    val calculatedRevenue = MediatorLiveData<Double>().apply {
+        fun recalculate() {
+            val expenses = _totalExpensesForCrop.value ?: "0.0"
+            val sales = _totalExpensesForCrop.value ?: "0.0"
 
-    private fun calculateRevenue() {
-        val expenses = _totalExpensesForCrop.value ?: 0.0
-        val sales = _totalSalesForCrop.value ?: 0.0
-        (calculatedRevenue as MutableLiveData).value =
-            (sales.toString().toDouble() - expenses.toString().toDouble()).toString()
+            // Mediator live data value
+            value = (sales).toDouble() - (expenses).toDouble()
+        }
+
+        addSource(_totalSalesForCrop) {
+            // We getting new value for total sales for crop
+            recalculate()
+        }
+
+        addSource(_totalExpensesForCrop) {
+            // We getting new value for total expenses for crop
+            recalculate()
+        }
     }
+
+
 
     /**
      * ADD TO CART - SUPPLIES / AGRO-DEALERS

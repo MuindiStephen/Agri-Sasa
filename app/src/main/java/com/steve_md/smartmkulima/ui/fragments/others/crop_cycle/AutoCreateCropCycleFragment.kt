@@ -523,7 +523,7 @@ class AutoCreateCropCycleFragment : Fragment() {
     }
 
     private fun fetchAvailableFarms() {
-        farmCycleViewModel.allFarmFields.observe(viewLifecycleOwner) { farmField->
+        farmCycleViewModel.allFarmFields.observe(viewLifecycleOwner) { farmField ->
             if (!farmField.isNullOrEmpty()) {
                 farmFieldsList.clear()
                 farmFieldsList.addAll(farmField)
@@ -532,24 +532,32 @@ class AutoCreateCropCycleFragment : Fragment() {
                     it.farmName
                 }
 
-                val adapter = ArrayAdapter<String>(this@AutoCreateCropCycleFragment.requireContext(),
-                    android.R.layout.simple_spinner_item,farmNames)
+                val adapter = ArrayAdapter<String>(
+                    this@AutoCreateCropCycleFragment.requireContext(),
+                    android.R.layout.simple_spinner_item, farmNames
+                )
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.inputFarmBlockID.adapter = adapter
 
 
-                binding.inputFarmBlockID.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                        selectedfarm = parent.getItemAtPosition(position).toString()
-                        Timber.i("Selected Farm name: $selectedfarm")
-                        displaySnackBar(selectedfarm)
-                    }
+                binding.inputFarmBlockID.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>,
+                            view: View?,
+                            position: Int,
+                            id: Long
+                        ) {
+                            selectedfarm = parent.getItemAtPosition(position).toString()
+                            Timber.i("Selected Farm name: $selectedfarm")
+                            displaySnackBar(selectedfarm)
+                        }
 
-                    override fun onNothingSelected(parent: AdapterView<*>) {
-                        Timber.tag("AutoCreateCropCycle").d("No Farm FOUND")
-                        displaySnackBar("No farm found, Please create a new farm in order to continue")
+                        override fun onNothingSelected(parent: AdapterView<*>) {
+                            Timber.tag("AutoCreateCropCycle").d("No Farm FOUND")
+                            displaySnackBar("No farm found, Please create a new farm in order to continue")
+                        }
                     }
-                }
 
                 /**
                  * Setting up img and pop up menu
@@ -561,7 +569,8 @@ class AutoCreateCropCycleFragment : Fragment() {
                         .setDuration(200)
                         .withEndAction {
 
-                            val popUpMenu = androidx.appcompat.widget.PopupMenu(requireContext(), it)
+                            val popUpMenu =
+                                androidx.appcompat.widget.PopupMenu(requireContext(), it)
 
                             farmNames.forEach { string ->
                                 popUpMenu.menu.add(string)
@@ -607,9 +616,6 @@ class AutoCreateCropCycleFragment : Fragment() {
             }
         }
     }
-
-
-
 }
 
 

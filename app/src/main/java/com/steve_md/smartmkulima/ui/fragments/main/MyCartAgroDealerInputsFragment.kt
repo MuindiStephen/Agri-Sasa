@@ -169,15 +169,7 @@ class MyCartAgroDealerInputsFragment : Fragment() {
                             totalOrderInMoney = checkoutValueIncludingFees.toString()
                         )
 
-                        try {
-                            viewModel.saveOrder(orderCheckoutByFarmer)
-                            toast("Order placed successfully")
-                        } catch (e: Exception) {
-                            Timber.tag("Orders").e(
-                                "Order Not Placed." +
-                                        "ERROR==${e.message}"
-                            )
-                        }
+
 
                         val modal = PaymentFragment().apply {
                             arguments = Bundle().apply {
