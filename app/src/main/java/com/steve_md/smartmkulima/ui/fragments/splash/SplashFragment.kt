@@ -38,13 +38,15 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
 
-    private lateinit var binding: FragmentSplashBinding
+    private var _binding: FragmentSplashBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSplashBinding.inflate(
+        _binding = FragmentSplashBinding.inflate(
             layoutInflater,
             container,
 
@@ -146,5 +148,10 @@ class SplashFragment : Fragment() {
                     R.id.action_splashFragment_to_userTypeAccountFragment)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
