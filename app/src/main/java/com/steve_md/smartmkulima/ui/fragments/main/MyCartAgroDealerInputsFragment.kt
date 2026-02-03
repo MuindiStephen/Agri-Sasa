@@ -13,13 +13,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.AgroDealsCartItemsListAdapter
 import com.steve_md.smartmkulima.databinding.FragmentMyCartAgroDealerInputsBinding
 import com.steve_md.smartmkulima.model.FarmInputAgroDealerCartItem
 import com.steve_md.smartmkulima.model.OrderCheckoutByFarmer
-import com.steve_md.smartmkulima.ui.fragments.main.fieldagents.AddANewAgroDealerBottomSheetFragment
-import com.steve_md.smartmkulima.utils.toast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -38,7 +35,8 @@ class MyCartAgroDealerInputsFragment : Fragment() {
     private var firebaseAuth: FirebaseAuth? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return FragmentMyCartAgroDealerInputsBinding.inflate(inflater, container, false).also {
@@ -89,7 +87,6 @@ class MyCartAgroDealerInputsFragment : Fragment() {
 
 
     private fun setUpUi() {
-        
         binding.toolbarMyCart.setNavigationOnClickListener {
             findNavController().navigateUp()
         }

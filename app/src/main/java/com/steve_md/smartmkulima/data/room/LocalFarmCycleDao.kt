@@ -31,4 +31,7 @@ interface LocalFarmCycleDao {
 
     @Query("UPDATE localcycle SET comments = :comments WHERE cropName =:cropName")
     suspend fun updateToNewComments(comments: String, cropName: String)
+
+    @Query("SELECT * FROM localcycle WHERE cropName LIKE '%' || :keyword || '%'")
+    fun getLocalCropCycleByCropNameKeyWord(keyword: String) : List<LocalFarmCycle>
 }
