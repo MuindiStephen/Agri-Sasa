@@ -33,6 +33,10 @@ class FarmFieldsAdapter(
             binding.textView109.text = farmField?.farmName.toString()
             binding.textView110.text = farmField?.farmDescription.toString()
             binding.textViewFarmFieldInitialLr.text = getInitialLetter(adapterPosition)
+
+//            itemView.setOnClickListener {
+//                onClickListener.onClick(farmField!!)
+//            }
         }
     }
 
@@ -57,6 +61,7 @@ class FarmFieldsAdapter(
         holder.itemView.setOnClickListener {
             onClickListener.onClick(farmField)
         }
+
     }
 
     class OnClickListener(val clickListener: (newFarmField: NewFarmField) -> Unit) {
