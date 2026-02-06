@@ -29,8 +29,7 @@ object DatabaseModule {
     fun providesRoomDatabase(context: Application): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "ShambaRoomDB.db")
             .allowMainThreadQueries()  // without blocking the main thread
-            .fallbackToDestructiveMigration() //  Want database to not be cleared when upgrading versions from 1_2
-            // .addMigrations()
+            .fallbackToDestructiveMigration(dropAllTables = true) //  Want database to not be cleared when upgrading versions from 1_2
             .build()
     }
 
