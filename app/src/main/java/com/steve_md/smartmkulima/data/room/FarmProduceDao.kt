@@ -25,6 +25,6 @@ interface FarmProduceDao {
 
     // Get items from the local database upon searching
     // Returns a flow of result type
-    @Query("SELECT * FROM produce WHERE title LIKE :searchQuery OR price  LIKE :searchQuery")
+    @Query("SELECT * FROM produce WHERE title LIKE :searchQuery OR price LIKE :searchQuery")
     fun searchDatabase(searchQuery: String) : Flow<List<FarmProduce>>
 }

@@ -57,6 +57,10 @@ class UserTypeAccountFragment : Fragment() {
                 handleFieldAgents()
             }
 
+//            btnContinue.setOnClickListener {
+//                throw RuntimeException("Testing crash")
+//            }
+
             /*
             btnContinue.setOnClickListener {
                 when (roleName) {

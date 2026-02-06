@@ -302,7 +302,7 @@
             android:paddingEnd="70dp"
             android:drawablePadding="10dp"
             android:textAllCaps="false"
-            android:text="Continue"
+            android:text="Test Crash"
             android:visibility="invisible"
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/white"
