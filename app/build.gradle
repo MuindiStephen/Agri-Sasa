@@ -114,10 +114,10 @@ dependencies {
 
 
     // Alternatively - just LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
 
     // Alternatively - just ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
 
     // Dagger - Hilt
     implementation 'com.google.dagger:hilt-android:2.57.1'
@@ -127,13 +127,13 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     // Circular ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:3.0.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
 
     // Gson
@@ -152,7 +152,7 @@ dependencies {
 
 
     // Maps - Dependency
-    implementation 'com.google.android.gms:play-services-maps:19.0.0'
+    implementation 'com.google.android.gms:play-services-maps:20.0.0'
     implementation 'com.google.android.gms:play-services-location:21.3.0'
 
     // Lottie Animation
@@ -203,13 +203,13 @@ dependencies {
     implementation("com.google.android.play:app-update-ktx:2.1.0")
 
     // Google Firebase Analytics
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation(platform("com.google.firebase:firebase-bom:34.9.0"))
     implementation("com.google.firebase:firebase-analytics")
     
     // MP-Android-Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
-    implementation "androidx.work:work-runtime:2.9.0"
+    implementation "androidx.work:work-runtime:2.11.1"
 
     // Twilio Voice Api
     implementation "com.twilio:voice-android:6.9.0"
