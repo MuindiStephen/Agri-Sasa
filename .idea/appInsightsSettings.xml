@@ -28,10 +28,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.steve_md.agrisasa" />
-                  <option name="mobileSdkAppId" value="1:932156534906:android:9449291a35ee662c0d4bc3" />
-                  <option name="projectId" value="shambaapp-fdb50" />
-                  <option name="projectNumber" value="932156534906" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
