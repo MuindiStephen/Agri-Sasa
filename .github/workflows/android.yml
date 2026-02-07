@@ -40,7 +40,7 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
-          groups: "All testers"
+          groups: "testers"
           releaseNotes: "Automated build from develop branch"
           file: app/build/outputs/apk/debug/app-debug.apk
 
