@@ -1,7 +1,5 @@
 package com.steve_md.smartmkulima.ui.activities
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
@@ -10,16 +8,10 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.steve_md.smartmkulima.R
 import com.steve_md.smartmkulima.adapter.others.LocalFarmCycleTasksAdapter
@@ -28,35 +20,31 @@ import com.steve_md.smartmkulima.model.LocalFarmCycle
 import com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.CropCycleCancelledStatusCommentsFragment
 import com.steve_md.smartmkulima.ui.fragments.others.crop_cycle.ViewCropCycleAnalyticsBottomSheetFragment
 import com.steve_md.smartmkulima.utils.displaySnackBar
+import com.steve_md.smartmkulima.utils.showToast
 import com.steve_md.smartmkulima.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 
 @AndroidEntryPoint
 class DetailedFarmCycleActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityDetailedFarmCycleBinding
-    private val tasksAdapter by lazy { LocalFarmCycleTasksAdapter() }
-    //  private lateinit var navController: NavController
+
+    private val tasksAdapter = LocalFarmCycleTasksAdapter(
+        tasks = emptyList(),
+        onClick = { showToast(it.taskName) }
+    )
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailedFarmCycleBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(binding.root) // Use the binding root instead of R.layout.activity_detailed_farm_cycle
-
-        // navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-
-        // Setting Nav Controller
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment2)
-//                as NavHostFragment
-//        navController = navHostFragment.findNavController()
+        setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -86,15 +74,14 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
             // comments are visible only when status is cancelled.
             textViewComments.isVisible = localFarmCycle.status == "Cancelled"
 
+
+            // Set up the RecyclerView
+            recyclerView.adapter = tasksAdapter
+            recyclerView.layoutManager = LinearLayoutManager(this@DetailedFarmCycleActivity)
+
             // Check if localFarmCycle is not null and update the adapter with tasks
             localFarmCycle.let {
                 tasksAdapter.submitList(it.tasks)
-            }
-
-            // Set up the RecyclerView
-            recyclerView.apply {
-                layoutManager = LinearLayoutManager(this@DetailedFarmCycleActivity)
-                adapter = tasksAdapter
             }
 
             // Marking the Crop Cycle As DONE
