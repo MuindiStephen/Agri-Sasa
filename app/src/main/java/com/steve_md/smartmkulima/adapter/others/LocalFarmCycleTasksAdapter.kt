@@ -16,8 +16,6 @@ class LocalFarmCycleTasksAdapter(
     private val onClick: (LocalTasks) -> Unit = {}
 ) : RecyclerView.Adapter<LocalFarmCycleTasksAdapter.TaskViewHolder>() {
 
-    //private var tasks: List<LocalTasks> = ArrayList()
-
     inner class TaskViewHolder(private val binding: DetailCycleRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
