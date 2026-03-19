@@ -12,8 +12,8 @@ import com.steve_md.smartmkulima.model.LocalTasks
  * Able to view actual tasks for cycle - respective tasks
  */
 class LocalFarmCycleTasksAdapter(
-    private var tasks: List<LocalTasks>,
-    private val onClick: (LocalTasks) -> Unit
+    private var tasks: List<LocalTasks> = emptyList(),
+    private val onClick: (LocalTasks) -> Unit = {}
 ) : RecyclerView.Adapter<LocalFarmCycleTasksAdapter.TaskViewHolder>() {
 
     //private var tasks: List<LocalTasks> = ArrayList()
