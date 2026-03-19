@@ -25,6 +25,10 @@ class LocalFarmCycleTasksAdapter(
             binding.textView75.text = task.taskName
             binding.textView76.text = task.startDate
             binding.textView77.text = task.endDate
+
+            binding.root.setOnClickListener {
+                onClick(task)
+            }
         }
     }
 
