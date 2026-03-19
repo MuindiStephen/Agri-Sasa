@@ -80,7 +80,7 @@ class DetailedFarmCycleActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this@DetailedFarmCycleActivity)
 
             // Check if localFarmCycle is not null and update the adapter with tasks
-            localFarmCycle.let {
+            localFarmCycle?.let {
                 tasksAdapter.submitList(it.tasks)
             }
 
